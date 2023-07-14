@@ -1,18 +1,26 @@
 import {onNavigate} from '../main.js';
 
 export const Home = () => {
-  const HomeDiv = document.createElement('div');
+  const homeDiv = document.createElement('div');
+  const title = documenr.createElement('h2');
   const buttonRegister = document.createElement('button');
   const buttonLogin = document.createElement('button');
 
-  buttonRegister.textContent = 'Registrate';
+  buttonRegister.textContent = 'Register';
   buttonLogin.textContent = 'Login';
+  title.textContent = 'Expressio Music'
 
-  buttonRegister.addEventListener('click', () => onNavigate('/register'));
-  buttonLogin.addEventListener('click', () => onNavigate('/Login'));
+  buttonRegister.addEventListener('click', () => {
+    onNavigate('/register');
+  });
+  buttonLogin.addEventListener('click', () => {
+     onNavigate('/Login');
+  });
 
-  HomeDiv.appendChild(buttonRegister);
-  HomeDiv.appendChild(buttonLogin);
+  homeDiv.append(buttonRegister);
+  homeDiv.append(buttonLogin);
+  homeDiv.append(title);
 
-  return HomeDiv;
+
+  return homeDiv;
 };
