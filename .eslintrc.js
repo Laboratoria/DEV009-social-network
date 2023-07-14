@@ -3,10 +3,7 @@ module.exports = {
     'browser': true,
     'es2021': true,
   },
-  'extends': [
-    'google',
-    'plugin:vue/vue3-essential',
-  ],
+  'extends': 'google',
   'overrides': [
     {
       'env': {
@@ -24,9 +21,6 @@ module.exports = {
     'ecmaVersion': 'latest',
     'sourceType': 'module',
   },
-  'plugins': [
-    'vue',
-  ],
   'rules': {
   },
 };
