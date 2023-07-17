@@ -1,45 +1,19 @@
-<<<<<<< HEAD
-// import { onNavigate } from "../main.js";
-
+import { onNavigate } from '../main.js';
+// la linea 1 hace que no se renderize el programa
 export const Home = () => {
-
     const HomeDiv = document.createElement('div');
-
+    const title = document.createElement('h1')
     const buttonRegister = document.createElement('button');
-
-    const buttonLogin = document.createElement('button'); 
-    
-    buttonRegister.textContent = 'Registrate';
-
-    buttonLogin.textContent = 'Login'; 
-    
-/*    buttonRegister.addEventListener('click', () => onNavigate('/register'));
-    buttonLogin.addEventListener('click', () => onNavigate('/Login'));  */
-    
-    
+    const buttonLogin = document.createElement('button');
+    buttonRegister.textContent = 'Sign Up';
+    buttonLogin.textContent = 'Log In';
+    title.textContent = 'Expressio Music';
+    HomeDiv.appendChild(title);
     HomeDiv.appendChild(buttonRegister);
-
-    HomeDiv.appendChild(buttonLogin); 
-    
+    HomeDiv.appendChild(buttonLogin);
+    buttonRegister.addEventListener('click', () => onNavigate('/register'));
+    buttonLogin.addEventListener('click', () => onNavigate('/login'));
     return HomeDiv;
+
 };
-=======
-import {onNavigate} from '../main.js';
 
-export const Home = () => {
-  const HomeDiv = document.createElement('div');
-  const buttonRegister = document.createElement('button');
-  const buttonLogin = document.createElement('button');
-
-  buttonRegister.textContent = 'Registrate';
-  buttonLogin.textContent = 'Login';
-
-  buttonRegister.addEventListener('click', () => onNavigate('/register'));
-  buttonLogin.addEventListener('click', () => onNavigate('/Login'));
-
-  HomeDiv.appendChild(buttonRegister);
-  HomeDiv.appendChild(buttonLogin);
-
-  return HomeDiv;
-};
->>>>>>> 205c3a7de88b1ca0eb9167a91721f32f9944e6cf
