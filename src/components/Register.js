@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-// import {onNavigate} from '../main.js';
-=======
-import {onNavigate} from '../main.js';
->>>>>>> 4d6c365dab537d8501998a7c92e0af505f91ec63
-
-
-export const Register = () => {
+export const Register = (navigateTo) => {
   const homeDiv = document.createElement('div');
   const title = documenr.createElement('h2');
   const inputEmail = document.createElement('input');
@@ -17,8 +10,10 @@ export const Register = () => {
   button.textContent = 'Register'
   title.textContent = 'Register'
 
-  buttonBack.addEventListener('click', () => onNavigate('/'));
+  buttonBack.addEventListener('click', () => navigateTo('/'));
   homeDiv.append(buttonBack);
+  homeDiv.append(inputEmail);
+  homeDiv.append(inputPassword);
 
   return HomeDiv;
 };
