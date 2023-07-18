@@ -57,7 +57,7 @@ export const Register = (navigateTo) => {
   buttonContainer.append(buttonBack);
 
   homeDiv.append(buttonContainer);
-  
+
   return homeDiv;
 };
 
