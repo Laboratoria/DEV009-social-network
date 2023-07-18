@@ -4,11 +4,17 @@ export const Home = (navigateTo) => {
   const title = document.createElement('h2');
   title.classList.add('title');
 
+  const welcome = document.createElement('p');
+  welcome.innerHTML= 'Welcome';
+
+  const greeting = document.createElement('p');
+  greeting.innerHTML= 'Stay connected with musicians, events, posts and more.';
+
   const buttonRegister = document.createElement('button');
   const buttonLogin = document.createElement('button');
 
-  buttonRegister.textContent = 'Register';
-  buttonLogin.textContent = 'Login';
+  buttonRegister.textContent = 'Sign Up';
+  buttonLogin.textContent = 'Sing In';
   title.textContent = 'Expressio Music';
 
   buttonRegister.addEventListener('click', () => {
@@ -18,9 +24,11 @@ export const Home = (navigateTo) => {
     navigateTo('/login');
   });
 
+  homeDiv.append(title);
+  homeDiv.append(welcome);
+  homeDiv.append(greeting);
   homeDiv.append(buttonRegister);
   homeDiv.append(buttonLogin);
-  homeDiv.append(title);
 
 
   return homeDiv;
