@@ -30,5 +30,17 @@ export const Home = (navigateTo) => {
   homeDiv.append(buttonRegister);
   homeDiv.append(buttonLogin);
 
+<<<<<<< HEAD
+=======
+  const buttonContainer = document.createElement('div');
+  buttonContainer.classList.add('button-container');
+
+  buttonContainer.append(buttonRegister);
+  buttonContainer.append(buttonLogin);
+
+  homeDiv.append(buttonContainer);
+
+
+>>>>>>> 4a08b87fe6ebb513169cfc0bb9777257000970e6
   return homeDiv;
 };

@@ -1,4 +1,4 @@
-export const Start = (navigateTo) => {
+export const Events = (navigateTo) => {
   const homeDiv = document.createElement('div');
   const title = document.createElement('h1');
   const buttonStart = document.createElement('button');
@@ -14,8 +14,8 @@ export const Start = (navigateTo) => {
   buttonLogout.textContent = 'Log Out';
   title.textContent = 'Expressio Music';
 
-  buttonEvents.addEventListener('click', () => {
-    navigateTo('/events');
+  buttonStart.addEventListener('click', () => {
+    navigateTo('/start');
   });
   buttonNewPost.addEventListener('click', () => {
     navigateTo('/newpost');
@@ -47,3 +47,4 @@ export const Start = (navigateTo) => {
 
   return homeDiv;
 };
+

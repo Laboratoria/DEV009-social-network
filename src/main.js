@@ -3,12 +3,18 @@ import {Home} from './components/Home.js';
 import {Register} from './components/Register.js';
 import {Login} from './components/Login.js';
 import {Start} from './components/Start.js';
+import {Events} from './components/Events.js';
+import {Newpost} from './components/Newpost.js';
+import {Profile} from './components/Profile.js';
 
 const routes = [
   {path: '/', component: Home},
   {path: '/login', component: Login},
   {path: '/register', component: Register},
   {path: '/start', component: Start},
+  {path: '/events', component: Events},
+  {path: '/newpost', component: Newpost},
+  {path: '/profile', component: Profile},
 ];
 
 const defaultRoute = '/';
