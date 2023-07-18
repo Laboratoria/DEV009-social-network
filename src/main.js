@@ -28,7 +28,10 @@ function navigateTo(hash) {
   } else {
     navigateTo('/error');
   }
-}window.onpopstate = () => {
+}
+
+window.onpopstate = () => {
   navigateTo(window.location.pathname);
 };
+
 navigateTo(window.location.pathname || defaultRoute);

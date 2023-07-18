@@ -10,9 +10,7 @@ export const Register = (navigateTo) => {
   button.textContent = 'Register';
   title.textContent = 'Register';
 
-  buttonBack.addEventListener('click', () =>
-    navigateTo('/'),
-  );
+  buttonBack.addEventListener('click', () => navigateTo('/'));
   homeDiv.append(buttonBack);
   homeDiv.append(inputEmail);
   homeDiv.append(inputPassword);

@@ -16,7 +16,9 @@ export const Home = (navigateTo) => {
   });
   buttonLogin.addEventListener('click', () => {
     navigateTo('/login');
-  }); homeDiv.append(buttonRegister);
+  });
+
+  homeDiv.append(buttonRegister);
   homeDiv.append(buttonLogin);
   homeDiv.append(title);
 

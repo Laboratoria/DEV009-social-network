@@ -8,8 +8,9 @@ export const Login = (navigateTo) => {
 
   button.textContent = 'Login';
   buttonBack.textContent = 'Go back';
-  title.textContent = 'Login'; 
-  
+  title.textContent = 'Login';
+
+
   buttonBack.addEventListener('click', () => {
     navigateTo('/');
   });
