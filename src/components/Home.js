@@ -30,6 +30,14 @@ export const Home = (navigateTo) => {
   homeDiv.append(buttonRegister);
   homeDiv.append(buttonLogin);
 
+  const buttonContainer = document.createElement('div');
+  buttonContainer.classList.add('button-container');
+
+  buttonContainer.append(buttonRegister);
+  buttonContainer.append(buttonLogin);
+
+  homeDiv.append(buttonContainer);
+
 
   return homeDiv;
 };

@@ -49,6 +49,15 @@ export const Register = (navigateTo) => {
   homeDiv.append(buttonGoogle);
   homeDiv.append(buttonBack);
 
+  const buttonContainer = document.createElement('div');
+  buttonContainer.classList.add('button-container');
+
+  buttonContainer.append(button);
+  buttonContainer.append(buttonGoogle);
+  buttonContainer.append(buttonBack);
+
+  homeDiv.append(buttonContainer);
+
   return homeDiv;
 };
 
