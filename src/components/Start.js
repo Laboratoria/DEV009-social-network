@@ -1,16 +1,10 @@
 export const Start = (navigateTo) => {
   const homeDiv = document.createElement('div');
-
   const title = document.createElement('h1');
-
   const buttonStart = document.createElement('button');
-
   const buttonEvents= document.createElement('button');
-
   const buttonNewPost = document.createElement('button');
-
   const buttonProfile = document.createElement('button');
-
   const buttonLogout = document.createElement('button');
 
   buttonStart.textContent = 'Home';
@@ -39,6 +33,17 @@ export const Start = (navigateTo) => {
   homeDiv.append(buttonNewPost);
   homeDiv.append(buttonProfile);
   homeDiv.append(buttonLogout);
+
+  const bottomMenuDiv = document.createElement('div');
+  bottomMenuDiv.classList.add('bottom-menu');
+
+  bottomMenuDiv.append(buttonStart);
+  bottomMenuDiv.append(buttonEvents);
+  bottomMenuDiv.append(buttonNewPost);
+  bottomMenuDiv.append(buttonProfile);
+  bottomMenuDiv.append(buttonLogout);
+
+  homeDiv.append(bottomMenuDiv);
 
   return homeDiv;
 };
