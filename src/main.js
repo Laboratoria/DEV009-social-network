@@ -1,12 +1,14 @@
 /* eslint-disable require-jsdoc */
 import {Home} from './components/Home.js';
-import {Register} from './components/register.js';
+import {Register} from './components/Register.js';
 import {Login} from './components/Login.js';
+import {Start} from './components/Start.js';
 
 const routes = [
   {path: '/', component: Home},
   {path: '/login', component: Login},
   {path: '/register', component: Register},
+  {path: '/start', component: Start},
 ];
 
 const defaultRoute = '/';
