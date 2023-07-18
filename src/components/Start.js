@@ -1,10 +1,7 @@
 export const Start = (navigateTo) => {
   const homeDiv = document.createElement('div');
-
   const title = document.createElement('h1');
-
   const buttonStart = document.createElement('button');
-
   const buttonEvents= document.createElement('button');
 
   const buttonNewPost = document.createElement('button');

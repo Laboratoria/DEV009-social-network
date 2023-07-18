@@ -6,7 +6,7 @@ export const Register = (navigateTo) => {
   const inputEmail = document.createElement('input');
   inputEmail.id = 'enterEmail';
   const note = document.createElement('p');
-  note.innerHTML= 'Enter your email address';
+  note.innerHTML = 'Enter your email address';
   //   inputEmail.addEventListener('inputEmail', () => {
   //     note.innerHTML = 'Enter an existing email address';
   //   });
@@ -14,7 +14,7 @@ export const Register = (navigateTo) => {
   const inputPassword = document.createElement('input');
   inputPassword.id = 'enterPassword';
   const password = document.createElement('p');
-  password.innerHTML= 'Enter your password';
+  password.innerHTML = 'Enter your password';
   //   inputPassword.addEventListener('inputPassword', () => {
   //     password.innerHTML = 'Incorrect password';
   //   });
@@ -23,13 +23,7 @@ export const Register = (navigateTo) => {
 
   const buttonBack = document.createElement('button');
 
-<<<<<<< HEAD
-  buttonBack.textContent = 'Go back to Home';
-  button.textContent = 'Register';
-  title.textContent = 'Register';
-=======
   const buttonGoogle = document.createElement('button');
->>>>>>> 0a0800dbf0709c17edd72695c3152249f4536dc4
 
   title.textContent = 'Sign Up';
   buttonBack.textContent = 'Go back';
