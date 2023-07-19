@@ -7,6 +7,8 @@ export const Start = (navigateTo) => {
   const buttonProfile = document.createElement('button');
   const buttonLogout = document.createElement('button');
 
+  
+
   buttonStart.textContent = 'Home';
   buttonEvents.textContent = 'Events';
   buttonNewPost.textContent = 'New Post';
@@ -47,3 +49,5 @@ export const Start = (navigateTo) => {
 
   return homeDiv;
 };
+
+
