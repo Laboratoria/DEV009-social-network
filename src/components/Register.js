@@ -1,4 +1,5 @@
-import { addUser } from '../lib/account';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { addUser, enterGoogle } from '../lib/account';
 
 export const Register = (navigateTo) => {
   const homeDiv = document.createElement('div');
@@ -18,14 +19,32 @@ export const Register = (navigateTo) => {
   const password = document.createElement('p');
   password.innerHTML = 'Enter your password';
 
-  const button = document.createElement('button');
-
   const buttonBack = document.createElement('button');
 
   const buttonGoogle = document.createElement('button');
+  buttonGoogle.textContent = 'Continue with Google';
+  buttonGoogle.addEventListener('click', () => {
+    enterGoogle()
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        navigateTo('/start');
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const { user } = result;
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
+      .catch((error) => {
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        const errorMessage = error.message;
+        loginError.innerText = 'Accound invalid';
+        console.log(errorMessage + credential);
+      });
+  });
 
   const registerUser = document.createElement('button');
-  registerUser.textContent = 'Create account';
+  registerUser.textContent = 'Sign Up';
   registerUser.addEventListener('click', () => {
     addUser(inputEmail.value, inputPassword.value)
       .then((userCredential) => {
@@ -41,8 +60,6 @@ export const Register = (navigateTo) => {
   });
   title.textContent = 'Sign Up';
   buttonBack.textContent = 'Go back';
-  button.textContent = 'Sign Up';
-  buttonGoogle.textContent = 'Continue with Google';
   inputEmail.placeholder = 'Email address';
   inputPassword.placeholder = 'Password';
 
@@ -50,17 +67,13 @@ export const Register = (navigateTo) => {
     navigateTo('/');
   });
 
-  button.addEventListener('click', () => {
-    navigateTo('/start');
-  });
-
-  homeDiv.append(title, note, inputEmail, password, button, buttonGoogle);
-  homeDiv.append(inputPassword, registerUser, buttonBack, loginError);
+  homeDiv.append(title, note, inputEmail, password, buttonGoogle);
+  homeDiv.append(inputPassword, buttonBack, loginError);
 
   const buttonContainer = document.createElement('div');
   buttonContainer.classList.add('button-container');
 
-  buttonContainer.append(button);
+  buttonContainer.append(registerUser);
   buttonContainer.append(buttonGoogle);
   buttonContainer.append(buttonBack);
 

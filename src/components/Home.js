@@ -14,7 +14,7 @@ export const Home = (navigateTo) => {
   const buttonLogin = document.createElement('button');
 
   buttonRegister.textContent = 'Sign Up';
-  buttonLogin.textContent = 'Log In';
+  buttonLogin.textContent = 'Sign In';
   title.textContent = 'Expressio Music';
 
   buttonRegister.addEventListener('click', () => {

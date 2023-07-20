@@ -26,15 +26,15 @@ export const Login = (navigateTo) => {
       })
       .catch((error) => { // const errorCode = error.code;
         const errorMessage = error.message;
-        loginError.innerText = 'Password or Email error';
+        loginError.innerText = 'Password or Email invalid';
         console.log(errorMessage);
       });
   });
 
   const buttonBack = document.createElement('button');
   const buttonGoogle = document.createElement('button');
-  title.textContent = 'Log in';
-  button.textContent = 'Log In';
+  title.textContent = 'Sign in';
+  button.textContent = 'Sign In';
 
   buttonBack.textContent = 'Go back';
   buttonGoogle.textContent = 'Continue with Google';
@@ -45,10 +45,6 @@ export const Login = (navigateTo) => {
   buttonBack.addEventListener('click', () => {
     navigateTo('/');
   });
-  // button.addEventListener('click', () => {
-  // este button ya no es necesario ahora esta en el de arriba
-  //  navigateTo('/start');
-  // });
 
   homeDiv.append(title, note, inputEmail, password, inputPassword, button, buttonGoogle);
   homeDiv.append(buttonBack, loginError);

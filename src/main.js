@@ -7,6 +7,7 @@ import { Events } from './components/Events';
 import { Newpost } from './components/Newpost';
 import { Profile } from './components/Profile';
 
+
 const routes = [
   { path: '/', component: Home },
   { path: '/login', component: Login },
