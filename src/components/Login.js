@@ -8,6 +8,9 @@ export const Login = (navigateTo) => {
   const note = document.createElement('p');
   note.innerHTML = 'Enter your email address';
   const inputPassword = document.createElement('input');
+  const loginError = document.createElement('h5');
+  loginError.innerText = '';
+  console.log(loginError);
   inputPassword.id = 'enterPassword';
   const password = document.createElement('p');
   password.innerHTML = 'Enter your password';
@@ -15,38 +18,40 @@ export const Login = (navigateTo) => {
 
   button.addEventListener('click', () => {
     signinUser(inputEmail.value, inputPassword.value)
-
       .then((userCredential) => {
         // Signed in
         const { user } = userCredential;
         alert('Se logró', user);
+        navigateTo('/start');
       })
-      .catch((error) => {
-        const errorCode = error.code;
+      .catch((error) => { // const errorCode = error.code;
         const errorMessage = error.message;
-        alert(errorMessage);
+        loginError.innerText = 'Password or Email error';
+        console.log(errorMessage);
       });
   });
 
   const buttonBack = document.createElement('button');
   const buttonGoogle = document.createElement('button');
+  title.textContent = 'Log in';
+  button.textContent = 'Log In';
 
-  button.textContent = 'Sign In';
   buttonBack.textContent = 'Go back';
   buttonGoogle.textContent = 'Continue with Google';
-  title.textContent = 'Sign In';
+
   inputEmail.placeholder = 'Email address';
   inputPassword.placeholder = 'Password';
 
   buttonBack.addEventListener('click', () => {
     navigateTo('/');
   });
-  button.addEventListener('click', () => {
-    navigateTo('/start');
-  });
+  // button.addEventListener('click', () => {
+  // este button ya no es necesario ahora esta en el de arriba
+  //  navigateTo('/start');
+  // });
 
   homeDiv.append(title, note, inputEmail, password, inputPassword, button, buttonGoogle);
-  homeDiv.append(buttonBack);
+  homeDiv.append(buttonBack, loginError);
 
   const buttonContainer = document.createElement('div');
   buttonContainer.classList.add('button-container');
@@ -59,6 +64,3 @@ export const Login = (navigateTo) => {
 
   return homeDiv;
 };
-
-// const usuario = document.getElementById("name").value;
-//   document.getElementById("saludo").innerHTML = "Hola "+ usuario;

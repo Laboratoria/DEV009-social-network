@@ -1,14 +1,13 @@
-
 export const Newpost = (navigateTo) => {
   const homeDiv = document.createElement('div');
   const title = document.createElement('h1');
   const inputPost = document.createElement('input');
   inputPost.id = 'enterPost';
   const post = document.createElement('p');
-  post.innerHTML= 'What is happening?';
+  post.innerHTML = 'What is happening?';
   const buttonShare = document.createElement('button');
   const buttonStart = document.createElement('button');
-  const buttonEvents= document.createElement('button');
+  const buttonEvents = document.createElement('button');
   const buttonNewPost = document.createElement('button');
   const buttonProfile = document.createElement('button');
   const buttonLogout = document.createElement('button');
@@ -36,21 +35,15 @@ export const Newpost = (navigateTo) => {
   buttonShare.addEventListener('click', () => {
     const content = inputPost.value;
     console.log(content);
-    //addDoc(collection(database, "posts")),{  //addDoc agrega el post a la base de datos en una collecion
+    // addDoc(collection(database, "posts")),{  //
+    // addDoc agrega el post a la base de datos en una collecion
     //  contenidoBD = content,
     //  fechaBD = serverTimeStamp()
-    //}
+    // }
   });
 
-  homeDiv.append(title);
-  homeDiv.append(post);
-  homeDiv.append(inputPost);
-  homeDiv.append(buttonShare);
-  homeDiv.append(buttonStart);
-  homeDiv.append(buttonEvents);
-  homeDiv.append(buttonNewPost);
-  homeDiv.append(buttonProfile);
-  homeDiv.append(buttonLogout);
+  homeDiv.append(title, post, inputPost, buttonShare, buttonStart, buttonEvents);
+  homeDiv.append(buttonNewPost, buttonProfile, buttonLogout);
 
   const bottomMenuDiv = document.createElement('div');
   bottomMenuDiv.classList.add('bottom-menu');
@@ -66,15 +59,15 @@ export const Newpost = (navigateTo) => {
   return homeDiv;
 };
 
- /* const inputPost = document.createElement('input');
- inputPost.classList.add=('input-post');
+/* const inputPost = document.createElement('input');
+  inputPost.classList.add=('input-post');
   export const newPost = document.querySelector('.input-post');
- newPost.addEventListener('submit', (e) => {
+  newPost.addEventListener('submit', (e) => {
     e.preventDefault()
     console.log('submitted');
- const newPost= newPost['input-post']
-  
-   console.log (inputPost) 
-   });
+  const newPost= newPost['input-post']
+
+  console.log (inputPost)
+  });
 
  */

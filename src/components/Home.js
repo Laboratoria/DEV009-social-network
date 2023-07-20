@@ -14,7 +14,7 @@ export const Home = (navigateTo) => {
   const buttonLogin = document.createElement('button');
 
   buttonRegister.textContent = 'Sign Up';
-  buttonLogin.textContent = 'Sing In';
+  buttonLogin.textContent = 'Log In';
   title.textContent = 'Expressio Music';
 
   buttonRegister.addEventListener('click', () => {
@@ -37,7 +37,5 @@ export const Home = (navigateTo) => {
   buttonContainer.append(buttonLogin);
 
   homeDiv.append(buttonContainer);
-
-
   return homeDiv;
 };

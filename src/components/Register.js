@@ -9,6 +9,9 @@ export const Register = (navigateTo) => {
   inputEmail.id = 'enterEmail';
   const note = document.createElement('p');
   note.innerHTML = 'Enter your email address';
+  const loginError = document.createElement('h5');
+  loginError.innerText = '';
+  console.log(loginError);
 
   const inputPassword = document.createElement('input');
   inputPassword.id = 'enterPassword';
@@ -28,10 +31,12 @@ export const Register = (navigateTo) => {
       .then((userCredential) => {
         const { user } = userCredential;
         alert('Welcome', user);
+        navigateTo('/start');
       })
       .catch((error) => {
         const errorMessage = error.message;
-        alert(errorMessage);
+        loginError.innerText = 'Password or Email invalid';
+        console.log(errorMessage);
       });
   });
   title.textContent = 'Sign Up';
@@ -50,7 +55,7 @@ export const Register = (navigateTo) => {
   });
 
   homeDiv.append(title, note, inputEmail, password, button, buttonGoogle);
-  homeDiv.append(inputPassword, registerUser, buttonBack);
+  homeDiv.append(inputPassword, registerUser, buttonBack, loginError);
 
   const buttonContainer = document.createElement('div');
   buttonContainer.classList.add('button-container');
