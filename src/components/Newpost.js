@@ -1,4 +1,4 @@
-//import { database } from "../firebase";
+
 export const Newpost = (navigateTo) => {
   const homeDiv = document.createElement('div');
   const title = document.createElement('h1');
@@ -66,7 +66,7 @@ export const Newpost = (navigateTo) => {
   return homeDiv;
 };
 
-/* const inputPost = document.createElement('input');
+ /* const inputPost = document.createElement('input');
  inputPost.classList.add=('input-post');
   export const newPost = document.querySelector('.input-post');
  newPost.addEventListener('submit', (e) => {
@@ -76,4 +76,5 @@ export const Newpost = (navigateTo) => {
   
    console.log (inputPost) 
    });
+
  */

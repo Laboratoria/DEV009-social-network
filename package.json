@@ -25,10 +25,7 @@
     "@babel/preset-env": "^7.19.4",
     "eslint": "^8.45.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-google": "^0.14.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jest": "^25.3.0",
-    "eslint-plugin-vue": "^9.15.1",
+    "eslint-plugin-import": "^2.27.5",
     "htmlhint": "^1.0.0",
     "jest": "^27.0.1",
     "regenerator-runtime": "^0.13.1",
@@ -45,7 +42,6 @@
     "commit": "43c4a1dae1d831042293f9129c2df234888bf241"
   },
   "dependencies": {
-    "firebase": "^8.6.8",
-    "firebase-admin": "^11.10.1"
+    "firebase": "^10.0.0"
   }
 }

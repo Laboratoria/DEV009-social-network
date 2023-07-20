@@ -1,3 +1,5 @@
+import { addUser } from '../lib/account';
+
 export const Register = (navigateTo) => {
   const homeDiv = document.createElement('div');
 
@@ -7,17 +9,11 @@ export const Register = (navigateTo) => {
   inputEmail.id = 'enterEmail';
   const note = document.createElement('p');
   note.innerHTML = 'Enter your email address';
-  //   inputEmail.addEventListener('inputEmail', () => {
-  //     note.innerHTML = 'Enter an existing email address';
-  //   });
 
   const inputPassword = document.createElement('input');
   inputPassword.id = 'enterPassword';
   const password = document.createElement('p');
   password.innerHTML = 'Enter your password';
-  //   inputPassword.addEventListener('inputPassword', () => {
-  //     password.innerHTML = 'Incorrect password';
-  //   });
 
   const button = document.createElement('button');
 
@@ -25,6 +21,19 @@ export const Register = (navigateTo) => {
 
   const buttonGoogle = document.createElement('button');
 
+  const registerUser = document.createElement('button');
+  registerUser.textContent = 'Create account';
+  registerUser.addEventListener('click', () => {
+    addUser(inputEmail.value, inputPassword.value)
+      .then((userCredential) => {
+        const { user } = userCredential;
+        alert('Welcome', user);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        alert(errorMessage);
+      });
+  });
   title.textContent = 'Sign Up';
   buttonBack.textContent = 'Go back';
   button.textContent = 'Sign Up';
@@ -40,14 +49,8 @@ export const Register = (navigateTo) => {
     navigateTo('/start');
   });
 
-  homeDiv.append(title);
-  homeDiv.append(note);
-  homeDiv.append(inputEmail);
-  homeDiv.append(password);
-  homeDiv.append(inputPassword);
-  homeDiv.append(button);
-  homeDiv.append(buttonGoogle);
-  homeDiv.append(buttonBack);
+  homeDiv.append(title, note, inputEmail, password, button, buttonGoogle);
+  homeDiv.append(inputPassword, registerUser, buttonBack);
 
   const buttonContainer = document.createElement('div');
   buttonContainer.classList.add('button-container');
@@ -60,6 +63,3 @@ export const Register = (navigateTo) => {
 
   return homeDiv;
 };
-
-// const usuario = document.getElementById("name").value;
-//   document.getElementById("saludo").innerHTML = "Hola "+ usuario;
