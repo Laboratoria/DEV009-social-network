@@ -2,12 +2,14 @@
 
 import home from './components/home.js';
 import register from './components/register.js';
+import feed from './components/feed.js';
 
 const root= document.getElementById('root')
 
 const routes = [
     {path: '/', component: home},
     {path: '/register', component: register},
+    {path: '/feed', component: feed}
 ];
 const defaulRoute = '/';
 
