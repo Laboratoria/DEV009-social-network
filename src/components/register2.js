@@ -27,7 +27,9 @@ export function register2() {
   const regsiterButton = document.createElement('button');
   regsiterButton.textContent = 'Siguiente';
 
-  selection.append(genderOption1, genderOption2); */
+  selection.append(genderOption1, genderOption2);
+
+  prueba jeje */
 
   section.append(title /* nameInput, lastNameInput, ageInput, selection, regsiterButton */);
   return section;
