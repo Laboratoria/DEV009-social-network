@@ -1,5 +1,5 @@
 import {app} from './firebase.js';
-import { getAuth, createUserWithEmailAndPassword } from './firebase.js';
+import { getAuth, createUserWithEmailAndPassword, signInWithRedirect, getRedirectResult, GoogleAuthProvider } from './firebase.js';
 
 function register() {
     const section = document.createElement('section');
@@ -23,10 +23,12 @@ function register() {
     errorMessage.style.color = 'red';
     successMessage.style.color = 'green';
 
+    const auth = getAuth(app);
+
     buttonRegister.addEventListener('click', () =>{
         const userEmail = email.value;
         const userPassword = password.value;
-        const auth = getAuth(app);
+        
         if (userEmail && userPassword){
              createUserWithEmailAndPassword(auth, userEmail, userPassword).then((userCredential) =>{
 
@@ -42,6 +44,20 @@ function register() {
         } else {
             errorMessage.textContent = 'Por favor, ingresa un correo y una contraseña válida.';
         }});
+
+    buttonGoogle.addEventListener('click', () =>{
+        const provider = new  GoogleAuthProvider();
+        signInWithRedirect(auth, provider);
+
+        getRedirectResult(auth).then((result) =>{
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            //const token = credential.accessToken
+            //const userG = result.user
+        })
+    })   
+        
+
+        
 
     section.append(logo, title, name, email, password, buttonRegister, buttonGoogle, errorMessage, successMessage);
 
