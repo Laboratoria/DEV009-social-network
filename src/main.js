@@ -1,5 +1,31 @@
 // Este es el punto de entrada de tu aplicacion
 
-import { myFunction } from './lib/index.js';
+import home from './components/home.js';
+import register from './components/register.js';
+import feed from './components/feed.js';
 
-myFunction();
+const root= document.getElementById('root')
+
+const routes = [
+    {path: '/', component: home},
+    {path: '/register', component: register},
+    {path: '/feed', component: feed}
+];
+const defaulRoute = '/';
+
+ function navigateTo(hash){
+    const routex = routes.find((routex) => routex.path===hash);
+
+       if(routex && routex.component) {
+        window.history.pushState(
+            {},
+            routex.path,
+            window.location.origin + routex.path,
+        )
+        root.appendChild(routex.component());
+       }
+    }
+
+    navigateTo(window.location.pathname);
+
+ 
