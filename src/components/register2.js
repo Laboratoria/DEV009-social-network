@@ -1,36 +1,29 @@
-export function register2() {
+export const register2 = () => {
   const section = document.createElement('section');
   const title = document.createElement('h2');
   title.textContent = 'Register';
 
-  /* const nameInput = document.createElement('input');
-  nameInput.type = 'text';
-  nameInput.setAttribute('placeholder', 'First Name');
+  const emailInput = document.createElement('input');
+  emailInput.type = 'text';
+  emailInput.setAttribute('placeholder', 'Email');
 
-  const lastNameInput = document.createElement('input');
-  lastNameInput.type = 'text';
-  lastNameInput.setAttribute('placeholder', 'Last Name');
+  const passwordInput = document.createElement('input');
+  passwordInput.type = 'text';
+  passwordInput.setAttribute('placeholder', 'Password');
 
-  const ageInput = document.createElement('input');
-  ageInput.type = 'date';
+  const confirmPassMessage = document.createElement('p');
+  confirmPassMessage.textContent = 'Confirma tu contraseña';
 
-  const selection = document.createElement('select');
-
-  const genderOption1 = document.createElement('option');
-  genderOption1.setAttribute('value', 'femenino');
-  genderOption1.textContent = 'femenino';
-
-  const genderOption2 = document.createElement('option');
-  genderOption2.setAttribute('value', 'masculino');
-  genderOption2.textContent = 'masculino';
+  const confirmedPasswordInput = document.createElement('input');
+  confirmedPasswordInput.type = 'text';
+  confirmedPasswordInput.setAttribute('placeholder', 'Password');
 
   const regsiterButton = document.createElement('button');
-  regsiterButton.textContent = 'Siguiente';
+  regsiterButton.textContent = 'Enviar';
+  regsiterButton.addEventListener('click', () => {
+    alert('Bienvenida a SisterSphere!');
+  });
 
-  selection.append(genderOption1, genderOption2);
-
-  prueba jeje */
-
-  section.append(title /* nameInput, lastNameInput, ageInput, selection, regsiterButton */);
+  section.append(title, emailInput, passwordInput, confirmedPasswordInput, regsiterButton);
   return section;
-}
+};
