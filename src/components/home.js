@@ -17,6 +17,8 @@ function home(){
     h3.textContent = '¡Unete a CocinArte hoy mismo!'
 
     section.append(logo, title, nameLogin, passwordLogin, login, registerUser, h3);
+    const auth = getAuth(app);
+
     return section;
 }
 export default home;
