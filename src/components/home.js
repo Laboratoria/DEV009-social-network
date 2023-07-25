@@ -5,6 +5,7 @@ function home(){
     const login = document.createElement('button');
     const registerUser = document.createElement('button');
     const passwordLogin = document.createElement('input');
+    const emailLogin = document.createElement('input');
     const nameLogin = document.createElement('input');
     const h3 = document.createElement('h3')
 
@@ -16,8 +17,18 @@ function home(){
     logo.src = './imagenes/image.png';
     h3.textContent = '¡Unete a CocinArte hoy mismo!'
 
+   /* login.addEventListener('click', () =>{
+        const passwordLogin
+    })
+signInWithEmailAndPassword(auth, userEmail, userPassword).then((userCredential) =>{
+    const userHome = userCredential.user;
+    if (userEmail && userPassword === userHome){
+
+    }
+})*/
+
     section.append(logo, title, nameLogin, passwordLogin, login, registerUser, h3);
-    const auth = getAuth(app);
+    
 
     return section;
 }
