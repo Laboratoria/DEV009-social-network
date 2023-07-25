@@ -1,5 +1,5 @@
-import {app} from './firebase.js';
-import { getAuth, createUserWithEmailAndPassword, signInWithRedirect, getRedirectResult, GoogleAuthProvider } from './firebase.js';
+import {app} from '../lib/firebase.js';
+import { getAuth, createUserWithEmailAndPassword, signInWithRedirect, getRedirectResult, GoogleAuthProvider } from '../lib/firebase.js';
 
 function register() {
     const section = document.createElement('section');
