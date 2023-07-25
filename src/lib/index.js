@@ -26,4 +26,4 @@ getRedirectResult(auth).then((result) =>{
     const credential = GoogleAuthProvider.credentialFromResult(result);
     //const token = credential.accessToken
     //const userG = result.user
-})
+});
