@@ -27,5 +27,3 @@ const defaulRoute = '/';
     }
 
     navigateTo(window.location.pathname);
-
- 
