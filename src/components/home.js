@@ -17,6 +17,10 @@ function home(){
     logo.src = './imagenes/image.png';
     h3.textContent = '¡Unete a CocinArte hoy mismo!'
 
+    
+
+
+    
    /* login.addEventListener('click', () =>{
         const passwordLogin
     })

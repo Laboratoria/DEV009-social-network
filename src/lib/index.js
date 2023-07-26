@@ -27,3 +27,4 @@ getRedirectResult(auth).then((result) =>{
     //const token = credential.accessToken
     //const userG = result.user
 });
+
