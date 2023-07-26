@@ -2,18 +2,19 @@ import { createUser, signInWithGoogle} from "../lib";
 
 function register() {
     const section = document.createElement('section');
-    const title = document.createElement('h2');
     const buttonRegister = document.createElement('button');
     const buttonGoogle = document.createElement('button');
     const password = document.createElement('input');
     const name = document.createElement('input');
     const email = document.createElement('input');
     const logo = document.createElement('img');
+    const avatar = document.createElement('img');
     const errorMessage = document.createElement('p');
     const successMessage = document.createElement('p');
 
     logo.src = './imagenes/image.png';
-    title.textContent = 'Las Recetas de ahora';
+    avatar.src = './imagenes/avatar.png';
+    avatar.classList.add('avatar')
     buttonRegister.textContent = 'Registrate';
     buttonGoogle.textContent = 'Continuar con Google';
     password.placeholder = 'Crea tu Contraseña';
@@ -52,7 +53,7 @@ function register() {
 
 
 
-    section.append(logo, title, name, email, password, buttonRegister, buttonGoogle, errorMessage, successMessage);
+    section.append(logo, avatar, name, email, password, buttonRegister, buttonGoogle, errorMessage, successMessage);
 
 
     return section;
