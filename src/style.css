@@ -46,6 +46,7 @@ input {
     padding: 8px;
     box-shadow: 2px 3px 2px rgba(128, 128, 128, 0.667) inset;
     background-color: antiquewhite;
+    margin: 10px auto;
 }
 
 input:hover {
@@ -57,5 +58,15 @@ input:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 20px;
 }
+
+select {
+    width: 100px;
+    border: 1px solid #ccc;
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    box-shadow: 2px 3px 2px rgba(128, 128, 128, 0.667) inset;
+    background-color: rgb(255, 240, 242);
+  }
