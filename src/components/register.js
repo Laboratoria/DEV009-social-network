@@ -43,6 +43,10 @@ function register() {
             errorMessage.textContent = 'Por favor, ingresa un correo y una contraseña válida.';
         }
     });
+    
+    password.addEventListener('input', () => {
+      password.type = 'password';
+  });
 
     buttonGoogle.addEventListener('click', () =>{
 
