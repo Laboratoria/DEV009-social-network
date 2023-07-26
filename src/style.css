@@ -62,5 +62,40 @@ button {
     border: 1px solid #393939;
     grid-gap: 5px;
 }
-
-
+@media screen and (max-width: 767px) {
+    input{
+        display: flex; 
+        margin: auto;
+        max-width: 300px;
+        margin-bottom: 20px; 
+        align-items: center;
+        text-align: center;
+        border-radius:15px ;
+        border: 1px solid #393939;
+        padding-bottom: 5px;
+    }
+    img{
+    
+    img.avatar{
+        max-width:100px;
+        width: 130px;
+        height: 100px;
+        text-align: center;
+        display: block;
+        margin: auto;
+    }
+    section {
+        max-width: 300px;
+        margin: auto;
+        padding: auto;
+        background-color: #641B42;
+        justify-content: center;
+        align-items: center; 
+}
+img, img.avatar{
+    display: flex; 
+    width: 250px;
+    margin-bottom: 20px
+}
+}
+}
