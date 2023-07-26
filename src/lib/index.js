@@ -1,6 +1,3 @@
-// aqui exportaras las funciones que necesites
+import {}
 
-export const myFunction = () => {
-  // aqui tu codigo
-  console.log('Hola mundo!');
-};
+
