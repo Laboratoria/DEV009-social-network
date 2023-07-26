@@ -27,7 +27,7 @@ signInWithEmailAndPassword(auth, userEmail, userPassword).then((userCredential) 
     }
 })*/
 
-    section.append(logo, title, nameLogin, passwordLogin, login, registerUser, h3);
+    section.append(logo, title, nameLogin, passwordLogin, login, registerUser, h3, emailLogin);
     
 
     return section;
