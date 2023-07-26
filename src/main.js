@@ -12,7 +12,7 @@ const routes = [
     {path: '/register', component: register},
     {path: '/feed', component: feed}
 ];
-const defaulRoute = '/';
+const defaultRoute = '/';
 
  function navigateTo(hash){
     const routex = routes.find((routex) => routex.path===hash);
