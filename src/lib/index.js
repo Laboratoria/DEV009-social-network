@@ -1,13 +1,7 @@
-import { getAuth, createUserWithEmailAndPassword, /*signInWithEmailAndPassword,*/ signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, /*signInWithEmailAndPassword,*/ signInWithPopup, GoogleAuthProvider, sendEmailVerification, sendSignInLinkToEmail} from "firebase/auth";
 import { app } from './firebase.js';
-import { async } from "regenerator-runtime";
 
-const auth = getAuth(app);
-
-/*export const myFunction = () => {
-  // aqui tu codigo
-  console.log('Hola mundo!');
-};*/
+export const auth = getAuth(app);
 
 export const createUser = async (userEmail, userPassword) => {
   try {
@@ -20,22 +14,6 @@ export const createUser = async (userEmail, userPassword) => {
     throw new Error(`Error al registrar usuario: ${errorCode} - ${errorMessageText}`);
   }
 };
-/*const auth1 = firebase.auth();
-auth.signInWithPopup(GoogleAuthProvider).then((result) => {
-  const user = result.user;
-  const credential = GoogleAuthProvider.credentialFromResult(result);
-  const token = credential.accessToken;
-  // The signed-in user info.
-
-}).catch((error) => {
-  const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
-  // An error occurred.
-});*/
 const provider = new GoogleAuthProvider();
 
 export function signInWithGoogle(){
@@ -59,6 +37,32 @@ signInWithPopup(auth, provider)
     const credential = GoogleAuthProvider.credentialFromError(error);
     // ...
   })  
+};
+
+export function SendEmail (email){
+
+sendSignInLinkToEmail(auth, email, actionCodeSettings)
+  .then(() => {
+    // The link was successfully sent. Inform the user.
+    // Save the email locally so you don't need to ask the user for it again
+    // if they open the link on the same device.
+    window.localStorage.setItem('emailForSignIn', email);
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ...
+  });
+
+/*const userAuth = auth.currentUser;
+
+if(userAuth){
+userAuth.sendEmailVerification(auth.currentUser)
+  .then(() => {
+    // Email verification sent!
+    // ...
+  })*/
 };
 
 /*signInWithEmailAndPassword(auth, email, password)
