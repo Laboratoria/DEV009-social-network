@@ -1,10 +1,10 @@
 // Este es el punto de entrada de tu aplicación
 
-import home from './components/home.js';
-import  login  from './components/login.js';
-import  register  from './components/register.js';
-import  register2  from './components/register2.js';
-import  error  from './components/error.js';
+import { home } from './components/home.js';
+import { login } from './components/login.js';
+import { register } from './components/register.js';
+import { register2 } from './components/register2.js';
+import { error } from './components/error.js';
 
 // Llamamos a la función home y la agregamos al DOM
 
