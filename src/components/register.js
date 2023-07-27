@@ -35,6 +35,7 @@ function register() {
         const userEmail = email.value;
         const userPassword = password.value;
 
+
         if (userEmail && userPassword) {
             try {
                 const user = await createUser(userEmail, userPassword);
@@ -80,9 +81,7 @@ function register() {
     buttonGoogle.addEventListener('click', () =>{
 
        return signInWithGoogle()
-       
     })   
-
 
 
 

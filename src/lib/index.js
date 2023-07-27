@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword, /*signInWithEmailAndPassword,*/ signInWithPopup, GoogleAuthProvider, sendEmailVerification, sendSignInLinkToEmail} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, /*signInWithEmailAndPassword,*/ signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { app } from './firebase.js';
 
 export const auth = getAuth(app);
@@ -6,6 +6,20 @@ export const auth = getAuth(app);
 export const createUser = async (userEmail, userPassword) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, userEmail, userPassword);
+    sendEmailVerification(auth.currentUser)
+    .then(() => {
+      // Email verification sent!
+      // ...
+      console.log("email verificate")
+    })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log("24 error", errorCode, errorMessage)
+    // ...
+  });
+
+
     const user = userCredential.user;
     return user;
   } catch (error) {
