@@ -4,6 +4,7 @@ export const login = (navigateTo) => {
   title.classList.add('inicio-sesion');
   const inputEmail = document.createElement('input');
   const inputPass = document.createElement('input');
+  inputPass.type = 'password';
   const buttonContainer = document.createElement('div');
   buttonContainer.classList.add('botones-inicio-sesion');
   const buttonReturn = document.createElement('button');

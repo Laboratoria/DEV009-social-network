@@ -1,3 +1,5 @@
+import { registerUser } from '../lib/firebase.js';
+
 export const register2 = (navigateTo) => {
   const section = document.createElement('section');
   const title = document.createElement('h2');
@@ -8,14 +10,14 @@ export const register2 = (navigateTo) => {
   emailInput.setAttribute('placeholder', 'Email');
 
   const passwordInput = document.createElement('input');
-  passwordInput.type = 'text';
+  passwordInput.type = 'password';
   passwordInput.setAttribute('placeholder', 'Password');
 
   const confirmPassMessage = document.createElement('p');
   confirmPassMessage.textContent = 'Confirma tu contraseña';
 
   const confirmedPasswordInput = document.createElement('input');
-  confirmedPasswordInput.type = 'text';
+  confirmedPasswordInput.type = 'password';
   confirmedPasswordInput.setAttribute('placeholder', 'Password');
 
   const backButton = document.createElement('button');
@@ -26,9 +28,17 @@ export const register2 = (navigateTo) => {
 
   const regsiterButton = document.createElement('button');
   regsiterButton.textContent = 'Enviar';
+
   regsiterButton.addEventListener('click', () => {
-    // eslint-disable-next-line no-alert
-    alert('Bienvenida a SisterSphere!');
+    const email = emailInput.value;
+    const password = passwordInput.value;
+    const registerAlert = (valid) => {
+      if (valid === true) {
+        navigateTo('/muro');
+      }
+    };
+
+    registerUser(email, password, registerAlert);
   });
 
   section.append(
