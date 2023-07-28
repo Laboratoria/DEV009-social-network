@@ -49,7 +49,12 @@ export const conexionUser = (nombre, email, password) => {
     })
     .catch((error) => {
       const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
+      if (errorCode === 'auth/email-already-in-use') {
+        document.getElementById('repeat-email').style.display = 'block';
+      } else if (errorCode === 'auth/weak-password') {
+        document.getElementById('6-letters').style.display = 'block';
+      } else {
+        document.getElementById('7-letter').style.display = 'block';
+      }
     });
 };

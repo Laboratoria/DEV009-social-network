@@ -1,18 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 *{
     margin:0;
     padding: 0;
-
+    box-sizing: border-box;
+}
+body{
+    background: rgb(88,76,106);
+    background: linear-gradient(0deg, rgba(88,76,106,1) 0%, rgba(47,44,33,1) 49%);
+    font-family: "Poppins", sans-serif;
 }
 
-#root{
-    background-color: aqua;
-    padding: 35px;
-    width: 100%;
-    height: 100vh;
-    max-width: 1200px;
-    margin: 0 auto;
+#root {
+    background: rgb(88,76,106);
+    background: linear-gradient(0deg, rgba(88,76,106,1) 0%, rgba(47,44,33,1) 49%);
+    margin: auto;
+    width: 90%;
+    max-width: 1600px;
+    overflow: hidden;
+    height: 100vh; /* Ajusta la altura del contenedor principal, en este caso, ocupa toda la altura visible del viewport */
     display: grid;
+    grid-template-rows: 1fr; /* Una fila con altura flexible */
+    justify-items: center; /* Centra los elementos horizontalmente en el contenedor */
+    align-items: center; /* Centra los elementos verticalmente en el contenedor */
 }
-.content-form{
-    background-color:beige;
+
+.container {
+    background-color: #000;
+    width: 90%;
+    height: 700px; /* Ajusta la altura del contenedor .container según tus necesidades */
+    border-radius: 20px;
+    display: grid;
+    gap: 10px; /* Espacio entre las columnas */
+    grid-template-columns: 50% 50%;
+    justify-items: center; /* Centra los elementos horizontalmente en el contenedor */
+    align-items: center; /* Centra los elementos verticalmente en el contenedor */
 }
+
+.content-form {
+    /*background-color: beige;*/
+    background-color: #f5f5f5;
+    width: 80%; /* O ajusta el ancho según tus necesidades */
+    height:450px; /* O ajusta la altura según tus necesidades */
+    border-radius: 20px;
+    display: grid;
+    justify-items: center; /* Centra los elementos horizontalmente en .content-form */
+    align-items: center; /* Centra los elementos verticalmente en .content-form */
+}
+#formRegistro{
+    /*background-color: aqua;*/
+    background-color: #f5f5f5;
+    width: 90%;
+    height: 83%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+#formRegistro label{
+    font-size: 20px;
+}
+#formRegistro input{
+    width: 70%;
+    height: 30px;
+}
+#btnRegistro{
+    width: 50%;
+    height: 30px;
+    margin: 10px;
+}
+.img-logo{
+    width: 450px;
+}
+
+/*----------------- Responsive design ------------------------*/
+
+@media (max-width: 768px) {
+    .img-logo {
+        content: url('img/logo-feed.png');
+        width: 250px;
+    }
+    .container {
+        grid-template-columns: 1fr;
+
+    }
+}
+  
+  
+  
+  
+  
+
+
