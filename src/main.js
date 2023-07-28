@@ -5,12 +5,13 @@ import { loginView } from './component/login.js';
 import { registroView } from './component/registro.js';
 import { errorView } from './component/404.js';
 import { app } from './lib/config-firebase.js';
+import { feedView } from './component/feed.js';
 
 console.log(app);
 
 const root = document.getElementById('root');
 
-const routes = [{ path: '/', component: loginView }, { path: '/registro', component: registroView }, { path: '/404', component: errorView },
+const routes = [{ path: '/', component: loginView }, { path: '/registro', component: registroView }, { path: '/404', component: errorView }, { path: '/feed', component: feedView },
 ];
 const defaultRoute = '/';
 function pages(hash) {
