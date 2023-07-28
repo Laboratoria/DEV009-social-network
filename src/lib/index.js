@@ -1,5 +1,5 @@
-import { auth, provider } from './firebase.js';
-import { register2 } from '../components/register2.js';
+// import { auth, provider } from './firebase.js';
+// import { register2 } from '../components/register2.js';
 
 // register2.registerButton.addEventListener('click', async () => {
 //   const email = register2.emailInput.value;
@@ -17,15 +17,3 @@ import { register2 } from '../components/register2.js';
 //     console.error('Error al registrar al usuario:', error.message);
 //   }
 // });
-
-// createUserWithEmailAndPassword(auth, email, password)
-//   .then((userCredential) => {
-//     // Signed in
-//     const user = userCredential.user;
-//     // ...
-//   })
-//   .catch((error) => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     // ..
-//   });

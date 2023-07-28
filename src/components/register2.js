@@ -1,4 +1,4 @@
-import { auth } from '../lib/firebase.js';
+import { registerUser } from '../lib/firebase.js';
 
 export const register2 = (navigateTo) => {
   const section = document.createElement('section');
@@ -28,26 +28,18 @@ export const register2 = (navigateTo) => {
 
   const regsiterButton = document.createElement('button');
   regsiterButton.textContent = 'Enviar';
-  regsiterButton.addEventListener('click', async () => {
+
+  regsiterButton.addEventListener('click', () => {
     const email = emailInput.value;
     const password = passwordInput.value;
+    const registerAlert = (valid) => {
+      if (valid === true) {
+        navigateTo('/muro');
+      }
+    };
 
-    try {
-      const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-      const user = userCredential.user;
-      const userId = user.uid;
-
-      // eslint-disable-next-line no-console
-      console.log('Registro exitoso, bienvenida a SisterSphere!!!');
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('Error al registrar al usuario:', error.message);
-    }
+    registerUser(email, password, registerAlert);
   });
-
-  /* eslint-disable-next-line no-alert
-    alert('Bienvenida a SisterSphere!');
-  }); */
 
   section.append(
     title,
