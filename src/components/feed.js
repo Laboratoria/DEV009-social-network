@@ -1,4 +1,4 @@
-function feed() {
+function feed(navigateTo) {
     const section = document.createElement('section');
     const nav = document.createElement ('nav');
     const select = document.createElement('select');
@@ -7,6 +7,9 @@ function feed() {
     const option3 = document.createElement('option');
     const write = document.createElement('button');
     const logo = document.createElement('img');
+    /*const logoutButtom = document.createElement('button');
+    const logoutMessage = document.createElement('p');
+    const logoutMessageError = document.createElement('p');*/
 
     logo.src = './imagenes/image.png';
     write.textContent = 'Añade una Receta';
@@ -16,6 +19,9 @@ function feed() {
     option2.textContent ='Usuarios'
     option3.value ='Salir'
     option3.textContent ='Salir'
+    /*logoutButtom.textContent = 'Salir';
+    logoutMessage.style.color = 'green';
+    logoutMessageError.style.color = 'red';*/
   
 
     section.append(logo, write, nav);
