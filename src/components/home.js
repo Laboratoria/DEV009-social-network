@@ -1,4 +1,5 @@
-function home(){
+
+function home (navigateTo) {
     const section = document.createElement('section');
     const title = document.createElement('h2');
     const logo = document.createElement('img');
@@ -17,6 +18,10 @@ function home(){
     logo.src = './imagenes/image.png';
     h3.textContent = '¡Unete a CocinArte hoy mismo!'
 
+    registerUser.addEventListener('click', () => {
+        navigateTo('/register'); 
+    });
+
     
 
 
@@ -31,7 +36,7 @@ signInWithEmailAndPassword(auth, userEmail, userPassword).then((userCredential) 
     }
 })*/
 
-    section.append(logo, title, nameLogin, passwordLogin, login, registerUser, h3, emailLogin);
+    section.append(logo, title, nameLogin, passwordLogin, emailLogin, login, registerUser, h3 );
     
 
     return section;
