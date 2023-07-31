@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    background-image: url('components/images/background.png');
+    background-size: cover;
+}
+main {
+    background-color: #B4A5A5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px;
+    margin: 100px 40px;
+    border-radius: 20px;
+    height: 550px;
+}
+#logo-home {
+    width: 200px;
+    height: auto;
+}
+.div-text {
+    display: flex;
+    justify-content: start;
+}

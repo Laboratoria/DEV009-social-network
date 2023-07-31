@@ -38,6 +38,7 @@ function timeline(navigateTo) {
 
   section.append(postTitle, postBody, btnReturn, btnPost);
   main.append(title, menu, section);
+  menu.append(profile,userPosts)
 
   return main;
 }
