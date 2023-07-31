@@ -13,8 +13,8 @@ export const register2 = (navigateTo) => {
   passwordInput.type = 'password';
   passwordInput.setAttribute('placeholder', 'Password');
 
-  const invalidPassMessage = document.createElement('span');
-  invalidPassMessage.classList.add('password-error');
+  const registerInvalidPassMessage = document.createElement('span');
+  registerInvalidPassMessage.classList.add('register-error');
 
   // const confirmPassMessage = document.createElement('p');
   // confirmPassMessage.textContent = 'Confirma tu contraseña';
@@ -48,7 +48,7 @@ export const register2 = (navigateTo) => {
     title,
     emailInput,
     passwordInput,
-    invalidPassMessage,
+    registerInvalidPassMessage,
     // confirmPassMessage,
     // confirmedPasswordInput,
     regsiterButton,
