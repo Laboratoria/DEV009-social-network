@@ -1,11 +1,18 @@
 function home(navigateTo) {
   const main = document.createElement('main');
 
+  const text = document.createElement('div');
+  text.className = 'div-text';
+
   const title = document.createElement('h1');
   title.textContent = 'SpookyVerse';
 
   const slogan = document.createElement('p');
   slogan.textContent = '¡Donde las pesadillas se comparten!';
+
+  const logo = document.createElement('img');
+  logo.src = 'components/images/logo.png';
+  logo.setAttribute('id','logo-home');
 
   const login = document.createElement('button');
   login.className = 'btn-login';
@@ -21,7 +28,9 @@ function home(navigateTo) {
     navigateTo('/join');
   });
 
-  main.append(title, slogan, login, join);
+  text.append(title,slogan)
+  main.append(title, slogan, logo, login, join);
+
 
   return main;
 }
