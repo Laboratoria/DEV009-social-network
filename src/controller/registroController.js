@@ -1,6 +1,6 @@
-import { showError } from '../utils/showError.js';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { showError } from '../utils/showError.js';
 import { app } from '../lib/config-firebase.js';
 
 /* ---------------------Registro de Usuarios Nuevos----------------------------- */
@@ -46,16 +46,6 @@ export const conexionUser = (nombre, email, password) => {
       window.dispatchEvent(new PopStateEvent('popstate'));
       console.log(user);
     })
-  /* .catch((error) => {
-      const errorCode = error.code;
-      if (errorCode === 'auth/email-already-in-use') {
-        document.getElementById('repeat-email').style.display = 'block';
-      } else if (errorCode === 'auth/weak-password') {
-        document.getElementById('6-letters').style.display = 'block';
-      } else {
-        document.getElementById('7-letter').style.display = 'block';
-      }
-    }); */
     .catch((error) => {
       const errorCode = error.code;
       if (errorCode === 'auth/email-already-in-use') {

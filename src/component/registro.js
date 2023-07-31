@@ -11,6 +11,7 @@ export function registroView() {
   logo.alt = 'logo FandomFlix';
   // seccion del formulario del registro
   const formRegistro = createElement('form', 'form-registro', container);
+  formRegistro.id = 'form-registro';
   const title = createElement('p', 'title', formRegistro);
   title.innerHTML = 'Signup';
 
@@ -20,6 +21,7 @@ export function registroView() {
   nameIcono.innerHTML = '<i class="fa-solid fa-user"></i>';
   const nameText = createElement('input', 'estilos-input', nameDiv);
   nameText.setAttribute('type', 'text');
+  nameText.setAttribute('required', ''); // campo es obligatorio
   nameText.placeholder = 'Nombre de Usuario';
 
   // input text email
@@ -27,7 +29,9 @@ export function registroView() {
   const emailIcono = createElement('p', 'estilos-icono', emailDiv);
   emailIcono.innerHTML = '<i class="fa-solid fa-envelope"></i>';
   const emailText = createElement('input', 'estilos-input', emailDiv);
-  emailText.setAttribute('type', 'text');
+  emailText.setAttribute('type', 'email');
+  emailText.setAttribute('name', 'email');
+  emailText.setAttribute('required', ''); // campo es obligatorio
   emailText.placeholder = 'Correo Electronico';
 
   // input text password
@@ -63,13 +67,15 @@ export function registroView() {
 
   // mensajes de error del registro cuenta
   const validaciones = createElement('div', '', formRegistro);
-  validaciones.id = 'validaciones';
+  validaciones.id = 'error-container';
   validaciones.innerHTML = ` 
   <p id="repeat-password" style="display: none"> Las contraseñas no coinciden </p>
   <p id="repeat-email" style="display: none"> El correo se encuentra registrado </p>
+  <p id="emailError" style="display: none"> Formato de correo invalido </p>
+  <p id="nameError" style="display: none"> Por favor ingrese su nombre de usuario</p>
   <p id="6-letters" style="display: none"> La contraseña debe contener al menos 6 caracteres </p> 
   <p id="7-letters" style="display: none"> Correo o contraseña inválidos </p> `;
-
+  console.log(validaciones);
   formRegistro.addEventListener('submit', (event) => {
     event.preventDefault();
 
@@ -82,6 +88,8 @@ export function registroView() {
     // Ocultar todos los mensajes de error antes de hacer una nueva validación
     document.getElementById('repeat-password').style.display = 'none';
     document.getElementById('repeat-email').style.display = 'none';
+    document.getElementById('emailError').style.display = 'none';
+    document.getElementById('nameError').style.display = 'none';
     document.getElementById('6-letters').style.display = 'none';
     document.getElementById('7-letters').style.display = 'none';
 
@@ -89,6 +97,10 @@ export function registroView() {
       conexionUser(nameValue, emailValue, passValue);
     } else {
       document.getElementById('repeat-password').style.display = 'block';
+    }
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(emailValue)) {
+      document.getElementById('emailError').style.display = 'block';
     }
   });
 
