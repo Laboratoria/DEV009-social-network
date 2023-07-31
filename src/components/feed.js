@@ -1,3 +1,5 @@
+import { signOut } from "../lib";
+
 function feed(navigateTo) {
     const section = document.createElement('section');
     const nav = document.createElement ('nav');
@@ -7,9 +9,9 @@ function feed(navigateTo) {
     const option3 = document.createElement('option');
     const write = document.createElement('button');
     const logo = document.createElement('img');
-    /*const logoutButtom = document.createElement('button');
+    const logoutButtom = document.createElement('button');
     const logoutMessage = document.createElement('p');
-    const logoutMessageError = document.createElement('p');*/
+    const logoutMessageError = document.createElement('p');
 
     logo.src = './imagenes/image.png';
     write.textContent = 'Añade una Receta';
@@ -19,12 +21,28 @@ function feed(navigateTo) {
     option2.textContent ='Usuarios'
     option3.value ='Salir'
     option3.textContent ='Salir'
-    /*logoutButtom.textContent = 'Salir';
+    logoutButtom.textContent = 'Cerrar Sesión';
     logoutMessage.style.color = 'green';
-    logoutMessageError.style.color = 'red';*/
-  
+    logoutMessageError.style.color = 'red';
 
-    section.append(logo, write, nav);
+
+    //function signOut() {
+       /* // [START auth_sign_out]
+        firebase.auth().signOut().then(() => {
+          // Sign-out successful.
+        }).catch((error) => {
+          // An error happened.
+        });
+        // [END auth_sign_out]
+      }*/
+      logoutButtom.addEventListener('click', () => {
+        signOut(); 
+    });
+      logoutButtom.addEventListener('click', () => {
+        navigateTo('/'); 
+    }); 
+
+    section.append(logo, logoutButtom, write, nav);
     nav.append(select)
     select.append(option1, option2, option3)
     return section;

@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword, /*signInWithEmailAndPassword,*/ signInWithPopup, GoogleAuthProvider, sendEmailVerification  } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, /*signInWithEmailAndPassword,*/ signInWithPopup, GoogleAuthProvider, sendEmailVerification } from "firebase/auth";
 import { app } from './firebase.js';
 import { async } from "regenerator-runtime";
 
@@ -85,3 +85,17 @@ signInWithPopup(auth, provider)
     const errorCode = error.code;
     const errorMessage = error.message;
   });*/
+
+ //onAuthStateChanged // testigo/observador de estado de autenticación del usuario, permite obtener datos del usuario
+  //signInWithEmailAndPassword // Acceso de usuarios existentes
+ // signOut //  Para salir de la sesión de un usuario, llama a signout
+
+export function signOut() {
+
+const auth = getAuth();
+signOut(auth).then(() => {
+  // Sign-out successful.
+}).catch((error) => {
+  // An error happened.
+})
+};
