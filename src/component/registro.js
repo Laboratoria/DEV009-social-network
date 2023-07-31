@@ -1,71 +1,74 @@
+import { createElement } from '../utils/utils';
 import { conexionUser } from '../controller/registroController';
 
 export function registroView() {
-  const logoContent = document.createElement('section');
-  logoContent.classList.add('logo-content');
-  const logo = document.createElement('img');
-  logo.classList.add('img-logo');
+  // Seccion principal del registro
+  const container = createElement('main', 'container', '');
+  // seccion del logo
+  const logoContent = createElement('section', 'logo-content', container);
+  const logo = createElement('img', 'img-logo', logoContent);
   logo.src = 'img/logo-principal.png';
   logo.alt = 'logo FandomFlix';
-  logoContent.appendChild(logo);
+  // seccion del formulario del registro
+  const formRegistro = createElement('form', 'form-registro', container);
+  const title = createElement('p', 'title', formRegistro);
+  title.innerHTML = 'Signup';
 
-  const sectionForm = document.createElement('section');
-  sectionForm.classList.add('content-form');
-  const formRegistro = document.createElement('form');
-  formRegistro.setAttribute('id', 'formRegistro');
-  const title = document.createElement('p');
-  title.innerHTML = 'Signup <i class="fa-solid fa-right-to-bracket"></i>';
-  const nameLb = document.createElement('label');
-  nameLb.textContent = 'Nombre de usuario:';
-  const nameText = document.createElement('input');
+  // input text nombre
+  const nameDiv = createElement('div', 'input-iconos', formRegistro);
+  const nameIcono = createElement('p', 'estilos-icono', nameDiv);
+  nameIcono.innerHTML = '<i class="fa-solid fa-user"></i>';
+  const nameText = createElement('input', 'estilos-input', nameDiv);
   nameText.setAttribute('type', 'text');
-  nameText.setAttribute('id', 'name-text');
-  const emailLb = document.createElement('label');
-  emailLb.textContent = 'Correo Electronico';
-  const emailText = document.createElement('input');
+  nameText.placeholder = 'Nombre de Usuario';
+
+  // input text email
+  const emailDiv = createElement('div', 'input-iconos', formRegistro);
+  const emailIcono = createElement('p', 'estilos-icono', emailDiv);
+  emailIcono.innerHTML = '<i class="fa-solid fa-envelope"></i>';
+  const emailText = createElement('input', 'estilos-input', emailDiv);
   emailText.setAttribute('type', 'text');
-  emailText.setAttribute('id', 'email-text');
-  const passLb = document.createElement('label');
-  passLb.textContent = 'Contraseña';
-  const passText = document.createElement('input');
+  emailText.placeholder = 'Correo Electronico';
+
+  // input text password
+  const passDiv = createElement('div', 'input-iconos', formRegistro);
+  const passIcono = createElement('p', 'estilos-icono', passDiv);
+  passIcono.innerHTML = '<i class="fa-solid fa-lock"></i>';
+  const passText = createElement('input', 'estilos-input', passDiv);
   passText.setAttribute('type', 'password');
-  passText.setAttribute('id', 'pass-text');
-  const confirmarpassLb = document.createElement('label');
-  confirmarpassLb.textContent = 'ConfirmarContraseña';
-  const confirmarpassText = document.createElement('input');
+  passText.placeholder = 'Contraseña';
+
+  // input text confirmar contraseña
+  const confirmarpassDiv = createElement('div', 'input-iconos', formRegistro);
+  const confirmarpassIcono = createElement('p', 'estilos-icono', confirmarpassDiv);
+  confirmarpassIcono.innerHTML = '<i class="fa-solid fa-lock"></i>';
+  const confirmarpassText = createElement('input', 'estilos-input', confirmarpassDiv);
   confirmarpassText.setAttribute('type', 'password');
-  const btnRegistro = document.createElement('button');
+  confirmarpassText.placeholder = 'Confirmar Contraseña';
+
+  // seccion del boton de registro
+  const btnRegistro = createElement('button', 'btnRegistro', formRegistro);
   btnRegistro.setAttribute('type', 'submit');
-  btnRegistro.setAttribute('id', 'btnRegistro');
-  btnRegistro.textContent = 'Registro';
-  const validaciones = document.createElement('div');
-  validaciones.setAttribute('id', 'validaciones');
-  const passRepit = document.createElement('p');
-  passRepit.textContent = 'Las contraseñas no coinciden';
-  const emailRegistre = document.createElement('p');
-  emailRegistre.textContent = 'El correo electronico ya se encuentra registrado';
-  const caracteres = document.createElement('p');
-  caracteres.textContent = 'La contraseña debe tener almenos 6 caracteres';
-  const error = document.createElement('p');
-  error.textContent = 'Correo o contraseña invalidos';
-  formRegistro.appendChild(validaciones);
+  btnRegistro.innerHTML = 'Registro <i class="fa-solid fa-right-to-bracket"></i>';
 
-  formRegistro.appendChild(title);
-  formRegistro.appendChild(nameLb);
-  formRegistro.appendChild(nameText);
-  formRegistro.appendChild(emailLb);
-  formRegistro.appendChild(emailText);
-  formRegistro.appendChild(passLb);
-  formRegistro.appendChild(passText);
-  formRegistro.appendChild(confirmarpassLb);
-  formRegistro.appendChild(confirmarpassText);
-  formRegistro.appendChild(btnRegistro);
-  sectionForm.appendChild(formRegistro);
+  // navegacion a la pagina de login
+  const textRegreso = createElement('p', 'textRegreso', formRegistro);
+  textRegreso.textContent = 'Ya tienes una cuenta?';
+  const mensajeRegreso = createElement('span', 'mensajeRegreso', textRegreso);
+  mensajeRegreso.textContent = 'Ingresa aquí';
 
-  const container = document.createElement('main');
-  container.classList.add('container');
-  container.appendChild(logoContent);
-  container.appendChild(sectionForm);
+  // seccion del boton de registro cuenta de Google
+  const btnGoogle = createElement('button', 'btnGoogle', formRegistro);
+  btnGoogle.innerHTML = '<img src="/img/google.png" alt="cuenta gmail">Google';
+
+  // mensajes de error del registro cuenta
+  const validaciones = createElement('div', '', formRegistro);
+  validaciones.id = 'validaciones';
+  validaciones.innerHTML = ` 
+  <p id="repeat-password" style="display: none"> Las contraseñas no coinciden </p>
+  <p id="repeat-email" style="display: none"> El correo se encuentra registrado </p>
+  <p id="6-letters" style="display: none"> La contraseña debe contener al menos 6 caracteres </p> 
+  <p id="7-letters" style="display: none"> Correo o contraseña inválidos </p> `;
 
   formRegistro.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -76,11 +79,26 @@ export function registroView() {
     const passValue = passText.value;
     const confirmarPassValue = confirmarpassText.value;
 
+    // Ocultar todos los mensajes de error antes de hacer una nueva validación
+    document.getElementById('repeat-password').style.display = 'none';
+    document.getElementById('repeat-email').style.display = 'none';
+    document.getElementById('6-letters').style.display = 'none';
+    document.getElementById('7-letters').style.display = 'none';
+
     if (passValue === confirmarPassValue) {
       conexionUser(nameValue, emailValue, passValue);
     } else {
-      passRepit.textContent = 'Las contraseñas no coinciden';
+      document.getElementById('repeat-password').style.display = 'block';
     }
+  });
+
+  /* -------------------------- Regreso a la vista de  login ------------------------- */
+  /* Si ya tieenes una  cuenta registrada te redirecciona a Login */
+  textRegreso.addEventListener('click', () => {
+    window.history.pushState({}, '', `${window.location.origin}/`);
+    /* ----- Dispara manualmente el evento popstate para actualizar la ruta ----- */
+    window.dispatchEvent(new PopStateEvent('popstate'));
+    window.location.reload();
   });
 
   return container;

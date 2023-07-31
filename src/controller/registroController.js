@@ -1,3 +1,4 @@
+import { showError } from '../utils/showError.js';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import { app } from '../lib/config-firebase.js';
@@ -10,8 +11,6 @@ export const newUser = (email, password) => {
       // Signed in
       const user = userCredential.user;
       console.log(user);
-
-      // ...
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -47,7 +46,7 @@ export const conexionUser = (nombre, email, password) => {
       window.dispatchEvent(new PopStateEvent('popstate'));
       console.log(user);
     })
-    .catch((error) => {
+  /* .catch((error) => {
       const errorCode = error.code;
       if (errorCode === 'auth/email-already-in-use') {
         document.getElementById('repeat-email').style.display = 'block';
@@ -56,5 +55,15 @@ export const conexionUser = (nombre, email, password) => {
       } else {
         document.getElementById('7-letter').style.display = 'block';
       }
+    }); */
+    .catch((error) => {
+      const errorCode = error.code;
+      if (errorCode === 'auth/email-already-in-use') {
+        showError('El correo se encuentra registrado', 'repeat-email');
+      } else if (errorCode === 'auth/weak-password') {
+        showError('La contraseña debe contener al menos 6 caracteres', '6-letters');
+      } else {
+        showError('Correo o contraseña inválidos', '7-letters');
+      }
     });
-};
+};// conexionUser
