@@ -1,3 +1,5 @@
+import { logInUser } from '../lib/firebaseAuth.js';
+
 export const login = (navigateTo) => {
   const section = document.createElement('section');
   const title = document.createElement('h2');
@@ -7,18 +9,30 @@ export const login = (navigateTo) => {
   inputPass.type = 'password';
   const buttonContainer = document.createElement('div');
   buttonContainer.classList.add('botones-inicio-sesion');
+
   const buttonReturn = document.createElement('button');
-  const buttonLog = document.createElement('button');
-
-  inputEmail.placeholder = 'Escribe tu Email';
-  inputPass.placeholder = 'Contraseña';
-
-  title.textContent = 'Inicio de sesion';
-  buttonLog.textContent = 'Iniciar sesion';
   buttonReturn.textContent = 'Regresar';
   buttonReturn.addEventListener('click', () => {
     navigateTo('/');
   });
+
+  const buttonLog = document.createElement('button');
+  title.textContent = 'Inicio de sesion';
+  buttonLog.textContent = 'Iniciar sesion';
+  buttonLog.addEventListener('click', () => {
+    const email = inputEmail.value;
+    const password = inputPass.value;
+    const logInAlert = (valid) => {
+      if (valid === true) {
+        navigateTo('/muro');
+      }
+    };
+    logInUser(email, password, logInAlert);
+  });
+
+  inputEmail.placeholder = 'Escribe tu Email';
+  inputPass.placeholder = 'Contraseña';
+
   buttonContainer.append(buttonLog, buttonReturn);
   section.append(title, inputEmail, inputPass, buttonContainer);
   return section;
