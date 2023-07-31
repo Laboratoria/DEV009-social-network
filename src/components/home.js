@@ -1,3 +1,4 @@
+import { signInWithGoogle } from "../lib";
 
 function home (navigateTo) {
     const section = document.createElement('section');
@@ -8,6 +9,7 @@ function home (navigateTo) {
     const passwordLogin = document.createElement('input');
     const emailLogin = document.createElement('input');
     const nameLogin = document.createElement('input');
+    const buttonGoogle = document.createElement('button');
     const h3 = document.createElement('h3')
 
     title.textContent='Las Recetas de ahora';
@@ -16,13 +18,25 @@ function home (navigateTo) {
     registerUser.textContent ='Registrarse'
     login.textContent = 'Ingresar'
     logo.src = './imagenes/image.png';
+    buttonGoogle.textContent ='Continuar con Google';
     h3.textContent = '¡Unete a CocinArte hoy mismo!'
+
+    //agregar logo google a botón 
+    const googleLogo = document.createElement('img');
+    googleLogo.src = './imagenes/logo_google.avif';
+    buttonGoogle.appendChild(googleLogo);
+
+    //agregar un ID para darle estilo en CSS
+    buttonGoogle.classList.add('google-button')
 
     registerUser.addEventListener('click', () => {
         navigateTo('/register'); 
     });
 
-    
+    buttonGoogle.addEventListener('click', () =>{
+
+        return signInWithGoogle()
+     })   
 
 
     
@@ -36,7 +50,7 @@ signInWithEmailAndPassword(auth, userEmail, userPassword).then((userCredential) 
     }
 })*/
 
-    section.append(logo, title, nameLogin, passwordLogin, emailLogin, login, registerUser, h3 );
+    section.append(logo, title, nameLogin, passwordLogin, emailLogin, login, registerUser, buttonGoogle, h3 );
     
 
     return section;
