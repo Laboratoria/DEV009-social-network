@@ -52,6 +52,8 @@ export const logInUser = (email, password, callback) => {
       console.log(errorCode);
       const errorMessage = error.message;
       console.log(errorMessage);
+      const errorMessageSpan = document.getElementsByClassName('password-error');
+      errorMessageSpan.innerHTML = errorMessage;
       callback(false);
     });
 };

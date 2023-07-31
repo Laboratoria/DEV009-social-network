@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(210, 178, 216);
+    background-color: #FFD6DE;
     text-align: center;
 }
 .bienvenida {
@@ -7,7 +7,7 @@ body {
 }
 
 .bienvenida p {
-    background-color: rgba(245, 245, 220, 0.514);
+    background-color: #fbc0cc;
     border: none;
     border-radius: 5px;
     padding: 5px;
