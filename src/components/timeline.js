@@ -1,23 +1,21 @@
-function timeline(navigateTo){
-    const section =  document.createElement ('section');
-    section.classList.add('timelineSection');
+function timeline(navigateTo) {
+  const section = document.createElement('section');
+  section.classList.add('timelineSection');
 
-    const title = document.createElement('h2');
-    title.textContent ='muro Guide Ma+Pa';
-    title.classList.add('titletimeline');
+  const title = document.createElement('h2');
+  title.textContent = 'muro Guide Ma+Pa';
+  title.classList.add('titletimeline');
 
-    const buttonCreatePost = document.createElement('button');
-    buttonCreatePost.textContent = 'publicar';
-    buttonCreatePost.classList.add('buttonCreatePost');
-    buttonCreatePost.addEventListener('click', () => {
-        navigateTo('/newPost');
-    })
+  const buttonCreatePost = document.createElement('button');
+  buttonCreatePost.textContent = 'publicar';
+  buttonCreatePost.classList.add('CreatePost');
+  buttonCreatePost.addEventListener('click', () => {
+    navigateTo('/newPost');
+  });
 
+  section.append(title, buttonCreatePost);
 
-    section.append(title, buttonCreatePost);
-
-    return section;
+  return section;
 }
-
 
 export default timeline;
