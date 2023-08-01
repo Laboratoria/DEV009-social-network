@@ -26,12 +26,12 @@ function login(navigateTo) {
   buttonEnd.className = 'buttonEnd';
 
   const btnEnter = document.createElement('button');
-  btnEnter.className = 'button-login-join';
+  btnEnter.className = 'button-login';
   btnEnter.textContent = 'Entrar';
   btnEnter.setAttribute('type', 'submit');
 
   const btnReturn = document.createElement('button');
-  btnReturn.className = 'button-login-join';
+  btnReturn.className = 'button-return';
   btnReturn.textContent = 'Volver';
   btnReturn.setAttribute('type', 'button');
   btnReturn.addEventListener('click', () => {

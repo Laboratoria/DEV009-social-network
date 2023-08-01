@@ -17,7 +17,8 @@ main {
     font-family: 'Glegoo', serif;
     height: 700px;
 }
-h1{
+
+h1 {
     font-size: 70px;
     font-weight: lighter;
     font-family: 'Satisfy', cursive;
@@ -26,19 +27,22 @@ h1{
     margin-top: 0px;
     text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
 }
-#slogan-home{
+
+#slogan-home {
     margin-top: 0px;
     color: #301B3F;
     font-size: large;
     font-weight: bolder;
 }
+
 #logo-home {
     width: 280px;
     height: auto;
     margin-top: 10px;
     padding-bottom: 40px;
 }
-.btn-home{
+
+.btn-home {
     font-family: 'Glegoo', serif;
     color: #301B3F;
     background-color: #B4A5A5;
@@ -50,21 +54,25 @@ h1{
     font-size: 17px;
     border: none;
     cursor: pointer;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
 }
 /*LOGIN - JOIN*/
-h3{
+h3 {
     font-size: 35px;
     font-family: 'Glegoo', serif;
     color: #301B3F;
     font-weight: bolder;
+    text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
 #logo-login-join {
     width: 230px;
     height: auto;
     margin-top: 20px;
     margin-bottom: 40px;
 }
-.input-login-join{
+
+.input-login-join {
     font-family: 'Glegoo', serif;
     background-color: #B4A5A5;
     display: flex;
@@ -78,14 +86,17 @@ h3{
     font-size: 17px;
     border: none;
     cursor: pointer;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
 }
-form{
+
+form {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
-.forgot-password{
+
+.forgot-password {
     margin-top: 15px;
     font-size: 18px;
     display: flex;
@@ -95,21 +106,24 @@ form{
     text-decoration: none;
     cursor: pointer;
 }
-.button-login-join{
+
+.buttonEnd {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 280px;
+}
+
+.button-login, .button-return {
     font-family: 'Glegoo', serif;
     color: #B4A5A5;
     background-color: #301B3F;
     border-radius: 30px;
     padding: 3px;
     width: 100px;
-    font-weight:lighter;
+    font-weight: lighter;
     font-size: 17px;
     border: none;
     margin-top: 50px;
     cursor: pointer;
-}
-.buttonend {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
 }
