@@ -1,0 +1,11 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    color:blue;
+
+}
+.contenedor{
+    background-image: url('https://static.wikia.nocookie.net/studio-ghibli/images/b/b3/Dola.png');
+    color: red;
+}
