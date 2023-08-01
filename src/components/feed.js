@@ -1,4 +1,4 @@
-import { signOut } from "../lib";
+import { auth, logoutUser} from "../lib";
 
 function feed(navigateTo) {
     const section = document.createElement('section');
@@ -14,12 +14,12 @@ function feed(navigateTo) {
     const logoutMessageError = document.createElement('p');
 
     logo.src = './imagenes/image.png';
-    write.textContent = 'Añade una Receta';
+    write.textContent = 'Añade una Receta';                                               
     option1.value = 'Mejores Recetas';
     option1.textContent ='Mejores Recetas';
     option2.value ='Usuarios'
-    option2.textContent ='Usuarios'
-    option3.value ='Salir'
+    option2.textContent ='Usuarios'                                                            
+    option3.value ='salir'
     option3.textContent ='Salir'
     logoutButtom.textContent = 'Cerrar Sesión';
     logoutMessage.style.color = 'green';
@@ -36,11 +36,9 @@ function feed(navigateTo) {
         // [END auth_sign_out]
       }*/
       logoutButtom.addEventListener('click', () => {
-        signOut(); 
-    });
-      logoutButtom.addEventListener('click', () => {
+        logoutUser(); 
         navigateTo('/'); 
-    }); 
+    });
 
     section.append(logo, logoutButtom, write, nav);
     nav.append(select)

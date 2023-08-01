@@ -48,10 +48,15 @@ function register(navigateTo) {
             errorMessage.textContent = 'Por favor, ingresa un correo y una contraseña válida.';
         }
     });
-    
+
+
+   /* */
+
+
+
     password.addEventListener('input', () => {
-      password.type = 'password';
-  });
+        password.type = 'password';
+    });
 
     buttonGoogle.addEventListener('click', () =>{
 

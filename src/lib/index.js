@@ -1,13 +1,7 @@
-import { getAuth, createUserWithEmailAndPassword, /*signInWithEmailAndPassword,*/ signInWithPopup, GoogleAuthProvider, sendEmailVerification } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendEmailVerification, signOut } from "firebase/auth";
 import { app } from './firebase.js';
-import { async } from "regenerator-runtime";
 
-const auth = getAuth(app);
-
-/*export const myFunction = () => {
-  // aqui tu codigo
-  console.log('Hola mundo!');
-};*/
+export const auth = getAuth(app);
 
 export const createUser = async (userEmail, userPassword) => {
   try {
@@ -34,22 +28,6 @@ export const createUser = async (userEmail, userPassword) => {
     throw new Error(`Error al registrar usuario: ${errorCode} - ${errorMessageText}`);
   }
 };
-/*const auth1 = firebase.auth();
-auth.signInWithPopup(GoogleAuthProvider).then((result) => {
-  const user = result.user;
-  const credential = GoogleAuthProvider.credentialFromResult(result);
-  const token = credential.accessToken;
-  // The signed-in user info.
-
-}).catch((error) => {
-  const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
-  // An error occurred.
-});*/
 const provider = new GoogleAuthProvider();
 
 export function signInWithGoogle(){
@@ -75,24 +53,30 @@ signInWithPopup(auth, provider)
   })  
 };
 
-/*signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
+/*if(userAuth){
+userAuth.sendEmailVerification(auth.currentUser) 
+  .then(() => {
+    // Email verification sent!
     // ...
   })
-  .catch((error) => {
+};*/                          
+export const signInEP = async (userEmail, userPassword) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, userEmail, userPassword);
+    const user = userCredential.user;
+    // Aquí puedes realizar acciones adicionales después de la autenticación si es necesario
+    return user; // Devuelve el objeto 'user' si deseas utilizarlo en el futuro
+  } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
-  });*/
-
+    throw new Error(`Error al iniciar sesión: ${errorCode} - ${errorMessage}`);
+  }
+};
  //onAuthStateChanged // testigo/observador de estado de autenticación del usuario, permite obtener datos del usuario
   //signInWithEmailAndPassword // Acceso de usuarios existentes
  // signOut //  Para salir de la sesión de un usuario, llama a signout
 
-export function signOut() {
-
-const auth = getAuth();
+export function logoutUser() {
 signOut(auth).then(() => {
   // Sign-out successful.
 }).catch((error) => {
