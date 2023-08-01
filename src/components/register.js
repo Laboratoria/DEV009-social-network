@@ -1,6 +1,6 @@
 import { registerUser } from '../lib/index';
 
-function login(navigateTo) {
+function register(navigateTo) {
   const section = document.createElement('section');
   const title = document.createElement('h2');
   const buttonReturn = document.createElement('button');
@@ -8,6 +8,7 @@ function login(navigateTo) {
   const inputPass = document.createElement('input');
   const buttonLogin = document.createElement('button');
 
+  inputEmail.type = 'email';
   inputPass.type = 'password';
 
   inputEmail.placeholder = 'Write your email';
@@ -30,4 +31,4 @@ function login(navigateTo) {
   return section;
 }
 
-export default login;
+export default register;

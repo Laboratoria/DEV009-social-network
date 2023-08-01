@@ -2,11 +2,13 @@
 import home from './components/home.js';
 import login from './components/login.js';
 import error from './components/error.js';
+import register from './components/register.js';
 
 const root = document.getElementById('root');
 
 const routes = [
   { path: '/', component: home },
+  { path: '/register', component: register },
   { path: '/login', component: login },
   { path: '/error', component: error },
 ];
