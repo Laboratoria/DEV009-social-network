@@ -2,6 +2,8 @@ import { registerUser } from '../lib/firebaseAuth.js';
 
 export const register2 = (navigateTo) => {
   const section = document.createElement('section');
+  const logo = document.createElement('img');
+  logo.src = './recursos/LogoSinLetras.png';
   const title = document.createElement('h2');
   title.textContent = 'Registrate!';
 
@@ -45,6 +47,7 @@ export const register2 = (navigateTo) => {
   });
 
   section.append(
+    logo,
     title,
     emailInput,
     passwordInput,

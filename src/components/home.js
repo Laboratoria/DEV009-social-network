@@ -3,7 +3,10 @@
 export const home = (navigateTo) => {
   const section = document.createElement('section');
   section.classList.add('bienvenida');
+  const logo = document.createElement('img');
+  logo.src = './recursos/LogoSinLetras.png';
   const title = document.createElement('h2');
+  const slogan = document.createElement('h4');
   const description = document.createElement('p');
   const buttonContainer = document.createElement('div');
   buttonContainer.classList.add('botones-home');
@@ -23,9 +26,10 @@ export const home = (navigateTo) => {
   });
 
   title.textContent = 'SisterSphere';
+  slogan.textContent = 'Kawaii Lovers';
   description.textContent = 'Bienvenidas a esta comunidad Kawaii-Like inspirada y creada para nosotras. Conecta, comparte y sueña en nuestra red.';
 
   buttonContainer.append(logInButton, registerButton);
-  section.append(title, description, buttonContainer);
+  section.append(logo, title, slogan, description, buttonContainer);
   return section;
 };
