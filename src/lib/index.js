@@ -1,15 +1,18 @@
-// // aqui exportaras las funciones que necesites
-
-// export const myFunction = () => {
-//   // aqui tu codigo
-//   console.log('Hola mundo!');
-// };
-import { auth, createUserWithEmailAndPassword } from '../firebase/initializeFirebase';
+import {
+  auth,
+  createUserWithEmailAndPassword,
+} from '../firebase/initializeFirebase';
 
 export const registerUser = (email, password) => {
-  try {
-    createUserWithEmailAndPassword(auth, email, password);
-  } catch (error) {
-    throw error.message;
-  }
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(user);
+      alert('register ok');
+    })
+    .catch((err) => {
+      const errorMessage = err.message;
+      console.log(errorMessage);
+      alert(err);
+    });
 };

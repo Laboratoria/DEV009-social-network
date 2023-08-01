@@ -1,3 +1,5 @@
+import { registerUser } from '../lib/index';
+
 function login(navigateTo) {
   const section = document.createElement('section');
   const title = document.createElement('h2');
@@ -5,6 +7,8 @@ function login(navigateTo) {
   const inputEmail = document.createElement('input');
   const inputPass = document.createElement('input');
   const buttonLogin = document.createElement('button');
+
+  inputPass.type = 'password';
 
   inputEmail.placeholder = 'Write your email';
   inputPass.placeholder = 'Write your password';
@@ -17,6 +21,12 @@ function login(navigateTo) {
   });
 
   section.append(title, inputEmail, inputPass, buttonLogin, buttonReturn);
+  buttonLogin.addEventListener('click', () => {
+    const email = inputEmail.value;
+    const password = inputPass.value;
+    registerUser(email, password);
+  });
+
   return section;
 }
 
