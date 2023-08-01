@@ -7,6 +7,9 @@ function feed() {
     const option3 = document.createElement('option');
     const write = document.createElement('button');
     const logo = document.createElement('img');
+   // const logoutButtom = document.createElement('button');
+   // const logoutMessage = document.createElement('p');
+   // const logoutMessageError = document.createElement('p');
 
     logo.src = './imagenes/image.png';
     write.textContent = 'Añade una Receta';
@@ -14,9 +17,21 @@ function feed() {
     option1.textContent ='Mejores Recetas';
     option2.value ='Usuarios'
     option2.textContent ='Usuarios'
-    option3.value ='Salir'
+    option3.value ='salir'
     option3.textContent ='Salir'
   
+    /*option3.addEventListener('click', () => {
+        auth.signOut().then(() => {
+            navigateTo('/');
+        }).catch(() => {
+            
+        }); 
+    });
+
+    select.addEventListener('change', (e) => {
+        const selectedOption = e.target.value;
+        navigateTo(selectedOption);
+    });*/
 
     section.append(logo, write, nav);
     nav.append(select)

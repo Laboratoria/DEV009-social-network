@@ -17,11 +17,10 @@ function home(){
     logo.src = './imagenes/image.png';
     h3.textContent = '¡Unete a CocinArte hoy mismo!'
 
-    
-
-
-    
-   /* login.addEventListener('click', () =>{
+    registerUser.addEventListener('click', () =>{
+        
+    })
+     /* login.addEventListener('click', () =>{
         const passwordLogin
     })
 signInWithEmailAndPassword(auth, userEmail, userPassword).then((userCredential) =>{
@@ -31,7 +30,7 @@ signInWithEmailAndPassword(auth, userEmail, userPassword).then((userCredential) 
     }
 })*/
 
-    section.append(logo, title, nameLogin, passwordLogin, login, registerUser, h3, emailLogin);
+    section.append(logo, title, nameLogin, passwordLogin, emailLogin, login, registerUser, h3);
     
 
     return section;

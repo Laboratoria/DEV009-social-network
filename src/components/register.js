@@ -1,4 +1,4 @@
-import { createUser, signInWithGoogle, auth, SendEmail} from "../lib";
+import { createUser, signInWithGoogle,} from "../lib";
 
 function register() {
     const section = document.createElement('section');
@@ -11,9 +11,7 @@ function register() {
     const avatar = document.createElement('img');
     const errorMessage = document.createElement('p');
     const successMessage = document.createElement('p');
-    const logoutButtom = document.createElement('button');
-    const logoutMessage = document.createElement('p');
-    const logoutMessageError = document.createElement('p');
+    
 
     logo.src = './imagenes/image.png';
     avatar.src = './imagenes/avatar.png';
@@ -25,9 +23,9 @@ function register() {
     email.placeholder = 'Ingresa tu Email';
     errorMessage.style.color = 'red';
     successMessage.style.color = 'green';
-    logoutButtom.textContent = 'Salir';
+   /* logoutButtom.textContent = 'Salir';
     logoutMessage.style.color = 'green';
-    logoutMessageError.style.color = 'red';
+    logoutMessageError.style.color = 'red';*/
 
 
 
@@ -39,8 +37,6 @@ function register() {
         if (userEmail && userPassword) {
             try {
                 const user = await createUser(userEmail, userPassword);
-                
-                SendEmail(userEmail);
                 successMessage.textContent = 'Usuario registrado con éxito';
                 errorMessage.textContent = '';
             } catch (error){
@@ -54,23 +50,7 @@ function register() {
     });
 
 
-   /* logoutButtom.addEventListener('click', () => {
-        auth.signOut().then(() => {
-            logoutMessage.textContent = 'El usuario ha cerrado sesion.';
-            logoutMessageError.textContent = '';
-        }).catch(() => {
-            logoutMessageError.textContent ='Error al cerrar sesion.' + error.message;
-            logoutMessage.textContent = '';
-        }); 
-    });
-
-    auth.onAuthStateChanged((user) => {
-        if (auth.user){
-            return successMessage.textContent = 'El usuario sigue autenticado';
-        } else {
-            return successMessage.textContent = 'Se cerro sesion';
-        }
-    })*/
+   /* */
 
 
 
@@ -85,7 +65,7 @@ function register() {
 
 
 
-    section.append(logo, avatar, name, email, password, buttonRegister, buttonGoogle, errorMessage, successMessage, logoutButtom);
+    section.append(logo, avatar, name, email, password, buttonRegister, buttonGoogle, errorMessage, successMessage);
 
 
     return section;
