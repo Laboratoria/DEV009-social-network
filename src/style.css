@@ -2,23 +2,114 @@ body {
     margin: 0;
     background-image: url('components/images/background.png');
     background-size: cover;
+    font-family: 'Glegoo', serif;
 }
+/*HOME*/
 main {
-    background-color: #B4A5A5;
+    background-color: rgba(180, 165, 165, 0.60);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
-    padding: 50px;
-    margin: 100px 40px;
+    margin: 60px 20px;
+    text-align: center; 
     border-radius: 20px;
-    height: 550px;
+    font-family: 'Glegoo', serif;
+    height: 700px;
+}
+h1{
+    font-size: 70px;
+    font-weight: lighter;
+    font-family: 'Satisfy', cursive;
+    color: #301B3F;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+}
+#slogan-home{
+    margin-top: 0px;
+    color: #301B3F;
+    font-size: large;
+    font-weight: bolder;
 }
 #logo-home {
-    width: 200px;
+    width: 280px;
     height: auto;
+    margin-top: 10px;
+    padding-bottom: 40px;
 }
-.div-text {
+.btn-home{
+    font-family: 'Glegoo', serif;
+    color: #301B3F;
+    background-color: #B4A5A5;
+    border-radius: 40px;
+    padding: 5px;
+    width: 300px;
+    font-weight: bolder;
+    margin-top: 15px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+/*LOGIN - JOIN*/
+h3{
+    font-size: 35px;
+    font-family: 'Glegoo', serif;
+    color: #301B3F;
+    font-weight: bolder;
+}
+#logo-login-join {
+    width: 230px;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+.input-login-join{
+    font-family: 'Glegoo', serif;
+    background-color: #B4A5A5;
     display: flex;
-    justify-content: start;
+    text-align: center; 
+    justify-content: center;
+    border-radius: 40px;
+    padding: 5px;
+    width: 300px;
+    font-weight: bolder;
+    margin-top: 15px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.forgot-password{
+    margin-top: 15px;
+    font-size: 18px;
+    display: flex;
+    font-family: 'Glegoo', serif;
+    color: #301B3F;
+    font-weight: bolder;
+    text-decoration: none;
+    cursor: pointer;
+}
+.button-login-join{
+    font-family: 'Glegoo', serif;
+    color: #B4A5A5;
+    background-color: #301B3F;
+    border-radius: 30px;
+    padding: 3px;
+    width: 100px;
+    font-weight:lighter;
+    font-size: 17px;
+    border: none;
+    margin-top: 50px;
+    cursor: pointer;
+}
+.buttonend {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
