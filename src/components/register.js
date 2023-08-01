@@ -1,5 +1,7 @@
 export const register = (navigateTo) => {
   const section = document.createElement('section');
+  const logo = document.createElement('img');
+  logo.src = './recursos/LogoSinLetras.png';
   const title = document.createElement('h2');
   title.textContent = 'Registrate!';
 
@@ -32,6 +34,6 @@ export const register = (navigateTo) => {
 
   selection.append(genderOption1, genderOption2);
 
-  section.append(title, nameInput, lastNameInput, ageInput, selection, nextRegisterButton);
+  section.append(logo, title, nameInput, lastNameInput, ageInput, selection, nextRegisterButton);
   return section;
 };

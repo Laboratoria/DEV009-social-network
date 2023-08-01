@@ -1,17 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Rochester&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Borel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@200;300;400&display=swap');
+
 body {
-    background-color: #FFD6DE;
+    background: linear-gradient(196deg, rgb(245, 200, 213) 0%, rgb(245, 200, 213) 0%, rgb(245, 200, 213) 0%, rgb(201, 194, 250) 100%, rgb(243, 113, 194) 100%);
+    background-repeat: no-repeat;
+    background-size: 1750px 1750px;
     text-align: center;
+    font-family: 'Montserrat Alternates', sans-serif;
 }
-.bienvenida {
-    margin-top: 8rem;
+img {
+    width: 15rem;
+    margin: 2rem auto;
+}
+h2{
+    font-family:  'Borel', cursive;
+    font-size: 45px;
+    color: purple;
+    margin-top: -1rem;
+}
+.bienvenida h4{
+    margin-top: -4rem;
+    color: rgb(72, 177, 211);
 }
 
 .bienvenida p {
     background-color: #fbc0cc;
+    max-width: 300px;
     border: none;
     border-radius: 5px;
     padding: 5px;
-    margin: 3rem;
+    margin: 3rem auto;
+    font-family:'Montserrat Alternates', sans-serif;
+    color: purple;
 }
 
  button {
@@ -20,6 +41,7 @@ body {
     padding: 5px;
     width: 130px;
     background-color: rgb(255, 240, 242);
+    font-family: 'Montserrat Alternates', sans-serif;
 }
 button:focus {
     background-color: aliceblue;
@@ -33,7 +55,7 @@ button:focus {
 }
 
 .inicio-sesion {
-    margin-top: 7rem;
+    margin-top: -1rem;
     font-size: 35px;
 }
 
@@ -47,6 +69,8 @@ input {
     box-shadow: 2px 3px 2px rgba(128, 128, 128, 0.667) inset;
     background-color: antiquewhite;
     margin: 10px auto;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 1rem;
 }
 
 input:hover {
