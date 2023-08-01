@@ -9,6 +9,10 @@ export const login = (navigateTo) => {
   const inputEmail = document.createElement('input');
   const inputPass = document.createElement('input');
   inputPass.type = 'password';
+
+  const logInInvalidPassMessage = document.createElement('span');
+  logInInvalidPassMessage.classList.add('login-error');
+
   const buttonContainer = document.createElement('div');
   buttonContainer.classList.add('botones-inicio-sesion');
 
@@ -36,6 +40,6 @@ export const login = (navigateTo) => {
   inputPass.placeholder = 'Contraseña';
 
   buttonContainer.append(buttonLog, buttonReturn);
-  section.append(logo, title, inputEmail, inputPass, buttonContainer);
+  section.append(logo, title, inputEmail, inputPass, logInInvalidPassMessage, buttonContainer);
   return section;
 };
