@@ -1,11 +1,13 @@
 import home from './components/home.js';
 import login from './components/login.js';
+import error from './components/error.js';
 
 const root = document.getElementById('root');
 
 const routes = [
     { path: '/', component: home },
     { path: '/login', component: login },
+    { path: '/error', component: error },
   ];
 
 const defaultRoute = "/";
@@ -19,8 +21,19 @@ function navigateTo(hash) {
           route.path,
           window.location.origin + route.path,
         );
-    }
-        root.appendChild(route.component());
-}
+    if (root.firstChild) {
+        root.removeChild(root.firstChild);
+      }
+      root.appendChild(route.component(navigateTo));
+    } else {
+            navigateTo('/error');    
+        }
+};
+
+window.onpopstate = () => {
+      console.log('hubo un cambio');
+      navigateTo(window.location.pathname);
+    };
+        
 navigateTo(window.location.pathname || defaultRoute)
 
