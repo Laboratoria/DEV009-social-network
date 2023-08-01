@@ -1,4 +1,4 @@
-function timeline(){
+function timeline(navigateTo){
     const section =  document.createElement ('section');
     section.classList.add('timelineSection');
 
@@ -6,9 +6,18 @@ function timeline(){
     title.textContent ='muro Guide Ma+Pa';
     title.classList.add('titletimeline');
 
-    section.append(title);
+    const buttonCreatePost = document.createElement('button');
+    buttonCreatePost.textContent = 'publicar';
+    buttonCreatePost.classList.add('buttonCreatePost');
+    buttonCreatePost.addEventListener('click', () => {
+        navigateTo('/newPost');
+    })
+
+
+    section.append(title, buttonCreatePost);
 
     return section;
-
 }
+
+
 export default timeline;
