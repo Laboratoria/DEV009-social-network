@@ -1,13 +1,11 @@
 function home(navigateTo) {
   const main = document.createElement('main');
 
-  const text = document.createElement('div');
-  text.className = 'div-text';
-
   const title = document.createElement('h1');
   title.textContent = 'SpookyVerse';
 
   const slogan = document.createElement('p');
+  slogan.setAttribute('id','slogan-home');
   slogan.textContent = '¡Donde las pesadillas se comparten!';
 
   const logo = document.createElement('img');
@@ -15,21 +13,24 @@ function home(navigateTo) {
   logo.setAttribute('id','logo-home');
 
   const login = document.createElement('button');
-  login.className = 'btn-login';
-  login.textContent = 'Ingresar';
+  login.className = 'btn-home';
+  login.textContent = 'Iniciar Sesion';
   login.addEventListener('click', () => {
     navigateTo('/login');
   });
 
   const join = document.createElement('button');
-  join.className = 'btn-join';
+  join.className = 'btn-home';
   join.textContent = 'Crear cuenta';
   join.addEventListener('click', () => {
     navigateTo('/join');
   });
-
-  text.append(title,slogan)
-  main.append(title, slogan, logo, login, join);
+  
+  const logingoogle = document.createElement('button');
+  logingoogle.className = 'btn-home';
+  logingoogle.textContent = 'Inicia sesion con Google';
+ 
+  main.append(title, slogan, logo, login, join,logingoogle);
 
 
   return main;

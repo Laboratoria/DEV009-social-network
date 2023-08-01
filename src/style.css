@@ -3,22 +3,99 @@ body {
     background-image: url('components/images/background.png');
     background-size: cover;
 }
+/*HOME*/
 main {
-    background-color: #B4A5A5;
+    background-color: rgba(180, 165, 165, 0.65);
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 50px;
-    margin: 100px 40px;
-    border-radius: 20px;
-    height: 550px;
+    margin: 100px 20px 20px;    
+    border-radius: 30px;
+    height: 700px;
+    font-family: 'Glegoo', serif;
+}
+h1{
+    font-size: 70px;
+    font-family: 'Satisfy', cursive;
+    color: #301B3F;
+    margin-bottom: 0px;
+}
+#slogan-home{
+    margin-top: 0px;
+    color: #301B3F;
+    font-size: large;
+    font-weight: bolder;
 }
 #logo-home {
+    width: 280px;
+    height: auto;
+    margin-top: 10px;
+    padding-bottom: 40px;
+}
+.btn-home{
+    font-family: 'Glegoo', serif;
+    color: #301B3F;
+    background-color: #B4A5A5;
+    border-radius: 40px;
+    padding: 5px;
+    width: 300px;
+    font-weight: bolder;
+    margin-top: 15px;
+    font-size: 17px;
+    border: none;
+}
+
+/*LOGIN - JOIN*/
+
+h3{
+    font-size: 32px;
+    font-family: 'Glegoo', serif;
+    color: #301B3F;
+    font-weight: bolder;
+}
+#logo-login-join {
     width: 200px;
     height: auto;
+    margin-top: 50px;
+    margin-bottom: 40px;
 }
-.div-text {
+.input-login-join{
+    font-family: 'Glegoo', serif;
+    color: #301B3F;
+    background-color: #B4A5A5;
+    border-radius: 40px;
+    padding: 5px;
+    padding-left: 15px;
+    width: 300px;
+    font-weight: bolder;
+    margin-top: 15px;
+    font-size: 17px;
+    border: none;
+}
+form{
     display: flex;
-    justify-content: start;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.forgot-password{
+    margin-top: 15px;
+    font-size: 18px;
+    display: flex;
+    font-family: 'Glegoo', serif;
+    color: #301B3F;
+    font-weight: bolder;
+    text-decoration: none;
+}
+.button-login-join{
+    font-family: 'Glegoo', serif;
+    color: #B4A5A5;
+    background-color: #301B3F;
+    border-radius: 30px;
+    padding: 3px;
+    width: 100px;
+    font-weight:lighter;
+    font-size: 17px;
+    border: none;
+    margin-top: 50px;
 }
