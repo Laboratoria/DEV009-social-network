@@ -9,7 +9,7 @@ function login(navigateTo) {
   inputEmail.placeholder = 'Write your email';
   inputPass.placeholder = 'Write your password';
 
-  title.textContent = 'Login';
+  title.textContent = 'Login!';
   buttonReturn.textContent = 'Return to Home';
   buttonLogin.textContent = 'Go';
   buttonReturn.addEventListener('click', () => {
