@@ -1,6 +1,6 @@
-import { createUser, signInWithGoogle,} from "../lib";
+import { createUser, signInWithGoogle, } from "../lib";
 
-function register() {
+function register(navigateTo) {
     const section = document.createElement('section');
     const buttonRegister = document.createElement('button');
     const buttonGoogle = document.createElement('button');
@@ -12,7 +12,7 @@ function register() {
     const errorMessage = document.createElement('p');
     const successMessage = document.createElement('p');
     
-
+   
     logo.src = './imagenes/image.png';
     avatar.src = './imagenes/avatar.png';
     avatar.classList.add('avatar')
@@ -23,11 +23,11 @@ function register() {
     email.placeholder = 'Ingresa tu Email';
     errorMessage.style.color = 'red';
     successMessage.style.color = 'green';
-   /* logoutButtom.textContent = 'Salir';
-    logoutMessage.style.color = 'green';
-    logoutMessageError.style.color = 'red';*/
+    
 
-
+    buttonRegister.addEventListener('click', () => {
+        navigateTo('/feed'); 
+    });
 
     buttonRegister.addEventListener('click', async () => {
         const userEmail = email.value;
@@ -65,7 +65,7 @@ function register() {
 
 
 
-    section.append(logo, avatar, name, email, password, buttonRegister, buttonGoogle, errorMessage, successMessage);
+    section.append(logo, avatar, name, email, password, buttonRegister, buttonGoogle, errorMessage, successMessage,/*logoutButtom*/);
 
 
     return section;

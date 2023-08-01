@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { getAuth, createUserWithEmailAndPassword, /*signInWithEmailAndPassword,*/ signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+=======
+import { getAuth, createUserWithEmailAndPassword, /*signInWithEmailAndPassword,*/ signInWithPopup, GoogleAuthProvider, sendEmailVerification } from "firebase/auth";
+>>>>>>> 6f994278bd2ee5f32c6a284418a65507dd8d6c6b
 import { app } from './firebase.js';
 
 export const auth = getAuth(app);
@@ -71,3 +75,17 @@ signInWithEmailAndPassword(auth, email, password)
     const errorCode = error.code;
     const errorMessage = error.message;
   });*/
+
+ //onAuthStateChanged // testigo/observador de estado de autenticación del usuario, permite obtener datos del usuario
+  //signInWithEmailAndPassword // Acceso de usuarios existentes
+ // signOut //  Para salir de la sesión de un usuario, llama a signout
+
+export function signOut() {
+
+const auth = getAuth();
+signOut(auth).then(() => {
+  // Sign-out successful.
+}).catch((error) => {
+  // An error happened.
+})
+};

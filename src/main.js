@@ -12,21 +12,25 @@ const routes = [
     {path: '/register', component: register},
     {path: '/feed', component: feed}
 ];
-
 const defaultRoute = '/';
 
- function navigateTo(hash){
-    const routex = routes.find((routex) => routex.path === hash);
+function navigateTo(hash){
+    const routex = routes.find((routeFind) => routeFind.path===hash);
 
        if(routex && routex.component) {
         window.history.pushState(
             {},
             routex.path,
             window.location.origin + routex.path,
-        );
-        root.innerHTML = '';
-        root.appendChild(routex.component());
+        )
+        if(root.firstChild){
+            root.removeChild(root.firstChild);
+        }
+        root.appendChild(routex.component(navigateTo));
        }
     }
+    window.onpopstate=() =>{
+        navigateTo(window.location.pathname);
+    };
 
-    navigateTo(window.location.pathname);
+    navigateTo(window.location.pathname || defaultRoute);

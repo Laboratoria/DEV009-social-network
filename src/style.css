@@ -53,6 +53,8 @@ body {
   
   button {
     display: flex;
+    font-family:'Poppins', sans-serif;;
+    color: #393939;
     margin: auto;
     max-width: 100%;
     margin-bottom: 20px;
@@ -61,8 +63,27 @@ body {
     border-radius: 15px;
     border: 1px solid #393939;
     grid-gap: 5px;
+    cursor: pointer;
   }
   
+  .google-button {
+    display: flex;
+    align-items: center; /* Para centrar verticalmente el contenido */
+    padding: 5px; /* Ajusta el padding según tus preferencias */
+    background-color: #f5f4f4; /* Color de fondo del botón */
+    color: #393939; /* Color del texto */
+    border: none; /* Quitamos el borde del botón */
+    cursor: pointer;
+    border-radius: 15px; /* Bordes redondeados */
+  }
+  
+  .google-button img {
+    width: 20px;
+    height: 20px;
+    align-content: center;
+    margin-right: 10px;
+    padding-top: 12px;
+  }
   /* Media query para pantallas más pequeñas, como teléfonos */
   @media (max-width: 600px) {
     img.avatar {

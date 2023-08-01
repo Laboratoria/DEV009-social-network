@@ -1,4 +1,6 @@
-function feed() {
+import { signOut } from "../lib";
+
+function feed(navigateTo) {
     const section = document.createElement('section');
     const nav = document.createElement ('nav');
     const select = document.createElement('select');
@@ -7,9 +9,9 @@ function feed() {
     const option3 = document.createElement('option');
     const write = document.createElement('button');
     const logo = document.createElement('img');
-   // const logoutButtom = document.createElement('button');
-   // const logoutMessage = document.createElement('p');
-   // const logoutMessageError = document.createElement('p');
+    const logoutButtom = document.createElement('button');
+    const logoutMessage = document.createElement('p');
+    const logoutMessageError = document.createElement('p');
 
     logo.src = './imagenes/image.png';
     write.textContent = 'Añade una Receta';
@@ -19,21 +21,28 @@ function feed() {
     option2.textContent ='Usuarios'
     option3.value ='salir'
     option3.textContent ='Salir'
-  
-    /*option3.addEventListener('click', () => {
-        auth.signOut().then(() => {
-            navigateTo('/');
-        }).catch(() => {
-            
-        }); 
+    logoutButtom.textContent = 'Cerrar Sesión';
+    logoutMessage.style.color = 'green';
+    logoutMessageError.style.color = 'red';
+
+
+    //function signOut() {
+       /* // [START auth_sign_out]
+        firebase.auth().signOut().then(() => {
+          // Sign-out successful.
+        }).catch((error) => {
+          // An error happened.
+        });
+        // [END auth_sign_out]
+      }*/
+      logoutButtom.addEventListener('click', () => {
+        signOut(); 
     });
+      logoutButtom.addEventListener('click', () => {
+        navigateTo('/'); 
+    }); 
 
-    select.addEventListener('change', (e) => {
-        const selectedOption = e.target.value;
-        navigateTo(selectedOption);
-    });*/
-
-    section.append(logo, write, nav);
+    section.append(logo, logoutButtom, write, nav);
     nav.append(select)
     select.append(option1, option2, option3)
     return section;
