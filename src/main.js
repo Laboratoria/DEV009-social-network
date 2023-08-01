@@ -8,8 +8,8 @@ const root = document.getElementById('root');
 
 const routes = [
   { path: '/', component: home },
-  { path: '/register', component: register },
   { path: '/login', component: login },
+  { path: '/register', component: register },
   { path: '/error', component: error },
 ];
 

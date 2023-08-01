@@ -1,5 +1,11 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from 'firebase/auth';
+
 import { firebaseConfig } from './credentialFirebase';
 
 const app = initializeApp(firebaseConfig);
@@ -9,4 +15,6 @@ export {
   auth,
   app,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
 };

@@ -1,33 +1,33 @@
-import { registerUser } from '../lib/index';
+import { loginUser } from '../lib/index';
 
 function login(navigateTo) {
   const section = document.createElement('section');
+  const formLogin = document.createElement('form');
   const title = document.createElement('h2');
-  const buttonReturn = document.createElement('button');
+  const message = document.createElement('p');
   const inputEmail = document.createElement('input');
   const inputPass = document.createElement('input');
   const buttonLogin = document.createElement('button');
-
+  const buttonRegister = document.createElement('button');
   inputPass.type = 'password';
-
   inputEmail.placeholder = 'Write your email';
   inputPass.placeholder = 'Write your password';
-
-  title.textContent = 'Login';
-  buttonReturn.textContent = 'Return to Home';
-  buttonLogin.textContent = 'Go';
-  buttonReturn.addEventListener('click', () => {
-    navigateTo('/');
+  title.textContent = 'Welcome Back';
+  message.textContent = 'Don’t have an account?';
+  buttonRegister.textContent = 'Sign Up';
+  buttonLogin.textContent = 'Sign In';
+  buttonLogin.type = 'submit';
+  buttonRegister.addEventListener('click', () => {
+    navigateTo('/register');
   });
-
-  section.append(title, inputEmail, inputPass, buttonLogin, buttonReturn);
-  buttonLogin.addEventListener('click', () => {
+  formLogin.append(title, message, inputEmail, inputPass, buttonLogin, buttonRegister);
+  section.append(formLogin);
+  formLogin.addEventListener('submit', (e) => {
+    e.preventDefault();
     const email = inputEmail.value;
     const password = inputPass.value;
-    registerUser(email, password);
+    loginUser(email, password);
   });
-
   return section;
 }
-
 export default login;
