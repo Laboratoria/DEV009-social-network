@@ -10,7 +10,7 @@ Criar hijos es una de las experiencias más gratificantes y significantes de la 
 ¡Únase a Guide Ma+Pa y descubra la alegría de criar juntos!
 
 ## Estructura de archivos 
-
+```
 .
 ├── README.md
 ├── package.json
@@ -38,3 +38,4 @@ Criar hijos es una de las experiencias más gratificantes y significantes de la 
 |  |  ├── timeline.css
 └── test
    └── index.spec.js
+```
