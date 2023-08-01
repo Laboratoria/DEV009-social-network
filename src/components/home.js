@@ -1,10 +1,11 @@
-import { signInWithGoogle } from "../lib";
+import { signInEP, signInWithGoogle } from "../lib";
 
 function home (navigateTo) {
     const section = document.createElement('section');
     const title = document.createElement('h2');
     const logo = document.createElement('img');
     const login = document.createElement('button');
+    const errorMessage = document.createElement('p');
     const registerUser = document.createElement('button');
     const passwordLogin = document.createElement('input');
     const emailLogin = document.createElement('input');
@@ -13,13 +14,15 @@ function home (navigateTo) {
     const h3 = document.createElement('h3')
 
     title.textContent='Las Recetas de ahora';
-    nameLogin.textContent ='Usuario'
-    passwordLogin.texcontent ='Contraseña'
+    nameLogin.placeholder ='Usuario'
+    emailLogin.placeholder = 'email'
+    passwordLogin.placeholder ='Contraseña'
     registerUser.textContent ='Registrarse'
     login.textContent = 'Ingresar'
     logo.src = './imagenes/image.png';
     buttonGoogle.textContent ='Continuar con Google';
     h3.textContent = '¡Unete a CocinArte hoy mismo!'
+    errorMessage.style.color = 'red';
 
     //agregar logo google a botón 
     const googleLogo = document.createElement('img');
@@ -40,17 +43,32 @@ function home (navigateTo) {
 
 
     
-   /* login.addEventListener('click', () =>{
-        const passwordLogin
-    })
-signInWithEmailAndPassword(auth, userEmail, userPassword).then((userCredential) =>{
+    login.addEventListener('click', async () =>{
+        const email = emailLogin.value;
+        const password = passwordLogin.value;
+
+        if (email && password) {
+            try {
+                const user = await signInEP(email, password);
+                navigateTo('/feed');
+            } catch (error){
+                errorMessage.textContent = error.message;
+                
+            }
+             
+        } else {
+            errorMessage.textContent = 'Por favor, ingresa un correo y una contraseña válida.';
+        }
+    });
+    
+/*signInWithEmailAndPassword(auth, userEmail, userPassword).then((userCredential) =>{
     const userHome = userCredential.user;
     if (userEmail && userPassword === userHome){
 
     }
 })*/
 
-    section.append(logo, title, nameLogin, passwordLogin, emailLogin, login, registerUser, buttonGoogle, h3 );
+    section.append(logo, title, nameLogin, passwordLogin, emailLogin, login, errorMessage, registerUser, buttonGoogle, h3 );
     
 
     return section;

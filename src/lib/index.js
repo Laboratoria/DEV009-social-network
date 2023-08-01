@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { getAuth, createUserWithEmailAndPassword, /*signInWithEmailAndPassword,*/ signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-=======
-import { getAuth, createUserWithEmailAndPassword, /*signInWithEmailAndPassword,*/ signInWithPopup, GoogleAuthProvider, sendEmailVerification } from "firebase/auth";
->>>>>>> 6f994278bd2ee5f32c6a284418a65507dd8d6c6b
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendEmailVerification, signOut } from "firebase/auth";
 import { app } from './firebase.js';
 
 export const auth = getAuth(app);
@@ -58,31 +54,29 @@ signInWithPopup(auth, provider)
 };
 
 /*if(userAuth){
-userAuth.sendEmailVerification(auth.currentUser)
+userAuth.sendEmailVerification(auth.currentUser) 
   .then(() => {
     // Email verification sent!
     // ...
   })
-};
-
-signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
+};*/                          
+export const signInEP = async (userEmail, userPassword) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, userEmail, userPassword);
     const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
+    // Aquí puedes realizar acciones adicionales después de la autenticación si es necesario
+    return user; // Devuelve el objeto 'user' si deseas utilizarlo en el futuro
+  } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
-  });*/
-
+    throw new Error(`Error al iniciar sesión: ${errorCode} - ${errorMessage}`);
+  }
+};
  //onAuthStateChanged // testigo/observador de estado de autenticación del usuario, permite obtener datos del usuario
   //signInWithEmailAndPassword // Acceso de usuarios existentes
  // signOut //  Para salir de la sesión de un usuario, llama a signout
 
-export function signOut() {
-
-const auth = getAuth();
+export function logoutUser() {
 signOut(auth).then(() => {
   // Sign-out successful.
 }).catch((error) => {
