@@ -25,9 +25,10 @@ export const db = getFirestore(app);
 
 export const registerUser = (email, password, callback) => {
   createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+  // poner parametro a .then userCredential
+    .then(() => {
     // Signed in
-      const user = userCredential.user;
+      // const user = userCredential.user;
       callback(true);
     })
     .catch((error) => {
@@ -50,17 +51,18 @@ export const registerUser = (email, password, callback) => {
 
 export const logInUser = (email, password, callback) => {
   signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+  // poner el parametro userCredential
+    .then(() => {
     // Signed in
-      const user = userCredential.user;
+      // const user = userCredential.user;
       callback(true);
     // ...
     })
     .catch((error) => {
       const errorCode = error.code;
       const loginErrorMessageSpan = document.querySelector('.login-error');
-      console.log(errorCode);
-      const errorMessage = error.message;
+      // console.log(errorCode);
+      // const errorMessage = error.message;
       if (errorCode === 'auth/user-not-found') {
         loginErrorMessageSpan.innerHTML = '¡Oopsie~! Parece que el correo no es existe~🐾';
       } else if (errorCode === 'auth/wrong-password') {
@@ -68,7 +70,7 @@ export const logInUser = (email, password, callback) => {
       } else {
         loginErrorMessageSpan.innerHTML = 'Oh no ~Inténtalo de nuevo~';
       }
-      console.log(errorMessage);
+      // console.log(errorMessage);
       callback(false);
     });
 };
@@ -77,7 +79,8 @@ export const logOut = (callback) => {
   signOut(auth).then(() => {
     callback(true);
     // Sign-out successful.
-  }).catch((error) => {
+    // agregar parametro error al catch
+  }).catch(() => {
     callback(false);
     // An error happened.
   });
