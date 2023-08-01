@@ -22,6 +22,9 @@ function login(navigateTo) {
   password.setAttribute('placeholder', 'Contraseña');
   password.setAttribute('required', '');
 
+  const buttonend = document.createElement('div');
+  buttonend.className ='buttonend';
+
   const btnEnter = document.createElement('button');
   btnEnter.className='button-login-join';
   btnEnter.textContent = 'Entrar';
@@ -40,9 +43,9 @@ function login(navigateTo) {
   forgotPassword.setAttribute('href', '/');
   forgotPassword.textContent = 'Olvidé mi contraseña';
 
-  loginForm.append(email, password, forgotPassword, btnEnter, btnReturn);
+  loginForm.append(email, password, forgotPassword,buttonend);
   main.append(title,logologin, loginForm);
-
+  buttonend.append(btnEnter, btnReturn)
   return main;
 }
 

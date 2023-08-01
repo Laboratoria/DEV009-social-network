@@ -2,23 +2,29 @@ body {
     margin: 0;
     background-image: url('components/images/background.png');
     background-size: cover;
+    font-family: 'Glegoo', serif;
 }
 /*HOME*/
 main {
-    background-color: rgba(180, 165, 165, 0.65);
+    background-color: rgba(180, 165, 165, 0.60);
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
-    margin: 100px 20px 20px;    
-    border-radius: 30px;
-    height: 700px;
+    margin: 60px 20px;
+    text-align: center; 
+    border-radius: 20px;
     font-family: 'Glegoo', serif;
+    height: 700px;
 }
 h1{
     font-size: 70px;
+    font-weight: lighter;
     font-family: 'Satisfy', cursive;
     color: #301B3F;
     margin-bottom: 0px;
+    margin-top: 0px;
+    text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
 }
 #slogan-home{
     margin-top: 0px;
@@ -43,34 +49,35 @@ h1{
     margin-top: 15px;
     font-size: 17px;
     border: none;
+    cursor: pointer;
 }
-
 /*LOGIN - JOIN*/
-
 h3{
-    font-size: 32px;
+    font-size: 35px;
     font-family: 'Glegoo', serif;
     color: #301B3F;
     font-weight: bolder;
 }
 #logo-login-join {
-    width: 200px;
+    width: 230px;
     height: auto;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 40px;
 }
 .input-login-join{
     font-family: 'Glegoo', serif;
-    color: #301B3F;
     background-color: #B4A5A5;
+    display: flex;
+    text-align: center; 
+    justify-content: center;
     border-radius: 40px;
     padding: 5px;
-    padding-left: 15px;
     width: 300px;
     font-weight: bolder;
     margin-top: 15px;
     font-size: 17px;
     border: none;
+    cursor: pointer;
 }
 form{
     display: flex;
@@ -86,6 +93,7 @@ form{
     color: #301B3F;
     font-weight: bolder;
     text-decoration: none;
+    cursor: pointer;
 }
 .button-login-join{
     font-family: 'Glegoo', serif;
@@ -98,4 +106,10 @@ form{
     font-size: 17px;
     border: none;
     margin-top: 50px;
+    cursor: pointer;
+}
+.buttonend {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }

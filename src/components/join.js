@@ -28,6 +28,8 @@ function join(navigateTo) {
   password.setAttribute('placeholder', 'Crea tu contraseña');
   password.setAttribute('required', '');
 
+  const buttonend = document.createElement('div'); 
+
   const btnEnter = document.createElement('button');
   btnEnter.className='button-login-join';
   btnEnter.textContent = 'Entrar';
@@ -41,8 +43,9 @@ function join(navigateTo) {
     navigateTo('/');
   });
 
-  joinForm.append(fullName, email, password, btnEnter, btnReturn);
-  main.append(title, logologin,joinForm);
+  joinForm.append(fullName, email, password);
+  main.append(title, logologin,joinForm,buttonend);
+  buttonend.append(btnEnter, btnReturn);
 
   return main;
 }
