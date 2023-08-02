@@ -7,7 +7,7 @@ export const createUser = async (userEmail, userPassword) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, userEmail, userPassword);
     sendEmailVerification(auth.currentUser)
-    .then(() => {
+    .then((res) => {
       // Email verification sent!
       // ...
       console.log("email verificate")
@@ -34,47 +34,31 @@ export function signInWithGoogle(){
 
 signInWithPopup(auth, provider)
   .then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
-    // The signed-in user info.
     const user = result.user;
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
+    
   }).catch((error) => {
-    // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
-    // The email of the user's account used.
     const email = error.customData.email;
-    // The AuthCredential type that was used.
     const credential = GoogleAuthProvider.credentialFromError(error);
     // ...
   })  
 };
 
-/*if(userAuth){
-userAuth.sendEmailVerification(auth.currentUser) 
-  .then(() => {
-    // Email verification sent!
-    // ...
-  })
-};*/                          
 export const signInEP = async (userEmail, userPassword) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, userEmail, userPassword);
     const user = userCredential.user;
-    // Aquí puedes realizar acciones adicionales después de la autenticación si es necesario
-    return user; // Devuelve el objeto 'user' si deseas utilizarlo en el futuro
+    
+    return user; 
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
     throw new Error(`Error al iniciar sesión: ${errorCode} - ${errorMessage}`);
   }
 };
- //onAuthStateChanged // testigo/observador de estado de autenticación del usuario, permite obtener datos del usuario
-  //signInWithEmailAndPassword // Acceso de usuarios existentes
- // signOut //  Para salir de la sesión de un usuario, llama a signout
 
 export function logoutUser() {
 signOut(auth).then(() => {

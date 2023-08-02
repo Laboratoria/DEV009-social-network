@@ -25,10 +25,6 @@ function register(navigateTo) {
     successMessage.style.color = 'green';
     
 
-    buttonRegister.addEventListener('click', () => {
-        navigateTo('/feed'); 
-    });
-
     buttonRegister.addEventListener('click', async () => {
         const userEmail = email.value;
         const userPassword = password.value;
@@ -39,6 +35,7 @@ function register(navigateTo) {
                 const user = await createUser(userEmail, userPassword);
                 successMessage.textContent = 'Usuario registrado con éxito';
                 errorMessage.textContent = '';
+                navigateTo('/feed'); 
             } catch (error){
                 errorMessage.textContent = error.message;
                 successMessage.textContent = '';
@@ -48,11 +45,6 @@ function register(navigateTo) {
             errorMessage.textContent = 'Por favor, ingresa un correo y una contraseña válida.';
         }
     });
-
-
-   /* */
-
-
 
     password.addEventListener('input', () => {
         password.type = 'password';

@@ -1,4 +1,4 @@
-import { auth, logoutUser} from "../lib";
+import {logoutUser} from "../lib";
 
 function feed(navigateTo) {
     const section = document.createElement('section');
@@ -25,16 +25,6 @@ function feed(navigateTo) {
     logoutMessage.style.color = 'green';
     logoutMessageError.style.color = 'red';
 
-
-    //function signOut() {
-       /* // [START auth_sign_out]
-        firebase.auth().signOut().then(() => {
-          // Sign-out successful.
-        }).catch((error) => {
-          // An error happened.
-        });
-        // [END auth_sign_out]
-      }*/
       logoutButtom.addEventListener('click', () => {
         logoutUser(); 
         navigateTo('/'); 
