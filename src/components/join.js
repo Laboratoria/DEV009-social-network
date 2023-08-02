@@ -1,3 +1,5 @@
+import { createAccount } from '../lib/index.js';
+
 function join(navigateTo) {
   const main = document.createElement('main');
 
@@ -10,23 +12,23 @@ function join(navigateTo) {
 
   const joinForm = document.createElement('form');
 
-  const fullName = document.createElement('input');
-  fullName.className = 'input-login-join';
-  fullName.setAttribute('type', 'text');
-  fullName.setAttribute('placeholder', 'Nombre y apellido');
-  fullName.setAttribute('required', '');
+  const userName = document.createElement('input');
+  userName.className = 'input-login-join';
+  userName.setAttribute('type', 'text');
+  userName.setAttribute('placeholder', 'Nombre de usuario');
+  userName.setAttribute('required', '');
 
-  const email = document.createElement('input');
-  email.className = 'input-login-join';
-  email.setAttribute('type', 'email');
-  email.setAttribute('placeholder', 'Correo electronico');
-  email.setAttribute('required', '');
+  const emailInput = document.createElement('input');
+  emailInput.className = 'input-login-join';
+  emailInput.setAttribute('type', 'emailInput');
+  emailInput.setAttribute('placeholder', 'Correo electronico');
+  emailInput.setAttribute('required', '');
 
-  const password = document.createElement('input');
-  password.className = 'input-login-join';
-  password.setAttribute('type', 'password');
-  password.setAttribute('placeholder', 'Crea tu contraseña');
-  password.setAttribute('required', '');
+  const passwordInput = document.createElement('input');
+  passwordInput.className = 'input-login-join';
+  passwordInput.setAttribute('type', 'password');
+  passwordInput.setAttribute('placeholder', 'Crea tu contraseña');
+  passwordInput.setAttribute('required', '');
 
   const buttonEnd = document.createElement('div');
   buttonEnd.className = 'buttonEnd';
@@ -44,9 +46,18 @@ function join(navigateTo) {
     navigateTo('/');
   });
 
-  joinForm.append(fullName, email, password);
-  main.append(title, logologin, joinForm, buttonEnd);
-  buttonEnd.append(btnEnter, btnReturn);
+  buttonEnd.append(btnReturn, btnEnter);
+  joinForm.append(userName, emailInput, passwordInput, buttonEnd);
+  main.append(title, logologin, joinForm);
+
+  joinForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = emailInput.value;
+    const password = passwordInput.value;
+    createAccount(email, password);
+
+    navigateTo('/login');
+  });
 
   return main;
 }

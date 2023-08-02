@@ -26,11 +26,11 @@ function home(navigateTo) {
     navigateTo('/join');
   });
 
-  const logingoogle = document.createElement('button');
-  logingoogle.className = 'btn-home';
-  logingoogle.textContent = 'Inicia sesion con Google';
+  const loginGoogle = document.createElement('button');
+  loginGoogle.className = 'btn-home';
+  loginGoogle.textContent = 'Inicia sesion con Google';
 
-  main.append(title, slogan, logo, login, join, logingoogle);
+  main.append(title, slogan, logo, login, join, loginGoogle);
 
   return main;
 }

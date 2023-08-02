@@ -43,9 +43,10 @@ function login(navigateTo) {
   forgotPassword.setAttribute('href', '/');
   forgotPassword.textContent = 'Olvidé mi contraseña';
 
+  buttonEnd.append(btnReturn, btnEnter);
   loginForm.append(email, password, forgotPassword, buttonEnd);
   main.append(title, logologin, loginForm);
-  buttonEnd.append(btnEnter, btnReturn);
+
   return main;
 }
 
