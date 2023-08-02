@@ -1,0 +1,15 @@
+:root {
+    --theme-color-a: #003D73;
+    --theme-color-b: #0878A4;
+    --theme-color-c: #1ECFD6;
+    --theme-color-d: #EDD170;
+    --theme-color-e: #C05640;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif, 1rem;
+    text-align: center;
+}
