@@ -39,8 +39,7 @@ signInWithPopup(auth, provider)
     const token = credential.accessToken;
     // The signed-in user info.
     const user = result.user;
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
+    return user
   }).catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
@@ -49,7 +48,6 @@ signInWithPopup(auth, provider)
     const email = error.customData.email;
     // The AuthCredential type that was used.
     const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
   })  
 };
                         
