@@ -1,3 +1,4 @@
+import { AsyncIterator } from "regenerator-runtime";
 import { signInEP, signInWithGoogle } from "../lib";
 
 function home (navigateTo) {
@@ -36,9 +37,14 @@ function home (navigateTo) {
         navigateTo('/register'); 
     });
 
-    buttonGoogle.addEventListener('click', () =>{
-
-        return signInWithGoogle()
+    buttonGoogle.addEventListener('click', async () =>{
+        try {
+            const user = await signInWithGoogle();
+            navigateTo('/feed');
+        } catch (error){
+            errorMessage.textContent = error.message;
+            
+        }         
      })   
 
 
