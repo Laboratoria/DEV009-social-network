@@ -41,7 +41,17 @@ body{
   border-radius:40px;
   border: 2px solid #000000;
   background: #EFBA73;
-  ;
+   
+}
+.contenedor2{
+  position: relative;
+  background-color: #B0CEB6;
+  align-items: center;
+}
+h4 {
+  font-size: small;
+  color: red;
+  margin-top: 200px;
   
 }
 
