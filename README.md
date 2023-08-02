@@ -24,6 +24,8 @@ Criar hijos es una de las experiencias más gratificantes y significantes de la 
 |  |  ├── registrer.js
 |  |  ├── login.js
 |  |  ├── timeline.js
+|  |  ├── error.js
+|  |  ├── newPost.js
 |  ├── lib 
 |  |  ├── index.js
 |  ├── index.html

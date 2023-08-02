@@ -4,6 +4,7 @@ import timeline from './components/timeline.js';
 import printError from './components/error.js';
 import newPost from './components/newPost.js';
 
+
 const root = document.getElementById('root');
 
 const routes = [
@@ -35,3 +36,5 @@ window.onpopstate = () => {
 };
 
 navigateTo(window.location.pathname || defaultRoute);
+
+
