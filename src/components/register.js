@@ -25,20 +25,17 @@ function register(navigateTo) {
     successMessage.style.color = 'green';
     
 
-    buttonRegister.addEventListener('click', () => {
-        navigateTo('/feed'); 
-    });
+  
 
     buttonRegister.addEventListener('click', async () => {
         const userEmail = email.value;
         const userPassword = password.value;
-
-
         if (userEmail && userPassword) {
             try {
                 const user = await createUser(userEmail, userPassword);
                 successMessage.textContent = 'Usuario registrado con éxito';
                 errorMessage.textContent = '';
+                navigateTo('/feed')
             } catch (error){
                 errorMessage.textContent = error.message;
                 successMessage.textContent = '';
@@ -58,16 +55,16 @@ function register(navigateTo) {
         password.type = 'password';
     });
 
-    buttonGoogle.addEventListener('click', () =>{
-
-       return signInWithGoogle()
+    buttonGoogle.addEventListener('click', async() =>{
+        try {
+            const user = await signInWithGoogle();
+            navigateTo('/feed');
+        } catch (error){
+            errorMessage.textContent = error.message;
+            
+        }         
     })   
-
-
-
     section.append(logo, avatar, name, email, password, buttonRegister, buttonGoogle, errorMessage, successMessage,/*logoutButtom*/);
-
-
     return section;
 }
 export default register;
