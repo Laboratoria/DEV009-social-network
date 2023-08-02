@@ -5,7 +5,7 @@ import {
   sendPasswordResetEmail,
 } from '../firebase/initializeFirebase';
 
-export const registerUser = (email, password) => {
+export const registerUser = (name1, userName, email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;

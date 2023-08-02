@@ -20,42 +20,43 @@ body {
     max-height: 100vh;
     color: var(--color-primary);
     background-image: url('img/img-first.png');
-    background-size: contain;
+    background-size: 350px 400px;
     background-repeat: no-repeat;
-    background-position-y: 80px;
+    background-position-y: 90px;
+    background-position-x: center;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(9, 1fr);
 }
 
 .logo {
-    width: 200px;
+    width: 150px;
     grid-column: 2/3;
     grid-row: 1/2;
 }
 
 .title {
     margin-left: 50px;
-    grid-column: 1/2;
+    grid-column: 1/3;
     grid-row: 6/7;
     z-index: 999;
 }
 
 .message {
     margin-left: 50px;
-    grid-column: 1/2;
+    grid-column: 1/3;
     grid-row: 7/8;
     z-index: 999;
 }
 
 .square {
-    width: 110vw;
-    height: 46vh;
-    background-color: var(--color-secondary);
+    width: 100vw;
+    height: auto;
+    background-color: var(--color-tertiary);
     border-top-left-radius: 185px;
     border-top-right-radius: 185px;
     grid-column: 1/3;
-    grid-row: 6/10;
+    grid-row: 5/10;
 }
 
 .container-button {
@@ -83,4 +84,45 @@ body {
     background-color: rgba(106, 102, 217, 0.28);
     color: white;
     z-index: 999;
+}
+
+.login-view {
+    color: var(--color-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-input {
+    width: 70vw;
+    height: 51px;
+    border-radius: 30px;
+    border-style: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    background-color: var(--color-primary);
+    margin: 20px;
+    color: white;
+}
+
+.input {
+    text-indent: 20px;
+    width: 70vw;
+    border-radius: 30px;
+    height: 51px;
+    margin: 10px;
+    border-style: none;
+    background-color: rgba(224, 241, 255, 0.4);
+}
+
+.input::placeholder {
+    text-align:left;
+    color: var(--color-primary);
+}
+
+.no-button {
+    color: var(--color-primary);
+    border-style: none;
+    background: none;
+    font-weight: bold;
 }
