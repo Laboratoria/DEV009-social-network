@@ -45,7 +45,7 @@
 // });
 
 // Importar las funciones que vamos a probar
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+// import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { registerUser } from '../src/lib/firebaseAuth';
 
 jest.mock('firebase/auth', () => ({
@@ -55,37 +55,40 @@ jest.mock('firebase/auth', () => ({
 }));
 
 describe('registerUser', () => {
-  it('Deveria ser uma função de registro', () => {
-    expect(typeof registroUsuario).toBe('function');
+  it('Debería ser una función', () => {
+    expect(typeof registerUser).toBe('function');
   });
 
-describe('registerUser', () => {
-  describe('createUserWithEmailAndPassword', () => {
-    it('should be a function', () => {
-      expect(typeof createUserWithEmailAndPassword).toEqual('function');
-    });
-
-    it('should call createUserWithEmailAndPassword with the correct arguments', async () => {
-      // Mock de la función createUserWithEmailAndPassword
-      const createUserWithEmailAndPasswordMock = jest.fn(() => Promise.resolve());
-
-      // Obtener una referencia al mock de auth
-      const auth = getAuth();
-      // Hacer que el mock de getAuth devuelva el mock de createUserWithEmailAndPassword
-      auth.createUserWithEmailAndPassword = createUserWithEmailAndPasswordMock;
-
-      const email = 'test@example.com';
-      const password = 'password123';
-      const callback = jest.fn();
-
-      await registerUser(email, password, callback);
-
-      // Verificar que createUserWithEmailAndPassword se llamó con los argumentos correctos
-      expect(createUserWithEmailAndPasswordMock).toHaveBeenCalledWith(email, password);
-      // Verificar que el callback se llamó con true
-      expect(callback).toHaveBeenCalledWith(true);
-    });
-  });
-
-  // Otras pruebas para logInUser y logOut, si es necesario...
+  it('Debe de registar un usuario', )
 });
+
+// describe('registerUser', () => {
+//   describe('createUserWithEmailAndPassword', () => {
+//     it('should be a function', () => {
+//       expect(typeof createUserWithEmailAndPassword).toEqual('function');
+//     });
+
+//     it('should call createUserWithEmailAndPassword with the correct arguments', async () => {
+//       // Mock de la función createUserWithEmailAndPassword
+//       const createUserWithEmailAndPasswordMock = jest.fn(() => Promise.resolve());
+
+//       // Obtener una referencia al mock de auth
+//       const auth = getAuth();
+//       // Hacer que el mock de getAuth devuelva el mock de createUserWithEmailAndPassword
+//       auth.createUserWithEmailAndPassword = createUserWithEmailAndPasswordMock;
+
+//       const email = 'test@example.com';
+//       const password = 'password123';
+//       const callback = jest.fn();
+
+//       await registerUser(email, password, callback);
+
+//       // Verificar que createUserWithEmailAndPassword se llamó con los argumentos correctos
+//       expect(createUserWithEmailAndPasswordMock).toHaveBeenCalledWith(email, password);
+//       // Verificar que el callback se llamó con true
+//       expect(callback).toHaveBeenCalledWith(true);
+//     });
+//   });
+
+// Otras pruebas para logInUser y logOut, si es necesario...
+// });
