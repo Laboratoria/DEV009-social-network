@@ -1,27 +1,30 @@
 function home (navigateTo){
     const contenedorGeneral = document.createElement ('div');
-    contenedorGeneral.className='contenedor'
-    contenedorGeneral.textContent = 'hola'
-    const section = document.createElement('section'); 
-    const title = document.createElement('h2');
+    contenedorGeneral.className='contenedor';
+        
     const buttonInicio = document.createElement('button');
+    buttonInicio.className = 'boton_Inicio';
+   
+      
     const buttonRegistro =document.createElement('button');
+    buttonRegistro.className = 'boton_Registro';
     
-    buttonInicio.textContent = 'Iniciar sección'
+    buttonInicio.textContent = 'Inicia sesión'
     buttonInicio.addEventListener('click', () => {
         navigateTo('/login');
-    });
+    }); 
     
-
-    buttonRegistro.textContent = 'Registrate'
+    
+    buttonRegistro.textContent = 'Regístrate'
     buttonRegistro.addEventListener('click', () => {
         navigateTo('/registro');
     });
 
-    title.textContent = 'BIENVENIDOS A BON-BON';
 
-
-   contenedorGeneral.append(section,title, buttonInicio, buttonRegistro);
+ contenedorGeneral.appendChild(buttonInicio);
+ contenedorGeneral.appendChild(buttonRegistro);
+ 
+  
     return contenedorGeneral;
 }
 
