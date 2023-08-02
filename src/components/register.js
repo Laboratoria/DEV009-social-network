@@ -1,4 +1,4 @@
-import { createUser, signInWithGoogle, } from "../lib";
+import { createUser, signInWithGoogle, } from '../lib';
 
 function register(navigateTo) {
     const section = document.createElement('section');
@@ -11,8 +11,8 @@ function register(navigateTo) {
     const avatar = document.createElement('img');
     const errorMessage = document.createElement('p');
     const successMessage = document.createElement('p');
-    
-   
+
+
     logo.src = './imagenes/image.png';
     avatar.src = './imagenes/avatar.png';
     avatar.classList.add('avatar')
@@ -23,9 +23,9 @@ function register(navigateTo) {
     email.placeholder = 'Ingresa tu Email';
     errorMessage.style.color = 'red';
     successMessage.style.color = 'green';
-    
 
-  
+
+
 
     buttonRegister.addEventListener('click', async () => {
         const userEmail = email.value;
@@ -36,18 +36,18 @@ function register(navigateTo) {
                 successMessage.textContent = 'Usuario registrado con éxito';
                 errorMessage.textContent = '';
                 navigateTo('/feed')
-            } catch (error){
+            } catch (error) {
                 errorMessage.textContent = error.message;
                 successMessage.textContent = '';
             }
-             
+
         } else {
             errorMessage.textContent = 'Por favor, ingresa un correo y una contraseña válida.';
         }
     });
 
 
-   /* */
+    /* */
 
 
 
@@ -55,15 +55,15 @@ function register(navigateTo) {
         password.type = 'password';
     });
 
-    buttonGoogle.addEventListener('click', async() =>{
+    buttonGoogle.addEventListener('click', async () => {
         try {
             const user = await signInWithGoogle();
             navigateTo('/feed');
-        } catch (error){
+        } catch (error) {
             errorMessage.textContent = error.message;
-            
-        }         
-    })   
+
+        }
+    })
     section.append(logo, avatar, name, email, password, buttonRegister, buttonGoogle, errorMessage, successMessage,/*logoutButtom*/);
     return section;
 }
