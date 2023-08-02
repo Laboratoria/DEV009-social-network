@@ -8,6 +8,7 @@ body{
     background-color: #F4EBE2;
 }
 .contenedor{
+
     position: relative;
     background-image: url('../imagenes/logo_home.png');
     background-size: contain;
