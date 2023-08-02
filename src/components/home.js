@@ -24,6 +24,10 @@ function home (navigateTo) {
     h3.textContent = '¡Unete a CocinArte hoy mismo!'
     errorMessage.style.color = 'red';
 
+    passwordLogin.addEventListener('input', () => {
+        passwordLogin.type = 'password';
+    });
+    
     //agregar logo google a botón 
     const googleLogo = document.createElement('img');
     googleLogo.src = './imagenes/logo_google.avif';
@@ -43,7 +47,7 @@ function home (navigateTo) {
 
 
     
-    login.addEventListener('click', async () =>{
+     login.addEventListener('click', async () =>{
         const email = emailLogin.value;
         const password = passwordLogin.value;
 
@@ -52,7 +56,7 @@ function home (navigateTo) {
                 const user = await signInEP(email, password);
                 navigateTo('/feed');
             } catch (error){
-                errorMessage.textContent = error.message;
+                errorMessage.textContent = error.message + ' ' +  'Por favor, ingresa un correo y una contraseña válida.';
                 
             }
              

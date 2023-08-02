@@ -52,14 +52,7 @@ signInWithPopup(auth, provider)
     // ...
   })  
 };
-
-/*if(userAuth){
-userAuth.sendEmailVerification(auth.currentUser) 
-  .then(() => {
-    // Email verification sent!
-    // ...
-  })
-};*/                          
+                        
 export const signInEP = async (userEmail, userPassword) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, userEmail, userPassword);
@@ -72,7 +65,7 @@ export const signInEP = async (userEmail, userPassword) => {
     throw new Error(`Error al iniciar sesión: ${errorCode} - ${errorMessage}`);
   }
 };
- //onAuthStateChanged // testigo/observador de estado de autenticación del usuario, permite obtener datos del usuario
+ //nAuthStateChanged // testigo/oobservador de estado de autenticación del usuario, permite obtener datos del usuario
   //signInWithEmailAndPassword // Acceso de usuarios existentes
  // signOut //  Para salir de la sesión de un usuario, llama a signout
 
