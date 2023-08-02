@@ -14,6 +14,10 @@ function register(navigateTo) {
   const inputUserName = document.createElement('input');
   const inputName = document.createElement('input');
   const inputConfirmPass = document.createElement('input');
+  const containerModal = document.createElement('div');
+  const windowModalError = document.createElement('div');
+  const messageModal = document.createElement('p');
+  const closeModal = document.createElement('span');
 
   inputEmail.type = 'email';
   inputPass.type = 'password';
@@ -34,6 +38,10 @@ function register(navigateTo) {
   message.textContent = 'Already have an account?';
   buttonLogin.textContent = 'Sign In';
   buttonRegister.textContent = 'Sign Up';
+  messageModal.textContent = 'Passwords don\'t match';
+
+  closeModal.setAttribute('href', '#/register');
+  closeModal.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
 
   formRegister.classList.add('login-view');
   header.classList.add('logo');
@@ -46,15 +54,21 @@ function register(navigateTo) {
   inputEmail.classList.add('input');
   inputPass.classList.add('input');
   inputConfirmPass.classList.add('input');
+  windowModalError.classList.add('modal-content');
+  containerModal.classList.add('modal');
+  closeModal.classList.add('close');
 
   buttonLogin.addEventListener('click', () => {
     navigateTo('/login');
   });
 
+  windowModalError.append(closeModal, messageModal);
+  containerModal.append(windowModalError);
+
   header.appendChild(logo);
   formRegister.append(header, title, inputUserName, inputName, inputEmail, inputPass);
   formRegister.append(inputConfirmPass, buttonRegister, message, buttonLogin);
-  section.append(formRegister);
+  section.append(formRegister, containerModal);
 
   formRegister.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -65,9 +79,14 @@ function register(navigateTo) {
     const confirmPass = inputConfirmPass.value;
     if (confirmPass === password) {
       registerUser(name, userName, email, password);
+      navigateTo('/welcome');
     } else {
-      alert('Password and confirm password not match!');
+      containerModal.style.display = 'block';
     }
+  });
+
+  closeModal.addEventListener('click', () => {
+    containerModal.style.display = 'none';
   });
   return section;
 }

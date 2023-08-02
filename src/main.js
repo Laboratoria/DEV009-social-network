@@ -3,6 +3,7 @@ import home from './components/home.js';
 import login from './components/login.js';
 import error from './components/error.js';
 import register from './components/register.js';
+import welcome from './components/welcome.js';
 
 const root = document.getElementById('root');
 
@@ -10,6 +11,7 @@ const routes = [
   { path: '/', component: home },
   { path: '/login', component: login },
   { path: '/register', component: register },
+  { path: '/welcome', component: welcome },
   { path: '/error', component: error },
 ];
 

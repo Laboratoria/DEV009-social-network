@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
+  sendEmailVerification,
 } from '../firebase/initializeFirebase';
 
 export const registerUser = (name1, userName, email, password) => {
@@ -10,7 +11,13 @@ export const registerUser = (name1, userName, email, password) => {
     .then((userCredential) => {
       const user = userCredential.user;
       console.log(user);
-      alert('register ok');
+      sendEmailVerification(userCredential.user)
+        .then(() => {
+          console.log('Email verification sent to...:');
+        })
+        .catch((err) => {
+          console.log('Error sending verification email:', err.message);
+        });
     })
     .catch((err) => {
       const errorMessage = err.message;
@@ -40,3 +47,10 @@ export const resetPass = (email) => {
       alert(err);
     });
 };
+
+// export const emailVerification = (auth) => {
+//   sendEmailVerification(auth.currentUser)
+//     .then(() => {
+//       console.log('email');
+//     });
+// };
