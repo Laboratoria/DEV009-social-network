@@ -1,3 +1,5 @@
+import { registerUser } from "../lib/index";
+
 function register(navigateTo) {
   const section = document.createElement('section');
   section.classList.add('registerSection');
