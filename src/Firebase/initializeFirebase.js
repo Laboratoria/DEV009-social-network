@@ -1,10 +1,14 @@
+/* eslint-disable import/no-extraneous-dependencies */
+import { initializeApp } from 'firebase/app';
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
+import { firebaseConfig } from './configFirebase';
 
-export const firebaseConfig = {
-    apiKey: "AIzaSyBQSjXUZbjydhVPpxNH2mzsAJqLNrK5qoU",
-    authDomain: "spookyverse-15191.firebaseapp.com",
-    projectId: "spookyverse-15191",
-    storageBucket: "spookyverse-15191.appspot.com",
-    messagingSenderId: "175001691307",
-    appId: "1:175001691307:web:745ec01b177ed0666e03ee",
-    measurementId: "G-G641G3M4D1"
-  };
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+export {
+  auth,
+  app,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+};
