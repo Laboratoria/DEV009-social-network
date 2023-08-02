@@ -24,7 +24,6 @@ function feed(navigateTo) {
   logoutButtom.textContent = 'Cerrar Sesión';
   logoutMessage.style.color = 'green';
   logoutMessageError.style.color = 'red';
-
   logoutButtom.addEventListener('click', () => {
     logoutUser();
     navigateTo('/');
