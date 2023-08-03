@@ -1,0 +1,33 @@
+:root{
+    --theme-color:white;
+    --primary-color:#8DADFA ;
+    --secundary-color: #CAF5E8;
+    --color-text:#0a3748;
+    --color-box:#F6F6F6;
+    --shadow-nav:#37C2EA ;
+}
+body {
+    margin:0 0 0 0;
+    padding:0 0 0 0;
+    font-size: large;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration-color: var(--theme-color);
+    background-image: linear-gradient(to bottom, var(--primary-color) 20%, var(--secundary-color) 100%);
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    }
+.registerSection{
+    grid-column: 2;
+    max-width: fit-content;
+    background-color: var(--color-box);
+    border-radius: 9px;
+    margin:10%;
+    padding:5%;
+    display: grid;
+    grid-auto-rows:auto;
+    grid-gap: 0.5rem;
+    grid-template-columns: minmax(25vw,25vw);
+    
+}

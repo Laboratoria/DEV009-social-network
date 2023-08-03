@@ -1,4 +1,3 @@
-
 export const firebaseConfig = {
   apiKey: 'AIzaSyDms2fEf6f5nzD5qf5KdIJR84O8dE1qv8c',
   authDomain: 'guide-mapa.firebaseapp.com',
