@@ -35,7 +35,7 @@ function join(navigateTo) {
 
   const btnEnter = document.createElement('button');
   btnEnter.className = 'button-login';
-  btnEnter.textContent = 'Entrar';
+  btnEnter.textContent = 'Crear';
   btnEnter.setAttribute('type', 'submit');
 
   const btnReturn = document.createElement('button');
@@ -55,8 +55,7 @@ function join(navigateTo) {
     const email = emailInput.value;
     const password = passwordInput.value;
     createAccount(email, password);
-
-    navigateTo('/login');
+    navigateTo('/verification');
   });
 
   return main;

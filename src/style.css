@@ -114,7 +114,7 @@ form {
     width: 280px;
 }
 
-.button-login, .button-return {
+.button-login, .button-return, .button-back {
     font-family: 'Glegoo', serif;
     color: #B4A5A5;
     background-color: #301B3F;
@@ -126,4 +126,16 @@ form {
     border: none;
     margin-top: 50px;
     cursor: pointer;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
+.button-back {
+    width: 250px;
+}
+
+/*
+.button-login:hover,
+.button-return:hover {
+    
+}
+*/
