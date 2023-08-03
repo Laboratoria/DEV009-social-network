@@ -19,6 +19,10 @@ h2{
     color: purple;
     margin-top: -1rem;
 }
+.logo-muro{
+    width: 5rem;
+}
+
 .bienvenida h4{
     margin-top: -4rem;
     color: rgb(72, 177, 211);

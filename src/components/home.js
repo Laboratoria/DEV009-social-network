@@ -1,4 +1,5 @@
 // import { navigateTo } from '../main.js'; // Importamos la función navigateTo
+import { logInWithGoogle } from '../lib/firebaseAuth.js';
 
 export const home = (navigateTo) => {
   const section = document.createElement('section');
@@ -29,7 +30,14 @@ export const home = (navigateTo) => {
   slogan.textContent = 'Kawaii Lovers';
   description.textContent = 'Bienvenidas a esta comunidad Kawaii-Like inspirada y creada para nosotras. Conecta, comparte y sueña en nuestra red.';
 
-  buttonContainer.append(logInButton, registerButton);
+  const googleButton = document.createElement('button');
+  googleButton.textContent = 'Continuar con Google';
+  googleButton.classList.add('boton-google');
+  googleButton.addEventListener('click', () => {
+    logInWithGoogle();
+  });
+
+  buttonContainer.append(logInButton, registerButton, googleButton);
   section.append(logo, title, slogan, description, buttonContainer);
   return section;
 };
