@@ -3,12 +3,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable import/named */
 /* eslint-disable no-unused-vars */
-import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
-import { firebaseConfig } from './configFirebase';
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+import { auth, createUserWithEmailAndPassword, sendEmailVerification } from '../firebase/initializeFirebase.js';
 
 export const verifyEmail = () => {
   return new Promise((resolve, reject) => {
@@ -35,6 +30,6 @@ export const createAccount = (email, password) => {
     .catch((error) => {
       const errorMessage = error.message;
       console.log(errorMessage);
-      alert('Ya existe una cuenta para ese correo electrónico.');
+      throw new Error('Ya existe una cuenta para ese correo electrónico.');
     });
 };
