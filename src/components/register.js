@@ -7,15 +7,31 @@ function register(navigateTo) {
   const title = document.createElement('h2');
   title.textContent = 'Registro de nuevo usuario';
   title.classList.add('titleregister');
-  const inputUser = document.createElement('input');
-  const inputName = document.createElement('input');
-  const inputPassword = document.createElement('input');
-  const inputConfirmPassword = document.createElement('input');
 
-  inputUser.placeholder = 'Usuario / correo electrónico';
+  const inputName = document.createElement('input');
   inputName.placeholder = 'Nombre y Apellido';
+
+  const inputUser = document.createElement('input');
+  inputUser.placeholder = 'Usuario';
+
+  const inputEmail= document.createElement('input');
+  inputEmail.type='email';
+  inputEmail.placeholder= 'correo electronico';
+
+  const inputPassword = document.createElement('input');
+  inputPassword.type= 'password'
   inputPassword.placeholder = 'Contraseña';
+  inputPassword.pattern='.{6,}';
+  inputPassword.title ='Debe ser mayor a 6 caracteres y maximo 10';
+
+  const inputConfirmPassword = document.createElement('input');
+  inputConfirmPassword.type ='password';
   inputConfirmPassword.placeholder = 'Confirma tu contraseña';
+
+
+
+
+
 
   const buttonCreateAccount = document.createElement('button');
   buttonCreateAccount.textContent = 'Crear cuenta';

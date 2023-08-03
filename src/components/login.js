@@ -6,12 +6,18 @@ function login(navigateTo) {
   title.textContent = '¡Conéctate, comparte y descubre \n junto a otros papás como tú!';
   title.classList.add('titleLogin');
 
-  const inputUser = document.createElement('input');
+  const inputEmail = document.createElement('input');
+  inputEmail.type = 'email'; 
+  inputEmail.placeholder = 'Correo electrónico';
+  inputEmail.classList.add('inputEmail');
+
   const inputPassword = document.createElement('input');
-  inputUser.placeholder = 'Usuario / correo electrónico';
+  inputPassword.type = 'password'; 
   inputPassword.placeholder = 'Contraseña';
-  inputUser.classList.add('inputUser');
   inputPassword.classList.add('inputPassword');
+  inputPassword.pattern='.{6,}';
+  inputPassword.required=true;
+  
 
   const buttonStartSession = document.createElement('button');
   buttonStartSession.textContent = 'Iniciar sesión';
@@ -30,7 +36,7 @@ function login(navigateTo) {
   logo.src = './images/logoblanco.png';
   logo.classList.add('logo');
 
-  section.append(title, inputUser, inputPassword, buttonStartSession, buttonCreateAccount);
+  section.append(title, inputEmail, inputPassword, buttonStartSession, buttonCreateAccount);
 
   return (logo, section);
 }
