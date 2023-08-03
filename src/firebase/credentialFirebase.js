@@ -1,3 +1,5 @@
+import { initializeApp } from "@firebase/app";
+
 // Web app's Firebase configuration
 export const firebaseConfig = {
     apiKey: 'AIzaSyCFFJe2XFN2_qJNRVdli2A5hY0y-1C4CbU',
@@ -8,3 +10,4 @@ export const firebaseConfig = {
     appId: '1:1039307386763:web:ca8f90805c7ebd82e4098e'
   };
   
+export const app = initializeApp (firebaseConfig);
