@@ -19,6 +19,8 @@ function register(navigateTo) {
   const messageModal = document.createElement('p');
   const closeModal = document.createElement('span');
 
+  let whereToGo = '';
+
   inputEmail.type = 'email';
   inputPass.type = 'password';
   inputUserName.type = 'text';
@@ -70,23 +72,34 @@ function register(navigateTo) {
   formRegister.append(inputConfirmPass, buttonRegister, message, buttonLogin);
   section.append(formRegister, containerModal);
 
-  formRegister.addEventListener('submit', (e) => {
+  formRegister.addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = inputName.value;
     const userName = inputUserName.value;
     const email = inputEmail.value;
     const password = inputPass.value;
     const confirmPass = inputConfirmPass.value;
+
     if (confirmPass === password) {
-      registerUser(name, userName, email, password);
-      navigateTo('/welcome');
+      try {
+        await registerUser(name, userName, email, password);
+        navigateTo('/welcome');
+      } catch (error) {
+        // Handle the case when the user already exists
+        messageModal.textContent = 'The user already exists';
+        whereToGo = '/login';
+        containerModal.style.display = 'block';
+      }
     } else {
+      messageModal.textContent = "Passwords don't match";
+      whereToGo = '/register';
       containerModal.style.display = 'block';
     }
   });
 
   closeModal.addEventListener('click', () => {
     containerModal.style.display = 'none';
+    navigateTo(whereToGo);
   });
   return section;
 }
