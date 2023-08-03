@@ -1,7 +1,8 @@
 // Import the func tions you need from the SDKs you need
 import {
   getAuth,
-  // GoogleAuthProvider,
+  GoogleAuthProvider,
+  signInWithRedirect,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
@@ -17,8 +18,10 @@ import { app } from './configfirebase.js';
 
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
-
-// export const provider = new GoogleAuthProvider();
+export const provider = new GoogleAuthProvider();
+export const logInWithGoogle = () => {
+  signInWithRedirect(auth, provider);
+};
 
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
