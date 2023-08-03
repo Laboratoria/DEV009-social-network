@@ -1,4 +1,4 @@
-import { registerUser } from "../lib/index";
+import { registerUser } from '../lib/index';
 
 function register(navigateTo) {
   const section = document.createElement('section');
@@ -21,7 +21,10 @@ function register(navigateTo) {
   buttonCreateAccount.textContent = 'Crear cuenta';
   buttonCreateAccount.classList.add('createAccount');
   buttonCreateAccount.addEventListener('click', () => {
-    navigateTo('/timeline');
+    if (inputPassword.value === inputConfirmPassword.value) {
+      registerUser(inputName.value, inputUser.value, inputPassword.value);
+      navigateTo('/timeline');
+    }
   });
 
   section.append(
