@@ -1,5 +1,5 @@
 // import { navigateTo } from '../main.js'; // Importamos la función navigateTo
-import { logInWithGoogle } from '../lib/firebaseAuth.js';
+import { auth, logInWithGoogle } from '../lib/firebaseAuth.js';
 
 export const home = (navigateTo) => {
   const section = document.createElement('section');
@@ -35,6 +35,12 @@ export const home = (navigateTo) => {
   googleButton.classList.add('boton-google');
   googleButton.addEventListener('click', () => {
     logInWithGoogle();
+    const escucharCambios = auth.onAuthStateChanged((user) => {
+      if (user) {
+        navigateTo('/muro');
+        escucharCambios();
+      }
+    });
   });
 
   buttonContainer.append(logInButton, registerButton, googleButton);
