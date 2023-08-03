@@ -30,6 +30,6 @@ export const createAccount = (email, password) => {
     .catch((error) => {
       const errorMessage = error.message;
       console.log(errorMessage);
-      throw new Error('Ya existe una cuenta para ese correo electrónico.');
+      alert('Ya existe una cuenta para ese correo electrónico.');
     });
 };
