@@ -41,7 +41,8 @@ window.onpopstate = () => {
 };
 navigateTo(window.location.pathname || defaultRoute);
 
-/*const email = 'user@gmail.com';
-const pass = '123456789';*/
+
+const email = 'kelly@gmail.com';
+const pass = '123456789';
 
 registerUser(email, pass);
