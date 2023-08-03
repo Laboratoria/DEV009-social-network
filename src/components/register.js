@@ -1,4 +1,5 @@
 import { registerUser } from '../lib/index';
+import { signInWithRedirect, auth, provider } from '../firebase/initializeFirebase';
 
 function register(navigateTo) {
   const section = document.createElement('section');
@@ -18,6 +19,8 @@ function register(navigateTo) {
   const windowModalError = document.createElement('div');
   const messageModal = document.createElement('p');
   const closeModal = document.createElement('span');
+  const buttonGoogle = document.createElement('button');
+  const textButtonGloogle = document.createElement('span');
 
   let whereToGo = '/register';
 
@@ -41,6 +44,7 @@ function register(navigateTo) {
   buttonLogin.textContent = 'Sign In';
   buttonRegister.textContent = 'Sign Up';
   messageModal.textContent = 'Passwords don\'t match';
+  textButtonGloogle.textContent = 'Sign In';
 
   closeModal.setAttribute('href', '#/register');
   closeModal.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
@@ -59,17 +63,15 @@ function register(navigateTo) {
   windowModalError.classList.add('modal-content');
   containerModal.classList.add('modal');
   closeModal.classList.add('close');
-
-  buttonLogin.addEventListener('click', () => {
-    navigateTo('/login');
-  });
+  buttonGoogle.classList.add('button-google', 'fa-brands', 'fa-google');
 
   windowModalError.append(closeModal, messageModal);
   containerModal.append(windowModalError);
 
   header.appendChild(logo);
+  buttonGoogle.append(textButtonGloogle);
   formRegister.append(header, title, inputUserName, inputName, inputEmail, inputPass);
-  formRegister.append(inputConfirmPass, buttonRegister, message, buttonLogin);
+  formRegister.append(inputConfirmPass, buttonRegister, message, buttonLogin, buttonGoogle);
   section.append(formRegister, containerModal);
 
   formRegister.addEventListener('submit', async (e) => {
@@ -95,6 +97,14 @@ function register(navigateTo) {
       whereToGo = '/register';
       containerModal.style.display = 'block';
     }
+  });
+
+  buttonLogin.addEventListener('click', () => {
+    navigateTo('/login');
+  });
+
+  buttonGoogle.addEventListener('click', () => {
+    signInWithRedirect(auth, provider);
   });
 
   closeModal.addEventListener('click', () => {
