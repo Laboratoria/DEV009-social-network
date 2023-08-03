@@ -1,12 +1,13 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import { firebaseConfig } from './configFirebase.js';
 
-const auth = getAuth();
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 export {
   app,
   auth,
   createUserWithEmailAndPassword,
+  sendEmailVerification,
 };
