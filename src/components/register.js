@@ -19,7 +19,7 @@ function register(navigateTo) {
   const messageModal = document.createElement('p');
   const closeModal = document.createElement('span');
 
-  let whereToGo = '';
+  let whereToGo = '/register';
 
   inputEmail.type = 'email';
   inputPass.type = 'password';

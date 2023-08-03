@@ -1,10 +1,16 @@
-import { initializeApp } from 'firebase/app';
+import {
+  initializeApp,
+} from 'firebase/app';
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   sendEmailVerification,
+  GoogleAuthProvider,
+  signInWithRedirect,
+  getRedirectResult,
 } from 'firebase/auth';
 
 import { getFirestore } from 'firebase/firestore';
@@ -13,7 +19,9 @@ import { firebaseConfig } from './credentialFirebase';
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 const db = getFirestore(app);
+signInWithRedirect(auth, provider);
 
 export {
   auth,
@@ -24,4 +32,7 @@ export {
   sendPasswordResetEmail,
   sendEmailVerification,
   getFirestore,
+  provider,
+  signInWithRedirect,
+  getRedirectResult,
 };

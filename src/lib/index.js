@@ -4,6 +4,8 @@ import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   sendEmailVerification,
+  getRedirectResult,
+  provider,
 } from '../firebase/initializeFirebase';
 
 export const registerUser = (name, userName, email, password) => new Promise((resolve, reject) => {
@@ -28,24 +30,13 @@ export const registerUser = (name, userName, email, password) => new Promise((re
     });
 });
 
-// export const registerUser = (name1, userName, email, password) => {
-//   try {
-//     createUserWithEmailAndPassword(auth, email, password)
-//       .then((userCredential) => {
-//         const user = userCredential.user;
-//         console.log(user);
-//         sendEmailVerification(userCredential.user)
-//           .then(() => {
-//             console.log('email was sent');
-//           })
-//           .catch((err) => {
-//             console.log('error sending email', err.message);
-//           });
-//       });
-//   } catch (error) {
-//     console.log('this email already exists', error.message);
-//   }
-// };
+export const registerWithGoogle = (verification) => {
+  getRedirectResult(auth)
+  .then((result) =>{
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+  })
+};
 
 export const loginUser = (email, password) => signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
