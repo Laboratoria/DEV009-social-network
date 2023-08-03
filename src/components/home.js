@@ -40,10 +40,13 @@ function home (navigateTo) {
         navigateTo('/register'); 
     });
 
-    buttonGoogle.addEventListener('click', () =>{
-        if(signInWithGoogle()){
-       return navigateTo ('/feed');
-     }
+    buttonGoogle.addEventListener('click', async () => {
+      try {
+        const user = await signInWithGoogle();
+        navigateTo('/feed');
+      } catch (error) {
+        errorMessage.textContent = error.message;
+      }
     });
 
     login.addEventListener('click', async () =>{
