@@ -14,7 +14,13 @@ export const resetPassword = () => {
   const sendButton = document.createElement('button');
   sendButton.textContent = 'Enviar';
   sendButton.addEventListener('click', () => {
-    resetPasswordEmail();
+    const email = emailInput.value;
+    const sendemail = (valid) => {
+      if (valid === true) {
+        resetPasswordEmail(email);
+      }
+    };
+    console.log(sendemail);
   });
 
   section.append(logo, title, emailInput, sendButton);
