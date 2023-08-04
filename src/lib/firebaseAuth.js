@@ -6,6 +6,7 @@ import {
   getRedirectResult,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  sendPasswordResetEmail,
   signOut,
 } from 'firebase/auth';
 
@@ -50,32 +51,81 @@ export const registerUser = (email, password, callback) => {
     });
 };
 
-export const logInWithGoogle = () => {
-  signInWithRedirect(auth, provider);
-};
 
-export const redirectResultGoogle = () => {
-  getRedirectResult(auth)
-    .then((result) => {
-    // This gives you a Google Access Token. You can use it to access Google APIs.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
+export const logInWithGoogle = (callback) => {
+  signInWithRedirect(auth, new GoogleAuthProvider())
+    .then(() => {
+      getRedirectResult(auth)
+        .then((result) => {
+          // This gives you a Google Access Token. You can use it to access Google APIs.
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
 
-      // The signed-in user info.
-      const user = result.user;
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
-    }).catch((error) => {
-    // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
+          // The signed-in user info.
+          const user = result.user;
+          // IdP data available using getAdditionalUserInfo(result)
+          // ...
+
+          // If successful, invoke the callback with user information
+          callback(true, user);
+        })
+        .catch((error) => {
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // The email of the user's account used.
+          const email = error.customData?.email;
+          // The AuthCredential type that was used.
+          const credential = GoogleAuthProvider.credentialFromError(error);
+          // ...
+
+          // If there was an error, invoke the callback with the error information
+          callback(false, null, error);
+        });
+    })
+    .catch((error) => {
+      // Handle Errors here if the signInWithRedirect fails.
+      // ...
+
+      // If there was an error, invoke the callback with the error information
+      callback(false, null, error);
     });
 };
+
+
+// export const redirectResultGoogle = () => {
+//   getRedirectResult(auth)
+//     .then((result) => {
+//     // This gives you a Google Access Token. You can use it to access Google APIs.
+//       const credential = GoogleAuthProvider.credentialFromResult(result);
+//       const token = credential.accessToken;
+
+//       // The signed-in user info.
+//       const user = result.user;
+//     // IdP data available using getAdditionalUserInfo(result)
+//     // ...
+//     }).catch((error) => {
+//     // Handle Errors here.
+//       const errorCode = error.code;
+//       const errorMessage = error.message;
+//       // The email of the user's account used.
+//       const email = error.customData.email;
+//       // The AuthCredential type that was used.
+//       const credential = GoogleAuthProvider.credentialFromError(error);
+//     // ...
+//     });
+// };
+
+// export const logInWithGoogle = (callback) => {
+//   signInWithRedirect(auth, new GoogleAuthProvider())
+//     .then(() => {
+//       callback(true);
+//     })
+
+//     .catch(() => {
+//       callback(false);
+//     });
+// };
 
 export const logInUser = (email, password, callback) => {
   signInWithEmailAndPassword(auth, email, password)
@@ -111,5 +161,18 @@ export const logOut = (callback) => {
   }).catch(() => {
     callback(false);
     // An error happened.
+  });
+};
+
+export const resetPasswordEmail = () => {
+  sendPasswordResetEmail(auth, email)
+  .then(() => {
+    // Password reset email sent!
+    // ..
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
   });
 };
