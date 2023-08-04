@@ -1,101 +1,109 @@
 body {
-    padding: 20px;
-    background-color: #641B42;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  img {
-    max-width: 100%;
-    height: auto;
-    text-align: center;
-    margin: auto;
-  }
-  
+  padding: 20px;
+  background-color: #641B42;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  text-align: center;
+  margin: auto;
+}
+
+img.avatar {
+  max-width: 100px;
+  width: 30%;
+  height: auto;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+img,
+img.avatar {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+section {
+  max-width: 300px;
+  margin: auto;
+  padding: 20px;
+  background-color: #641B42;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  display: flex;
+  margin: auto;
+  max-width: 100%;
+  margin-bottom: 20px;
+  align-items: center;
+  text-align: center;
+  border-radius: 15px;
+  border: 1px solid #393939;
+  padding: 5px;
+}
+
+button {
+  display: flex;
+  font-family: 'Poppins', sans-serif;
+  color: #393939;
+  margin: auto;
+  max-width: 100%;
+  margin-bottom: 20px;
+  align-items: center;
+  text-align: center;
+  border-radius: 15px;
+  border: 1px solid #393939;
+  grid-gap: 5px;
+  cursor: pointer;
+}
+
+.google-button {
+  display: flex;
+  align-items: center;
+  /* Para centrar verticalmente el contenido */
+  padding: 5px;
+  /* Ajusta el padding según tus preferencias */
+  background-color: #f5f4f4;
+  /* Color de fondo del botón */
+  color: #393939;
+  /* Color del texto */
+  border: none;
+  /* Quitamos el borde del botón */
+  cursor: pointer;
+  border-radius: 15px;
+  /* Bordes redondeados */
+}
+
+.google-button img {
+  width: 20px;
+  height: 20px;
+  align-content: center;
+  margin-right: 10px;
+  padding-top: 12px;
+}
+
+/* Media query para pantallas más pequeñas, como teléfonos */
+@media (max-width: 600px) {
   img.avatar {
-    max-width: 100px;
-    width: 30%;
-    height: auto;
-    text-align: center;
-    display: block;
-    margin: auto;
+    max-width: 80px;
   }
-  
-  img,
-  img.avatar {
-    display: flex;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
+
   section {
-    max-width: 300px;
-    margin: auto;
-    padding: 20px;
-    background-color: #641B42;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  input {
-    display: flex;
-    margin: auto;
     max-width: 100%;
-    margin-bottom: 20px;
-    align-items: center;
-    text-align: center;
-    border-radius: 15px;
-    border: 1px solid #393939;
-    padding: 5px;
+    padding: 10px;
   }
-  
+
+  input,
   button {
-    display: flex;
-    font-family:'Poppins', sans-serif;;
-    color: #393939;
-    margin: auto;
     max-width: 100%;
-    margin-bottom: 20px;
-    align-items: center;
-    text-align: center;
-    border-radius: 15px;
-    border: 1px solid #393939;
-    grid-gap: 5px;
-    cursor: pointer;
   }
-  
-  .google-button {
-    display: flex;
-    align-items: center; /* Para centrar verticalmente el contenido */
-    padding: 5px; /* Ajusta el padding según tus preferencias */
-    background-color: #f5f4f4; /* Color de fondo del botón */
-    color: #393939; /* Color del texto */
-    border: none; /* Quitamos el borde del botón */
-    cursor: pointer;
-    border-radius: 15px; /* Bordes redondeados */
-  }
-  
-  .google-button img {
-    width: 20px;
-    height: 20px;
-    align-content: center;
-    margin-right: 10px;
-    padding-top: 12px;
-  }
-  /* Media query para pantallas más pequeñas, como teléfonos */
-  @media (max-width: 600px) {
-    img.avatar {
-      max-width: 80px;
-    }
-  
-    section {
-      max-width: 100%;
-      padding: 10px;
-    }
-    input,
-    button {
-      max-width: 100%;
-    }
-  }
+}
