@@ -1,6 +1,6 @@
 // aqui exportaras las funciones que necesites
 
-import { auth, createUserWithEmailAndPassword } from '../firebase/initializeFirebase';
+import { createUserWithEmailAndPassword, auth } from '../firebase/initializeFirebase.js';
 
 export const registrarUsuario = (email, pass) => {
   try {

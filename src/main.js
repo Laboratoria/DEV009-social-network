@@ -35,7 +35,7 @@ function navigateTo(hash) {
   } else {
     navigateTo('/error');
   }
-};
+}
 
 window.onpopstate = () => {
   console.log('hubo un cambio');
