@@ -32,7 +32,12 @@ export const loginUser = (email, password) => new Promise((resolve, reject) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      resolve(user);
+      if (user.emailVerified) {
+        alert('You are logged!');
+        resolve(user);
+      } else {
+        alert('Please verify your email address');
+      }
     })
     .catch((err) => reject(err));
 });
