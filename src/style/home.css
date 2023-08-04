@@ -10,6 +10,7 @@ body{
 .contenedor{
   display: flex;
   background-image: url('../imagenes/logo_home.png');
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: top center;
   height: 700px;

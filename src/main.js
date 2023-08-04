@@ -3,8 +3,10 @@ import { registrarUsuario } from './lib/index.js';
 import home from './components/home.js';
 import login from './components/login.js';
 import error from './components/error.js';
+import registro from './components/registro.js';
+import principal from './components/principal.js';
 
-const email = 'usuario3@gmail.com';
+const email = 'usuario4@gmail.com';
 const pass = '123456789';
 
 registrarUsuario(email, pass);
@@ -16,6 +18,8 @@ const routes = [
   { path: '/', component: home },
   { path: '/login', component: login },
   { path: '/error', component: error },
+  { path: '/registro', component: registro },
+  { path: '/principal', component: principal },
 ];
 
 const defaultRoute = '/';
