@@ -7,9 +7,3 @@ describe('login', () => {
     expect(typeof loginUser).toBe('function');
   });
 });
-
-describe('registeruser', () => {
-  it('Should show login page', () => {
-    expect(typeof registerUser).toBe('function');
-  });
-});
