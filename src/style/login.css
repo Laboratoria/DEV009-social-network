@@ -18,14 +18,17 @@ height: 100%;
 background-repeat: no-repeat;
 background-size: cover;
 background-attachment: fixed;
+display: grid;
+grid-auto-columns: auto, auto;
+
 }
 .logo{
     max-width: 30vw;
-    grid-column: 1;
+    grid-column-start: 1;
 }
 
 .loginSection{
-    grid-column: 2;
+    grid-column-start: 2;
     max-width: fit-content;
     background-color: var(--color-box);
     border-radius: 9px;

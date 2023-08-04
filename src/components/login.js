@@ -1,3 +1,5 @@
+import { signWithGoogle, signIn, redirectGoogle} from '../lib/credentials.js';
+
 function login(navigateTo) {
   const section = document.createElement('section');
   section.classList.add('loginSection');
@@ -7,17 +9,15 @@ function login(navigateTo) {
   title.classList.add('titleLogin');
 
   const inputEmail = document.createElement('input');
-  inputEmail.type = 'email'; 
+  inputEmail.type = 'email';
   inputEmail.placeholder = 'Correo electrónico';
   inputEmail.classList.add('inputEmail');
 
   const inputPassword = document.createElement('input');
-  inputPassword.type = 'password'; 
+  inputPassword.type = 'password';
   inputPassword.placeholder = 'Contraseña';
   inputPassword.classList.add('inputPassword');
-  inputPassword.pattern='.{6,}';
-  inputPassword.required=true;
-  
+  inputPassword.required = true;
 
   const buttonStartSession = document.createElement('button');
   buttonStartSession.textContent = 'Iniciar sesión';
@@ -25,6 +25,17 @@ function login(navigateTo) {
   buttonStartSession.addEventListener('click', () => {
     navigateTo('/timeline');
   });
+
+  const buttonSiginGoogle = document.createElement('button');
+  buttonSiginGoogle.textContent = 'Ingresar con Google';
+  buttonSiginGoogle.classList.add('buttonGoogle');
+  buttonSiginGoogle.addEventListener('click', () => {
+    /*signWithGoogle();*/
+    /*signIn();*/
+    redirectGoogle();
+    /* navigateTo('/timeline'); */
+  });
+
   const buttonCreateAccount = document.createElement('button');
   buttonCreateAccount.textContent = 'Crear cuenta';
   buttonCreateAccount.classList.add('createAccount');
@@ -36,7 +47,14 @@ function login(navigateTo) {
   logo.src = './images/logoblanco.png';
   logo.classList.add('logo');
 
-  section.append(title, inputEmail, inputPassword, buttonStartSession, buttonCreateAccount);
+  section.append(
+    title,
+    inputEmail,
+    inputPassword,
+    buttonStartSession,
+    buttonSiginGoogle,
+    buttonCreateAccount,
+  );
 
   return (logo, section);
 }

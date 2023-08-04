@@ -13,7 +13,6 @@ function newPost(navigateTo) {
   buttonShare.textContent = 'Publicar';
   buttonShare.classList.add('share');
   buttonShare.addEventListener('click', () => {
-    console.log(newPostText.value);
     navigateTo('/timeline');
   });
 
