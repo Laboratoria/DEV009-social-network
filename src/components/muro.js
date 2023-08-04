@@ -5,10 +5,17 @@ export const muro = (navigateTo) => {
   const logoMuro = document.createElement('img');
   logoMuro.src = './recursos/LogoSinLetras.png';
   logoMuro.classList.add('logo-muro');
-  const title = document.createElement('h3');
-  title.textContent = 'SisterSphere';
+  // Publicacion
+  const publicacion = document.createElement('div');
+  publicacion.classList.add('publicacion');
+  const areaText = document.createElement('textarea');
+  areaText.textContent = 'Comparte aqui n.n';
+  const botonCompartir = document.createElement('button');
+  botonCompartir.classList.add('boton-compartir');
+  botonCompartir.textContent = 'compartir';
 
   const logOutButton = document.createElement('button');
+  logOutButton.classList.add('logOut-button');
   logOutButton.textContent = 'Cerrar sesion';
   logOutButton.addEventListener('click', () => {
     const logOutAlert = (valid) => {
@@ -19,8 +26,9 @@ export const muro = (navigateTo) => {
 
     logOut(logOutAlert);
   });
+  publicacion.append(areaText, botonCompartir);
 
-  section.append(logoMuro, logOutButton);
+  section.append(logoMuro, publicacion, logOutButton);
 
   return section;
 };
