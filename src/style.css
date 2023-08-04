@@ -97,6 +97,10 @@ body {
     align-items: center;
 }
 
+.login-view h2 {
+    margin-top: 0px;
+}
+
 .button-input {
     width: 70vw;
     height: 51px;
@@ -131,6 +135,13 @@ body {
     background: none;
     font-weight: bold;
     font-size: medium;
+    margin-left:5px;
+}
+
+.container-button-login {
+    margin-top: 25px;
+    display: flex;
+    font-size: small;
 }
 
 .modal {
@@ -145,18 +156,22 @@ body {
     background-color: rgba(0,0,0,0.4); 
   }
   
-  /* Modal Content/Box */
   .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; 
+    background-color: var(--color-tertiary);
+    margin: 80vw auto; 
     padding: 20px;
-    border: 1px solid #888;
+    border-radius: 30px;
     width: 80%; 
+    text-align: center;
+  }
+
+  .modal-content h3 {
+    color: var(--color-primary);
+    margin-top: 10px;
   }
   
-  /* The Close Button */
   .close {
-    color: #aaa;
+    color: var(--color-primary);
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -168,3 +183,55 @@ body {
     text-decoration: none;
     cursor: pointer;
   }
+
+  .fa-brands {
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin-right: 8px;
+  }
+
+  .button-google {
+    width: 100px;
+    height: 38px;
+    margin-top: 25px;
+    border-style: none;
+    border-radius: 15px;
+    background-color: #E0F1FF;
+    color: var(--color-primary);
+    font-size:medium;
+  }
+
+  .text-with-line {
+    font-size: small;
+    margin-top: 50px;
+    position: relative;
+    padding: 10px;
+  }
+
+  .text-with-line::before,
+  .text-with-line::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    height: 1px;
+    width: 50%; 
+    background-color: rgba(0, 0, 0, 0.3); 
+  }
+
+  .text-with-line::before {
+    left: 0;
+    transform: translate(-100%, -50%); 
+  }
+  
+  .text-with-line::after {
+    right: 0;
+    transform: translate(100%, -50%); 
+  }
+
+  .container-button-register {
+    margin-top: 90px;
+    display: flex;
+    font-size: small;
+}
+
+
