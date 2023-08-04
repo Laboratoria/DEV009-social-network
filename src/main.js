@@ -6,6 +6,7 @@ import { register } from './components/register.js';
 import { register2 } from './components/register2.js';
 import { error } from './components/error.js';
 import { muro } from './components/muro.js';
+import { resetPassword } from './components/resetpassword.js';
 
 // Llamamos a la función home y la agregamos al DOM
 
@@ -18,6 +19,7 @@ const routes = [
   { path: '/register2', components: register2 },
   { path: '/error', components: error },
   { path: '/muro', components: muro },
+  { pasth: '/resetpassword', components: resetPassword },
 ];
 
 const defaultRoute = '/';
