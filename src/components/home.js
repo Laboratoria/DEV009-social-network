@@ -27,7 +27,6 @@ function home(navigateTo) {
   contenedorGeneral.appendChild(buttonRegistro);
 
   return contenedorGeneral;
-
 }
 
 export default home;
