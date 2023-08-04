@@ -1,5 +1,12 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  signInWithEmailAndPassword,
+  signOut,
+  sendPasswordResetEmail,
+} from 'firebase/auth';
 import { firebaseConfig } from './configFirebase.js';
 
 const app = initializeApp(firebaseConfig);
@@ -10,4 +17,7 @@ export {
   auth,
   createUserWithEmailAndPassword,
   sendEmailVerification,
+  signInWithEmailAndPassword,
+  signOut,
+  sendPasswordResetEmail,
 };
