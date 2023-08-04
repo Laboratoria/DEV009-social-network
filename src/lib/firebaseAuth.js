@@ -164,13 +164,13 @@ export const logOut = (callback) => {
   });
 };
 
-export const resetPasswordEmail = () => {
+export const resetPasswordEmail = (callback) => {
   sendPasswordResetEmail(auth, email)
   .then(() => {
-    // Password reset email sent!
-    // ..
+    callback(true);
   })
   .catch((error) => {
+    callback(false);
     const errorCode = error.code;
     const errorMessage = error.message;
     // ..

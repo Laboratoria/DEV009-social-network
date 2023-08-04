@@ -19,7 +19,7 @@ const routes = [
   { path: '/register2', components: register2 },
   { path: '/error', components: error },
   { path: '/muro', components: muro },
-  { pasth: '/resetpassword', components: resetPassword },
+  { path: '/resetpassword', components: resetPassword },
 ];
 
 const defaultRoute = '/';
