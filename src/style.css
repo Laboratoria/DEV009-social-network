@@ -19,9 +19,6 @@ h2{
     color: purple;
     margin-top: -1rem;
 }
-.logo-muro{
-    width: 5rem;
-}
 
 .bienvenida h4{
     margin-top: -4rem;
@@ -97,3 +94,29 @@ select {
     box-shadow: 2px 3px 2px rgba(128, 128, 128, 0.667) inset;
     background-color: rgb(255, 240, 242);
   }
+/*Muro*/
+.logo-muro{
+    padding: 1rem;
+    width: 7rem;
+    margin: auto;
+}
+.publicacion {
+    background: #f2edee7b;
+    display: grid;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+}
+textarea {
+    margin: 0rem 0rem 1rem 0rem;
+    font-family: 'Montserrat Alternates', sans-serif;
+    color: #7d3f71;
+    border-radius: 1rem;
+    height: 100px;
+    resize: none;
+}
+
+
+.logOut-button{
+    display: flex;
+}
