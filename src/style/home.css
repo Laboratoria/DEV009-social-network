@@ -6,18 +6,16 @@
 }
 body{
   background-color: #F4EBE2;
-}
-.contenedor{
   display: flex;
-  background-image: url('../imagenes/logo_home.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: top center;
-  height: 700px;
+  flex-direction: column;
+  align-items: center;
+}
+.contenedor {
+  display: flex;
   width: 100%;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content:center;
+  align-items:center;
 }
 
 button {
@@ -31,10 +29,18 @@ button {
   text-align: center;
 }
 
-.boton_Inicio {
-  margin-top: 400px;
-  margin-bottom: 40px;
+.logo {
+  background-image: url('../imagenes/logo_home.png');
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: top;
+  width: 400px;
+  padding-top: 25%;
+  margin-bottom: 50px;
+}
 
+.boton_Inicio {
+  margin-bottom: 10px;
 }
 
 h2 {
@@ -42,5 +48,6 @@ h2 {
 }
 
 footer {
+  margin-top: 30px;
   text-align: center;
 }
