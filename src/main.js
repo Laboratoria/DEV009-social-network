@@ -4,10 +4,11 @@ import home from './components/home.js';
 import login from './components/login.js';
 import error from './components/error.js';
 
-const email = 'usuario@gmail.com';
+const email = 'usuario3@gmail.com';
 const pass = '123456789';
 
 registrarUsuario(email, pass);
+console.log(registrarUsuario(email, pass));
 
 const root = document.getElementById('root');
 
