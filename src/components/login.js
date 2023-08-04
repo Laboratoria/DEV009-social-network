@@ -1,6 +1,5 @@
 import { loginUser } from '../lib/index';
 import { signInWithRedirect, auth, provider } from '../firebase/initializeFirebase';
-import { async } from 'regenerator-runtime';
 
 function login(navigateTo) {
   const section = document.createElement('section');
@@ -12,21 +11,35 @@ function login(navigateTo) {
   const inputEmail = document.createElement('input');
   const inputPass = document.createElement('input');
   const buttonLogin = document.createElement('button');
+  const option = document.createElement('p');
   const message = document.createElement('p');
   const buttonRegister = document.createElement('button');
+  const containerRegister = document.createElement('div');
   const buttonGoogle = document.createElement('button');
-  const textButtonGloogle = document.createElement('span');
+  const IconGoogle = document.createElement('span');
+  const textContent = 'Sign In';
+  const containerModal = document.createElement('div');
+  const windowModalError = document.createElement('div');
+  const titleModal = document.createElement('h3');
+  const messageModal = document.createElement('p');
+  const closeModal = document.createElement('span');
+  const line = document.createElement('hr');
 
   inputPass.type = 'password';
   inputEmail.placeholder = 'Email';
   inputPass.placeholder = 'Password';
   title.textContent = 'Welcome Back';
   messageLogin.textContent = 'Login to your account';
+  option.textContent = 'Or Sign in with';
   message.textContent = 'Don’t have an account?';
   buttonRegister.textContent = 'Sign Up';
   buttonLogin.textContent = 'Sign In';
   buttonLogin.type = 'submit';
-  textButtonGloogle.textContent = 'Sign In';
+  titleModal.textContent = 'Alert';
+  messageModal.textContent = 'Passwords don\'t match';
+
+  closeModal.setAttribute('href', '#/register');
+  closeModal.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
 
   formLogin.classList.add('login-view');
   header.classList.add('logo');
@@ -36,7 +49,16 @@ function login(navigateTo) {
   buttonRegister.classList.add('no-button');
   inputEmail.classList.add('input');
   inputPass.classList.add('input');
-  buttonGoogle.classList.add('button-google', 'fa-brands', 'fa-google');
+  IconGoogle.classList.add('fa-brands', 'fa-google');
+  buttonGoogle.classList.add('button-google');
+  containerRegister.classList.add('container-button-register');
+  option.classList.add('text-with-line');
+  windowModalError.classList.add('modal-content');
+  containerModal.classList.add('modal');
+  closeModal.classList.add('close');
+
+  windowModalError.append(closeModal, titleModal, line, messageModal);
+  containerModal.append(windowModalError);
 
   buttonGoogle.addEventListener('click', () => {
     signInWithRedirect(auth, provider);
@@ -46,6 +68,9 @@ function login(navigateTo) {
     navigateTo('/register');
   });
 
+  buttonGoogle.append(IconGoogle, textContent);
+  containerRegister.append(message, buttonRegister);
+  section.append(formLogin, containerModal);
   header.appendChild(logo);
   formLogin.append(
     header,
@@ -54,13 +79,11 @@ function login(navigateTo) {
     inputEmail,
     inputPass,
     buttonLogin,
-    message,
-    buttonRegister,
+    option,
     buttonGoogle,
+    containerRegister,
   );
 
-  buttonGoogle.append(textButtonGloogle);
-  section.append(formLogin);
   formLogin.addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = inputEmail.value;
@@ -68,9 +91,15 @@ function login(navigateTo) {
     try {
       await loginUser(email, password);
     } catch (error) {
-      alert('Wrong password ❌');
+      messageModal.textContent = 'Wrong password ';
+      containerModal.style.display = 'block';
     }
   });
+
+  closeModal.addEventListener('click', () => {
+    containerModal.style.display = 'none';
+  });
+
   return section;
 }
 export default login;
