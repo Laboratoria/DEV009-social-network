@@ -14,7 +14,7 @@ describe('registeruser', () => {
   });
 });
 
-describe('registeruserff', () => {
+describe('registeruserrrrr', () => {
   it('Should show login page', () => {
     expect(typeof registerUser).toBe('function');
   });
