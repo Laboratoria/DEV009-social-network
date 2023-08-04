@@ -104,19 +104,39 @@ select {
     background: #f2edee7b;
     display: grid;
     padding: 1rem;
-    border-radius: 4px;
+    border-radius: 6px;
     margin-bottom: 2rem;
 }
 textarea {
     margin: 0rem 0rem 1rem 0rem;
     font-family: 'Montserrat Alternates', sans-serif;
+    font-size: medium;
     color: #7d3f71;
     border-radius: 1rem;
-    height: 100px;
+    height: 30px;
     resize: none;
+    border: none;
+    padding: 7px;
+    text-align: left;
+    text-decoration: dotted;
+    box-shadow: inset 2px 2px 4px rgba(128, 128, 128, 0.826);
+    background-color: rgb(255, 255, 255);
+    transition: 50ms;
 }
+textarea:focus,
+textarea:active {
+    transition: 50ms;
+    border: none;
+    outline: inset rgba(162, 102, 165, 0.764);
+    height: 70px;
+    background-color: rgb(255, 255, 255);
+  }
 
-
+.boton-compartir{
+    align-content: center;
+    margin: 0rem 0rem 0rem 12rem;
+}
 .logOut-button{
-    display: flex;
+    display: block;
+    text-align: center;
 }
