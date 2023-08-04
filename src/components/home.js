@@ -1,5 +1,4 @@
 function home(navigateTo) {
-
   const contenedorGeneral = document.createElement('div');
   contenedorGeneral.className = 'contenedor';
 
