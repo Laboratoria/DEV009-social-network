@@ -1,28 +1,28 @@
 function home (navigateTo){
-    const contenedorGeneral = document.createElement ('div');
-    contenedorGeneral.className='contenedor';
+  const contenedorGeneral = document.createElement ('div');
+  contenedorGeneral.className='contenedor';
         
-    const buttonInicio = document.createElement('button');
-    buttonInicio.className = 'boton_Inicio';
+  const buttonInicio = document.createElement('button');
+  buttonInicio.className = 'boton_Inicio';
    
       
-    const buttonRegistro =document.createElement('button');
-    buttonRegistro.className = 'boton_Registro';
+  const buttonRegistro =document.createElement('button');
+  buttonRegistro.className = 'boton_Registro';
     
-    buttonInicio.textContent = 'Inicia sesión'
-    buttonInicio.addEventListener('click', () => {
-        navigateTo('/login');
-    }); 
+  buttonInicio.textContent = 'Inicia sesión'
+  buttonInicio.addEventListener('click', () => {
+    navigateTo('/login');
+}); 
     
     
-    buttonRegistro.textContent = 'Regístrate'
-    buttonRegistro.addEventListener('click', () => {
-        navigateTo('/registro');
-    });
+buttonRegistro.textContent = 'Regístrate'
+buttonRegistro.addEventListener('click', () => {
+  navigateTo('/registro');
+});
 
 
- contenedorGeneral.appendChild(buttonInicio);
- contenedorGeneral.appendChild(buttonRegistro);
+contenedorGeneral.appendChild(buttonInicio);
+contenedorGeneral.appendChild(buttonRegistro);
  
   
     return contenedorGeneral;
