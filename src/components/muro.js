@@ -9,10 +9,10 @@ export const muro = (navigateTo) => {
   const publicacion = document.createElement('div');
   publicacion.classList.add('publicacion');
   const areaText = document.createElement('textarea');
-  areaText.textContent = 'Comparte aqui n.n';
+  areaText.textContent = 'Comparte aquí...';
   const botonCompartir = document.createElement('button');
   botonCompartir.classList.add('boton-compartir');
-  botonCompartir.textContent = 'compartir';
+  botonCompartir.textContent = 'Compartir';
 
   const logOutButton = document.createElement('button');
   logOutButton.classList.add('logOut-button');
