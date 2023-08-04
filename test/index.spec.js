@@ -1,6 +1,6 @@
-import { registerUser, logInUser } from '../src/lib/firebaseAuth';
+import { registerUser, logInUser } from '../src/lib/firebaseAuth.js';
 
-jest.mock('../src/lib/firebaseAuth', () => ({
+jest.mock('../src/lib/firebaseAuth.js', () => ({
   registerUser: jest.fn(),
   logInUser: jest.fn(),
   logInWithGoogle: jest.fn(),

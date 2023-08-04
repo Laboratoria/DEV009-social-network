@@ -3,6 +3,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithRedirect,
+  getRedirectResult,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
@@ -19,9 +20,6 @@ import { app } from './configfirebase.js';
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
-export const logInWithGoogle = () => {
-  signInWithRedirect(auth, provider);
-};
 
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
@@ -49,6 +47,33 @@ export const registerUser = (email, password, callback) => {
       // console.log(errorCode);
       // console.log(errorMessage);
       callback(false);
+    });
+};
+
+export const logInWithGoogle = () => {
+  signInWithRedirect(auth, provider);
+};
+
+export const redirectResultGoogle = () => {
+  getRedirectResult(auth)
+    .then((result) => {
+    // This gives you a Google Access Token. You can use it to access Google APIs.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+
+      // The signed-in user info.
+      const user = result.user;
+    // IdP data available using getAdditionalUserInfo(result)
+    // ...
+    }).catch((error) => {
+    // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
     });
 };
 
