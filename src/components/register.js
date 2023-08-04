@@ -14,25 +14,19 @@ function register(navigateTo) {
   const inputUser = document.createElement('input');
   inputUser.placeholder = 'Usuario';
 
-  const inputEmail= document.createElement('input');
-  inputEmail.type='email';
-  inputEmail.placeholder= 'correo electronico';
+  const inputEmail = document.createElement('input');
+  inputEmail.type = 'email';
+  inputEmail.placeholder = 'correo electronico';
 
   const inputPassword = document.createElement('input');
-  inputPassword.type= 'password'
+  inputPassword.type = 'password';
   inputPassword.placeholder = 'Contraseña';
-  inputPassword.pattern='.{6,}';
-  inputPassword.title ='Debe ser mayor a 6 caracteres y maximo 10';
+  inputPassword.pattern = '.{6,}';
+  inputPassword.title = 'Debe ser mayor a 6 caracteres y maximo 10';
 
   const inputConfirmPassword = document.createElement('input');
-  inputConfirmPassword.type ='password';
+  inputConfirmPassword.type = 'password';
   inputConfirmPassword.placeholder = 'Confirma tu contraseña';
-
-
-
-
-
-
   const buttonCreateAccount = document.createElement('button');
   buttonCreateAccount.textContent = 'Crear cuenta';
   buttonCreateAccount.classList.add('createAccount');

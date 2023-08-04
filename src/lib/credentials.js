@@ -1,25 +1,74 @@
 // Import the functions you need from the SDKs you need
 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { app } from "./firebaseConfig.js";
-
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-
-// Initialize Firebase
-
-
-// Initialize Firebase Authentication and get a reference to the service
-const auth = getAuth(app);
-
+import {
+  auth, provider, createUserWithEmailAndPassword, signInWithPopup, getRedirectResult,
+  GoogleAuthProvider, signInWithRedirect,
+} from './initializerFirebase.js';
 
 export const registerUser = (email, password) => {
-    try{
-      createUserWithEmailAndPassword (auth, email, password)
-    } catch (error){
-      throw error.message;
-    }
-  };
+  try {
+    createUserWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    throw error.message;
+  }
+};
+
+export const signWithGoogle = () => {
+  try {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+  } catch (error) {
+    throw error.message;
+  }
+};
+
+export const signIn = () => {
+  try {
+    signInWithRedirect(auth, provider);
+  } catch (error) {
+    throw error.message;
+  }
+};
+export const redirectGoogle = () => {
+  try {
+    getRedirectResult(auth)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access Google APIs.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+  } catch (error) {
+    throw error.message;
+  }
+};
