@@ -17,6 +17,7 @@ function home(navigateTo) {
   });
 
   buttonRegistro.textContent = 'Regístrate';
+
   buttonRegistro.addEventListener('click', () => {
     navigateTo('/registro');
   });
@@ -26,6 +27,7 @@ function home(navigateTo) {
   contenedorGeneral.appendChild(buttonRegistro);
 
   return contenedorGeneral;
+
 }
 
 export default home;
