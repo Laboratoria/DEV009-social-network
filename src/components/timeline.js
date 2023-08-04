@@ -1,3 +1,5 @@
+import { signOutSession } from '../lib/index.js';
+
 function timeline(navigateTo) {
   const main = document.createElement('main');
 
@@ -13,6 +15,19 @@ function timeline(navigateTo) {
   const userPosts = document.createElement('a');
   userPosts.setAttribute('href', '');
   userPosts.textContent = 'Mis Posts';
+
+  const signOutBtn = document.createElement('button');
+  signOutBtn.className = 'btn-sign-out';
+  signOutBtn.textContent = 'Cerrar sesión';
+  signOutBtn.addEventListener('click', () => {
+    signOutSession()
+      .then(() => {
+        navigateTo('/');
+      })
+      .catch((error) => {
+        throw error;
+      });
+  });
 
   const section = document.createElement('section');
   section.className = 'main-section';
@@ -38,7 +53,7 @@ function timeline(navigateTo) {
 
   section.append(postTitle, postBody, btnReturn, btnPost);
   main.append(title, menu, section);
-  menu.append(profile, userPosts);
+  menu.append(profile, userPosts, signOutBtn);
 
   return main;
 }

@@ -1,3 +1,5 @@
+import { logInWithEmail, resetPassword } from '../lib/index.js';
+
 function login(navigateTo) {
   const main = document.createElement('main');
 
@@ -10,17 +12,17 @@ function login(navigateTo) {
 
   const loginForm = document.createElement('form');
 
-  const email = document.createElement('input');
-  email.className = 'input-login-join';
-  email.setAttribute('type', 'email');
-  email.setAttribute('placeholder', 'Correo electronico');
-  email.setAttribute('required', '');
+  const emailInput = document.createElement('input');
+  emailInput.className = 'input-login-join';
+  emailInput.setAttribute('type', 'email');
+  emailInput.setAttribute('placeholder', 'Correo electronico');
+  emailInput.setAttribute('required', '');
 
-  const password = document.createElement('input');
-  password.className = 'input-login-join';
-  password.setAttribute('type', 'password');
-  password.setAttribute('placeholder', 'Contraseña');
-  password.setAttribute('required', '');
+  const passwordInput = document.createElement('input');
+  passwordInput.className = 'input-login-join';
+  passwordInput.setAttribute('type', 'password');
+  passwordInput.setAttribute('placeholder', 'Contraseña');
+  passwordInput.setAttribute('required', '');
 
   const buttonEnd = document.createElement('div');
   buttonEnd.className = 'buttonEnd';
@@ -43,9 +45,49 @@ function login(navigateTo) {
   forgotPassword.setAttribute('href', '/');
   forgotPassword.textContent = 'Olvidé mi contraseña';
 
+  const resetDiv = document.createElement('div');
+  resetDiv.className = 'reset-div';
+
+  const resetMessage = document.createElement('p');
+  resetMessage.textContent = 'Te enviaremos un link para recuperar la contraseña.';
+  resetMessage.classList = 'reset-message';
+
+  const formReset = document.createElement('form');
+
+  const resetInput = document.createElement('input');
+  resetInput.setAttribute('type', 'email');
+  resetInput.setAttribute('placeholder', 'Correo electrónico');
+  resetInput.setAttribute('required', '');
+  resetInput.className = 'reset-input';
+
+  const resetBtn = document.createElement('button');
+  resetBtn.textContent = 'OK';
+  resetBtn.className = 'reset-btn';
+
+  formReset.append(resetInput, resetBtn);
+  resetDiv.append(resetMessage, formReset);
   buttonEnd.append(btnReturn, btnEnter);
-  loginForm.append(email, password, forgotPassword, buttonEnd);
+  loginForm.append(emailInput, passwordInput, forgotPassword, resetDiv, buttonEnd);
   main.append(title, logologin, loginForm);
+
+  // Evento que envia el formulario y llama la función para hacer login
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = emailInput.value;
+    const password = passwordInput.value;
+    logInWithEmail(email, password)
+      .then(() => {
+        navigateTo('/timeline');
+      })
+      .catch(() => {
+        navigateTo('/');
+      });
+  });
+
+  // Evento que activa el div de resetear la contraseña, y luego utiliza la función resetPassword
+  forgotPassword.addEventListener('click', () => {
+    resetPassword();
+  });
 
   return main;
 }
