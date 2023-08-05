@@ -6,6 +6,20 @@ import {
   sendEmailVerification,
 } from '../firebase/initializeFirebase';
 
+export const loginUser = (email, password) => new Promise((resolve, reject) => {
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      if (user.emailVerified) {
+        alert('You are logged!');
+        resolve(user);
+      } else {
+        alert('Please verify your email address');
+      }
+    })
+    .catch((err) => reject(err));
+});
+
 export const registerUser = (name, userName, email, password) => new Promise((resolve, reject) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -26,20 +40,6 @@ export const registerUser = (name, userName, email, password) => new Promise((re
       console.log(errorMessage);
       reject(err); // Reject the promise with the error
     });
-});
-
-export const loginUser = (email, password) => new Promise((resolve, reject) => {
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      if (user.emailVerified) {
-        alert('You are logged!');
-        resolve(user);
-      } else {
-        alert('Please verify your email address');
-      }
-    })
-    .catch((err) => reject(err));
 });
 
 export const resetPass = (email) => {
