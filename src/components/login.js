@@ -3,62 +3,58 @@ import { signInWithRedirect, auth, provider } from '../firebase/initializeFireba
 
 function login(navigateTo) {
   const section = document.createElement('section');
-  const formLogin = document.createElement('form');
-  const header = document.createElement('header');
-  const logo = document.createElement('img');
-  const title = document.createElement('h2');
-  const messageLogin = document.createElement('p');
-  const inputEmail = document.createElement('input');
-  const inputPass = document.createElement('input');
-  const buttonLogin = document.createElement('button');
-  const option = document.createElement('p');
-  const message = document.createElement('p');
-  const buttonRegister = document.createElement('button');
-  const containerRegister = document.createElement('div');
-  const buttonGoogle = document.createElement('button');
-  const IconGoogle = document.createElement('span');
-  const textContent = 'Sign In';
-  const containerModal = document.createElement('div');
-  const windowModalError = document.createElement('div');
-  const titleModal = document.createElement('h3');
-  const messageModal = document.createElement('p');
-  const closeModal = document.createElement('span');
-  const line = document.createElement('hr');
+  section.innerHTML = `
+    <form class="login-view">
+      <header class="logo-header logo">
+        <img class="logo-img logo" src="./img/logo.png">
+      </header>
+      <h2 class="title">Welcome Back</h2>
+      <p class="message-login">Login to your account</p>
+      <input placeholder="Email" class="input-email input">
+      <div class="password-container">
+        <input type="password" name="password" id="password" placeholder="Password" class="input-pass input">
+        <i class="bi bi-eye-slash" id="togglePassword"></i>
+      </div>
+      <button type="submit" class="button-input">Sign In</button>
+      <p class="text-with-line">Or Sign in with</p>
+      <button class="button-google">
+        <span class="fa-brands fa-google"></span>Sign In
+      </button>
+      <div class="container-button-register">
+        <p class="message">Don’t have an account?</p>
+        <button class="no-button">Sign Up</button>
+      </div>
+    </form>
+    <div class="modal">
+      <div class="modal-content">
+        <span href="#/register" class="close">
+          <i class="fa-solid fa-circle-xmark"></i>
+        </span>
+        <h3>Alert</h3>
+        <hr>
+        <p class="message-modal">Passwords don't match</p>
+      </div>
+    </div>
+  `;
 
-  inputPass.type = 'password';
-  inputEmail.placeholder = 'Email';
-  inputPass.placeholder = 'Password';
-  title.textContent = 'Welcome Back';
-  messageLogin.textContent = 'Login to your account';
-  option.textContent = 'Or Sign in with';
-  message.textContent = 'Don’t have an account?';
-  buttonRegister.textContent = 'Sign Up';
-  buttonLogin.textContent = 'Sign In';
-  buttonLogin.type = 'submit';
-  titleModal.textContent = 'Alert';
-  messageModal.textContent = 'Passwords don\'t match';
+  const formLogin = section.querySelector('form');
+  const inputEmail = formLogin.querySelector('.input-email');
+  const inputPass = formLogin.querySelector('.input-pass');
+  const togglePassword = formLogin.querySelector('#togglePassword');
+  const buttonRegister = formLogin.querySelector('.no-button');
+  const buttonGoogle = formLogin.querySelector('.button-google');
+  const messageModal = section.querySelector('.message-modal');
+  const containerModal = section.querySelector('.modal');
+  const closeModal = section.querySelector('.close');
 
-  closeModal.setAttribute('href', '#/register');
-  closeModal.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
+  togglePassword.addEventListener('click', () => {
+    // toggle the type attribute
+    const type = inputPass.getAttribute('type') === 'password' ? 'text' : 'password';
+    inputPass.setAttribute('type', type);
 
-  formLogin.classList.add('login-view');
-  header.classList.add('logo');
-  logo.classList.add('logo');
-  logo.setAttribute('src', './img/logo.png');
-  buttonLogin.classList.add('button-input');
-  buttonRegister.classList.add('no-button');
-  inputEmail.classList.add('input');
-  inputPass.classList.add('input');
-  IconGoogle.classList.add('fa-brands', 'fa-google');
-  buttonGoogle.classList.add('button-google');
-  containerRegister.classList.add('container-button-register');
-  option.classList.add('text-with-line');
-  windowModalError.classList.add('modal-content');
-  containerModal.classList.add('modal');
-  closeModal.classList.add('close');
-
-  windowModalError.append(closeModal, titleModal, line, messageModal);
-  containerModal.append(windowModalError);
+    // toggle the icon
+    this.classList.toggle('bi-eye');
+  });
 
   buttonGoogle.addEventListener('click', () => {
     signInWithRedirect(auth, provider);
@@ -67,22 +63,6 @@ function login(navigateTo) {
   buttonRegister.addEventListener('click', () => {
     navigateTo('/register');
   });
-
-  buttonGoogle.append(IconGoogle, textContent);
-  containerRegister.append(message, buttonRegister);
-  section.append(formLogin, containerModal);
-  header.appendChild(logo);
-  formLogin.append(
-    header,
-    title,
-    messageLogin,
-    inputEmail,
-    inputPass,
-    buttonLogin,
-    option,
-    buttonGoogle,
-    containerRegister,
-  );
 
   formLogin.addEventListener('submit', async (e) => {
     e.preventDefault();

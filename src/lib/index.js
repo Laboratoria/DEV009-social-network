@@ -27,6 +27,7 @@ export const registerUser = (name, userName, email, password) => new Promise((re
       console.log(user);
       sendEmailVerification(user)
         .then(() => {
+          console.log(user);
           console.log('Email verification sent to...:');
           resolve(); // Resolve the promise on success
         })

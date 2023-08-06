@@ -1,27 +1,22 @@
 function home(navigateTo) {
   const section = document.createElement('section');
-  const header = document.createElement('header');
-  const logo = document.createElement('img');
-  const title = document.createElement('h2');
-  const message = document.createElement('p');
-  const square = document.createElement('div');
-  const containerButton = document.createElement('div');
-  const button = document.createElement('button');
-  const buttonRegister = document.createElement('button');
+  section.innerHTML = `
+    <section class="first-view">
+      <header class="logo">
+        <img src="./img/logo.png" class="logo">
+      </header>
+      <h2 class="title">Travel with Your Pet</h2>
+      <p class="message">With just one click you'll have all the information you need</p>
+      <div class="square"></div>
+      <div class="container-button">
+        <button class="button-second-style">Login</button>
+        <button class="button">Sign Up</button>
+      </div>
+    </section>
+  `;
 
-  title.textContent = 'Travel with Your Pet';
-  message.textContent = 'With just one click you\'ll have all the information you need';
-  button.textContent = 'Login';
-  buttonRegister.textContent = 'Sign Up';
-
-  section.classList.add('first-view');
-  containerButton.classList.add('container-button');
-  buttonRegister.classList.add('button');
-  button.classList.add('button-second-style');
-  square.classList.add('square');
-  title.classList.add('title');
-  message.classList.add('message');
-  header.classList.add('logo');
+  const buttonRegister = section.querySelector('.button');
+  const button = section.querySelector('.button-second-style');
 
   button.addEventListener('click', () => {
     navigateTo('/login');
@@ -31,12 +26,6 @@ function home(navigateTo) {
     navigateTo('/register');
   });
 
-  logo.setAttribute('src', './img/logo.png');
-  logo.classList.add('logo');
-
-  header.appendChild(logo);
-  containerButton.append(button, buttonRegister);
-  section.append(header, title, message, square, containerButton);
   return section;
 }
 

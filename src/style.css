@@ -186,7 +186,7 @@ body {
 
   .fa-brands {
     font-weight: bold;
-    font-size: 1.4rem;
+    font-size: 0.8rem;
     margin-right: 8px;
   }
 
@@ -232,6 +232,18 @@ body {
     margin-top: 90px;
     display: flex;
     font-size: small;
+}
+
+.password-container {
+  position: relative;
+}
+
+.password-container .bi-eye-slash {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
 
