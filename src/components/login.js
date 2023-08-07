@@ -1,4 +1,4 @@
-import { signWithGoogle, signIn, redirectGoogle} from '../lib/credentials.js';
+import { signWithGoogle, signIn, redirectGoogle } from '../lib/credentials.js';
 
 function login(navigateTo) {
   const sectionP = document.createElement('section');
@@ -49,6 +49,7 @@ function login(navigateTo) {
   const logo = document.createElement('img');
   logo.src = './images/logoblanco.png';
   logo.classList.add('logo');
+  logo.alt='logo de Guide Ma+Pa'
 
   section.append(
     title,

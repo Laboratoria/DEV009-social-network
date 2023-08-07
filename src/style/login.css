@@ -6,6 +6,7 @@
     --color-box: #F6F6F6;
     --shadow-nav: #37C2EA;
     --color-error:rgb(228, 65, 214);
+    --color-is-Valid:rgb(102, 162, 102) ;
 }
 
 body {
@@ -108,7 +109,8 @@ button{
     color: var(--color-text)
 }
 
-.inputRegister :invalid {
+
+.inputRegister:invalid {
         animation: justshake 0.3s forwards;
         color:var(--color-error);
     }
