@@ -64,19 +64,15 @@ function register(navigateTo) {
   buttonCreateAccount.textContent = 'Crear cuenta';
   buttonCreateAccount.classList.add('createAccount');
   buttonCreateAccount.addEventListener('click', () => {
-    } else if (!inputEmail.checkValidity()) {
-      alert('El formato de correo electrónico es incorrecto. Asegúrate de que esté escrito correctamente.');
-    }
-    else if (inputPassword.value != inputConfirmPassword.value) {
-      alert('No coinciden las contraseñas');
-    }
-     /*  if (inputPassword.value === inputConfirmPassword.value && inputEmail.checkValidity()) {
+    if (inputPassword.value === inputConfirmPassword.value && inputEmail.checkValidity()) {
       registerUser(inputUser.value, inputPassword.value);
       alert('Tu registro se ha completado con éxito. \n Gracias por unirte a Guide Ma+Pa!');
       navigateTo('/timeline');
-    } else {
-      alert('Por favor corrige los campos marcados antes de continuar.');
-    } */
+    } else if(!inputEmail.checkValidity()){
+      alert('El correo electrónico no es válido. Por favor, verifica que esté en el formato correcto');
+    } else if(inputPassword.value != inputConfirmPassword.value){
+      alert('Las contraseñas no coinciden. Asegúrate de ingresar la misma contraseña en ambos campos e intenta nuevamente');
+    }
   });
 
   section.append(
