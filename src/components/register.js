@@ -9,69 +9,74 @@ function register(navigateTo) {
   title.classList.add('titleregister');
 
   const inputName = document.createElement('input');
-  inputName.classList.add('inputRegister');
+  inputName.classList.add('inputRegister'); 
+  inputName.type= 'text'
   inputName.placeholder = 'Nombre';
-  inputName.addEventListener('input', () => {
-    if (!/^[A-Za-z\s]+$/.test(inputName.value)) {
-      inputName.setCustomValidity('El nombre no debe contener números ni caracteres especiales');
-    } else {
-      inputName.setCustomValidity('');
-    }
-  });
+  inputName.pattern='^[A-Za-z]+(?:\s[A-Za-z]+)*$';
+  inputName.title='Ingresa solo nombre';
+  inputName.required = true
+  inputName.autocomplete='off';
 
   const inputLastName = document.createElement('input');
-  inputLastName.classList.add('inputRegister');
+  inputLastName.classList.add('inputRegister'); 
+  inputLastName.type= 'text'
   inputLastName.placeholder = 'Apellido';
-  inputLastName.addEventListener('input', () => {
-    if (!/^[A-Za-z\s]+$/.test(inputLastName.value)) {
-      inputLastName.setCustomValidity('El apellido no debe contener números ni caracteres especiales');
-    } else {
-      inputLastName.setCustomValidity('');
-    }
-  });
+  inputLastName.pattern='^[A-Za-z]+(?:\s[A-Za-z]+)*$';
+  inputLastName.autocomplete='off';
+  inputLastName.required = true
+
+
 
   const inputUser = document.createElement('input');
-  inputUser.classList.add('inputRegister');
+  inputUser.classList.add('inputRegister'); 
+  inputUser.type= 'text';
   inputUser.placeholder = 'Usuario';
-  inputUser.addEventListener('input', () => {
-    if (/\s/.test(inputUser.value)) {
-      inputUser.setCustomValidity('El usuario no puede contener espacios en blanco');
-    } else {
-      inputUser.setCustomValidity('');
-    }
-  });
+  inputUser.pattern= '^[A-Za-z0-9]+$';
+  inputUser.autocomplete='off';
+  inputUser.required = true
+
 
   const inputEmail = document.createElement('input');
   inputEmail.classList.add('inputRegister');
   inputEmail.type = 'email';
-  inputEmail.placeholder = 'correo electronico';
+  inputEmail.placeholder = 'Correo electrónico';
+  inputEmail.autocomplete='off';
+  inputEmail.required = true
+
 
   const inputPassword = document.createElement('input');
   inputPassword.classList.add('inputRegister');
   inputPassword.type = 'password';
   inputPassword.placeholder = 'Contraseña';
-  inputPassword.pattern = '.{6,}';
-  inputPassword.title = 'Debe ser mayor a 6 caracteres y maximo 10';
+  inputPassword.pattern = '^(?!.*\n)(?=(?:.*\d))(?=(?:.*[A-Z]))(?=(?:.*[a-z])).{6,10}$';
+  inputPassword.title = 'Debe ser mayor a 6 caracteres y máximo 10';
+  inputPassword.autocomplete='off';
+  inputPassword.required = true
 
   const inputConfirmPassword = document.createElement('input');
   inputConfirmPassword.classList.add('inputRegister');
   inputConfirmPassword.type = 'password';
+  inputConfirmPassword.classList.add('inputRegister'); 
   inputConfirmPassword.placeholder = 'Confirma tu contraseña';
+  inputConfirmPassword.required = true
 
   const buttonCreateAccount = document.createElement('button');
   buttonCreateAccount.textContent = 'Crear cuenta';
   buttonCreateAccount.classList.add('createAccount');
   buttonCreateAccount.addEventListener('click', () => {
-    if (inputPassword.value === inputConfirmPassword.value && inputEmail.checkValidity()) {
-      registerUser(inputUser.value, inputPassword.value);
-      alert('Tu registro se ha completado con éxito. \n Gracias por unirte a Guide Ma+Pa!');
-      navigateTo('/timeline');
     } else if (!inputEmail.checkValidity()) {
       alert('El formato de correo electrónico es incorrecto. Asegúrate de que esté escrito correctamente.');
     }
     else if (inputPassword.value != inputConfirmPassword.value) {
       alert('No coinciden las contraseñas');
     }
+     /*  if (inputPassword.value === inputConfirmPassword.value && inputEmail.checkValidity()) {
+      registerUser(inputUser.value, inputPassword.value);
+      alert('Tu registro se ha completado con éxito. \n Gracias por unirte a Guide Ma+Pa!');
+      navigateTo('/timeline');
+    } else {
+      alert('Por favor corrige los campos marcados antes de continuar.');
+    } */
   });
 
   section.append(
