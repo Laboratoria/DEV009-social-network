@@ -37,6 +37,7 @@ function register(navigateTo) {
 
 
   const inputEmail = document.createElement('input');
+  inputEmail.classList.add('inputRegister');
   inputEmail.type = 'email';
   inputEmail.placeholder = 'Correo electrónico';
   inputEmail.autocomplete='off';
@@ -44,6 +45,7 @@ function register(navigateTo) {
 
 
   const inputPassword = document.createElement('input');
+  inputPassword.classList.add('inputRegister');
   inputPassword.type = 'password';
   inputPassword.placeholder = 'Contraseña';
   inputPassword.pattern = '^(?!.*\n)(?=(?:.*\d))(?=(?:.*[A-Z]))(?=(?:.*[a-z])).{6,10}$';
@@ -52,6 +54,7 @@ function register(navigateTo) {
   inputPassword.required = true
 
   const inputConfirmPassword = document.createElement('input');
+  inputConfirmPassword.classList.add('inputRegister');
   inputConfirmPassword.type = 'password';
   inputConfirmPassword.classList.add('inputRegister'); 
   inputConfirmPassword.placeholder = 'Confirma tu contraseña';
@@ -61,8 +64,15 @@ function register(navigateTo) {
   buttonCreateAccount.textContent = 'Crear cuenta';
   buttonCreateAccount.classList.add('createAccount');
   buttonCreateAccount.addEventListener('click', () => {
-   /*  if (inputPassword.value === inputConfirmPassword.value && inputEmail.checkValidity()) {
+    } else if (!inputEmail.checkValidity()) {
+      alert('El formato de correo electrónico es incorrecto. Asegúrate de que esté escrito correctamente.');
+    }
+    else if (inputPassword.value != inputConfirmPassword.value) {
+      alert('No coinciden las contraseñas');
+    }
+     /*  if (inputPassword.value === inputConfirmPassword.value && inputEmail.checkValidity()) {
       registerUser(inputUser.value, inputPassword.value);
+      alert('Tu registro se ha completado con éxito. \n Gracias por unirte a Guide Ma+Pa!');
       navigateTo('/timeline');
     } else {
       alert('Por favor corrige los campos marcados antes de continuar.');
@@ -84,5 +94,8 @@ function register(navigateTo) {
 }
 
 export default register;
+
+
+
 
 
