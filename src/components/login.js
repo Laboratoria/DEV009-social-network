@@ -34,8 +34,8 @@ function login(navigateTo) {
   buttonSiginGoogle.classList.add('buttonSiginGoogle');
   buttonSiginGoogle.addEventListener('click', () => {
     /*signWithGoogle();*/
-    /*signIn();*/
-    redirectGoogle();
+    signIn();
+    /*redirectGoogle();*/
     /* navigateTo('/timeline'); */
   });
 

@@ -50,8 +50,6 @@ background-attachment: fixed;
     min-height: 60vh;
     
 }
-
-
 .titleLogin{
     
     text-align: center;
@@ -100,19 +98,6 @@ button{
     place-self: center;
     
 }
-    max-width: fit-content;
-    background-color: var(--color-box);
-    border-radius: 9px;
-    margin: 10%;
-    padding: 5%;
-    display: grid;
-    grid-auto-rows: auto;
-    grid-gap: 0.5rem;
-    grid-template-columns: minmax(25vw, 25vw);
-
-}
-
-
 .titleLogin {
     text-align: center;
     grid-row: 1/2;
@@ -147,26 +132,4 @@ button{
 
     }
 
-    .inputUser {
-        grid-row: 4;
-
-    }
-
-    .inputUser {
-        grid-row: 5;
-
-    }
-
-    .startSession {
-        grid-row: 6;
-        max-width: fit-content;
-
-
-
-    }
-
-    .createAccount {
-        grid-row: 9;
-        max-width: fit-content;
-
-    }
+  
