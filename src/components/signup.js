@@ -4,9 +4,9 @@ function signup(navigateTo){
 const section = document.createElement('section');
 const logo = document.createElement('img');
 const title = document.createElement('h2');
-title.textContent = "Registrate";
+title.textContent = "Regístrate";
 
-//const name = document.createElement('input');
+const name = document.createElement('input');
 const formRegister = document.createElement('form');
 const email = document.createElement('input');
 const password = document.createElement('input');
@@ -18,9 +18,12 @@ const signupWithGmail =  document.createElement('a');
 const linkGmail =  document.createElement('img');
 
 logo.src = "./img/logo.png";
-//name.placeholder = "Nombre";
+name.placeholder = "Nombre";
 email.placeholder = "ejemplo@correo.com";
 password.placeholder = "Contraseña";
+password.type= "password";
+password.setAttribute('required', '');
+password.setAttribute('pattern', '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}');
 //validatePassword.placeholder = "Confirmar contraseña";
 
 btnSignup.textContent = "Registrarse";
@@ -36,13 +39,12 @@ formRegister.addEventListener('submit',(e)=>{
     const emailUser = email.value;
     const passUser= password.value;
     registerUser(emailUser, passUser);
-    navigateTo("/wall");
 })
 toLogin.addEventListener('click', ()=>{
     navigateTo("/");
 } )
 
-section.append(logo, title, formRegister, toLogin, or, signupWithGmail, linkGmail);
+section.append(logo, title, name, formRegister, toLogin, or, signupWithGmail, linkGmail);
 formRegister.append(email, password, btnSignup);
 return section;
 }

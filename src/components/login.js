@@ -8,11 +8,11 @@ function login(navigateTo){
     const toSignup = document.createElement('p');
 
     logo.src = "./img/logo.png";
-    title.textContent = "Ingresa a tu sesion";
+    title.textContent = "Ingresa a tu sesión";
     email.placeholder = "Correo";
     password.placeholder = "Contraseña";
-    btnLogin.textContent = "Iniciar Sesión";
-    toSignup.textContent = "¿Aún no tienes cuenta? ¡Registrate!";
+    btnLogin.textContent = "Iniciar sesión";
+    toSignup.textContent = "¿Aún no tienes cuenta? ¡Regístrate!";
 
     btnLogin.addEventListener('click', ()=>{
         navigateTo("/wall");
