@@ -32,7 +32,7 @@ body {
     background-color: var(--color-box);
     border-radius: 9px;
     margin: 10%;
-    padding: 5%;
+    padding: 5%; 
     display: grid;
     grid-auto-rows: auto;
     grid-gap: 0.5rem;

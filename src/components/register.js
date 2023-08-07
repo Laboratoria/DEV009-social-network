@@ -11,48 +11,36 @@ function register(navigateTo) {
   const inputName = document.createElement('input');
   inputName.classList.add('inputRegister'); 
   inputName.placeholder = 'Nombre';
-  inputName.addEventListener('input', () => {
-    if (!/^[A-Za-z\s]+$/.test(inputName.value)) {
-      inputName.setCustomValidity('El nombre no debe contener números ni caracteres especiales');
-    } else {
-      inputName.setCustomValidity('');
-    }
-  });
+  inputName.pattern='^[A-Za-z\s]+$';
+  inputName.title='Ingresa solo nombre'
+  
 
   const inputLastName = document.createElement('input');
   inputLastName.classList.add('inputRegister'); 
   inputLastName.placeholder = 'Apellido';
-  inputLastName.addEventListener('input', () => {
-    if (!/^[A-Za-z\s]+$/.test(inputLastName.value)) {
-      inputLastName.setCustomValidity('El apellido no debe contener números ni caracteres especiales');
-    } else {
-      inputLastName.setCustomValidity('');
-    }
-  });
+  inputLastName.pattern='^[A-Za-z\s]+$';
+
+
 
   const inputUser = document.createElement('input');
   inputUser.classList.add('inputRegister'); 
   inputUser.placeholder = 'Usuario';
-  inputUser.addEventListener('input', () => {
-    if (/\s/.test(inputUser.value)) {
-      inputUser.setCustomValidity('El usuario no puede contener espacios en blanco');
-    } else {
-      inputUser.setCustomValidity('');
-    }
-  });
+  inputUser.pattern= '^[A-Za-z0-9]+$';
 
   const inputEmail = document.createElement('input');
   inputEmail.type = 'email';
-  inputEmail.placeholder = 'correo electronico';
+  inputEmail.placeholder = 'Correo electrónico';
+
 
   const inputPassword = document.createElement('input');
   inputPassword.type = 'password';
   inputPassword.placeholder = 'Contraseña';
-  inputPassword.pattern = '.{6,}';
+  inputPassword.pattern = '^(?!.*\n)(?=(?:.*\d))(?=(?:.*[A-Z]))(?=(?:.*[a-z])).{6,10}$';
   inputPassword.title = 'Debe ser mayor a 6 caracteres y maximo 10';
 
   const inputConfirmPassword = document.createElement('input');
   inputConfirmPassword.type = 'password';
+  inputUser.classList.add('inputRegister'); 
   inputConfirmPassword.placeholder = 'Confirma tu contraseña';
   const buttonCreateAccount = document.createElement('button');
   buttonCreateAccount.textContent = 'Crear cuenta';

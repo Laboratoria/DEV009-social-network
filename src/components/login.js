@@ -1,4 +1,4 @@
-import { signWithGoogle, signIn, redirectGoogle} from '../lib/credentials.js';
+import { signWithGoogle, signIn, redirectGoogle } from '../lib/credentials.js';
 
 function login(navigateTo) {
   const section = document.createElement('section');
@@ -30,9 +30,9 @@ function login(navigateTo) {
   buttonSiginGoogle.textContent = 'Ingresar con Google';
   buttonSiginGoogle.classList.add('buttonGoogle');
   buttonSiginGoogle.addEventListener('click', () => {
-    /*signWithGoogle();*/
+    signWithGoogle();
     /*signIn();*/
-    redirectGoogle();
+    //redirectGoogle();
     /* navigateTo('/timeline'); */
   });
 
