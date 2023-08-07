@@ -42,35 +42,18 @@ function register(navigateTo) {
   });
 
   const inputEmail = document.createElement('input');
-  inputEmail.classList.add('inputRegister'); 
   inputEmail.type = 'email';
-  inputEmail.placeholder = 'Correo electrónico';
+  inputEmail.placeholder = 'correo electronico';
 
   const inputPassword = document.createElement('input');
-  inputPassword.classList.add('inputRegister'); 
   inputPassword.type = 'password';
   inputPassword.placeholder = 'Contraseña';
-  inputPassword.pattern = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$";
-  inputPassword.addEventListener('input', () => {
-      if (inputPassword.validity.patternMismatch) {
-          inputPassword.setCustomValidity('La contraseña debe cumplir con los criterios requeridos.');
-      } else {
-          inputPassword.setCustomValidity('');
-      }
-  });
+  inputPassword.pattern = '.{6,}';
+  inputPassword.title = 'Debe ser mayor a 6 caracteres y maximo 10';
 
   const inputConfirmPassword = document.createElement('input');
-  inputConfirmPassword.classList.add('inputRegister'); 
   inputConfirmPassword.type = 'password';
-  inputConfirmPassword.placeholder = 'Confirmar contraseña';
-  inputConfirmPassword.addEventListener('input', () => {
-    if (inputPassword.value !== inputConfirmPassword.value) {
-      inputConfirmPassword.setCustomValidity('Las contraseñas no coinciden');
-    } else {
-      inputConfirmPassword.setCustomValidity('');
-    }
-  });
-
+  inputConfirmPassword.placeholder = 'Confirma tu contraseña';
   const buttonCreateAccount = document.createElement('button');
   buttonCreateAccount.textContent = 'Crear cuenta';
   buttonCreateAccount.classList.add('createAccount');

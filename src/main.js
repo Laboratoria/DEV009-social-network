@@ -29,9 +29,7 @@ function navigateTo(hash) {
     navigateTo('/error');
   }
 }
-
 window.onpopstate = () => {
-  console.log('pauly paso por aqui');
   navigateTo(window.location.pathname);
 };
 

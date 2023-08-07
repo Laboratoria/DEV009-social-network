@@ -23,11 +23,11 @@ body {
 
 .logo {
     max-width: 30vw;
-    grid-column: 1;
+    grid-column-start: 1;
 }
 
-.loginSection {
-    grid-column: 2;
+.loginSection{
+    grid-column-start: 2;
     max-width: fit-content;
     background-color: var(--color-box);
     border-radius: 9px;
