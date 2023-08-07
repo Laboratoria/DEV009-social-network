@@ -2,7 +2,7 @@ import { registerWithEmail } from '../lib/index.js';
 
 function registro(navigateTo) {
   const section = document.createElement('section'); /*section se usa en registro y en login*/
-  const inputName= document.createElement('input');
+  const inputName = document.createElement('input');
   const inputEmail = document.createElement('input');
   const inputPass = document.createElement('input');
   const buttonRegistro = document.createElement('button');
@@ -30,9 +30,7 @@ function registro(navigateTo) {
       userInfo.password,
       userInfo.name,
       )
-      .then ((user) => {
-        navigateTo('/principal');
-      })
+      
     });
     
     buttonReturn.textContent = 'back to home';
