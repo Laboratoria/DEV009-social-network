@@ -33,7 +33,14 @@ export const home = (navigateTo) => {
   googleButton.textContent = 'Continuar con Google';
   googleButton.classList.add('boton-google');
   googleButton.addEventListener('click', () => {
-    logInWithGoogle();
+    const googleAlert = (valid) => {
+      if (valid === true) {
+        navigateTo('/muro');
+      } else {
+        alert('Error al iniciar sesión con Google');
+      }
+    };
+    logInWithGoogle(googleAlert);
   });
 
   const passwordReset = document.createElement('a');

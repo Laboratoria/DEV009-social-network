@@ -1,6 +1,6 @@
 import { resetPasswordEmail } from '../lib/firebaseAuth.js';
 
-export const resetPassword = () => {
+export const resetPassword = (navigateTo) => {
   const section = document.createElement('section');
   const logo = document.createElement('img');
   logo.src = './recursos/LogoSinLetras.png';
@@ -17,10 +17,11 @@ export const resetPassword = () => {
     const email = emailInput.value;
     const sendemail = (valid) => {
       if (valid === true) {
-        resetPasswordEmail(email);
+        navigateTo('/login');
       }
     };
     console.log(sendemail);
+    resetPasswordEmail(email, sendemail);
   });
 
   section.append(logo, title, emailInput, sendButton);
