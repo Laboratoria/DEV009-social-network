@@ -1,6 +1,9 @@
 import { signWithGoogle, signIn, redirectGoogle} from '../lib/credentials.js';
 
 function login(navigateTo) {
+  const sectionP = document.createElement('section');
+  sectionP.classList.add('loginSectionP');
+
   const section = document.createElement('section');
   section.classList.add('loginSection');
 
@@ -28,11 +31,11 @@ function login(navigateTo) {
 
   const buttonSiginGoogle = document.createElement('button');
   buttonSiginGoogle.textContent = 'Ingresar con Google';
-  buttonSiginGoogle.classList.add('buttonGoogle');
+  buttonSiginGoogle.classList.add('buttonSiginGoogle');
   buttonSiginGoogle.addEventListener('click', () => {
     /*signWithGoogle();*/
-    /*signIn();*/
-    redirectGoogle();
+    signIn();
+    /*redirectGoogle();*/
     /* navigateTo('/timeline'); */
   });
 
@@ -55,7 +58,8 @@ function login(navigateTo) {
     buttonSiginGoogle,
     buttonCreateAccount,
   );
+  sectionP.append(logo, section);
 
-  return (logo, section);
+  return (sectionP);
 }
 export default login;
