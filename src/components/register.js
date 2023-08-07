@@ -10,18 +10,18 @@ function register(navigateTo) {
 
   const inputName = document.createElement('input');
   inputName.classList.add('inputRegister'); 
-  inputName.type= 'text'
+  inputName.type= 'text';
   inputName.placeholder = 'Nombre';
-  inputName.pattern='^[A-Za-z]+(?:\s[A-Za-z]+)*$';
-  inputName.title='Ingresa solo nombre';
-  inputName.required = true
+  inputName.pattern='^[a-zA-ZñÑ ]+$';
+  inputName.title='Ingrese nombre válido';
+  inputName.required = true;
   inputName.autocomplete='off';
 
   const inputLastName = document.createElement('input');
   inputLastName.classList.add('inputRegister'); 
-  inputLastName.type= 'text'
+  inputLastName.type= 'text';
   inputLastName.placeholder = 'Apellido';
-  inputLastName.pattern='^[A-Za-z]+(?:\s[A-Za-z]+)*$';
+  inputLastName.pattern='^[a-zA-ZñÑ ]+$';
   inputLastName.autocomplete='off';
   inputLastName.required = true
 
@@ -33,29 +33,33 @@ function register(navigateTo) {
   inputUser.placeholder = 'Usuario';
   inputUser.pattern= '^[A-Za-z0-9]+$';
   inputUser.autocomplete='off';
-  inputUser.required = true
+  inputUser.required = true;
 
 
   const inputEmail = document.createElement('input');
   inputEmail.type = 'email';
   inputEmail.placeholder = 'Correo electrónico';
   inputEmail.autocomplete='off';
-  inputEmail.required = true
-
+  inputEmail.required = true;
 
   const inputPassword = document.createElement('input');
   inputPassword.type = 'password';
   inputPassword.placeholder = 'Contraseña';
-  inputPassword.pattern = '^(?!.*\n)(?=(?:.*\d))(?=(?:.*[A-Z]))(?=(?:.*[a-z])).{6,10}$';
+  inputPassword.pattern = '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$';
   inputPassword.title = 'Debe ser mayor a 6 caracteres y máximo 10';
   inputPassword.autocomplete='off';
-  inputPassword.required = true
+  inputPassword.required = true;
+
+  const buttonShowPassword= document.createElement('button');
+  buttonShowPassword.classList.add='showPassword';
+  
+
 
   const inputConfirmPassword = document.createElement('input');
   inputConfirmPassword.type = 'password';
   inputConfirmPassword.classList.add('inputRegister'); 
   inputConfirmPassword.placeholder = 'Confirma tu contraseña';
-  inputConfirmPassword.required = true
+  inputConfirmPassword.required = true;
 
   const buttonCreateAccount = document.createElement('button');
   buttonCreateAccount.textContent = 'Crear cuenta';
@@ -77,7 +81,7 @@ function register(navigateTo) {
     inputEmail,
     inputPassword,
     inputConfirmPassword,
-    buttonCreateAccount
+    buttonCreateAccount,
   );
 
   return section;
