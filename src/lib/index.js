@@ -3,12 +3,11 @@
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { app } from './initializeFirebase.js';
 
-//const auth = getAuth(app);
-export const saveUser = (user) => addDoc(collection(getFirestore(), 'Users'), user);
+const auth = getAuth(app);
+
 
 export const registerWithEmail = (email, password, displayName) => {
-  const auth = getAuth(app);
-  return createUserWithEmailAndPassword(auth, email, password)
+  createUserWithEmailAndPassword(auth, email, password)
     .then ((userCredential) =>  updateProfile(userCredential.user, { displayName })
       .then (() => userCredential))
     .then ((userCredential) => {
