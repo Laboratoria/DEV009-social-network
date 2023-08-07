@@ -51,47 +51,45 @@ export const registerUser = (email, password, callback) => {
     });
 };
 
+// export const logInWithGoogle = (callback) => {
+//   signInWithRedirect(auth, new GoogleAuthProvider())
+//     .then(() => {
+//       getRedirectResult(auth)
+//         .then((result) => {
+//           // This gives you a Google Access Token. You can use it to access Google APIs.
+//           const credential = GoogleAuthProvider.credentialFromResult(result);
+//           const token = credential.accessToken;
 
-export const logInWithGoogle = (callback) => {
-  signInWithRedirect(auth, new GoogleAuthProvider())
-    .then(() => {
-      getRedirectResult(auth)
-        .then((result) => {
-          // This gives you a Google Access Token. You can use it to access Google APIs.
-          const credential = GoogleAuthProvider.credentialFromResult(result);
-          const token = credential.accessToken;
+//           // The signed-in user info.
+//           const user = result.user;
+//           // IdP data available using getAdditionalUserInfo(result)
+//           // ...
 
-          // The signed-in user info.
-          const user = result.user;
-          // IdP data available using getAdditionalUserInfo(result)
-          // ...
+//           // If successful, invoke the callback with user information
+//           callback(true, user);
+//         })
+//         .catch((error) => {
+//           // Handle Errors here.
+//           const errorCode = error.code;
+//           const errorMessage = error.message;
+//           // The email of the user's account used.
+//           // const email = error.customData?.email;
+//           // The AuthCredential type that was used.
+//           const credential = GoogleAuthProvider.credentialFromError(error);
+//           // ...
 
-          // If successful, invoke the callback with user information
-          callback(true, user);
-        })
-        .catch((error) => {
-          // Handle Errors here.
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          // The email of the user's account used.
-          const email = error.customData?.email;
-          // The AuthCredential type that was used.
-          const credential = GoogleAuthProvider.credentialFromError(error);
-          // ...
+//           // If there was an error, invoke the callback with the error information
+//           callback(false, null, error);
+//         });
+//     })
+//     .catch((error) => {
+//       // Handle Errors here if the signInWithRedirect fails.
+//       // ...
 
-          // If there was an error, invoke the callback with the error information
-          callback(false, null, error);
-        });
-    })
-    .catch((error) => {
-      // Handle Errors here if the signInWithRedirect fails.
-      // ...
-
-      // If there was an error, invoke the callback with the error information
-      callback(false, null, error);
-    });
-};
-
+//       // If there was an error, invoke the callback with the error information
+//       callback(false, null, error);
+//     });
+// };
 
 // export const redirectResultGoogle = () => {
 //   getRedirectResult(auth)
@@ -116,14 +114,51 @@ export const logInWithGoogle = (callback) => {
 //     });
 // };
 
-// export const logInWithGoogle = (callback) => {
-//   signInWithRedirect(auth, new GoogleAuthProvider())
-//     .then(() => {
-//       callback(true);
-//     })
+export const logInWithGoogle = (callback) => {
+  signInWithRedirect(auth, new GoogleAuthProvider());
+  getRedirectResult(auth)
+    .then((result) => {
+    // This gives you a Google Access Token. You can use it to access Google APIs.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
 
-//     .catch(() => {
-//       callback(false);
+      // The signed-in user info.
+      const user = result.user;
+      // IdP data available using getAdditionalUserInfo(result)
+      // ...
+      callback(true);
+    }).catch((error) => {
+    // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      callback(false);
+    });
+};
+
+// export const redirectResultGoogle = () => {
+//   getRedirectResult(auth)
+//     .then((result) => {
+//     // This gives you a Google Access Token. You can use it to access Google APIs.
+//       const credential = GoogleAuthProvider.credentialFromResult(result);
+//       const token = credential.accessToken;
+
+//       // The signed-in user info.
+//       const user = result.user;
+//     // IdP data available using getAdditionalUserInfo(result)
+//     // ...
+//     }).catch((error) => {
+//     // Handle Errors here.
+//       const errorCode = error.code;
+//       const errorMessage = error.message;
+//       // The email of the user's account used.
+//       const email = error.customData.email;
+//       // The AuthCredential type that was used.
+//       const credential = GoogleAuthProvider.credentialFromError(error);
+//     // ...
 //     });
 // };
 
@@ -164,15 +199,15 @@ export const logOut = (callback) => {
   });
 };
 
-export const resetPasswordEmail = (callback) => {
+export const resetPasswordEmail = (email, callback) => {
   sendPasswordResetEmail(auth, email)
-  .then(() => {
-    callback(true);
-  })
-  .catch((error) => {
-    callback(false);
-    const errorCode = error.code;
-    const errorMessage = error.message;
+    .then(() => {
+      callback(true);
+    })
+    .catch((error) => {
+      callback(false);
+      const errorCode = error.code;
+      const errorMessage = error.message;
     // ..
-  });
+    });
 };
