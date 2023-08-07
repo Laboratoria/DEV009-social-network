@@ -1,3 +1,4 @@
+import { registerUser } from "../lib/index.js";
 function signup(navigateTo){
 
 const section = document.createElement('section');
@@ -6,6 +7,7 @@ const title = document.createElement('h2');
 title.textContent = "Registrate";
 
 //const name = document.createElement('input');
+const formRegister = document.createElement('form');
 const email = document.createElement('input');
 const password = document.createElement('input');
 //const validatePassword = document.createElement('input');
@@ -29,13 +31,19 @@ linkGmail.src = "./icons/gmail.svg";
 linkGmail.width = 24;
 linkGmail.height = 24;
 
-btnSignup.addEventListener('click',()=>{
+formRegister.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    const emailUser = email.value;
+    const passUser= password.value;
+    registerUser(emailUser, passUser);
     navigateTo("/wall");
 })
 toLogin.addEventListener('click', ()=>{
     navigateTo("/");
 } )
-section.append(logo, title, email, password, btnSignup, toLogin, or, signupWithGmail, linkGmail);
+
+section.append(logo, title, formRegister, toLogin, or, signupWithGmail, linkGmail);
+formRegister.append(email, password, btnSignup);
 return section;
 }
 

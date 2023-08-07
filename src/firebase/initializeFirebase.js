@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider } from 'firebase/auth';
 import { firebaseConfig } from './credentialFirebase';
 
 
@@ -11,9 +11,11 @@ import { firebaseConfig } from './credentialFirebase';
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const provider = new GoogleAuthProvider(auth);
 
 export {
     auth,
     app,
     createUserWithEmailAndPassword,
+    provider,
 }
