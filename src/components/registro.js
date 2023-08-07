@@ -1,6 +1,6 @@
 import { registerWithEmail } from '../lib/index.js';
 
-function registro(_navigateTo) {
+function registro(navigateTo) {
   const section = document.createElement('section'); /*section se usa en registro y en login*/
   const inputName= document.createElement('input');
   const inputEmail = document.createElement('input');
@@ -31,7 +31,7 @@ function registro(_navigateTo) {
       userInfo.name,
       )
       .then ((user) => {
-        window.location.href = '/principal';
+        navigateTo('/principal');
       })
     });
     
