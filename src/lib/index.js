@@ -7,7 +7,7 @@ import { app } from './initializeFirebase.js';
 export const saveUser = (user) => addDoc(collection(getFirestore(), 'Users'), user);
 
 export const registerWithEmail = (email, password, displayName) => {
-  const auth = getAuth();
+  const auth = getAuth(app);
   return createUserWithEmailAndPassword(auth, email, password)
     .then ((userCredential) =>  updateProfile(userCredential.user, { displayName })
       .then (() => userCredential))

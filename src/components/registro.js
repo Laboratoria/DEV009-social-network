@@ -1,18 +1,28 @@
 import { registerWithEmail } from '../lib/index.js';
 
-function registro(_navigateTo) {
-  const section = document.createElement('section'); /*section se usa en registro y en login*/
-  const inputName= document.createElement('input');
+function registro(navigateTo) {
+  const containerRegister= document.createElement('div');
+   containerRegister.className='containerRegister';
+ /*const sectionLogo=document.createElement('img');
+  sectionLogo.src = logo;
+  sectionLogo.className='bonbonLogo';*/
+  const formRegister = document.createElement('form');
+  formRegister.className = 'formRegister';
+  const inputName = document.createElement('input');
+  inputName.className='inputName';
   const inputEmail = document.createElement('input');
+  inputEmail.className='inputEmail';
   const inputPass = document.createElement('input');
+  inputPass.className='inputPass'
   const buttonRegistro = document.createElement('button');
+  buttonRegistro.className='buttonRegistro'
   const buttonReturn = document.createElement('button');
 
   inputName.placeholder = 'Nombre de usuario';
   inputEmail.placeholder = 'Correo';
   inputPass.placeholder = 'Contraseña';
   
-  buttonRegistro.textContent = 'registro';
+  buttonRegistro.textContent = 'Registrar';
   
   buttonRegistro.addEventListener('click', () => {
     const emailValue = inputEmail.value;
@@ -30,7 +40,7 @@ function registro(_navigateTo) {
       userInfo.password,
       userInfo.name,
       )
-      .then ((user) => {
+      .then ((userInfo) => {
         window.location.href = '/principal';
       })
     });
@@ -39,8 +49,14 @@ function registro(_navigateTo) {
     buttonReturn.addEventListener('click', () => {
       navigateTo('/');
     });
-    section.append(inputName, inputEmail, inputPass, buttonRegistro, buttonReturn);
-    return section;
+    formRegister.appendChild(containerRegister);
+    /*containerRegister.appendChild(sectionLogo);*/
+    containerRegister.appendChild(inputName);
+    containerRegister.appendChild(inputEmail);
+    containerRegister.appendChild(inputPass);
+    containerRegister.appendChild(buttonRegistro);
+    containerRegister.appendChild(buttonReturn);
+    return containerRegister;
   }
   
   //  navigateTo('/principal');
