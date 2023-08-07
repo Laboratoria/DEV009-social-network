@@ -11,7 +11,6 @@ function register(navigateTo) {
   const avatar = document.createElement('img');
   const errorMessage = document.createElement('p');
   const successMessage = document.createElement('p');
-
   logo.src = './imagenes/image.png';
   avatar.src = './imagenes/avatar.png';
   avatar.classList.add('avatar');
@@ -28,7 +27,7 @@ function register(navigateTo) {
     const userPassword = password.value;
     if (userEmail && userPassword) {
       try {
-        const user = await createUser(userEmail, userPassword);
+        await createUser(userEmail, userPassword);
         successMessage.textContent = 'Usuario registrado con éxito';
         errorMessage.textContent = '';
         navigateTo('/feed');
@@ -41,21 +40,20 @@ function register(navigateTo) {
     }
   });
 
-  /* */
-
   password.addEventListener('input', () => {
     password.type = 'password';
   });
-
   buttonGoogle.addEventListener('click', async () => {
     try {
-      const user = await signInWithGoogle();
+      await signInWithGoogle();
       navigateTo('/feed');
     } catch (error) {
       errorMessage.textContent = error.message;
     }
   });
-  section.append(logo, avatar, name, email, password, buttonRegister, buttonGoogle, errorMessage, successMessage/* logoutButtom */);
+  section.append(logo, avatar, name, email, password, buttonRegister);
+  section.append(buttonGoogle, errorMessage, successMessage);
+
   return section;
 }
 export default register;

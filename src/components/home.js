@@ -24,16 +24,10 @@ function home(navigateTo) {
   h3.textContent = '¡Unete a CocinArte hoy mismo!';
   errorMessage.style.color = 'red';
 
-  passwordLogin.addEventListener('input', () => {
-    passwordLogin.type = 'password';
-  });
-
-  // agregar logo google a botón
   const googleLogo = document.createElement('img');
   googleLogo.src = './imagenes/logo_google.avif';
   buttonGoogle.appendChild(googleLogo);
 
-  // agregar un ID para darle estilo en CSS
   buttonGoogle.classList.add('google-button');
 
   registerUser.addEventListener('click', () => {
@@ -42,7 +36,7 @@ function home(navigateTo) {
 
   buttonGoogle.addEventListener('click', async () => {
     try {
-      const user = await signInWithGoogle();
+      await signInWithGoogle();
       navigateTo('/feed');
     } catch (error) {
       errorMessage.textContent = error.message;
@@ -55,19 +49,17 @@ function home(navigateTo) {
 
     if (email && password) {
       try {
-        const user = await signInEP(email, password);
+        await signInEP(email, password);
         navigateTo('/feed');
       } catch (error) {
-        errorMessage.textContent = `${error.message} ` + 'Por favor, ingresa un correo y una contraseña válida.';
+        errorMessage.textContent = error.message;
       }
     } else {
       errorMessage.textContent = 'Por favor, ingresa un correo y una contraseña válida.';
     }
   });
-
-  // eslint-disable-next-line max-len
-  section.append(logo, title, nameLogin, passwordLogin, emailLogin, login, errorMessage, registerUser, buttonGoogle, h3);
-
+  section.append(logo, title, nameLogin, passwordLogin, emailLogin, login);
+  section.append(errorMessage, registerUser, buttonGoogle, h3);
   return section;
 }
 export default home;
