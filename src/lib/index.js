@@ -1,18 +1,20 @@
 // aqui exportaras las funciones que necesites
 
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { app } from './initializeFirebase.js';
+import { auth,createUserWithEmailAndPassword,updateProfile,db,collection,addDoc } from './initializeFirebase.js';
 
-const auth = getAuth(app);
 
 
 export const registerWithEmail = (email, password, displayName) => {
   createUserWithEmailAndPassword(auth, email, password)
-    .then ((userCredential) =>  updateProfile(userCredential.user, { displayName })
-      .then (() => userCredential))
     .then ((userCredential) => {
-      const uid = userCredential.user.uid;
-      return saveUser({ userId:uid, email, name:displayName });
+    const uId = userCredential.user.uid;
+    saveUser({ userId:uId, Email:email, name:displayName })
+    updateProfile(userCredential.user, { displayName })
+      .then (() => userCredential)
+      
+    })
+    .catch ((error) => {
+      console.log(error.message);
     });
 };
  
@@ -23,3 +25,5 @@ export const loginUsuario = (email, pass) => {
     throw error.message;
   }
 };
+
+export const saveUser = (user) => addDoc(collection(db, 'Users'), user);
