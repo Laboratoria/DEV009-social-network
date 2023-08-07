@@ -1,19 +1,20 @@
 // aqui exportaras las funciones que necesites
 
-import { auth,createUserWithEmailAndPassword,updateProfile,db,collection,addDoc } from './initializeFirebase.js';
-
-
+import {
+  auth, createUserWithEmailAndPassword, updateProfile, db, collection, addDoc,
+} from './initializeFirebase.js';
 
 export const registerWithEmail = (email, password, displayName) => {
   createUserWithEmailAndPassword(auth, email, password)
-  .then ((userCredential) => {
-  const uId = userCredential.user.uid;
-  saveUser({ userId:uId, Email:email, name:displayName })
-  updateProfile(userCredential.user, { displayName })
-      .then (() => userCredential)
-
+    .then((userCredential) => {
+      const uId = userCredential.user.uid;
+      // eslint-disable-next-line no-use-before-define
+      saveUser({ userId: uId, Email: email, name: displayName });
+      updateProfile(userCredential.user, { displayName })
+        .then(() => userCredential);
     })
-    .catch ((error) => {
+    .catch((error) => {
+      // eslint-disable-next-line no-console
       console.log(error.message);
     });
 };
