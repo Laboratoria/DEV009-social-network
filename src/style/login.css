@@ -1,28 +1,27 @@
-:root{
-    --theme-color:white;
-    --primary-color:#8DADFA ;
+:root {
+    --theme-color: white;
+    --primary-color: #8DADFA;
     --secundary-color: #CAF5E8;
-    --color-text:#0a3748;
-    --color-box:#F6F6F6;
-    --shadow-nav:#37C2EA ;
+    --color-text: #0a3748;
+    --color-box: #F6F6F6;
+    --shadow-nav: #37C2EA;
+    --color-error:rgb(228, 65, 214);
 }
 
 body {
-margin:0 0 0 0;
-padding:0 0 0 0;
-font-size: large;
-font-family: 'Montserrat', sans-serif;
-text-decoration-color: var(--theme-color);
-background-image: linear-gradient(to bottom, var(--primary-color) 20%, var(--secundary-color) 100%);
-height: 100%;
-background-repeat: no-repeat;
-background-size: cover;
-background-attachment: fixed;
-display: grid;
-grid-auto-columns: auto, auto;
-
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    font-size: large;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration-color: var(--theme-color);
+    background-image: linear-gradient(to bottom, var(--primary-color) 20%, var(--secundary-color) 100%);
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
-.logo{
+
+.logo {
     max-width: 30vw;
     grid-column-start: 1;
 }
@@ -32,39 +31,70 @@ grid-auto-columns: auto, auto;
     max-width: fit-content;
     background-color: var(--color-box);
     border-radius: 9px;
-    margin:10%;
-    padding:5%;
+    margin: 10%;
+    padding: 5%;
     display: grid;
-    grid-auto-rows:auto;
+    grid-auto-rows: auto;
     grid-gap: 0.5rem;
-    grid-template-columns: minmax(25vw,25vw);
-    
+    grid-template-columns: minmax(25vw, 25vw);
+
 }
 
 
-.titleLogin{
+.titleLogin {
     text-align: center;
     grid-row: 1/2;
-    
+
 
 }
-.inputUser{
-    grid-row: 4;
-    
+.inputRegister{
+    color: var(--color-text)
 }
-.inputUser{ 
-    grid-row: 5;
-    
-}
-.startSession{
-    grid-row: 6;
-    max-width: fit-content;
-    
-   
 
-}
-.createAccount{
-    grid-row: 9;
-    max-width: fit-content;
-    
-}
+.inputRegister :invalid {
+        animation: justshake 0.3s forwards;
+        color:var(--color-error);
+    }
+
+    @keyframes justshake {
+        25% {
+            transform: translateX(5px);
+        }
+
+        50% {
+            transform: translateX(-5px);
+        }
+
+        75% {
+            transform: translateX(5px);
+        }
+
+        100% {
+            transform: translateX-(5px);
+        }
+
+    }
+
+    .inputUser {
+        grid-row: 4;
+
+    }
+
+    .inputUser {
+        grid-row: 5;
+
+    }
+
+    .startSession {
+        grid-row: 6;
+        max-width: fit-content;
+
+
+
+    }
+
+    .createAccount {
+        grid-row: 9;
+        max-width: fit-content;
+
+    }
