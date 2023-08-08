@@ -21,6 +21,7 @@ background-repeat: no-repeat;
 background-size: cover;
 background-attachment: fixed;
 }
+/*div */
 .loginSectionP{
     display: grid;
     grid-template-columns: auto auto;
@@ -105,33 +106,3 @@ button{
 
 
 }
-.inputRegister{
-    color: var(--color-text)
-}
-
-
-.inputRegister:invalid {
-        animation: justshake 0.3s forwards;
-        color:var(--color-error);
-    }
-
-    @keyframes justshake {
-        25% {
-            transform: translateX(5px);
-        }
-
-        50% {
-            transform: translateX(-5px);
-        }
-
-        75% {
-            transform: translateX(5px);
-        }
-
-        100% {
-            transform: translateX-(5px);
-        }
-
-    }
-
-  

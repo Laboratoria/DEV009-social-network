@@ -23,7 +23,7 @@ function register(navigateTo) {
   inputLastName.placeholder = 'Apellido';
   inputLastName.pattern='^[a-zA-ZñÑ ]+$';
   inputLastName.autocomplete='off';
-  inputLastName.required = true
+  inputLastName.required = true;
 
 
 
@@ -37,25 +37,35 @@ function register(navigateTo) {
 
 
   const inputEmail = document.createElement('input');
+  inputEmail.classList.add('inputRegister');
   inputEmail.type = 'email';
   inputEmail.placeholder = 'Correo electrónico';
-  inputEmail.autocomplete='off';
   inputEmail.required = true;
 
   const inputPassword = document.createElement('input');
+  inputPassword.classList.add('inputRegister');
   inputPassword.type = 'password';
   inputPassword.placeholder = 'Contraseña';
-  inputPassword.pattern = '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$';
+  inputPassword.pattern = '^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d_.+-]{6,10}$';
   inputPassword.title = 'Debe ser mayor a 6 caracteres y máximo 10';
   inputPassword.autocomplete='off';
   inputPassword.required = true;
 
-  const buttonShowPassword= document.createElement('button');
-  buttonShowPassword.classList.add='showPassword';
+  const buttonShowPassword = document.createElement('button');
+  buttonShowPassword.textContent = 'Mostrar Contraseña';
+  buttonShowPassword.classList.add('showPassword');
+  buttonShowPassword.addEventListener('click', () => {
+    if (inputPassword.type === 'password') {
+      inputPassword.type = 'text';
+    } else {
+      inputPassword.type = 'password';
+    }
+  });
   
 
 
   const inputConfirmPassword = document.createElement('input');
+  inputConfirmPassword.classList.add('inputRegister');
   inputConfirmPassword.type = 'password';
   inputConfirmPassword.classList.add('inputRegister'); 
   inputConfirmPassword.placeholder = 'Confirma tu contraseña';
@@ -65,12 +75,15 @@ function register(navigateTo) {
   buttonCreateAccount.textContent = 'Crear cuenta';
   buttonCreateAccount.classList.add('createAccount');
   buttonCreateAccount.addEventListener('click', () => {
-   /*  if (inputPassword.value === inputConfirmPassword.value && inputEmail.checkValidity()) {
+    if (inputPassword.value === inputConfirmPassword.value && inputEmail.checkValidity()) {
       registerUser(inputUser.value, inputPassword.value);
+      alert('Tu registro se ha completado con éxito. \n Gracias por unirte a Guide Ma+Pa!');
       navigateTo('/timeline');
-    } else {
-      alert('Por favor corrige los campos marcados antes de continuar.');
-    } */
+    } else if(!inputEmail.checkValidity()){
+      alert('El correo electrónico no es válido. Por favor, verifica que esté en el formato correcto');
+    } else if(inputPassword.value != inputConfirmPassword.value){
+      alert('Las contraseñas no coinciden. Asegúrate de ingresar la misma contraseña en ambos campos e intenta nuevamente');
+    }
   });
 
   section.append(
@@ -80,6 +93,7 @@ function register(navigateTo) {
     inputUser,
     inputEmail,
     inputPassword,
+    buttonShowPassword,
     inputConfirmPassword,
     buttonCreateAccount,
   );
@@ -88,5 +102,8 @@ function register(navigateTo) {
 }
 
 export default register;
+
+
+
 
 
