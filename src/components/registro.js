@@ -7,12 +7,16 @@ function registro(navigateTo) {
   const inputPass = document.createElement('input');
   const buttonRegistro = document.createElement('button');
   const buttonReturn = document.createElement('button');
+  const errorRegister = document.createElement('h3'); 
 
   inputName.placeholder = 'Nombre de usuario';
+  inputName.className = 'displayName'
   inputEmail.placeholder = 'Correo';
   inputPass.placeholder = 'Contraseña';
-  
   buttonRegistro.textContent = 'registro';
+  errorRegister.textContent = 'errorMessage';
+  errorRegister.style.display = 'none';
+  errorRegister.id = 'errorRegister'
   
   buttonRegistro.addEventListener('click', () => {
     const emailValue = inputEmail.value;
@@ -25,19 +29,17 @@ function registro(navigateTo) {
       password: passwordValue,
     };
 
-    registerWithEmail(
-      userInfo.email, 
+    registerWithEmail(userInfo.email,
       userInfo.password,
       userInfo.name,
       )
-      
-    });
-    
+    }) 
+        
     buttonReturn.textContent = 'back to home';
     buttonReturn.addEventListener('click', () => {
       navigateTo('/');
     });
-    section.append(inputName, inputEmail, inputPass, buttonRegistro, buttonReturn);
+    section.append(errorRegister, inputName, inputEmail, inputPass, buttonRegistro, buttonReturn);
     return section;
   }
   
