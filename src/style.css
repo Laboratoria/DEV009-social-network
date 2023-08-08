@@ -94,7 +94,7 @@ select {
     box-shadow: 2px 3px 2px rgba(128, 128, 128, 0.667) inset;
     background-color: rgb(255, 240, 242);
   }
-/*Muro*/
+/********************Muro***************************************/
 .logo-muro{
     padding: 1rem;
     width: 7rem;
@@ -123,6 +123,7 @@ textarea {
     background-color: rgb(255, 255, 255);
     transition: 50ms;
 }
+
 textarea:focus,
 textarea:active {
     transition: 50ms;
@@ -136,6 +137,27 @@ textarea:active {
     align-content: center;
     margin: 0rem 0rem 0rem 12rem;
 }
+
+/***********************Posts*******/
+
+.post {
+    background: #f2edee7b;
+    display: grid;
+    padding: .2rem 1rem .5rem 1.4rem;
+    border-radius: 6px;
+    margin-bottom: 2rem;
+}
+p {
+    font-size: 1.2rem;
+    color: #713966;
+    text-align: left;
+}
+
+h6 {
+    color: grey;
+    text-align: left;
+}
+
 .logOut-button{
     display: block;
     text-align: center;
