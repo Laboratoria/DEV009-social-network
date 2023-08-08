@@ -74,7 +74,7 @@ export const muro = (navigateTo) => {
         const contentElement = document.createElement('p');
         contentElement.textContent = post.content;
 
-        const userElement = document.createElement('p');
+        const userElement = document.createElement('h6');
         userElement.textContent = `Publicado por: ${post.userId}`;
 
         postElement.appendChild(contentElement);
