@@ -8,8 +8,8 @@ function register(navigateTo) {
       <form class="login-view">
         <header class="logo">
           <img class="logo" src="./img/logo.png">
-          <h2 class="title">Create account</h2>
         </header>
+        <h2 class="title">Create account</h2>
         <input class="input input-user-name" type="text" minLength="2" placeholder="Username">
         <input class="input input-name" type="text" minLength="2" placeholder="Name">
         <input class="input input-email" type="email" placeholder="Email">
@@ -80,6 +80,7 @@ function register(navigateTo) {
 
   buttonGoogle.addEventListener('click', () => {
     signInWithRedirect(auth, provider);
+    alert('You are logged with Google');
   });
 
   closeModal.addEventListener('click', () => {

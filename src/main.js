@@ -5,6 +5,7 @@ import error from './components/error.js';
 import register from './components/register.js';
 import welcome from './components/welcome.js';
 import welcomeGoogle from './components/welcomeUserGoogle.js';
+import profile from './components/profile.js';
 
 const root = document.getElementById('root');
 
@@ -14,6 +15,7 @@ const routes = [
   { path: '/register', component: register },
   { path: '/welcome', component: welcome },
   { path: '/welcomeGoogle', component: welcomeGoogle },
+  { path: '/profile', component: profile },
   { path: '/error', component: error },
 ];
 

@@ -21,9 +21,10 @@ describe('Section', () => {
     console.log(section);
   });
 });
-// describe('register', () => {
-//   beforeEach(() => {
-//     const section = register();
-//     document.body.replaceChildren(section);
-//   });
-// });
+
+describe('register', () => {
+  beforeEach(() => {
+    const section = register();
+    document.body.replaceChildren(section);
+  });
+});

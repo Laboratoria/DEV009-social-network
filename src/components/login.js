@@ -48,7 +48,6 @@ function login(navigateTo) {
   const closeModal = section.querySelector('.close');
 
   togglePassword.addEventListener('click', () => {
-    // toggle the type attribute
     const type = inputPass.getAttribute('type') === 'password' ? 'text' : 'password';
     inputPass.setAttribute('type', type);
 
@@ -70,6 +69,7 @@ function login(navigateTo) {
     const password = inputPass.value;
     try {
       await loginUser(email, password);
+      navigateTo('/profile');
     } catch (error) {
       messageModal.textContent = 'Wrong password ';
       containerModal.style.display = 'block';
