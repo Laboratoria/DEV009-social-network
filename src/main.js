@@ -4,7 +4,7 @@ import signup from "./components/signup.js";
 import signupGoogle from "./components/signupGoogle.js";
 import wall from "./components/wall.js";
 import error from "./components/error.js";
-import { registerUser } from "./lib/index.js";
+//import { registerUser } from "./lib/index.js";
 
 const root = document.querySelector('#root');
 const routest = [

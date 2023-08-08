@@ -1,12 +1,13 @@
 // aqui exportaras las funciones que necesites
 
-import { createUserWithEmailAndPassword, auth } from '../firebase/initializeFirebase.js';
+import { createUserWithEmailAndPassword, auth, getRedirectResult } from '../firebase/initializeFirebase.js';
 
-export const registerUser = (email, pass) => {
-  
+ // ----                   signin with new email                    --- //
+export const registerUser = (email, pass, callback) => {
   createUserWithEmailAndPassword(auth, email, pass)
-    .then(()=>{
-      navigateTo("/wall");
+    .then((userCredential)=>{
+      const user = userCredential.user;
+      callback(true);
     })
     .catch ((error) => {
     console.log (error.code);
@@ -15,14 +16,30 @@ export const registerUser = (email, pass) => {
     }else if (error.code === "auth/invalid-email"){
       alert("Este email es inválido");
     } 
+    callback(false);
   })
 };
 
-// function success (email, password){
-//   const validPattern = '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}';
-//   if (validPattern.test(passUser)){
-//     navigateTo("/wall");
-//   } else {
-//     navigateTo("/signup");
-//   }
-// }
+// ----                   signin with google                    --- //
+export const registerWithGoogle = (email, pass) =>{
+getRedirectResult(auth, email, pass)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access Google APIs.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+
+    // The signed-in user info.
+    const user = result.user;
+    // IdP data available using getAdditionalUserInfo(result)
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });
+};

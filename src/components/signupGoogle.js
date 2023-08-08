@@ -1,3 +1,4 @@
+import { registerWithGoogle } from "../lib/index.js";
 function signupGoogle(navigateTo) {
 
     const section = document.createElement('section');
@@ -6,6 +7,8 @@ function signupGoogle(navigateTo) {
     logo.src = "./img/logo.png";
     section.appendChild(logo);
     return section;
+
+    
 }
 
 export default signupGoogle;

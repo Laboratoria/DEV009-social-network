@@ -6,3 +6,5 @@ describe('myFunction', () => {
     expect(typeof myFunction).toBe('function');
   });
 });
+
+//toHaveBeenCalled()
