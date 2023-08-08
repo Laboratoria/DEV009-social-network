@@ -27,6 +27,7 @@ button {
   border: 2px solid #EFBA73;
   background: #EFBA73 ;
   text-align: center;
+  cursor: pointer;
 }
 
 .logo {
