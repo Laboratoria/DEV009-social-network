@@ -17,3 +17,33 @@
 //     console.error('Error al registrar al usuario:', error.message);
 //   }
 // });
+import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { db } from './firebaseAuth';
+
+export const addPost = async (userId, content) => {
+  try {
+    const docRef = await addDoc(collection(db, 'posts'), {
+      userId,
+      content,
+      timestamp: new Date(),
+    });
+    return docRef.id; // Devolver el ID del nuevo documento
+  } catch (error) {
+    console.error('Error adding post: ', error);
+    throw error;
+  }
+};
+
+export const getPosts = async () => {
+  try {
+    const querySnapshot = await getDocs(collection(db, 'posts'));
+    const posts = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    return posts;
+  } catch (error) {
+    console.error('Error getting posts: ', error);
+    throw error;
+  }
+};
