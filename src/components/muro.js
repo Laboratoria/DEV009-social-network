@@ -72,6 +72,7 @@ export const muro = (navigateTo) => {
         postElement.classList.add('post');
 
         const contentElement = document.createElement('p');
+        contentElement.classList.add('user-post');
         contentElement.textContent = post.content;
 
         const userElement = document.createElement('h6');

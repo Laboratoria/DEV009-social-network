@@ -147,7 +147,7 @@ textarea:active {
     border-radius: 6px;
     margin-bottom: 2rem;
 }
-p {
+.user-post{
     font-size: 1.2rem;
     color: #713966;
     text-align: left;
