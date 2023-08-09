@@ -31,7 +31,7 @@ function feed(navigateTo) {
   add.textContent = 'Agregar';
   logoutButtom.textContent = 'Cerrar Sesión';
   logoutMessage.style.color = 'green';
-  logoutMessageError.style.color = 'red';
+  logoutMessageError.style.color = 'grey';
   logoutButtom.addEventListener('click', () => {
     logoutUser();
     navigateTo('/');
@@ -47,6 +47,7 @@ function feed(navigateTo) {
   const stepsRecipe = nameSteps.value;
   console.log(data)
   if (!stepsRecipe || !data){
+    logoutMessageError.textContent = 'Por favor, completa ambos campos.';
     console.log('Por favor, completa ambos campos.');
     return;
   }
@@ -56,7 +57,7 @@ function feed(navigateTo) {
 });
 
   section.append(logo, formRecipe, write, nav, logoutButtom,);
-  formRecipe.append(nameSteps, recipe, add)
+  formRecipe.append(nameSteps, recipe, add, logoutMessageError)
   nav.append(select);
   select.append(option1, option2);
   return section;
