@@ -13,26 +13,11 @@ export const createUser = async (userEmail, userPassword) => {
       .then(() => {
       // Email verification sent!
       // ...
-<<<<<<< HEAD
-        console.log('email verificate');
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("24 error", errorCode, errorMessage)
-        // ...
-      });
-
-
-=======
       })
       .catch(() => {
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        // ...
+        console.log('not verification mail send');
       });
 
->>>>>>> f80d6024a125044fba9268e5e472a768ac49592e
     const user = userCredential.user;
     return user;
   } catch (error) {
@@ -55,21 +40,13 @@ export function signInWithGoogle() {
       return user;
     }).catch((error) => {
     // Handle Errors here.
-<<<<<<< HEAD
-      const errorCode = error.code;
-      const errorMessage = error.message;
-=======
       // const errorCode = error.code;
       // const errorMessage = error.message;
->>>>>>> f80d6024a125044fba9268e5e472a768ac49592e
       // The email of the user's account used.
       // const email = error.customData.email;
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
-<<<<<<< HEAD
-=======
       console.log(credential);
->>>>>>> f80d6024a125044fba9268e5e472a768ac49592e
     });
 }
 
@@ -84,19 +61,6 @@ export const signInEP = async (userEmail, userPassword) => {
     throw new Error(`Error al iniciar sesión: ${errorCode} - ${errorMessage}`);
   }
 };
-<<<<<<< HEAD
-// nAuthStateChanged // testigo/oobservador de estado de autenticación del usuario, permite obtener datos del usuario
-  // signInWithEmailAndPassword // Acceso de usuarios existentes
-// signOut //  Para salir de la sesión de un usuario, llama a signout
-
-export function logoutUser() {
-  signOut(auth).then(() => {
-    // Sign-out successful.
-  }).catch((error) => {
-    // An error happened.
-  })
-};
-=======
 
 export function logoutUser() {
   signOut(auth).then(() => {
@@ -105,4 +69,3 @@ export function logoutUser() {
   // An error happened.
   });
 }
->>>>>>> f80d6024a125044fba9268e5e472a768ac49592e
