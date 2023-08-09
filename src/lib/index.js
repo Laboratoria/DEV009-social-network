@@ -11,7 +11,8 @@ export const createUser = async (userEmail, userPassword) => {
     const userCredential = await createUserWithEmailAndPassword(auth, userEmail, userPassword);
     sendEmailVerification(auth.currentUser)
       .then(() => {
-        console.log('email send');
+      // Email verification sent!
+      // ...
       })
       .catch(() => {
         console.log('not verification mail send');
