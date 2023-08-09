@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, getRedirectResult } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, getRedirectResult, signInWithRedirect } from 'firebase/auth';
 import { firebaseConfig } from './credentialFirebase';
 
 
@@ -12,14 +12,15 @@ import { firebaseConfig } from './credentialFirebase';
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const provider = new GoogleAuthProvider(auth);
-const redirectGoogle = signInWithRedirect(auth, provider);
+const provider = new GoogleAuthProvider();
+//const redirectGoogle = signInWithRedirect(auth, provider); ////esta línea de código se ejecutará tan pronto como se cargue el archivo en el navegador, lo que causará la redirección inmediata al acceder a la página.
 
 export {
     auth,
     app,
     createUserWithEmailAndPassword,
     provider,
-    redirectGoogle,
-    getRedirectResult
+    getRedirectResult,
+    signInWithRedirect,
+    GoogleAuthProvider,
 }
