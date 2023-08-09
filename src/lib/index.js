@@ -56,8 +56,7 @@ export const signInEP = async (userEmail, userPassword) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, userEmail, userPassword);
     const user = userCredential.user;
-    // Aquí puedes realizar acciones adicionales después de la autenticación si es necesario
-    return user; // Devuelve el objeto 'user' si deseas utilizarlo en el futuro
+    return user;
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
