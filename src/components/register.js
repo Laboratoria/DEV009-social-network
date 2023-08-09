@@ -19,7 +19,7 @@ function register(navigateTo) {
   password.placeholder = 'Crea tu Contraseña';
   name.placeholder = 'Ingresa tu nombre';
   email.placeholder = 'Ingresa tu Email';
-  errorMessage.style.color = 'red';
+  errorMessage.style.color = 'grey';
   successMessage.style.color = 'green';
 
   buttonRegister.addEventListener('click', async () => {
