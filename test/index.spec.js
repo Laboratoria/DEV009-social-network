@@ -1,54 +1,53 @@
 // importamos la funcion que vamos a testear
-import { loginUser, registerUser } from '../src/lib';
+import { loginUser } from '../src/lib';
 import login from '../src/components/login';
-import register from '../src/components/register';
-
+import { provider, signInWithRedirect, auth } from '../src/firebase/initializeFirebase';
 jest.mock('../src/lib/index');
-
+jest.mock('../src/firebase/initializeFirebase', () => ({
+  signInWithRedirect: jest.fn(),
+  provider: jest.fn(),
+  auth: jest.fn(),
+}));
 describe('login', () => {
+  const navigateToMock = jest.fn();
+  const loginComponent = login(navigateToMock);
+  const inputEmail = loginComponent.querySelector('.input-email');
+  const inputPass = loginComponent.querySelector('.input-pass');
+  const submitButton = loginComponent.querySelector('.button-input');
   beforeEach(() => {
-    const section = login();
-    document.body.replaceChildren(section);
+    document.body.innerHTML = '';
+    document.body.appendChild(loginComponent);
   });
-  it('Create buttonLogin', () => {
-    const buttonLogin = document.querySelector('button');
-    expect(buttonLogin).toBeTruthy();
+  it('should toggle password visibility when clicking the togglePassword button', () => {
+    const toggleButton = loginComponent.querySelector('#togglePassword');
+    expect(inputPass.getAttribute('type')).toBe('password');
+    toggleButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    expect(inputPass.getAttribute('type')).toBe('text');
+    toggleButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    expect(inputPass.getAttribute('type')).toBe('password');
   });
-  it('Should call loginUser when submitting the form with correct credentials', async () => {
-    const loginUserMock = jest.fn(() => Promise.resolve({ emailVerified: true }));
-    loginUser.mockImplementation(loginUserMock);
-
-    const loginComponent = login();
-    const form = loginComponent.querySelector('form');
-
-    form.dispatchEvent(new Event('submit'));
+  it('should display a modal with an error message when login fails', async () => {
+    loginUser.mockRejectedValue(new Error('Invalid password'));
+    inputEmail.value = 'john@example.com';
+    inputPass.value = 'wrongpassword';
+    submitButton.click();
     await Promise.resolve();
-    expect(loginUserMock).toHaveBeenCalled();
+    expect(loginComponent.querySelector('.message-modal').textContent).toBe('Passwords don\'t match');
   });
-});
-
-describe('Section', () => {
-  it('Should display login component', () => {
-    const section = login();
-    console.log(section);
+  it('should call signInWithRedirect when clicking on the Google button', () => {
+    const buttonGoogle = loginComponent.querySelector('.button-google');
+    buttonGoogle.click();
+    expect(signInWithRedirect).toHaveBeenCalledWith(auth, provider);
   });
-});
-
-describe('Section resgister', () => {
-  it('Should display resgister component', () => {
-    const section = register();
-    console.log(section);
+  it('should call navigateTo when clicking on the Register button', () => {
+    const buttonRegister = loginComponent.querySelector('.no-button');
+    buttonRegister.click();
+    expect(navigateToMock).toHaveBeenCalledWith('/register');
   });
-});
-
-describe('loginUser', () => {
-  it('Should show login page', () => {
-    expect(typeof loginUser).toBe('function');
-  });
-});
-
-describe('registeruser', () => {
-  it('Should show login page', () => {
-    expect(typeof registerUser).toBe('function');
+  it('should close the modal when clicking the close button', () => {
+    const closeModal = loginComponent.querySelector('.close');
+    const containerModal = loginComponent.querySelector('.modal');
+    closeModal.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    expect(containerModal.style.display).toBe('none');
   });
 });

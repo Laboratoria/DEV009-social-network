@@ -9,7 +9,7 @@ function register(navigateTo) {
         <header class="logo">
           <img class="logo" src="./img/logo.png">
         </header>
-        <h2 class="title">Create account</h2>
+        <h2 >Create account</h2>
         <input class="input input-user-name" type="text" minLength="2" placeholder="Username">
         <input class="input input-name" type="text" minLength="2" placeholder="Name">
         <input class="input input-email" type="email" placeholder="Email">

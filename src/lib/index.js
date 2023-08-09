@@ -12,6 +12,8 @@ export const loginUser = (email, password) => new Promise((resolve, reject) => {
       const user = userCredential.user;
       if (user.emailVerified) {
         alert('You are logged!');
+        console.log(user);
+        console.log(userCredential);
         resolve(user);
       } else {
         alert('Please verify your email address');
@@ -27,8 +29,12 @@ export const registerUser = (name, userName, email, password) => new Promise((re
       console.log(user);
       sendEmailVerification(user)
         .then(() => {
-          console.log(user);
           console.log('Email verification sent to...:');
+          user.updateProfile({
+            displayName: name,
+          });
+          // userCredential.user.displayName = name;
+          console.log(user);
           resolve(); // Resolve the promise on success
         })
         .catch((err) => {

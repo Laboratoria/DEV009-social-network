@@ -8,7 +8,7 @@ function login(navigateTo) {
       <header class="logo-header logo">
         <img class="logo-img logo" src="./img/logo.png">
       </header>
-      <h2 class="title">Welcome Back</h2>
+      <h2 >Welcome Back</h2>
       <p class="message-login">Login to your account</p>
       <input placeholder="Email" class="input-email input">
       <div class="password-container">
@@ -52,7 +52,7 @@ function login(navigateTo) {
     inputPass.setAttribute('type', type);
 
     // toggle the icon
-    this.classList.toggle('bi-eye');
+    togglePassword.classList.toggle('bi-eye');
   });
 
   buttonGoogle.addEventListener('click', () => {
