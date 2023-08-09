@@ -20,7 +20,7 @@ function login(navigateTo) {
       <button class="button-google">
         <span class="fa-brands fa-google"></span>Sign In
       </button>
-      <div class="container-button-register">
+      <div class="container-button-login">
         <p class="message">Don’t have an account?</p>
         <button class="no-button">Sign Up</button>
       </div>

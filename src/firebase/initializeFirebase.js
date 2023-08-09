@@ -13,6 +13,7 @@ import {
   getRedirectResult,
   onAuthStateChanged,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 
 import { getFirestore } from 'firebase/firestore';
@@ -38,4 +39,5 @@ export {
   getRedirectResult,
   onAuthStateChanged,
   signOut,
+  updateProfile,
 };

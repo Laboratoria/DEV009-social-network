@@ -1,3 +1,5 @@
+import { onAuthStateChanged, auth } from '../firebase/initializeFirebase';
+
 function welcome(navigateTo) {
   const section = document.createElement('section');
   section.innerHTML = `
@@ -10,6 +12,17 @@ function welcome(navigateTo) {
       <button type="submit" class="button-welcome">Take me to login</button>
     </form>
   `;
+  const nameUser = section.querySelector('.name-user');
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      nameUser.textContent = user.displayName;
+    // ...
+    } else {
+    // User is signed out
+    // ...
+    }
+  });
   const formWelcome = section.querySelector('.welcome-view');
   formWelcome.addEventListener('submit', (e) => {
     e.preventDefault();

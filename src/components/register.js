@@ -1,4 +1,4 @@
-import { registerUser } from '../lib/index';
+import { createAccountWithEmail } from '../lib/index';
 import { signInWithRedirect, auth, provider } from '../firebase/initializeFirebase';
 
 function register(navigateTo) {
@@ -10,7 +10,6 @@ function register(navigateTo) {
           <img class="logo" src="./img/logo.png">
         </header>
         <h2 >Create account</h2>
-        <input class="input input-user-name" type="text" minLength="2" placeholder="Username">
         <input class="input input-name" type="text" minLength="2" placeholder="Name">
         <input class="input input-email" type="email" placeholder="Email">
         <input class="input input-pass" type="password" minLength="6" placeholder="Password">
@@ -20,7 +19,7 @@ function register(navigateTo) {
         <button class="button-google">
          <span class="fa-brands fa-google"></span>Sign In
         </button>
-        <div class="container-button-login">
+        <div class="container-button-register">
           <p>Already have an account?</p>
           <button class="no-button">Sign In</button>
         </div>
@@ -39,7 +38,6 @@ function register(navigateTo) {
   let whereToGo = '/register';
 
   const form = section.querySelector('form');
-  const inputUserName = form.querySelector('.input-user-name');
   const inputName = form.querySelector('.input-name');
   const inputEmail = form.querySelector('.input-email');
   const inputPass = form.querySelector('.input-pass');
@@ -53,14 +51,13 @@ function register(navigateTo) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = inputName.value;
-    const userName = inputUserName.value;
     const email = inputEmail.value;
     const password = inputPass.value;
     const confirmPass = inputConfirmPass.value;
 
     if (confirmPass === password) {
       try {
-        await registerUser(name, userName, email, password);
+        createAccountWithEmail(name, email, password);
         navigateTo('/welcome');
       } catch (error) {
         messageModal.textContent = 'The user already exists';
@@ -80,7 +77,7 @@ function register(navigateTo) {
 
   buttonGoogle.addEventListener('click', () => {
     signInWithRedirect(auth, provider);
-    navigateTo('/profile');
+    navigateTo('/welcomeUserGoogle');
     alert('You are logged with Google');
   });
 
