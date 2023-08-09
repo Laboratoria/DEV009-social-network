@@ -80,6 +80,7 @@ function register(navigateTo) {
 
   buttonGoogle.addEventListener('click', () => {
     signInWithRedirect(auth, provider);
+    navigateTo('/profile');
     alert('You are logged with Google');
   });
 

@@ -1,15 +1,15 @@
-import { onAuthStateChanged, auth } from '../firebase/initializeFirebase';
+import { onAuthStateChanged, auth, signOut } from '../firebase/initializeFirebase';
 
 function profile(navigateTo) {
   const section = document.createElement('section');
   section.innerHTML = `
     <header class="view-profile">
-      <p class="user-name-profile">lala45</p>
+      <p class="user-name-profile">Hola!</p>
       <button class="menu-button">
         <i class="fa-solid fa-bars" style="color: #675ABF;"></i>
       </button>
       <div class="container-profile-picture-profile">
-        <img src="./img/imagenGatoHumanoPrueba.jpeg" class="profile-picture-profile">
+        <img class="profile-img" src="./img/imagenGatoHumanoPrueba.jpeg" class="profile-picture-profile">
         <p class="first-and-last-name">Laura Gonzales</p>
       </div>
     </header>
@@ -40,6 +40,9 @@ function profile(navigateTo) {
 
   const inputSharePost = section.querySelector('.input-share-post');
   const newPublicationNav = section.querySelector('.new-publication-nav');
+  const profileImg = section.querySelector('.profile-img');
+  const userNameProfile = section.querySelector('.first-and-last-name');
+  const homeNav = section.querySelector('.home-nav');
 
   inputSharePost.addEventListener('click', () => {
     navigateTo('/createPost');
@@ -48,8 +51,15 @@ function profile(navigateTo) {
     navigateTo('/createPost');
   });
 
+  homeNav.addEventListener('click', () => {
+    signOut(auth);
+  });
+
   onAuthStateChanged(auth, (user) => {
     if (user) {
+      console.log(user.photoURL);
+      profileImg.src = user.photoURL;
+      userNameProfile.textContent = user.displayName;
       console.log(user);
       console.log(user.email);
       console.log(user.displayName);

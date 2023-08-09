@@ -30,9 +30,9 @@ export const registerUser = (name, userName, email, password) => new Promise((re
       sendEmailVerification(user)
         .then(() => {
           console.log('Email verification sent to...:');
-          user.updateProfile({
-            displayName: name,
-          });
+          // user.updateProfile({
+          //   displayName: name,
+          // });
           // userCredential.user.displayName = name;
           console.log(user);
           resolve(); // Resolve the promise on success
