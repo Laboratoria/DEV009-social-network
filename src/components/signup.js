@@ -1,4 +1,6 @@
-import { registerUser } from "../lib/index.js";
+import { registerUser, registerWithGoogle } from "../lib/index.js";
+import { auth, provider } from "../firebase/initializeFirebase.js";
+
 function signup(navigateTo){
 
 const section = document.createElement('section');
@@ -55,8 +57,15 @@ toLogin.addEventListener('click', ()=>{
     navigateTo("/");
 } )
 
-linkGmail.addEventListener('click', ()=>{
-    navigateTo('/signupGoogle');
+linkGmail.addEventListener('click', (e)=>{
+    e.preventDefault();
+    
+    const alerRegisterGoogle = (boolean)=>{
+        if(boolean){
+            navigateTo('/wall');
+        }
+    }
+    registerWithGoogle(alerRegisterGoogle);
 })
 
 section.append(logo, title, name, formRegister, toLogin, or, signupWithGmail, linkGmail);
