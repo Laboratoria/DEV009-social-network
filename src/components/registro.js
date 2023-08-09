@@ -4,7 +4,7 @@ function registro(navigateTo) {
   const section = document.createElement('section');
   section.className = 'section';
   const inputName = document.createElement('input');
-  inputName.className = 'inputName';
+  inputName.className = 'displayName';
   const inputEmail = document.createElement('input');
   inputName.className = 'inputEmail';
   const inputPass = document.createElement('input');
@@ -16,7 +16,6 @@ function registro(navigateTo) {
   const errorRegister = document.createElement('h3');
 
   inputName.placeholder = 'Nombre de usuario';
-  inputName.className = 'displayName';
   inputEmail.placeholder = 'Correo';
   inputPass.placeholder = 'Contraseña';
 
