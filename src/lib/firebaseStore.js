@@ -1,23 +1,6 @@
-// import { auth, provider } from './firebase.js';
-// import { register2 } from '../components/register2.js';
-
-// register2.registerButton.addEventListener('click', async () => {
-//   const email = register2.emailInput.value;
-//   const password = register2.passwordInput.value;
-
-//   try {
-//     const userCredential = await auth.createUserWithEmailAndPassword(auth, email, password);
-//     const user = userCredential.user;
-//     const userId = user.uid;
-
-//     // eslint-disable-next-line no-console
-//     console.log('Registro exitoso, bienvenida a SisterSphere!!!');
-//   } catch (error) {
-//     // eslint-disable-next-line no-console
-//     console.error('Error al registrar al usuario:', error.message);
-//   }
-// });
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import {
+  collection, addDoc, getDocs, doc, updateDoc,
+} from 'firebase/firestore';
 import { db } from './firebaseAuth';
 
 export const addPost = async (userId, content) => {
@@ -44,6 +27,21 @@ export const getPosts = async () => {
     return posts;
   } catch (error) {
     console.error('Error getting posts: ', error);
+    throw error;
+  }
+};
+
+// ********Editar post**********
+export const updatePost = async (postId, newContent) => {
+  const postRef = doc(db, 'posts', postId);
+  try {
+    await updateDoc(postRef, {
+      content: newContent,
+      timestamp: new Date(),
+    });
+    console.log('publicacion actualizada');
+  } catch (error) {
+    console.error('error al actualizar publicacion', error);
     throw error;
   }
 };
