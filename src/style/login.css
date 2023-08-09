@@ -21,8 +21,8 @@ background-repeat: no-repeat;
 background-size: cover;
 background-attachment: fixed;
 }
-/*div */
-.loginSectionP{
+
+.loginSectionMain{
     display: grid;
     grid-template-columns: auto auto;
     align-items: center;
@@ -43,13 +43,14 @@ background-attachment: fixed;
     grid-template-rows: repeat(6,0.2fr);
     grid-template-columns: 0.5fr 4fr 0.5fr;
     align-items: stretch;
-    gap: 2%;
+    gap: 1.5rem;
     background-color: var(--color-box);
     border-radius: 10px;
     margin:5%;
     padding:5%;
     max-width: 30vw;
     min-height: 60vh;
+    
     
 }
 .titleLogin{
@@ -66,26 +67,29 @@ input{
 .inputEmail{
     grid-column: 2;
     grid-row: 2;
+    border-radius: 4px;
     
 }
 .inputPassword{
     grid-column: 2;
     grid-row: 3;
+    border-radius: 4px;
     
 }
 button{
     min-height: 5.5vh;
     font-size: 1rem;
+    border-radius: 4px;
 }
+
 .startSession{
     grid-column: 2;
     grid-row: 4;
-    max-width: fit-content;
+    /* max-width: fit-content; */
     place-self: center;
-    
-   
-
+    width: 10rem;;
 }
+
 .buttonSiginGoogle{
     grid-column: 2;
     grid-row: 5;

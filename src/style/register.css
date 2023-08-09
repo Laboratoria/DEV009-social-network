@@ -18,17 +18,71 @@ body {
     background-size: cover;
     background-attachment: fixed;
     }
+
+
 .registerSection{
     display: grid;
-    grid-template-columns: auto;
-    align-items: center;
-    max-width: fit-content;
+    width: 30vw;
+    margin: 8rem auto;
     background-color: var(--color-box);
-    border-radius: 9px;
-    margin:10%;
-    padding:5%;
-    grid-auto-rows:auto;
-    grid-gap: 0.5rem;
+    padding: 2rem;
+    grid-gap: 1.5rem;
+    grid-template-columns: auto auto;
+    grid-template-rows: repeat(7, 2rem) ;
+    border-radius: 9px;  
+    justify-content: center;
+    min-width: fit-content;
+    max-width: fit-content;
+}
+
+
+
+.elementRegister-title{
+    grid-column: 1/3;
+    border-radius: 4px;  
+    justify-self: center; 
+    grid-row: 1; 
+    align-self: center;
+}
+
+.inputRegister{
+    border-radius: 4px;
+    grid-row: 2;
+}
+
+.elementRegister-inputUser{
+    grid-column: 1/3;
+    border-radius: 4px;
+    grid-row: 3;
+}
+
+.elementRegister-inputEmail{
+    grid-column: 1/3;
+    border-radius: 4px;
+    grid-row: 4;
+}
+
+.elementRegister-inputPassword{
+    grid-column: 1/3;
+    border-radius: 4px;
+    grid-row: 5;
+}
+
+.elementRegister-inputConfirmPassword{
+    grid-column: 1/3;
+    border-radius: 4px;
+    grid-row: 6;
+}
+
+.createAccountRegister{
+    grid-column: 1/3;
+    border-radius: 4px;
+    max-width: fit-content;  
+    justify-self: center;  
+    margin-top: 1rem;
+    align-self: center;
+}
+
     
     
 }
@@ -64,3 +118,4 @@ body {
     }
 
   
+

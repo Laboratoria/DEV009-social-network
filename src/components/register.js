@@ -1,12 +1,14 @@
 import { registerUser } from '../lib/credentials.js';
 
 function register(navigateTo) {
+
   const section = document.createElement('section');
   section.classList.add('registerSection');
 
   const title = document.createElement('h2');
   title.textContent = 'Registro de nuevo usuario';
-  title.classList.add('titleregister');
+  // title.classList.add('titleregister');
+  title.classList.add('elementRegister-title');
 
   const inputName = document.createElement('input');
   inputName.classList.add('inputRegister'); 
@@ -28,7 +30,8 @@ function register(navigateTo) {
 
 
   const inputUser = document.createElement('input');
-  inputUser.classList.add('inputRegister'); 
+  // inputUser.classList.add('inputRegister'); 
+  inputUser.classList.add('elementRegister-inputUser');
   inputUser.type= 'text';
   inputUser.placeholder = 'Usuario';
   inputUser.pattern= '^[A-Za-z0-9]+$';
@@ -37,13 +40,15 @@ function register(navigateTo) {
 
 
   const inputEmail = document.createElement('input');
-  inputEmail.classList.add('inputRegister');
+  // inputEmail.classList.add('inputRegister');
+  inputEmail.classList.add('elementRegister-inputEmail');
   inputEmail.type = 'email';
   inputEmail.placeholder = 'Correo electrónico';
   inputEmail.required = true;
 
   const inputPassword = document.createElement('input');
-  inputPassword.classList.add('inputRegister');
+  // inputPassword.classList.add('inputRegister');
+  inputPassword.classList.add('elementRegister-inputPassword');
   inputPassword.type = 'password';
   inputPassword.placeholder = 'Contraseña';
   inputPassword.pattern = '^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d_.+-]{6,10}$';
@@ -65,7 +70,8 @@ function register(navigateTo) {
 
 
   const inputConfirmPassword = document.createElement('input');
-  inputConfirmPassword.classList.add('inputRegister');
+  // inputConfirmPassword.classList.add('inputRegister');
+  inputConfirmPassword.classList.add('elementRegister-inputConfirmPassword');
   inputConfirmPassword.type = 'password';
   inputConfirmPassword.classList.add('inputRegister'); 
   inputConfirmPassword.placeholder = 'Confirma tu contraseña';
@@ -73,10 +79,10 @@ function register(navigateTo) {
 
   const buttonCreateAccount = document.createElement('button');
   buttonCreateAccount.textContent = 'Crear cuenta';
-  buttonCreateAccount.classList.add('createAccount');
+  buttonCreateAccount.classList.add('createAccountRegister');
   buttonCreateAccount.addEventListener('click', () => {
     if (inputPassword.value === inputConfirmPassword.value && inputEmail.checkValidity()) {
-      registerUser(inputUser.value, inputPassword.value);
+      registerUser(inputEmail.value, inputPassword.value);
       alert('Tu registro se ha completado con éxito. \n Gracias por unirte a Guide Ma+Pa!');
       navigateTo('/timeline');
     } else if(!inputEmail.checkValidity()){
