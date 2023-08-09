@@ -50,7 +50,7 @@ function login(navigateTo) {
   });
 
   const logo = document.createElement('img');
-  logo.src = './images/logoblanco.png';
+  logo.src = './images/logoLogin.png';
   logo.classList.add('logo');
   logo.alt='logo de Guide Ma+Pa'
 

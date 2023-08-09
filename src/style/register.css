@@ -21,16 +21,6 @@ body {
 
 
 .registerSection{
-    /* grid-column: 2;
-    min-width: fit-content;
-    background-color: var(--color-box);
-    border-radius: 9px;
-    margin:10%;
-    padding:5%;
-    display: grid;
-    grid-auto-rows:auto;
-    grid-gap: 0.5rem;
-    grid-template-columns: minmax(25vw,25vw); */
     display: grid;
     width: 30vw;
     margin: 8rem auto;
@@ -92,3 +82,40 @@ body {
     margin-top: 1rem;
     align-self: center;
 }
+
+    
+    
+}
+
+.inputRegister{
+    color: var(--color-text)
+    grid-column:1/2;
+}
+
+
+.inputRegister:invalid {
+        animation: justshake 0.3s forwards;
+        color:var(--color-error);
+    }
+
+    @keyframes justshake {
+        25% {
+            transform: translateX(5px);
+        }
+
+        50% {
+            transform: translateX(-5px);
+        }
+
+        75% {
+            transform: translateX(5px);
+        }
+
+        100% {
+            transform: translateX-(5px);
+        }
+
+    }
+
+  
+
