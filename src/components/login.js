@@ -1,8 +1,10 @@
-import { signWithGoogle, signIn, redirectGoogle } from '../lib/credentials.js';
+import { signWithGoogle, signIn } from '../lib/credentials.js';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 
 function login(navigateTo) {
   const sectionP = document.createElement('section');
-  sectionP.classList.add('loginSectionP');
+  sectionP.classList.add('loginSectionMain');
 
   const section = document.createElement('section');
   section.classList.add('loginSection');
@@ -35,7 +37,8 @@ function login(navigateTo) {
   buttonSiginGoogle.addEventListener('click', () => {
     /*signWithGoogle();*/
     signIn();
-    /*redirectGoogle();*/
+    navigateTo('/timeline');
+    //redirectGoogle();
     /* navigateTo('/timeline'); */
   });
 
@@ -63,4 +66,21 @@ function login(navigateTo) {
 
   return (sectionP);
 }
+
+const auth = getAuth()
+onAuthStateChanged(auth, (user) => {
+  console.log('user: ' + user)
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/auth.user
+    navigateTo('/timeline');
+    console.log("YES")
+    // ...
+  } else {
+    // User is signed out
+    // ...
+    console.log("NO")
+  }
+});
+
 export default login;
