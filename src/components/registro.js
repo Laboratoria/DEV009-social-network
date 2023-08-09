@@ -1,19 +1,26 @@
 import { registerWithEmail } from '../lib/index.js';
 
 function registro(navigateTo) {
-  const section = document.createElement('section'); /* section se usa en registro y en login */
+  const section = document.createElement('section');
+  section.className = 'section';
   const inputName = document.createElement('input');
+  inputName.className = 'inputName';
   const inputEmail = document.createElement('input');
+  inputName.className = 'inputEmail';
   const inputPass = document.createElement('input');
+  inputPass.className = 'inputPass';
   const buttonRegistro = document.createElement('button');
+  buttonRegistro.className = 'buttonRegistro';
   const buttonReturn = document.createElement('button');
+  buttonReturn.className = 'buttonReturn';
   const errorRegister = document.createElement('h3');
 
   inputName.placeholder = 'Nombre de usuario';
   inputName.className = 'displayName';
   inputEmail.placeholder = 'Correo';
   inputPass.placeholder = 'Contraseña';
-  buttonRegistro.textContent = 'registro';
+
+  buttonRegistro.textContent = 'Registro';
   errorRegister.textContent = 'errorMessage';
   errorRegister.style.display = 'none';
   errorRegister.id = 'errorRegister';
@@ -66,12 +73,13 @@ function registro(navigateTo) {
       });
   });
 
-  buttonReturn.textContent = 'back to home';
+  buttonReturn.textContent = 'Regresar';
   buttonReturn.addEventListener('click', () => {
     navigateTo('/');
   });
-  section.append(errorRegister, inputName, inputEmail, inputPass, buttonRegistro, buttonReturn);
+  section.append(inputName, inputEmail, inputPass, buttonRegistro, buttonReturn, errorRegister);
   return section;
 }
+//  navigateTo('/principal');
 
 export default registro;
