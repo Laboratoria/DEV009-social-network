@@ -1,4 +1,5 @@
-// import { register } from '../src/components/register.js'; es  necesario traer register?
+ //import register from '../src/components/register.js';
+ //import { createUser, signInWithGoogle } from '../lib';
 // Mock para el módulo de Firebase
 // jest.mock('../lib/firebase', () => ({
 // createUser: jest.fn((userEmail, userPassword) => {
