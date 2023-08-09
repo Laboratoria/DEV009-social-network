@@ -34,4 +34,5 @@ function feed(navigateTo) {
   select.append(option1, option2, option3);
   return section;
 }
+
 export default feed;

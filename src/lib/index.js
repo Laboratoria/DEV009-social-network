@@ -11,10 +11,10 @@ export const createUser = async (userEmail, userPassword) => {
     const userCredential = await createUserWithEmailAndPassword(auth, userEmail, userPassword);
     sendEmailVerification(auth.currentUser)
       .then(() => {
-        console.log("email send");
+        console.log('email send');
       })
       .catch(() => {
-        console.log("not verification mail send");
+        console.log('not verification mail send');
       });
 
     const user = userCredential.user;
