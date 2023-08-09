@@ -1,7 +1,7 @@
 import { registerWithEmail } from '../lib/index.js';
 
 function registro(navigateTo) {
-  const section = document.createElement('section'); /*section se usa en registro y en login*/
+  const section = document.createElement('section');
   const inputName = document.createElement('input');
   const inputEmail = document.createElement('input');
   const inputPass = document.createElement('input');
@@ -13,16 +13,17 @@ function registro(navigateTo) {
   inputName.className = 'displayName'
   inputEmail.placeholder = 'Correo';
   inputPass.placeholder = 'Contraseña';
+  
   buttonRegistro.textContent = 'registro';
   errorRegister.textContent = 'errorMessage';
   errorRegister.style.display = 'none';
   errorRegister.id = 'errorRegister'
-  
+ 
   buttonRegistro.addEventListener('click', () => {
     const emailValue = inputEmail.value;
     const nameValue = inputName.value;
     const passwordValue = inputPass.value;
-    
+
     const userInfo = {
       email: emailValue,
       name: nameValue,
@@ -45,6 +46,7 @@ function registro(navigateTo) {
   
   //  navigateTo('/principal');
   
+
 
 
 export default registro;
