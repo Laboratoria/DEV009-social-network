@@ -7,6 +7,9 @@ const section = document.createElement('section');
 const logo = document.createElement('img');
 const title = document.createElement('h2');
 
+const body = document.querySelector('body');
+const tagFirst = body.firstChild;
+
 const name = document.createElement('input');
 const formRegister = document.createElement('form');
 const email = document.createElement('input');
@@ -74,6 +77,7 @@ signupWithGmail.addEventListener('click', (e)=>{
     registerWithGoogle(alertRegisterGoogle);
 })
 
+body.insertBefore(section, tagFirst);
 section.append(logo, title, name, formRegister, toLogin, or, signupWithGmail);
 formRegister.append(email, password, btnSignup);
 signupWithGmail.appendChild(linkGmail);

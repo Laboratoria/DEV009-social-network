@@ -1,7 +1,6 @@
 import login from "./components/login.js";
 import profile from "./components/profile.js";
 import signup from "./components/signup.js";
-import signupGoogle from "./components/signupGoogle.js";
 import wall from "./components/wall.js";
 import error from "./components/error.js";
 //import { registerUser } from "./lib/index.js";
@@ -11,7 +10,6 @@ const routest = [
     { path: "/", component: login },
     { path: "/profile", component: profile },
     { path: "/signup", component: signup },
-    { path: "/signupGoogle", component: signupGoogle },
     { path: "/wall", component: wall },
     { path: "/error", component: error},
 ];
