@@ -21,6 +21,7 @@ const routes = [
   { path: '/error', component: error },
   { path: '/createPost', component: createPost },
   { path: '/timeline', component: timeline },
+  { path: '/welcomeGoogle', component: welcomeGoogle },
 ];
 
 const defaultRoute = '/';

@@ -13,7 +13,7 @@ function welcomeGoogle(navigateTo) {
   const formWelcome = section.querySelector('.welcome-view');
   formWelcome.addEventListener('submit', (e) => {
     e.preventDefault();
-    navigateTo('/login');
+    navigateTo('/profile');
   });
   return section;
 }

@@ -14,6 +14,7 @@ import {
   onAuthStateChanged,
   signOut,
   updateProfile,
+  signInWithPopup,
 } from 'firebase/auth';
 
 import { getFirestore } from 'firebase/firestore';
@@ -40,4 +41,5 @@ export {
   onAuthStateChanged,
   signOut,
   updateProfile,
+  signInWithPopup,
 };

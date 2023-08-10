@@ -6,6 +6,8 @@ import {
   sendEmailVerification,
   signOut,
   updateProfile,
+  provider,
+  signInWithPopup,
 } from '../firebase/initializeFirebase';
 
 export const loginUser = (email, password) => new Promise((resolve, reject) => {
@@ -14,15 +16,6 @@ export const loginUser = (email, password) => new Promise((resolve, reject) => {
       const user = userCredential.user;
       if (user.emailVerified) {
         alert('You are logged!');
-        console.log(user);
-        console.log(userCredential);
-
-        console.log(userCredential);
-        console.log(userCredential.user);
-        // updateProfile(userCredential.user, {
-        //   displayName: name,
-        // });
-
         resolve(user);
       } else {
         alert('Please verify your email address');
@@ -42,17 +35,29 @@ export const createAccountWithEmail = (name, email, password) => {
         // profile yupdate
       });
       sendEmailVerification(result.user)
-        .catch((error) => {
-          console.error(error);
+        .catch((err) => {
+          console.error(err);
           alert('Error sending email');
         });
 
       signOut(auth);
       alert(`Hola ${name}, please complete verification process`);
     })
-    .catch((error) => {
-      console.error(error);
+    .catch((err) => {
+      console.error(err);
       alert('Error creating account');
+    });
+};
+
+export const authWithGoogle = () => {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      console.log(result.user);
+      alert(`Hello ${result.user.displayName}! you're logged in with Google`);
+    })
+    .catch((err) => {
+      console.error(err);
+      alert(`Authentication error: ${err}`);
     });
 };
 
@@ -61,8 +66,8 @@ export const signOutUser = () => {
     .then(() => {
       console.log('Usuario ha cerrado sesión.');
     })
-    .catch((error) => {
-      console.error('Error al cerrar sesión:', error);
+    .catch((err) => {
+      console.error('Error al cerrar sesión:', err);
     });
 };
 
