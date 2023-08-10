@@ -16,3 +16,4 @@ export async function addRecipe(name, steps) {
     console.error("Error adding recipe: ", error);
   }
 }
+
