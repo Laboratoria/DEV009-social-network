@@ -5,7 +5,7 @@ function profile(navigateTo) {
   const section = document.createElement('section');
   section.innerHTML = `
     <header class="view-profile">
-      <h3 class="user-name-profile">Hola!</h3>
+      <img class="logo-profile" src="./img/logo-profile.png">
       <button class="menu-button">
         <i class="fa-solid fa-bars" style="color: #675ABF;"></i>
       </button>
@@ -26,7 +26,7 @@ function profile(navigateTo) {
     </header>
     <div class="container-profile-picture-profile">
       <div class="profile-picture"></div>
-      <p class="first-and-last-name">Laura Gonzales</p>
+      <p class="first-and-last-name"></p>
     </div>
     <div class="user-post-and-share">
       <button class="input-share-post" onclick="navigateTo('/createPost')">Share what you're thinking</button>
@@ -125,7 +125,7 @@ function profile(navigateTo) {
       if (user.photoURL) {
         profileImg.innerHTML = `<img class="photo-URL" src="${user.photoURL}" />`;
       } else {
-        profileImg.innerHTML = '<img class="photo-URL" src="./img/customer.png" />';
+        profileImg.innerHTML = '<img class="photo-URL" src="./img/person-circle.svg"/>';
       }
       const wholeUserName = user.displayName;
       const shortName = wholeUserName.slice(0, wholeUserName.indexOf(' '));
