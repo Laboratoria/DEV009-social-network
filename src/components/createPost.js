@@ -14,17 +14,18 @@ function createPost(navigateTo) {
             <div class="container-picture-user-name">
                 <div class="container-profile-picture-create">
                     <img src="./img/imagenGatoHumanoPrueba.jpeg" class="profile-picture-create-post">
-                <p class="user-name-create-post">Laura Gonzales</p>
+                <p class="user-name-create-post"></p>
+                </div>
             </div>
             <input type="text" class="create-new-post" placeholder="Share what you're thinking">
         </div>
     `;
 
   const profileImage = section.querySelector('.profile-picture-create-post');
+  profileImage.classList.add('profile-picture-create-post');
   const userName = section.querySelector('.user-name-create-post');
   const exitCreatePost = section.querySelector('.exit-create-post');
   exitCreatePost.addEventListener('click', () => {
-    // window.history.back();
     navigateTo('/profile');
   });
 
@@ -41,7 +42,7 @@ function createPost(navigateTo) {
       if (user.photoURL) {
         profileImage.src = `${srcPhoto}`;
       } else {
-        profileImage.src = './img/customer.png';
+        profileImage.src = './img/person-circle.svg';
       }
       const wholeUserName = user.displayName;
       const shortName = wholeUserName.slice(0, wholeUserName.indexOf(' '));

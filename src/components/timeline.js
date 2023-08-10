@@ -5,7 +5,7 @@ function timeline(navigateTo) {
   section.innerHTML = `
         <header class="header-timeline">
             <div class="container-logo-timeline">
-                 <img src="./img/logo.png" class="logo">
+                 <img src="./img/logo-profile.png" class="logo-timeline">
             </div>
             <button class="fa-regular fa-heart" style="color: #6F60CF;"></button>
             <button class="menu-button">
