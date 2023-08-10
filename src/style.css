@@ -296,6 +296,14 @@ height: 13vw;
 border-radius: 50%;
 object-fit: cover;
 }
+
+.profile-image-createPost{
+width: 13vw;
+height: 13vw;
+border-radius: 50%;
+}
+
+
 .create-new-post{
 width: 80%;
 border: none;

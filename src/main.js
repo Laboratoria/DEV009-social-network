@@ -6,6 +6,8 @@ import register from './components/register.js';
 import welcome from './components/welcome.js';
 import welcomeGoogle from './components/welcomeUserGoogle.js';
 import profile from './components/profile.js';
+import createPost from './components/createPost.js';
+import timeline from './components/timeline.js';
 
 const root = document.getElementById('root');
 
@@ -17,6 +19,8 @@ const routes = [
   { path: '/welcomeGoogle', component: welcomeGoogle },
   { path: '/profile', component: profile },
   { path: '/error', component: error },
+  { path: '/createPost', component: createPost },
+  { path: '/timeline', component: timeline },
 ];
 
 const defaultRoute = '/';

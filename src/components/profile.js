@@ -53,6 +53,9 @@ function profile(navigateTo) {
       </footer>
 `;
 
+  const homeNav = section.querySelector('.home-nav');
+  const homeMenu = section.querySelector('.home');
+  const profileMenu = section.querySelector('.profile');
   const inputSharePost = section.querySelector('.input-share-post');
   const newPublicationNav = section.querySelector('.new-publication-nav');
   const profileImg = section.querySelector('.profile-picture');
@@ -61,6 +64,39 @@ function profile(navigateTo) {
   const closeMenu = section.querySelector('.close-menu');
   const menu = section.querySelector('.menu');
   const signOff = section.querySelector('.sign-off');
+
+  homeNav.addEventListener('click', () => {
+    navigateTo('/timeline');
+  });
+
+  inputSharePost.addEventListener('click', () => {
+    navigateTo('/createPost');
+  });
+
+  newPublicationNav.addEventListener('click', () => {
+    navigateTo('/createPost');
+  });
+
+  menuButton.addEventListener('click', () => {
+    menu.style.display = 'block';
+  });
+
+  closeMenu.addEventListener('click', () => {
+    menu.style.display = 'none';
+  });
+
+  homeMenu.addEventListener('click', () => {
+    navigateTo('/timeline');
+  });
+
+  profileMenu.addEventListener('click', () => {
+    navigateTo('/profile');
+  });
+
+  signOff.addEventListener('click', () => {
+    signOutUser();
+    navigateTo('/');
+  });
 
   inputSharePost.addEventListener('click', () => {
     navigateTo('/createPost');
@@ -87,7 +123,9 @@ function profile(navigateTo) {
     if (user) {
       // profileImg.src = user.photoURL;
       profileImg.innerHTML = `<img class="photo-URL" src="${user.photoURL}" />`;
-      userNameProfile.textContent = user.displayName;
+      const wholeUserName = user.displayName;
+      const shortName = wholeUserName.slice(0, wholeUserName.indexOf(' '));
+      userNameProfile.textContent = shortName;
       console.log(user);
       console.log(user.email);
       console.log(user.displayName);
