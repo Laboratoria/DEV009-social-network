@@ -122,7 +122,11 @@ function profile(navigateTo) {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       // profileImg.src = user.photoURL;
-      profileImg.innerHTML = `<img class="photo-URL" src="${user.photoURL}" />`;
+      if (user.photoURL) {
+        profileImg.innerHTML = `<img class="photo-URL" src="${user.photoURL}" />`;
+      } else {
+        profileImg.innerHTML = '<img class="photo-URL" src="./img/customer.png" />';
+      }
       const wholeUserName = user.displayName;
       const shortName = wholeUserName.slice(0, wholeUserName.indexOf(' '));
       userNameProfile.textContent = shortName;

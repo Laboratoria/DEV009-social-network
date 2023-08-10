@@ -1,5 +1,5 @@
-import { loginUser } from '../lib/index';
-import { signInWithRedirect, auth, provider } from '../firebase/initializeFirebase';
+import { loginUser, authWithGoogle } from '../lib/index';
+// import { signInWithRedirect, auth, provider } from '../firebase/initializeFirebase';
 
 function login(navigateTo) {
   const section = document.createElement('section');
@@ -55,8 +55,14 @@ function login(navigateTo) {
     togglePassword.classList.toggle('bi-eye');
   });
 
+  // buttonGoogle.addEventListener('click', () => {
+  //   signInWithRedirect(auth, provider);
+  // });
+
   buttonGoogle.addEventListener('click', () => {
-    signInWithRedirect(auth, provider);
+    authWithGoogle();
+    navigateTo('/welcomeGoogle');
+    alert('You are logged with Google');
   });
 
   buttonRegister.addEventListener('click', () => {

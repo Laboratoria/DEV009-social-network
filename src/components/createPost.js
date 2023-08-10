@@ -38,7 +38,11 @@ function createPost(navigateTo) {
       console.log(user.photoURL);
       const srcPhoto = user.photoURL;
       console.log(srcPhoto);
-      profileImage.src = `${srcPhoto}`;
+      if (user.photoURL) {
+        profileImage.src = `${srcPhoto}`;
+      } else {
+        profileImage.src = './img/customer.png';
+      }
       const wholeUserName = user.displayName;
       const shortName = wholeUserName.slice(0, wholeUserName.indexOf(' '));
       userName.textContent = shortName;
