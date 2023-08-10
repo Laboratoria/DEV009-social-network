@@ -15,33 +15,36 @@
 }
 
 @media only screen and (min-width:320px) and (max-width:480px) {
-.containerSignup{
+body {
+    background: var(--theme-color-d);
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    height: 250px;
-    row-gap: 15px;
+    place-items: center;
+}
+section.containerSignup {
+    margin: 50px;
+    background: white;
+    border-radius: 8px;
+    display: grid;
+    grid-template-rows: 10em 2em 2em 5em 2em 2em 2em 2em;
+    row-gap: .5em;
     justify-items: center;
-    align-items: center;
+    align-items: center;  
+    padding-top: 10px;
+    padding-bottom: 20px;
+    /* margin-bottom: ; */
 }
 .logo{
-    height: 207px;
-    width: 207px;
+    height: 197px;
+    width: 197px;
 }
-/* .formRegister{
-    display: 
-} */
-/* .email{
-    grid-row-start: 4;
-    grid-row-end: 5;
-} */
-/* .password{
-    justify-self: center;
-    grid-row-start: 5;
-    grid-row-end: 6;
+.formRegister{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 1em;
 }
-.btnSignup{
-    justify-self: center;
-    grid-row-start: 6;
-    grid-row-end: 7; */
-/* } */
+.title{
+    font-family: Hind Siliguri;
+}
+
 }
