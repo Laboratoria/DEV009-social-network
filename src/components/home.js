@@ -30,6 +30,9 @@ export const home = (navigateTo) => {
   description.textContent = 'Bienvenidas a esta comunidad Kawaii-Like inspirada y creada para nosotras. Conecta, comparte y sueña en nuestra red.';
 
   const googleButton = document.createElement('button');
+  const googleIcon = document.createElement('img');
+  googleIcon.src = './recursos/google.svg';
+  googleIcon.classList.add('icon-google');
   googleButton.textContent = 'Continuar con Google';
   googleButton.classList.add('boton-google');
   googleButton.addEventListener('click', () => {
@@ -56,8 +59,8 @@ export const home = (navigateTo) => {
       escucharCambios();
     }
   }); */
-
-  buttonContainer.append(logInButton, registerButton, googleButton);
+  googleButton.append(googleIcon);
+  buttonContainer.append(googleButton, logInButton, registerButton);
   section.append(logo, title, slogan, description, buttonContainer, passwordReset);
   return section;
 };

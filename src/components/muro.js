@@ -1,5 +1,6 @@
+import { async } from 'regenerator-runtime';
 import { logOut, auth } from '../lib/firebaseAuth.js';
-import { addPost, getPosts } from '../lib/firebaseStore.js';
+import { addPost, getPosts, updatePost } from '../lib/firebaseStore.js';
 
 export const muro = (navigateTo) => {
   const section = document.createElement('section');
@@ -77,6 +78,16 @@ export const muro = (navigateTo) => {
 
         const userElement = document.createElement('h6');
         userElement.textContent = `Publicado por: ${post.userId}`;
+
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Editar 🧁';
+        editButton.addEventListener('click', async () => {
+          const newContent = contentElement.value;
+          if (newContent.trim() !=='') {
+            await updatePost(post.id, newContent);
+            updatePostsList();
+          }
+        });
 
         postElement.appendChild(contentElement);
         postElement.appendChild(userElement);

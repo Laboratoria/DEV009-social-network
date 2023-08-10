@@ -7,6 +7,9 @@ export const register2 = (navigateTo) => {
   const title = document.createElement('h2');
   title.textContent = 'Registrate!';
 
+  const userNameInput = document.createElement('input');
+  userNameInput.type = 'text';
+  userNameInput.setAttribute('placeholder', 'Username');
   const emailInput = document.createElement('input');
   emailInput.type = 'text';
   emailInput.setAttribute('placeholder', 'Email');
@@ -35,6 +38,7 @@ export const register2 = (navigateTo) => {
   regsiterButton.textContent = 'Enviar';
 
   regsiterButton.addEventListener('click', () => {
+    const userName = userNameInput.value;
     const email = emailInput.value;
     const password = passwordInput.value;
     const registerAlert = (valid) => {
@@ -43,12 +47,13 @@ export const register2 = (navigateTo) => {
       }
     };
 
-    registerUser(email, password, registerAlert);
+    registerUser(userName, email, password, registerAlert);
   });
 
   section.append(
     logo,
     title,
+    userNameInput,
     emailInput,
     passwordInput,
     registerInvalidPassMessage,
