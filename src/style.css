@@ -84,6 +84,15 @@ input:hover {
     align-items: center;
     gap: 20px;
 }
+.boton-google{
+    display: flexbox;
+    
+}
+
+.icon-google {
+    margin: 0rem 1rem 0rem -3.5rem;
+    height: 2rem;
+}
 
 select {
     width: 100px;
