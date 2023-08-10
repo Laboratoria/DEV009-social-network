@@ -15,12 +15,33 @@
 }
 
 @media only screen and (min-width:320px) and (max-width:480px) {
-.conteinerSignup{
+.containerSignup{
     display: grid;
-   grid-template-rows: repeat(6, 1fr);
-
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    height: 250px;
+    row-gap: 15px;
+    justify-items: center;
+    align-items: center;
 }
 .logo{
-    border: 1px solid red;
+    height: 207px;
+    width: 207px;
 }
+/* .formRegister{
+    display: 
+} */
+/* .email{
+    grid-row-start: 4;
+    grid-row-end: 5;
+} */
+/* .password{
+    justify-self: center;
+    grid-row-start: 5;
+    grid-row-end: 6;
+}
+.btnSignup{
+    justify-self: center;
+    grid-row-start: 6;
+    grid-row-end: 7; */
+/* } */
 }

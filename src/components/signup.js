@@ -14,15 +14,21 @@ const password = document.createElement('input');
 const btnSignup = document.createElement('button');
 const toLogin = document.createElement('p');
 const or = document.createElement('p');
-const signupWithGmail =  document.createElement('a');
+const signupWithGmail =  document.createElement('button');
 const linkGmail =  document.createElement('img');
 
-section.classList.add("conteinerSignup");
+section.classList.add("containerSignup");
 logo.classList.add("logo");
 title.classList.add("title");
 name.classList.add("name");
 formRegister.classList.add("formRegister");
-
+email.classList.add("email");
+password.classList.add("password");
+btnSignup.classList.add("btnSignup");
+toLogin.classList.add("toLogin");
+or.classList.add("or");
+signupWithGmail.classList.add("signupWithGmail");
+linkGmail.classList.add("linkGmail")
 
 logo.src = "./img/logo.png";
 title.textContent = "Regístrate";
@@ -46,30 +52,31 @@ formRegister.addEventListener('submit',(e)=>{
     e.preventDefault();
     const emailUser = email.value;
     const passUser= password.value;
-    const alerRegister = (boolean)=>{
+    const alertRegister = (boolean)=>{
         if(boolean){
             navigateTo('/wall');
         }
     }
-    registerUser(emailUser, passUser, alerRegister);
+    registerUser(emailUser, passUser, alertRegister);
 })
 toLogin.addEventListener('click', ()=>{
     navigateTo("/");
 } )
 
-linkGmail.addEventListener('click', (e)=>{
+signupWithGmail.addEventListener('click', (e)=>{
     e.preventDefault();
     
-    const alerRegisterGoogle = (boolean)=>{
+    const alertRegisterGoogle = (boolean)=>{
         if(boolean){
             navigateTo('/wall');
         }
     }
-    registerWithGoogle(alerRegisterGoogle);
+    registerWithGoogle(alertRegisterGoogle);
 })
 
-section.append(logo, title, name, formRegister, toLogin, or, signupWithGmail, linkGmail);
+section.append(logo, title, name, formRegister, toLogin, or, signupWithGmail);
 formRegister.append(email, password, btnSignup);
+signupWithGmail.appendChild(linkGmail);
 return section;
 }
 

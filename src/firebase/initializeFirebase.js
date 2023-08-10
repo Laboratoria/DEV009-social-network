@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, getRedirectResult, signInWithRedirect } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { firebaseConfig } from './credentialFirebase';
 
 
@@ -20,7 +20,6 @@ export {
     app,
     createUserWithEmailAndPassword,
     provider,
-    getRedirectResult,
-    signInWithRedirect,
+    signInWithPopup,
     GoogleAuthProvider,
 }
