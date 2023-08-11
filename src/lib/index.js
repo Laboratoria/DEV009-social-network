@@ -13,6 +13,7 @@ import {
   query,
   where,
   collection,
+  updateDoc,
   db,
   signInWithPopup,
 } from '../firebase/initializeFirebase';
@@ -106,7 +107,7 @@ export const addPost = async (author, content, date) => {
 };
 
 export const displayUserPosts = async (user, containerElement) => {
-  const postsQuery = query(collection(db, 'posts'), where('author', '==', user.displayName));
+  const postsQuery = query(collection(db, 'posts'), where('author', '==', user.displayName), orderBy('date', 'desc'));
   const postsSnapshot = await getDocs(postsQuery);
 
   containerElement.innerHTML = '';
@@ -114,6 +115,8 @@ export const displayUserPosts = async (user, containerElement) => {
   postsSnapshot.forEach((doc) => {
     const post = doc.data();
     const postElement = document.createElement('div');
+    const isCurrentUserPost = post.author === user.displayName;
+    const authorPhotoURL = isCurrentUserPost ? (user.photoURL || './img/person-circle.svg') : './img/person-circle.svg';
     postElement.classList.add('user-post');
     postElement.innerHTML = `
     <div class="post-author">
@@ -121,8 +124,60 @@ export const displayUserPosts = async (user, containerElement) => {
     ${post.author}
     </div>
     <div class="post-content">${post.content}</div>
+    <img class="edit-post" src="./img/pencil.svg">
     <div class="post-date">${post.date.toDate().toLocaleDateString()}</div>
 `;
+    const editButton = postElement.querySelector('.edit-post');
+    if (editButton) {
+      editButton.addEventListener('click', () => {
+        if (isCurrentUserPost) {
+          const editForm = document.createElement('div');
+          editForm.innerHTML = `
+        <div class='poster'>
+          <div class ='container-post'>
+            <header class="header-create-post">
+              <button class="exit-create-post">
+                <i class="fa-solid fa-circle-xmark" style="color: #7465D8;"></i>
+              </button>
+              <p class="title-create-post">Edit Post</p>
+              <button class="button-publish-post">Save</button>
+            </header>
+            <div class="new-post">
+              <div class="container-picture-user-name">
+                <div class="container-profile-picture-create">
+                  <img src="${authorPhotoURL}" class="profile-picture-create-post">
+                  <p class="user-name-create-post">${post.author}</p>
+                </div>
+              </div>
+              <textarea class="create-new-post edit-content">${post.content}</textarea>
+            </div>
+          </div>
+        </div>
+      `;
+
+          const saveButton = editForm.querySelector('.button-publish-post');
+          saveButton.addEventListener('click', async () => {
+            const newContent = editForm.querySelector('.edit-content').value;
+            try {
+              await updateDoc(doc.ref, { content: newContent });
+              post.content = newContent;
+              const contentElement = postElement.querySelector('.post-content');
+              contentElement.textContent = newContent;
+              editForm.remove();
+            } catch (error) {
+              console.error('Error al actualizar el post:', error);
+            }
+          });
+
+          const exitButton = editForm.querySelector('.exit-create-post');
+          exitButton.addEventListener('click', () => {
+            editForm.remove();
+          });
+
+          postElement.appendChild(editForm);
+        }
+      });
+    }
     containerElement.appendChild(postElement);
   });
 };
@@ -147,8 +202,61 @@ export const displayAllUserPosts = async (user, containerElement) => {
         ${post.author}
       </div>
       <div class="post-content">${post.content}</div>
+      ${isCurrentUserPost ? '<img class="edit-post" src="./img/pencil.svg">' : ''}
       <div class="post-date">${post.date.toDate().toLocaleDateString()}</div>
     `;
+
+    const editButton = postElement.querySelector('.edit-post');
+    if (editButton) {
+      editButton.addEventListener('click', () => {
+        if (isCurrentUserPost) {
+          const editForm = document.createElement('div');
+          editForm.innerHTML = `
+            <div class='poster'>
+              <div class ='container-post'>
+                <header class="header-create-post">
+                  <button class="exit-create-post">
+                    <i class="fa-solid fa-circle-xmark" style="color: #7465D8;"></i>
+                  </button>
+                  <p class="title-create-post">Edit Post</p>
+                  <button class="button-publish-post">Save</button>
+                </header>
+                <div class="new-post">
+                  <div class="container-picture-user-name">
+                    <div class="container-profile-picture-create">
+                      <img src="${authorPhotoURL}" class="profile-picture-create-post">
+                      <p class="user-name-create-post">${post.author}</p>
+                    </div>
+                  </div>
+                  <textarea class="create-new-post edit-content">${post.content}</textarea>
+                </div>
+              </div>
+            </div>
+          `;
+
+          const saveButton = editForm.querySelector('.button-publish-post');
+          saveButton.addEventListener('click', async () => {
+            const newContent = editForm.querySelector('.edit-content').value;
+            try {
+              await updateDoc(doc.ref, { content: newContent });
+              post.content = newContent;
+              const contentElement = postElement.querySelector('.post-content');
+              contentElement.textContent = newContent;
+              editForm.remove();
+            } catch (error) {
+              console.error('Error al actualizar el post:', error);
+            }
+          });
+
+          const exitButton = editForm.querySelector('.exit-create-post');
+          exitButton.addEventListener('click', () => {
+            editForm.remove();
+          });
+
+          postElement.appendChild(editForm);
+        }
+      });
+    }
     containerElement.appendChild(postElement);
   });
 };

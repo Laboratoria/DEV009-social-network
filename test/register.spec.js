@@ -1,15 +1,12 @@
-import { registerUser } from '../src/lib';
+import { createAccountWithEmail, authWithGoogle } from '../src/lib';
 import register from '../src/components/register';
-import { signInWithRedirect, auth, provider } from '../src/firebase/initializeFirebase';
+import { auth, provider } from '../src/firebase/initializeFirebase';
 
 jest.mock('../src/lib/index', () => ({
   registerUser: jest.fn(),
+  authWithGoogle: jest.fn(),
   auth: jest.fn(),
   provider: jest.fn(),
-}));
-
-jest.mock('../src/firebase/initializeFirebase', () => ({
-  signInWithRedirect: jest.fn(),
 }));
 
 const originalAlert = window.alert;
@@ -43,12 +40,12 @@ describe('register', () => {
     inputConfirmPass.value = 'password123';
     submitButton.click();
     await Promise.resolve();
-    expect(registerUser).toHaveBeenCalledWith('John Doe', 'johndoe', 'john@example.com', 'password123');
+    expect(createAccountWithEmail).toHaveBeenCalledWith('John Doe', 'johndoe', 'john@example.com', 'password123');
     expect(navigateToMock).toHaveBeenCalledWith('/welcome');
   });
 
   it('should display an error modal when user already exists', async () => {
-    registerUser.mockRejectedValue(new Error('User already exists'));
+    createAccountWithEmail.mockRejectedValue(new Error('User already exists'));
     section.querySelector('.button-input').click();
     await Promise.resolve();
     const modal = section.querySelector('.modal');
@@ -75,7 +72,7 @@ describe('register', () => {
   it('should call signInWithRedirect when clicking on the Google button', () => {
     const buttonGoogle = section.querySelector('.button-google');
     buttonGoogle.click();
-    expect(signInWithRedirect).toHaveBeenCalledWith(auth, provider);
+    expect(authWithGoogle).toHaveBeenCalledWith(auth, provider);
   });
 
   it('should close the modal and navigate to appropriate location when clicking the close button', () => {

@@ -44,7 +44,7 @@ function timeline(navigateTo) {
                     <p class="user-name-create-post"></p>
                     </div>
                 </div>
-                <input type="text" class="create-new-post" placeholder="Share what you're thinking">
+                <textarea class="create-new-post" placeholder="Share what you're thinking"></textarea>
                 </div>
             </div>
         </div>
@@ -152,8 +152,8 @@ function timeline(navigateTo) {
     const date = serverTimestamp();
     if (contentPost !== '') {
       addPost(author, contentPost, date).then(() => {
-        const postsContainer = section.querySelector('.user-posts-container');
-        displayAllUserPost(user, postsContainer);
+        const postsContainer = section.querySelector('.user-posts-container-timeline');
+        displayAllUserPosts(user, postsContainer);
         createPost.value = '';
       });
     } else {
