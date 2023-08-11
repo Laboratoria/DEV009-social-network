@@ -51,6 +51,17 @@ input {
   padding: 5px;
 }
 
+h2,
+h3 {
+  color: #FAB838;
+  text-align: center;
+  font-family: Merienda One;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
 button {
   display: flex;
   font-family: 'Poppins', sans-serif;
@@ -72,14 +83,14 @@ button {
   /* Para centrar verticalmente el contenido */
   padding: 5px;
   /* Ajusta el padding según tus preferencias */
-  background-color: #f5f4f4;
+  background-color: #641B42;
   /* Color de fondo del botón */
-  color: #393939;
+  color:white;
   /* Color del texto */
   border: none;
   /* Quitamos el borde del botón */
   cursor: pointer;
-  border-radius: 15px;
+  border-radius: 20px;
   /* Bordes redondeados */
 }
 

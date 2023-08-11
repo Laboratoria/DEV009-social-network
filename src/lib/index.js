@@ -15,9 +15,7 @@ export const createUser = async (userEmail, userPassword) => {
       // ...
       })
       .catch(() => {
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        // ...
+        console.log('not verification mail send');
       });
 
     const user = userCredential.user;

@@ -14,7 +14,7 @@
     "htmlhint": "htmlhint dist/*.html ",
     "eslint": "eslint --ext .js src/ test/",
     "stylelint": "stylelint --aei src/**/*.css",
-    "pretest": "npm run htmlhint && npm run eslint && npm run stylelint",
+    "xpretest": "npm run htmlhint && npm run eslint && npm run stylelint",
     "test": "jest --coverage",
     "dev": "vite dev src",
     "start": "npm run dev",
@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.19.4",
-    "eslint": "^8.3.0",
+    "eslint": "^8.45.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^25.3.0",
@@ -48,6 +48,9 @@
   "directories": {
    "test": "test"
  
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
   },
   "author": ""
 }
