@@ -61,7 +61,7 @@ function login(navigateTo) {
 
   buttonGoogle.addEventListener('click', () => {
     authWithGoogle();
-    navigateTo('/welcomeGoogle');
+    navigateTo('/profile');
     alert('You are logged with Google');
   });
 

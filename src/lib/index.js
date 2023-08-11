@@ -7,6 +7,12 @@ import {
   signOut,
   updateProfile,
   provider,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  collection,
+  db,
   signInWithPopup,
 } from '../firebase/initializeFirebase';
 
@@ -80,4 +86,58 @@ export const resetPass = (email) => {
       console.log(errorMessage);
       alert(err);
     });
+};
+
+export const addPost = async (author, content, date) => {
+  try {
+    // Obtiene una referencia a la colección "posts" en Firestore
+    const postsCollection = collection(db, 'posts');
+    // Agrega un nuevo documento con los campos proporcionados
+    await addDoc(postsCollection, {
+      author,
+      content,
+      date,
+    });
+    console.log('Post agregado correctamente a Firestore');
+  } catch (error) {
+    console.error('Error al agregar el post:', error);
+  }
+};
+
+export const displayUserPosts = async (user, containerElement) => {
+  const postsQuery = query(collection(db, 'posts'), where('author', '==', user.displayName));
+  const postsSnapshot = await getDocs(postsQuery);
+
+  containerElement.innerHTML = '';
+
+  postsSnapshot.forEach((doc) => {
+    const post = doc.data();
+    const postElement = document.createElement('div');
+    postElement.classList.add('user-post');
+    postElement.innerHTML = `
+    <div class="post-author">
+    <img src="${user.photoURL || './img/person-circle.svg'}" class="user-avatar" />
+    ${post.author}
+    </div>
+    <div class="post-content">${post.content}</div>
+    <div class="post-date">${post.date.toDate().toLocaleDateString()}</div>
+`;
+    containerElement.appendChild(postElement);
+  });
+};
+
+export const getAllPosts = async () => {
+  const postsCollection = collection(db, 'posts');
+  try {
+    const querySnapshot = await getDocs(postsCollection);
+    const posts = [];
+    querySnapshot.forEach((doc) => {
+      const post = doc.data();
+      posts.push(post);
+    });
+    return posts;
+  } catch (error) {
+    console.error('Error while trying to get data:', error);
+    throw new Error(error);
+  }
 };
