@@ -3,13 +3,13 @@ function home(navigateTo) {
   contenedorGeneral.className = 'contenedor';
 
   const buttonInicio = document.createElement('button');
-  buttonInicio.className = 'boton_Inicio';
+  buttonInicio.className = 'button buttonSignInHome';
 
   const buttonParrafo = document.createElement('h2');
   buttonParrafo.textContent = 'Y si no tienes cuenta...';
 
   const buttonRegistro = document.createElement('button');
-  buttonRegistro.className = 'boton_Registro';
+  buttonRegistro.className = 'button buttonLoginHome';
 
   buttonInicio.textContent = 'Inicia sesión';
   buttonInicio.addEventListener('click', () => {

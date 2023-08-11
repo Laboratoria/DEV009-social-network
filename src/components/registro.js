@@ -10,9 +10,9 @@ function registro(navigateTo) {
   const inputPass = document.createElement('input');
   inputPass.className = 'inputPass';
   const buttonRegistro = document.createElement('button');
-  buttonRegistro.className = 'buttonRegistro';
+  buttonRegistro.className = 'button buttonSignInRegistro';
   const buttonReturn = document.createElement('button');
-  buttonReturn.className = 'buttonReturn';
+  buttonReturn.className = 'button buttonReturnRegistro';
   const errorRegister = document.createElement('h3');
 
   inputName.placeholder = 'Nombre de usuario';
@@ -28,6 +28,12 @@ function registro(navigateTo) {
     const emailValue = inputEmail.value;
     const nameValue = inputName.value;
     const passwordValue = inputPass.value;
+
+    if (nameValue === '') {
+      errorRegister.style.display = 'block';
+      errorRegister.textContent = 'Los campos no puede estar vacíos';
+      return;
+    }
 
     const userInfo = {
       email: emailValue,
@@ -45,10 +51,7 @@ function registro(navigateTo) {
       })
       .catch((error) => {
         const errorCode = error.code;
-        if (errorCode === 'auth/network-request-failed.') { /* Revisar codigo cuando los campos estan vacios */
-          errorRegister.style.display = 'block';
-          errorRegister.textContent = 'Los campos no pueden estar vacios';
-        } else if (errorCode === 'auth/weak-password') {
+        if (errorCode === 'auth/weak-password') {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'La contraseña debe tener al menos 6 caracteres';
         } else if (errorCode === 'auth/invalid-email') {
@@ -63,10 +66,7 @@ function registro(navigateTo) {
         } else if (errorCode === 'auth/internal-error') {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'Falta colocar contraseña';
-        } else if (displayName === 'auth/invalid-display-name') { /* Falta mandar mensaje cuando el campo de usuario se encuentra vacio */
-          errorRegister.style.display = 'block';
-          errorRegister.textContent = 'Falta colocar usuario';
-        }
+        } 
         console.log(error.code);
         return error;
       });
