@@ -1,4 +1,3 @@
-import { QuerySnapshot } from 'firebase/firestore';
 import { logOut, auth } from '../lib/firebaseAuth.js';
 import { addPost, getPosts, updatePost } from '../lib/firebaseStore.js';
 
@@ -78,7 +77,6 @@ export const muro = (navigateTo) => {
         const userElement = document.createElement('h6');
         userElement.textContent = `Publicado por: ${post.userId}`;
 
-        // *************Botón de Editar*************
         const editButton = document.createElement('button');
         editButton.textContent = 'Editar 🧁';
         editButton.addEventListener('click', async () => {
@@ -90,20 +88,18 @@ export const muro = (navigateTo) => {
           // const getLikes((querySnapshot) => {
           //   likesContainer.innerHTML += '<button class="likes">likes</button>';
         });
+
+        postElement.append(userElement, contentElement, editButton);
+
+        postsContainer.append(postElement);
       });
-
-      postElement.append(userElement, contentElement, editButton);
-
-      postsContainer.append(postElement);
     } catch (error) {
       console.error('Error al obtener las publicaciones:', error);
     }
   };
+
+  // Llamar a la función para actualizar la lista de publicaciones al cargar la página inicialmente
+
+  updatePostsList();
   return section;
 };
-
-/* Llamar a la función para actualizar la lista de publicaciones al cargar la página inicialmente
-  //updatePostsList();
-
-  return section;
-}; */
