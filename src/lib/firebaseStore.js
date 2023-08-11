@@ -1,5 +1,5 @@
 import {
-  collection, addDoc, getDocs, doc, updateDoc, updatePost,
+  collection, addDoc, getDocs, doc, updateDoc,
 } from 'firebase/firestore';
 import { db } from './firebaseAuth';
 

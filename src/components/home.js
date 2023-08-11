@@ -53,12 +53,6 @@ export const home = (navigateTo) => {
     navigateTo('/resetpassword');
   });
 
-  /* const escucharCambios = auth.onAuthStateChanged((user) => {
-    if (user) {
-      navigateTo('/muro');
-      escucharCambios();
-    }
-  }); */
   googleButton.append(googleIcon);
   buttonContainer.append(googleButton, logInButton, registerButton);
   section.append(logo, title, slogan, description, buttonContainer, passwordReset);
