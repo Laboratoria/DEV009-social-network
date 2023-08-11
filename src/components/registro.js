@@ -1,7 +1,5 @@
 import { registerWithEmail, signInWithGoogle } from '../lib/index';
 
-
-
 function registro(navigateTo) {
   const section = document.createElement('section');
   section.className = 'section';
@@ -36,6 +34,12 @@ function registro(navigateTo) {
   errorRegister.textContent = 'errorMessage';
   errorRegister.style.display = 'none';
   errorRegister.id = 'errorRegister';
+
+  const buttonGoogle = document.createElement('button');
+  buttonGoogle.className = 'buttonGoogle';
+  const strong = document.createElement('strong');
+  strong.textContent = 'Seguir con Google';
+  strong.className = 'textGoogle';
 
   buttonRegistro.addEventListener('click', () => {
     const emailValue = inputEmail.value;
@@ -79,8 +83,7 @@ function registro(navigateTo) {
         } else if (errorCode === 'auth/internal-error') {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'Falta colocar contraseña';
-        } 
-
+        }
         console.log(error.code);
         return error;
       });
@@ -90,36 +93,28 @@ function registro(navigateTo) {
   buttonReturn.addEventListener('click', () => {
     navigateTo('/');
   });
-
-  const buttonGoogle = document.createElement('button');
-  buttonGoogle.className = 'buttonGoogle';
-  const strong = document.createElement('strong');
-  strong.textContent = 'Seguir con Google';
-  strong.className = 'textGoogle';
-
+  // eslint-disable-next-line max-len
   section.append(inputName, inputEmail, inputPass, buttonRegistro, buttonReturn, errorRegister, buttonGoogle);
   buttonGoogle.appendChild(strong);
-  buttonGoogle.addEventListener('click', () => {signInWithGoogle()
-  .then((result) => {
-    // nos da acceso al Google Access Token. lo podemos usar para acceder al google API.
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    // agregamos el signed-in en la informacion del usuario
-    const user = result.user;
-    navigateTo('/principal');
-  })
-  .catch ((error)=> {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // el correo de la cuenta del usuario.
-    const email = error.customData.email;
-    // la credencial Auth que fue usada.
-    const credential_1 = GoogleAuthProvider.credentialFromError(error);
-    navigateTo('/'); // si nos marca error nos manda al home
-  });
+
+  buttonGoogle.addEventListener('click', () =>
+  { signInWithGoogle()
+    .then((result) => {
+      navigateTo('/principal');
+    })
+    .catch((error) => {
+      console.log('estes es', error);
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // el correo de la cuenta del usuario.
+      const email = error.customData.email;
+      // la credencial Auth que fue usada.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      navigateTo('/'); // si nos marca error nos manda al home
+    });
   });
   return section;
 }
-//  navigateTo('/principal');
 
 export default registro;
