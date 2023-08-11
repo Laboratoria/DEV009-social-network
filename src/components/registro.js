@@ -7,9 +7,11 @@ function registro(navigateTo) {
   section.className = 'section';
   const inputName = document.createElement('input');
   inputName.className = 'displayName';
+
   inputName.setAttribute('type', 'name');
   inputName.setAttribute('placeholder', 'Nombre de Usuario');
   inputName.setAttribute('required', '');
+
   const inputEmail = document.createElement('input');
   inputName.className = 'inputEmail';
   inputEmail.setAttribute('type', 'email');
@@ -26,7 +28,10 @@ function registro(navigateTo) {
   buttonReturn.className = 'buttonReturn';
   const errorRegister = document.createElement('h3');
 
-  
+  inputName.placeholder = 'Nombre de usuario';
+  inputEmail.placeholder = 'Correo';
+  inputPass.placeholder = 'Contraseña';
+
   buttonRegistro.textContent = 'Registro';
   errorRegister.textContent = 'errorMessage';
   errorRegister.style.display = 'none';
