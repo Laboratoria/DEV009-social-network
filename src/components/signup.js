@@ -23,14 +23,14 @@ const linkGmail =  document.createElement('img');
 section.classList.add("containerSignup");
 logo.classList.add("logo");
 title.classList.add("title");
-name.classList.add("name");
+name.classList.add("info", "name");
 formRegister.classList.add("formRegister");
-email.classList.add("email");
-password.classList.add("password");
-btnSignup.classList.add("btnSignup");
+email.classList.add("info", "email");
+password.classList.add("info", "password");
+btnSignup.classList.add("btn","btnSignup");
 toLogin.classList.add("toLogin");
 or.classList.add("or");
-signupWithGmail.classList.add("signupWithGmail");
+signupWithGmail.classList.add("btn","signupWithGmail");
 linkGmail.classList.add("linkGmail")
 
 logo.src = "./img/logo.png";
@@ -46,10 +46,10 @@ password.setAttribute('title', 'debe contener 8 o más caracteres que sean al me
 btnSignup.textContent = "Registrarse";
 toLogin.textContent = "Ya tengo una cuenta";
 or.textContent = "ó";
-signupWithGmail.textContent = "Registrarse con";
+signupWithGmail.textContent = "Registrarse con  ";
 linkGmail.src = "./icons/gmail.svg";
-linkGmail.width = 24;
-linkGmail.height = 24;
+//linkGmail.width = 20;
+//linkGmail.height = 20;
 
 formRegister.addEventListener('submit',(e)=>{
     e.preventDefault();

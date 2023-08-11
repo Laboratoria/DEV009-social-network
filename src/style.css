@@ -10,41 +10,93 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Quicksand', sans-serif, 1rem;
     text-align: center;
+    font-family: 'Quicksand', sans-serif;
 }
 
-@media only screen and (min-width:320px) and (max-width:480px) {
 body {
     background: var(--theme-color-d);
-    display: grid;
-    place-items: center;
-}
-section.containerSignup {
-    margin: 50px;
-    background: white;
-    border-radius: 8px;
-    display: grid;
-    grid-template-rows: 10em 2em 2em 5em 2em 2em 2em 2em;
-    row-gap: .5em;
-    justify-items: center;
-    align-items: center;  
-    padding-top: 10px;
-    padding-bottom: 20px;
-    /* margin-bottom: ; */
-}
-.logo{
-    height: 197px;
-    width: 197px;
-}
-.formRegister{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    gap: 1em;
-}
-.title{
-    font-family: Hind Siliguri;
 }
 
+h2 {
+    font-family: 'Hind Siliguri', sans-serif;
+}
+.toLogin{
+        text-decoration:underline;
+}
+
+/* .btn:hover{
+    box-shadow: 0 0 10px var(--theme-color-e) inset, 0 0 10px 4px var(--theme-color-e);
+} */
+
+@media only screen and (min-width:320px) and (max-width:480px) {
+
+    section.containerSignup {
+        margin: 50px;
+        background: white;
+        border-radius: 8px;
+        display: grid;
+        grid-template-rows: 10em 2em 2em 9em 2em 2em 2em 2em;
+        row-gap: .5em;
+        justify-content: center;
+        align-content: center;
+        justify-items: center;
+        align-items: center;
+        padding-top: 2em;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .logo {
+        height: 13em;
+        width: 13em;
+    }
+
+    .formRegister {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 1em;
+        width: 100%;
+        margin: 1em;
+    }
+
+    .info {
+        padding: 1em;
+        width: 90%;
+        height: 2rem;
+        border: 1px solid var(--theme-color-a);
+        border-radius: 4px;
+    }
+
+    .btnSignup,
+    .signupWithGmail {
+        padding: 6px;
+        width: 90%;
+        height: 2rem;
+        background-color: var(--theme-color-b);
+        color: white;
+        border: 1px solid var(--theme-color-a);
+        border-radius: 4px;
+    }
+
+    .linkGmail {
+        width: 2em;
+        height: 2em;
+        margin: 10px;
+        filter: saturate(150%);
+    }
+
+    .signupWithGmail {
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 18px 18px;
+    }
+    
 }
