@@ -7,6 +7,7 @@ import {
   signOut,
   updateProfile,
   provider,
+  orderBy,
   addDoc,
   getDocs,
   query,
@@ -126,18 +127,28 @@ export const displayUserPosts = async (user, containerElement) => {
   });
 };
 
-export const getAllPosts = async () => {
-  const postsCollection = collection(db, 'posts');
-  try {
-    const querySnapshot = await getDocs(postsCollection);
-    const posts = [];
-    querySnapshot.forEach((doc) => {
-      const post = doc.data();
-      posts.push(post);
-    });
-    return posts;
-  } catch (error) {
-    console.error('Error while trying to get data:', error);
-    throw new Error(error);
-  }
+export const displayAllUserPosts = async (user, containerElement) => {
+  const postsQuery = query(collection(db, 'posts'), orderBy('date', 'desc'));
+  const postsSnapshot = await getDocs(postsQuery);
+
+  containerElement.innerHTML = '';
+
+  postsSnapshot.forEach((doc) => {
+    const post = doc.data();
+    const postElement = document.createElement('div');
+    postElement.classList.add('user-post');
+
+    const isCurrentUserPost = post.author === user.displayName;
+    const authorPhotoURL = isCurrentUserPost ? (user.photoURL || './img/person-circle.svg') : './img/person-circle.svg';
+
+    postElement.innerHTML = `
+      <div class="post-author">
+        <img src="${authorPhotoURL}" class="user-avatar" />
+        ${post.author}
+      </div>
+      <div class="post-content">${post.content}</div>
+      <div class="post-date">${post.date.toDate().toLocaleDateString()}</div>
+    `;
+    containerElement.appendChild(postElement);
+  });
 };
