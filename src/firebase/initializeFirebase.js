@@ -17,7 +17,9 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 
-import { getFirestore } from 'firebase/firestore';
+import {
+  getFirestore, collection, addDoc, serverTimestamp, query, where, getDocs,
+} from 'firebase/firestore';
 
 import { firebaseConfig } from './credentialFirebase';
 
@@ -30,6 +32,11 @@ export {
   auth,
   app,
   db,
+  getDocs,
+  collection,
+  query,
+  where,
+  addDoc,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
@@ -42,4 +49,5 @@ export {
   signOut,
   updateProfile,
   signInWithPopup,
+  serverTimestamp,
 };
