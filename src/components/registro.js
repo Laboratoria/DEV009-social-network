@@ -1,7 +1,5 @@
 import { registerWithEmail, signInWithGoogle } from '../lib/index';
 
-
-
 function registro(navigateTo) {
   const section = document.createElement('section');
   section.className = 'section';
@@ -23,9 +21,9 @@ function registro(navigateTo) {
   inputPass.setAttribute('placeholder', 'Crea tu contraseña');
   inputPass.setAttribute('required', '');
   const buttonRegistro = document.createElement('button');
-  buttonRegistro.className = 'buttonRegistro';
+  buttonRegistro.className = 'button buttonSignInRegistro';
   const buttonReturn = document.createElement('button');
-  buttonReturn.className = 'buttonReturn';
+  buttonReturn.className = 'button buttonReturnRegistro';
   const errorRegister = document.createElement('h3');
 
   inputName.placeholder = 'Nombre de usuario';
@@ -37,10 +35,22 @@ function registro(navigateTo) {
   errorRegister.style.display = 'none';
   errorRegister.id = 'errorRegister';
 
+  const buttonGoogle = document.createElement('button');
+  buttonGoogle.className = 'buttonGoogle';
+  const strong = document.createElement('strong');
+  strong.textContent = 'Seguir con Google';
+  strong.className = 'textGoogle';
+
   buttonRegistro.addEventListener('click', () => {
     const emailValue = inputEmail.value;
     const nameValue = inputName.value;
     const passwordValue = inputPass.value;
+
+    if (nameValue === '') {
+      errorRegister.style.display = 'block';
+      errorRegister.textContent = 'Los campos no puede estar vacíos';
+      return;
+    }
 
     const userInfo = {
       email: emailValue,
@@ -58,10 +68,7 @@ function registro(navigateTo) {
       })
       .catch((error) => {
         const errorCode = error.code;
-        if (!userInfo.email ||!userInfo.password || ! userInfo.name) { /* Revisar codigo cuando los campos estan vacios */
-          errorRegister.style.display = 'block';
-          errorRegister.textContent = 'Los campos no pueden estar vacios';
-        } else if (errorCode === 'auth/weak-password') {
+        if (errorCode === 'auth/weak-password') {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'La contraseña debe tener al menos 6 caracteres';
         } else if (errorCode === 'auth/invalid-email') {
@@ -76,9 +83,6 @@ function registro(navigateTo) {
         } else if (errorCode === 'auth/internal-error') {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'Falta colocar contraseña';
-        } else if (userInfo.name === '') { /* Falta mandar mensaje cuando el campo de usuario se encuentra vacio */
-          errorRegister.style.display = 'block';
-          errorRegister.textContent = 'Falta colocar usuario';
         }
         console.log(error.code);
         return error;
@@ -89,36 +93,28 @@ function registro(navigateTo) {
   buttonReturn.addEventListener('click', () => {
     navigateTo('/');
   });
-
-  const buttonGoogle = document.createElement('button');
-  buttonGoogle.className = 'buttonGoogle';
-  const strong = document.createElement('strong');
-  strong.textContent = 'Seguir con Google';
-  strong.className = 'textGoogle';
-
+  // eslint-disable-next-line max-len
   section.append(inputName, inputEmail, inputPass, buttonRegistro, buttonReturn, errorRegister, buttonGoogle);
   buttonGoogle.appendChild(strong);
-  buttonGoogle.addEventListener('click', () => {signInWithGoogle()
-  .then((result) => {
-    // nos da acceso al Google Access Token. lo podemos usar para acceder al google API.
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    // agregamos el signed-in en la informacion del usuario
-    const user = result.user;
-    navigateTo('/principal');
-  })
-  .catch ((error)=> {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // el correo de la cuenta del usuario.
-    const email = error.customData.email;
-    // la credencial Auth que fue usada.
-    const credential_1 = GoogleAuthProvider.credentialFromError(error);
-    navigateTo('/'); // si nos marca error nos manda al home
-  });
+
+  buttonGoogle.addEventListener('click', () =>
+  { signInWithGoogle()
+    .then((result) => {
+      navigateTo('/principal');
+    })
+    .catch((error) => {
+      console.log('estes es', error);
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // el correo de la cuenta del usuario.
+      const email = error.customData.email;
+      // la credencial Auth que fue usada.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      navigateTo('/'); // si nos marca error nos manda al home
+    });
   });
   return section;
 }
-//  navigateTo('/principal');
 
 export default registro;
