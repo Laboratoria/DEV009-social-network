@@ -14,3 +14,4 @@ const db = getFirestore(app);
 export {
   auth, createUserWithEmailAndPassword, updateProfile, db, collection, addDoc,
 };
+export const saveUser = (user) => addDoc(collection(db, 'Users'), user);

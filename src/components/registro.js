@@ -45,10 +45,13 @@ function registro(navigateTo) {
         navigateTo('/principal');
       })
       .catch((error) => {
+        console.log('Error occurred:', error.message);
+        console.log(error.code);
         const errorCode = error.code;
-        if (errorCode === 'auth/network-request-failed.') { /* Revisar codigo cuando los campos estan vacios */
+        if (!userInfo.email || !userInfo.password || !userInfo.name) { /* Revisar codigo cuando los campos estan vacios */
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'Los campos no pueden estar vacios';
+          //console.log(errorCode);
         } else if (errorCode === 'auth/weak-password') {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'La contraseña debe tener al menos 6 caracteres';
@@ -64,7 +67,7 @@ function registro(navigateTo) {
         } else if (errorCode === 'auth/internal-error') {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'Falta colocar contraseña';
-        } else if (displayName === 'auth/invalid-display-name') { /* Falta mandar mensaje cuando el campo de usuario se encuentra vacio */
+        } else if (userInfo === ' ') { /* 'auth/invalid-display-name' Falta mandar mensaje cuando el campo de usuario se encuentra vacio */
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'Falta colocar usuario';
         }
