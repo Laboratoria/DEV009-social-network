@@ -83,16 +83,6 @@ body {
     align-self: center;
 }
 
-    
-    
-}
-
-.inputRegister{
-    color: var(--color-text)
-    grid-column:1/2;
-}
-
-
 .inputRegister:invalid {
         animation: justshake 0.3s forwards;
         color:var(--color-error);
