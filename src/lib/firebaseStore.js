@@ -1,5 +1,5 @@
 import {
-  collection, addDoc, getDocs, doc, updateDoc,
+  collection, addDoc, getDocs, doc, updateDoc, // querySnapshot
 } from 'firebase/firestore';
 import { db } from './firebaseAuth';
 
