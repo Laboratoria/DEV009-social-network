@@ -1,4 +1,4 @@
-import { async } from 'regenerator-runtime';
+import { QuerySnapshot } from 'firebase/firestore';
 import { logOut, auth } from '../lib/firebaseAuth.js';
 import { addPost, getPosts, updatePost } from '../lib/firebaseStore.js';
 
@@ -16,6 +16,7 @@ export const muro = (navigateTo) => {
   botonCompartir.classList.add('boton-compartir');
   botonCompartir.textContent = 'Compartir';
 
+  // *************Evento click del botón Compartir*************
   botonCompartir.addEventListener('click', async () => {
     if (areaText.value.trim() !== '') {
       try {
@@ -38,11 +39,11 @@ export const muro = (navigateTo) => {
     }
   });
   publicacion.append(areaText, botonCompartir);
-  // Contenedor para los posts
+  // *************Contenedor para los posts*************
   const postsContainer = document.createElement('div');
   postsContainer.classList.add('posts-container');
 
-  // LogOutButton
+  // *************Boton de cierre de sesión*************
   const logOutButton = document.createElement('button');
   logOutButton.classList.add('logOut-button');
   logOutButton.textContent = 'Cerrar sesion';
@@ -59,15 +60,13 @@ export const muro = (navigateTo) => {
 
   section.append(logoMuro, publicacion, postsContainer, logOutButton);
 
-  // Función para actualizar la lista de publicaciones
+  // Actualizar la lista de publicaciones
   const updatePostsList = async () => {
     try {
       const posts = await getPosts();
-
-      // Limpiar el contenedor de posts antes de actualizar
       postsContainer.innerHTML = '';
 
-      // Mostrar los posts en el contenedor
+      // *************Mostrar los posts en el contenedor*************
       posts.forEach((post) => {
         const postElement = document.createElement('div');
         postElement.classList.add('post');
@@ -79,28 +78,32 @@ export const muro = (navigateTo) => {
         const userElement = document.createElement('h6');
         userElement.textContent = `Publicado por: ${post.userId}`;
 
+        // *************Botón de Editar*************
         const editButton = document.createElement('button');
         editButton.textContent = 'Editar 🧁';
         editButton.addEventListener('click', async () => {
-          const newContent = contentElement.value;
-          if (newContent.trim() !=='') {
+          const newContent = prompt('Editar Contenido', contentElement.textContent);
+          if (newContent !== null && newContent.trim() !== '') {
             await updatePost(post.id, newContent);
             updatePostsList();
           }
+          // const getLikes((querySnapshot) => {
+          //   likesContainer.innerHTML += '<button class="likes">likes</button>';
         });
-
-        postElement.appendChild(contentElement);
-        postElement.appendChild(userElement);
-
-        postsContainer.appendChild(postElement);
       });
+
+      postElement.append(userElement, contentElement, editButton);
+
+      postsContainer.append(postElement);
     } catch (error) {
       console.error('Error al obtener las publicaciones:', error);
     }
   };
-
-  // Llamar a la función para actualizar la lista de publicaciones al cargar la página inicialmente
-  updatePostsList();
-
   return section;
 };
+
+/* Llamar a la función para actualizar la lista de publicaciones al cargar la página inicialmente
+  //updatePostsList();
+
+  return section;
+}; */

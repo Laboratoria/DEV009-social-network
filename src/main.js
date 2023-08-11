@@ -1,5 +1,6 @@
 // Este es el punto de entrada de tu aplicación
 
+import { onAuthStateChanged } from 'firebase/auth';
 import { home } from './components/home.js';
 import { login } from './components/login.js';
 import { register } from './components/register.js';
@@ -7,6 +8,7 @@ import { register2 } from './components/register2.js';
 import { error } from './components/error.js';
 import { muro } from './components/muro.js';
 import { resetPassword } from './components/resetpassword.js';
+import { auth } from './lib/firebaseAuth.js';
 
 // Llamamos a la función home y la agregamos al DOM
 
@@ -46,4 +48,11 @@ window.onpopstate = () => {
   navigateTo(window.location.pathname);
 };
 
-navigateTo(window.location.pathname || defaultRoute);
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    navigateTo('/muro');
+  } else if (window.location.pathname === '/muro' && !user) {
+    navigateTo(defaultRoute);
+  }
+  navigateTo(window.location.pathname);
+});

@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
+  onAuthStateChanged,
 } from 'firebase/auth';
 
 import { getFirestore } from 'firebase/firestore';
@@ -211,3 +212,17 @@ export const resetPasswordEmail = (email, callback) => {
     // ..
     });
 };
+
+/*export const authStateChangeListener = (callback) => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/auth.user
+      const uid = user.uid;
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
+};*/
