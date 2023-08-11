@@ -4,6 +4,7 @@ function registro(navigateTo) {
   const section = document.createElement('section');
   section.className = 'section';
   const inputName = document.createElement('input');
+
   inputName.className = 'displayName';
 
   inputName.setAttribute('type', 'name');
@@ -27,6 +28,7 @@ function registro(navigateTo) {
   const errorRegister = document.createElement('h3');
 
   inputName.placeholder = 'Nombre de usuario';
+  inputName.className = 'displayName';
   inputEmail.placeholder = 'Correo';
   inputPass.placeholder = 'Contraseña';
 
@@ -93,6 +95,7 @@ function registro(navigateTo) {
   buttonReturn.addEventListener('click', () => {
     navigateTo('/');
   });
+
   // eslint-disable-next-line max-len
   section.append(inputName, inputEmail, inputPass, buttonRegistro, buttonReturn, errorRegister, buttonGoogle);
   buttonGoogle.appendChild(strong);
