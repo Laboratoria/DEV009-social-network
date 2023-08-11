@@ -1,18 +1,30 @@
-import { registerWithEmail } from '../lib/index.js';
+import { registerWithEmail, signInWithGoogle } from '../lib/index';
 
 function registro(navigateTo) {
   const section = document.createElement('section');
   section.className = 'section';
   const inputName = document.createElement('input');
-  inputName.className = 'inputName';
+
+  inputName.className = 'displayName';
+
+  inputName.setAttribute('type', 'name');
+  inputName.setAttribute('placeholder', 'Nombre de Usuario');
+  inputName.setAttribute('required', '');
+
   const inputEmail = document.createElement('input');
   inputName.className = 'inputEmail';
+  inputEmail.setAttribute('type', 'email');
+  inputEmail.setAttribute('placeholder', 'Correo electronico');
+  inputEmail.setAttribute('required', '');
   const inputPass = document.createElement('input');
   inputPass.className = 'inputPass';
+  inputPass.setAttribute('type', 'password');
+  inputPass.setAttribute('placeholder', 'Crea tu contraseña');
+  inputPass.setAttribute('required', '');
   const buttonRegistro = document.createElement('button');
-  buttonRegistro.className = 'buttonRegistro';
+  buttonRegistro.className = 'button buttonSignInRegistro';
   const buttonReturn = document.createElement('button');
-  buttonReturn.className = 'buttonReturn';
+  buttonReturn.className = 'button buttonReturnRegistro';
   const errorRegister = document.createElement('h3');
 
   inputName.placeholder = 'Nombre de usuario';
@@ -25,10 +37,22 @@ function registro(navigateTo) {
   errorRegister.style.display = 'none';
   errorRegister.id = 'errorRegister';
 
+  const buttonGoogle = document.createElement('button');
+  buttonGoogle.className = 'buttonGoogle';
+  const strong = document.createElement('strong');
+  strong.textContent = 'Seguir con Google';
+  strong.className = 'textGoogle';
+
   buttonRegistro.addEventListener('click', () => {
     const emailValue = inputEmail.value;
     const nameValue = inputName.value;
     const passwordValue = inputPass.value;
+
+    if (nameValue === '') {
+      errorRegister.style.display = 'block';
+      errorRegister.textContent = 'Los campos no puede estar vacíos';
+      return;
+    }
 
     const userInfo = {
       email: emailValue,
@@ -45,14 +69,8 @@ function registro(navigateTo) {
         navigateTo('/principal');
       })
       .catch((error) => {
-        console.log('Error occurred:', error.message);
-        console.log(error.code);
         const errorCode = error.code;
-        if (!userInfo.email || !userInfo.password || !userInfo.name) { /* Revisar codigo cuando los campos estan vacios */
-          errorRegister.style.display = 'block';
-          errorRegister.textContent = 'Los campos no pueden estar vacios';
-          //console.log(errorCode);
-        } else if (errorCode === 'auth/weak-password') {
+        if (errorCode === 'auth/weak-password') {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'La contraseña debe tener al menos 6 caracteres';
         } else if (errorCode === 'auth/invalid-email') {
@@ -67,9 +85,6 @@ function registro(navigateTo) {
         } else if (errorCode === 'auth/internal-error') {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'Falta colocar contraseña';
-        } else if (userInfo === ' ') { /* 'auth/invalid-display-name' Falta mandar mensaje cuando el campo de usuario se encuentra vacio */
-          errorRegister.style.display = 'block';
-          errorRegister.textContent = 'Falta colocar usuario';
         }
         console.log(error.code);
         return error;
@@ -80,9 +95,29 @@ function registro(navigateTo) {
   buttonReturn.addEventListener('click', () => {
     navigateTo('/');
   });
-  section.append(inputName, inputEmail, inputPass, buttonRegistro, buttonReturn, errorRegister);
+
+  // eslint-disable-next-line max-len
+  section.append(inputName, inputEmail, inputPass, buttonRegistro, buttonReturn, errorRegister, buttonGoogle);
+  buttonGoogle.appendChild(strong);
+
+  buttonGoogle.addEventListener('click', () =>
+  { signInWithGoogle()
+    .then((result) => {
+      navigateTo('/principal');
+    })
+    .catch((error) => {
+      console.log('estes es', error);
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // el correo de la cuenta del usuario.
+      const email = error.customData.email;
+      // la credencial Auth que fue usada.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      navigateTo('/'); // si nos marca error nos manda al home
+    });
+  });
   return section;
 }
-//  navigateTo('/principal');
 
 export default registro;
