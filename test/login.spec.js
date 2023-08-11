@@ -1,7 +1,7 @@
 // importamos la funcion que vamos a testear
-import { loginUser } from '../src/lib';
+import { authWithGoogle, loginUser } from '../src/lib';
 import login from '../src/components/login';
-import { provider, signInWithRedirect, auth } from '../src/firebase/initializeFirebase';
+import { provider, auth } from '../src/firebase/initializeFirebase';
 
 jest.mock('../src/lib/index');
 jest.mock('../src/firebase/initializeFirebase', () => ({
@@ -39,10 +39,10 @@ describe('login', () => {
     expect(loginComponent.querySelector('.message-modal').textContent).toBe('Passwords don\'t match');
   });
 
-  it('should call signInWithRedirect when clicking on the Google button', () => {
+  it('should call authWithGoogle when clicking on the Google button', () => {
     const buttonGoogle = loginComponent.querySelector('.button-google');
     buttonGoogle.click();
-    expect(signInWithRedirect).toHaveBeenCalledWith(auth, provider);
+    expect(authWithGoogle).toHaveBeenCalledTimes(1);
   });
 
   it('should call navigateTo when clicking on the Register button', () => {

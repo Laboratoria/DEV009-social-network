@@ -49,7 +49,7 @@ function profile(navigateTo) {
                   <p class="user-name-create-post"></p>
                   </div>
               </div>
-              <input type="textarea" class="create-new-post" placeholder="Share what you're thinking">
+              <textarea class="create-new-post" placeholder="Share what you're thinking"></textarea>
           </div>
         </div>
     </div>

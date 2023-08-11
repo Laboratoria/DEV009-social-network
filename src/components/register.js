@@ -1,5 +1,5 @@
-import { createAccountWithEmail, authWithGoogle } from '../lib/index';
-// import { auth } from '../firebase/initializeFirebase';
+import { createAccountWithEmail } from '../lib/index';
+import { signInWithRedirect, auth, provider } from '../firebase/initializeFirebase';
 
 function register(navigateTo) {
   const section = document.createElement('section');
@@ -76,8 +76,8 @@ function register(navigateTo) {
   });
 
   buttonGoogle.addEventListener('click', () => {
-    authWithGoogle();
-    navigateTo('/welcomeGoogle');
+    signInWithRedirect(auth, provider);
+    navigateTo('/welcomeUserGoogle');
     alert('You are logged with Google');
   });
 
