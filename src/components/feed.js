@@ -13,8 +13,8 @@ function feed(navigateTo) {
   const logoutButtom = document.createElement('button');
   const logoutMessage = document.createElement('p');
   const logoutMessageError = document.createElement('p');
-  const recipe = document.createElement ('textarea');
-  const formRecipe = document.createElement ('form');
+  const recipe = document.createElement('textarea');
+  const formRecipe = document.createElement('form');
   const nameSteps = document.createElement('input');
   const add = document.createElement('button');
 
@@ -24,7 +24,7 @@ function feed(navigateTo) {
   option1.textContent = 'Mejores Recetas';
   option2.value = 'Usuarios';
   option2.textContent = 'Usuarios';
-  recipe.placeholder= 'ingresa tu receta';
+  recipe.placeholder = 'ingresa tu receta';
   formRecipe.style.display = 'none'
   nameSteps.type = 'text';
   nameSteps.placeholder = 'Nombre de la receta';

@@ -20,9 +20,9 @@ function home(navigateTo) {
   registerUser.textContent = 'Registrarse';
   login.textContent = 'Ingresar';
   logo.src = './imagenes/image.png';
-  buttonGoogle.textContent = 'Continuar con Google';
+  buttonGoogle.textContent = 'ó notContinuar con Google';
   h3.textContent = '¡Unete a CocinArte hoy mismo!';
-  errorMessage.style.color = 'red';
+  errorMessage.style.color = 'beige';
 
   const googleLogo = document.createElement('img');
   googleLogo.src = './imagenes/logo_google.avif';

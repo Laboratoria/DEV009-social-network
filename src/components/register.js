@@ -15,11 +15,17 @@ function register(navigateTo) {
   avatar.src = './imagenes/avatar.png';
   avatar.classList.add('avatar');
   buttonRegister.textContent = 'Registrate';
+  buttonRegister.className = 'button-register';
   buttonGoogle.textContent = 'Continuar con Google';
+  buttonGoogle.className = 'button-google';
   password.placeholder = 'Crea tu Contraseña';
+  password.className = 'input-password';
+  password.type = 'password';
   name.placeholder = 'Ingresa tu nombre';
+  email.className = 'input-email';
   email.placeholder = 'Ingresa tu Email';
   errorMessage.style.color = 'grey';
+  errorMessage.className = 'error-mesagge';
   successMessage.style.color = 'green';
 
   buttonRegister.addEventListener('click', async () => {
@@ -40,9 +46,7 @@ function register(navigateTo) {
     }
   });
 
-  password.addEventListener('input', () => {
-    password.type = 'password';
-  });
+
   buttonGoogle.addEventListener('click', async () => {
     try {
       await signInWithGoogle();
@@ -51,6 +55,7 @@ function register(navigateTo) {
       errorMessage.textContent = error.message;
     }
   });
+  
   section.append(logo, avatar, name, email, password, buttonRegister);
   section.append(buttonGoogle, errorMessage, successMessage);
 
