@@ -85,6 +85,7 @@ function timeline(navigateTo) {
   const exitCreatePost = section.querySelector('.exit-create-post');
   const createPost = section.querySelector('.create-new-post');
   const publish = section.querySelector('.button-publish-post');
+  const userNameProfile = section.querySelector('.first-and-last-name');
 
   exitCreatePost.addEventListener('click', () => {
     post.style.display = 'none';
