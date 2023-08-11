@@ -1,4 +1,4 @@
-import { signOutUser, addPost, getAllPosts, displayUserPosts } from '../lib/index';
+import { signOutUser, addPost, displayAllUserPosts } from '../lib/index';
 import { onAuthStateChanged, auth, serverTimestamp } from '../firebase/initializeFirebase';
 
 function timeline(navigateTo) {
@@ -27,7 +27,6 @@ function timeline(navigateTo) {
                  </div>
             </div>
         </header>
-        <div class="timeline-publications"></div>
         <div class='post'>
         <div class ='container-post'>
           </span>
@@ -46,9 +45,10 @@ function timeline(navigateTo) {
                     </div>
                 </div>
                 <input type="text" class="create-new-post" placeholder="Share what you're thinking">
+                </div>
             </div>
-          </div>
-      </div>
+        </div>
+        <div class="user-posts-container-timeline"></div>
         <footer class="footer">
           <nav class="footer-nav">
              <button class="home-nav">
@@ -85,6 +85,7 @@ function timeline(navigateTo) {
   const exitCreatePost = section.querySelector('.exit-create-post');
   const createPost = section.querySelector('.create-new-post');
   const publish = section.querySelector('.button-publish-post');
+  const userNameProfile = section.querySelector('.first-and-last-name');
 
   exitCreatePost.addEventListener('click', () => {
     post.style.display = 'none';
@@ -92,39 +93,32 @@ function timeline(navigateTo) {
 
   onAuthStateChanged(auth, async (user) => {
     if (user) {
-      const postsContainer = section.querySelector('.timeline-publications');
-      const posts = await getAllPosts();
-      postsContainer.innerHTML = '';
-      posts.forEach((postUser) => {
-        const postElement = document.createElement('div');
-        postElement.classList.add('post');
-        postElement.innerHTML = `
-            <div class="post-content">
-              <h2>${postUser.author}</h2>
-              <p>${postUser.content}</p>
-              <p>${postUser.date}</p>
-            </div>
-          `;
-        postsContainer.appendChild(postElement);
-      });
+      // profileImg.src = user.photoURL;
+      const postsContainer = section.querySelector('.user-posts-container-timeline');
+      await displayAllUserPosts(user, postsContainer);
       console.log(user);
       console.log(user.email);
       console.log(user.displayName);
-      console.log(user.photoURL);
+
       const srcPhoto = user.photoURL;
       console.log(srcPhoto);
       if (user.photoURL) {
         profileImage.src = `${srcPhoto}`;
+        profileImage.innerHTML = `<img class="photo-URL" src="${user.photoURL}" />`;
       } else {
         profileImage.src = './img/person-circle.svg';
+        profileImage.innerHTML = '<img class="photo-URL" src="./img/person-circle.svg"/>';
       }
+
       const wholeUserName = user.displayName;
       const shortName = wholeUserName.slice(0, wholeUserName.indexOf(' '));
       userName.textContent = shortName;
-    // ...
+      userNameProfile.textContent = shortName;
+
+      // ...
     } else {
-    // User is signed out
-    // ...
+      // User is signed out
+      // ...
     }
   });
 
@@ -158,8 +152,8 @@ function timeline(navigateTo) {
     const date = serverTimestamp();
     if (contentPost !== '') {
       addPost(author, contentPost, date).then(() => {
-        const postsContainer = section.querySelector('.timeline-publications');
-        displayUserPosts(user, postsContainer);
+        const postsContainer = section.querySelector('.user-posts-container');
+        displayAllUserPost(user, postsContainer);
         createPost.value = '';
       });
     } else {
