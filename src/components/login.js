@@ -4,6 +4,21 @@ function login(navigateTo) {
   const sectionP = document.createElement('section');
   sectionP.classList.add('loginSectionMain');
 
+  const logo = document.createElement('img');
+  logo.src = './images/logoLogin.png';
+  logo.classList.add('logo');
+  logo.alt='logo de Guide Ma+Pa';
+
+  const logoInWords =document.createElement ('img');
+  logoInWords.src= './images/logoWords.png';
+  logoInWords.classList.add('logoWords');
+  logoInWords.alt='Guide Ma+Pa';
+
+  const description = document.createElement('h2');
+  description.textContent = '"Descubre cómo criar sin morir en el intento, donde lo caótico se convierte en una aventura compartida en esta red social."';
+  description.classList.add('description');
+
+
   const section = document.createElement('section');
   section.classList.add('loginSection');
 
@@ -46,10 +61,7 @@ function login(navigateTo) {
     navigateTo('/register');
   });
 
-  const logo = document.createElement('img');
-  logo.src = './images/logoLogin.png';
-  logo.classList.add('logo');
-  logo.alt='logo de Guide Ma+Pa'
+
 
   section.append(
     title,
@@ -59,7 +71,7 @@ function login(navigateTo) {
     buttonSiginGoogle,
     buttonCreateAccount,
   );
-  sectionP.append(logo, section);
+  sectionP.append(logo, logoInWords, description, section);
 
   return (sectionP);
 }
