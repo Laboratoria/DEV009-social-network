@@ -6,6 +6,7 @@ body {
     background: linear-gradient(196deg, rgb(245, 200, 213) 0%, rgb(245, 200, 213) 0%, rgb(245, 200, 213) 0%, rgb(201, 194, 250) 100%, rgb(243, 113, 194) 100%);
     background-repeat: no-repeat;
     background-size: 1750px 1750px;
+    background-attachment: fixed;
     text-align: center;
     font-family: 'Montserrat Alternates', sans-serif;
 }
@@ -166,6 +167,27 @@ h6 {
     color: grey;
     text-align: left;
 }
+
+.like-button {
+    background-image: url('./recursos/heart-regular.svg');
+    background-color: #7d3f7100;
+    background-repeat: no-repeat;
+    background-position: left;
+    padding: .2rem;
+    text-align: end;
+    width: 60px;
+    display: block;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+  }
+
+  .like-button:focus {
+    background-image: url('./recursos/heart-solid.svg');
+    background-color: rgba(169, 169, 169, 0) ;
+    background-repeat: no-repeat;
+    background-position: left;
+    padding: .2rem;
+  }
 
 .logOut-button{
     display: block;
