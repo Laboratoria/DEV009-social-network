@@ -73,9 +73,10 @@ export const muro = (navigateTo) => {
         const contentElement = document.createElement('p');
         contentElement.classList.add('user-post');
         contentElement.textContent = post.content;
+
         const getLikes = document.createElement('div');
         getLikes.classList.add('likes');
-        getLikes.innerHTML += '<button class="like-button">Like</button>';
+        getLikes.innerHTML += '<button class="like-button">Like</button><span> <strong>0</strong> Likes</span>';
 
         const userElement = document.createElement('h6');
         userElement.textContent = `Publicado por: ${post.userId}`;
