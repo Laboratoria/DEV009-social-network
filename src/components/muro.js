@@ -73,6 +73,9 @@ export const muro = (navigateTo) => {
         const contentElement = document.createElement('p');
         contentElement.classList.add('user-post');
         contentElement.textContent = post.content;
+        const getLikes = document.createElement('div');
+        getLikes.classList.add('likes');
+        getLikes.innerHTML += '<button class="like-button">Like</button>';
 
         const userElement = document.createElement('h6');
         userElement.textContent = `Publicado por: ${post.userId}`;
@@ -85,11 +88,9 @@ export const muro = (navigateTo) => {
             await updatePost(post.id, newContent);
             updatePostsList();
           }
-          // const getLikes((querySnapshot) => {
-          //   likesContainer.innerHTML += '<button class="likes">likes</button>';
         });
 
-        postElement.append(userElement, contentElement, editButton);
+        postElement.append(userElement, contentElement, getLikes, editButton);
 
         postsContainer.append(postElement);
       });
