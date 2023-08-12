@@ -27,14 +27,14 @@ function register(navigateTo) {
         icon.classList.add('fa-circle-check');
         icon.classList.remove('fa-circle-xmark');
         errorMessage.classList.remove('formulario__input-error-activo');
-        // inputs[expresion] = true;
+        inputs[expresion] = true;
       } else {
         divGroup.classList.add('formulario__grupo-incorrecto');
         divGroup.classList.remove('formulario__grupo-correcto');
         icon.classList.add('fa-circle-xmark');
         icon.classList.remove('fa-circle-check');
         errorMessage.classList.add('formulario__input-error-activo');
-        // inputs[expresion] = false;
+        inputs[expresion] = false;
       }
     });
   };
@@ -60,24 +60,6 @@ function register(navigateTo) {
 
   const divInputName = document.createElement('div');
   divInputName.classList.add('formulario__grupo-input');
-
-
-  //input nombre
-  const divGroupName = document.createElement('div');
-  divGroupName.classList.add('formulario__grupo');
-  divGroupName.id = 'grupo__nombre';
-  divGroupName.id='inputName';
-  
-
-  const labelName = document.createElement('label');
-  labelName.setAttribute("for", "nombre");
-  labelName.classList.add('formulario__label');
-  const textLabelName = document.createTextNode("Nombre");
-  labelName.appendChild(textLabelName);
-
-  const divInputName = document.createElement('div');
-  divInputName.classList.add('formulario__grupo-input');
-  
 
   const inputName = document.createElement('input');
   inputName.classList.add('formulario__input');
@@ -156,7 +138,7 @@ function register(navigateTo) {
   divInputUser.classList.add('formulario__grupo-input');
 
   const inputUser = document.createElement('input');
-inputUser.classList.add('formulario__input');
+  inputUser.classList.add('formulario__input');
   inputUser.type = 'text';
   inputUser.setAttribute('name', 'User');
   inputUser.id = 'User';
@@ -193,7 +175,7 @@ inputUser.classList.add('formulario__input');
   const inputEmail = document.createElement('input');
   inputEmail.classList.add('formulario__input');
   inputEmail.type = 'email';
-inputEmail.setAttribute('name', 'Email');
+  inputEmail.setAttribute('name', 'Email');
   inputEmail.id = 'Email';
   inputEmail.placeholder = '';
   inputEmail.autocomplete = 'off';
@@ -356,7 +338,7 @@ inputEmail.setAttribute('name', 'Email');
       groupError.classList.add('form-message-activo');
     }
   });
-  
+
   groupButton.append(buttonCreateAccount, successfulMessage);
   section.append(
     title,

@@ -72,14 +72,9 @@ body {
     margin-bottom: 0;
     display: none;
 }
-
-
-
 .formulario__input-error-activo {
     display: block;
 }
-
-
 .formulario__validacion-estado {
     position: absolute;
     right: 10px;
@@ -87,12 +82,6 @@ body {
     z-index: 100;
     font-size: 16px;
     opacity: 0;
-}
-.formulario__grupo-btn-enviar {
-    grid-column: span 2;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 /*----------------estilos para validación-------------*/
@@ -137,23 +126,14 @@ body {
         transform: translateX-(5px);
     }
 }
-
-
-/*------ mediaqueries--------*/
-@media screen and (max-width: 800px) {
-
-    .registerSection {
-        grid-template-columns: 1fr;
-    }
-
- .form-message,
+.form-message,
  .formulario__grupo-btn-enviar{
     grid-column: span 2;
  }
 
 .form-message{
     display: inline-flexbox;
-    height: 20px;
+    height: 30px;
     background: var(--color-error);
     padding: 5px;
     border-radius: 3px;
@@ -180,9 +160,7 @@ body {
     border-radius: 3px;
     cursor: pointer;
     transition: .1s ease all;
-    
 }
-
 .formulario__btn:hover{
     box-shadow: 3px 0px 30px var(--shadow-nav);
 }
@@ -194,12 +172,22 @@ body {
     display: block;
 }
 
-@media screen and (max-width: 800px){
+/*------ mediaqueries--------*/
+@media screen and (max-width: 800px) {
+
+    .registerSection {
+        grid-template-columns: 1fr;
+    }
     .form-message,
     .formulario__grupo-btn-enviar{
-        grid-column: 1fr;
+       grid-column: span 1;
     }
-    .form-message{
+    .elementRegister-title {
+        grid-column: 1;
+    }
+    .formulario__btn{
+        width: 100%;
+    }
 
-    }
+ 
 }
