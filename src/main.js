@@ -1,3 +1,5 @@
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 import login from './components/login.js';
 import register from './components/register.js';
 import timeline from './components/timeline.js';
@@ -34,3 +36,19 @@ window.onpopstate = () => {
 };
 
 navigateTo(window.location.pathname || defaultRoute);
+
+const auth = getAuth()
+  onAuthStateChanged(auth, (user) => {
+    console.log('user: ' + user)
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/auth.user
+      //navigateTo('/timeline');
+      console.log("YES")
+      // ...
+    } else {
+      // User is signed out
+      // ...
+      console.log("NO")
+    }
+  });
