@@ -167,6 +167,9 @@ h6 {
     color: grey;
     text-align: left;
 }
+.likes{
+    display: inline-flex;
+}
 
 .like-button {
     background-image: url('./recursos/heart-regular.svg');
@@ -187,6 +190,11 @@ h6 {
     background-repeat: no-repeat;
     background-position: left;
     padding: .2rem;
+  }
+  span{
+    margin-top: .25rem;
+    margin-left: .5rem;
+    font-size: .8rem;
   }
 
 .logOut-button{
