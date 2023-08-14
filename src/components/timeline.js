@@ -113,11 +113,11 @@ function timeline(navigateTo) {
   const profileNav = section.querySelector('.profile-nav');
   const profileImage = section.querySelector('.profile-picture-create-post');
   const post = section.querySelector('.post');
-  const userName = section.querySelector('.user-name-create-post');
+  // const userName = section.querySelector('.user-name-create-post');
   const exitCreatePost = section.querySelector('.exit-create-post');
   const createPost = section.querySelector('.create-new-post');
   const publish = section.querySelector('.button-publish-post');
-  const userNameProfile = section.querySelector('.first-and-last-name');
+  // const userNameProfile = section.querySelector('.first-and-last-name');
 
   // Manejador para cerrar la sección de creación de post
   exitCreatePost.addEventListener('click', () => {
@@ -126,13 +126,16 @@ function timeline(navigateTo) {
 
   // Manejador para detectar el estado de autenticación
   onAuthStateChanged(auth, async (user) => {
+    console.log(`inside promise: ${user.displayName}`);
     if (user) {
       // Mostrar los posts del usuario autenticado
       const postsContainer = section.querySelector('.user-posts-container-timeline');
+      console.log(user.displayName);
       await displayAllUserPosts(user, postsContainer);
 
       // Mostrar la imagen de perfil del usuario
       const srcPhoto = user.photoURL;
+      console.log(srcPhoto);
       if (user.photoURL) {
         profileImage.src = `${srcPhoto}`;
         profileImage.innerHTML = `<img class="photo-URL" src="${user.photoURL}" />`;
@@ -143,9 +146,11 @@ function timeline(navigateTo) {
 
       // Mostrar el nombre de usuario
       const wholeUserName = user.displayName;
+      console.log(wholeUserName);
       const shortName = wholeUserName.slice(0, wholeUserName.indexOf(' '));
-      userName.textContent = shortName;
-      userNameProfile.textContent = shortName;
+      console.log(shortName);
+      // userName.textContent = shortName;
+      // userNameProfile.textContent = shortName;
     } else {
       // Usuario no autenticado
       // ...

@@ -1,4 +1,5 @@
 // Importaciones necesarias
+import { arrayRemove, arrayUnion, increment } from 'firebase/firestore';
 import {
   auth,
   createUserWithEmailAndPassword,
@@ -243,7 +244,7 @@ export const displayAllUserPosts = async (user, containerElement) => {
     const authorPhotoURL = isCurrentUserPost ? (user.photoURL || './img/person-circle.svg') : './img/person-circle.svg';
 
     postElement.innerHTML = `
-      <div class="post-author">
+      <div class="post-author" data-postId=${doc.ref.id}>
         <img src="${authorPhotoURL}" class="user-avatar" />
         ${post.author}
       </div>
@@ -252,6 +253,28 @@ export const displayAllUserPosts = async (user, containerElement) => {
       ${isCurrentUserPost ? '<img class="delete-post" src="./img/trash.svg">' : ''}
       <div class="post-date">${post.date.toDate().toLocaleDateString()}</div>
     `;
+
+    const likeButton = postElement.querySelector('.user-avatar');
+
+    likeButton.addEventListener('click', async () => {
+      const userId = user.uid;
+
+      const tempLikesArray = post.likesArr || [];
+      const userGaveLike = tempLikesArray.includes(userId);
+
+      if (userGaveLike) {
+        const indexUserLikesArray = tempLikesArray.indexOf(userId);
+        tempLikesArray.splice(indexUserLikesArray, 1);
+        const likesArrayLength = tempLikesArray.length;
+        await updateDoc(doc.ref, { likesArr: tempLikesArray });
+        await updateDoc(doc.ref, { likesSum: likesArrayLength });
+      } else {
+        tempLikesArray.push(userId);
+        const likesArrayLength = tempLikesArray.length;
+        await updateDoc(doc.ref, { likesArr: tempLikesArray });
+        await updateDoc(doc.ref, { likesSum: likesArrayLength });
+      }
+    });
 
     const editButton = postElement.querySelector('.edit-post');
     if (editButton) {
@@ -286,6 +309,7 @@ export const displayAllUserPosts = async (user, containerElement) => {
             const newContent = editForm.querySelector('.edit-content').value;
             try {
               await updateDoc(doc.ref, { content: newContent });
+              console.log(`doc.ref in saveButton: ${doc.ref}`);
               post.content = newContent;
               const contentElement = postElement.querySelector('.post-content');
               contentElement.textContent = newContent;

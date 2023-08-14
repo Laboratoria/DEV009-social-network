@@ -18,7 +18,17 @@ import {
 } from 'firebase/auth';
 
 import {
-  getFirestore, orderBy, doc, updateDoc, collection, addDoc, serverTimestamp, query, where, getDocs, deleteDoc,
+  getFirestore,
+  orderBy,
+  doc,
+  updateDoc,
+  collection,
+  addDoc,
+  serverTimestamp,
+  query,
+  where,
+  getDocs,
+  deleteDoc,
 } from 'firebase/firestore';
 
 import { firebaseConfig } from './credentialFirebase';
