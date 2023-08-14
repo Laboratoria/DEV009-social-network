@@ -100,22 +100,22 @@ function registro(navigateTo) {
   section.append(inputName, inputEmail, inputPass, buttonRegistro, buttonReturn, errorRegister, buttonGoogle);
   buttonGoogle.appendChild(strong);
 
-  buttonGoogle.addEventListener('click', () =>
-  { signInWithGoogle()
-    .then((result) => {
-      navigateTo('/principal');
-    })
-    .catch((error) => {
-      console.log('estes es', error);
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // el correo de la cuenta del usuario.
-      const email = error.customData.email;
-      // la credencial Auth que fue usada.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      navigateTo('/'); // si nos marca error nos manda al home
-    });
+  buttonGoogle.addEventListener('click', () => {
+    signInWithGoogle()
+      .then((result) => {
+        navigateTo('/principal');
+      })
+      .catch((error) => {
+        console.log('estes es', error);
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // el correo de la cuenta del usuario.
+        const email = error.customData.email;
+        // la credencial Auth que fue usada.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        navigateTo('/'); // si nos marca error nos manda al home
+      });
   });
   return section;
 }
