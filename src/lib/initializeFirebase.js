@@ -13,6 +13,7 @@ const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
 export {
+// eslint-disable-next-line max-len
   auth, createUserWithEmailAndPassword, updateProfile, db, collection, addDoc, provider, signInWithPopup, signInWithEmailAndPassword
 };
 export const saveUser = (user) => addDoc(collection(db, 'Users'), user);
