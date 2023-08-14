@@ -1,38 +1,62 @@
 import { signInWithPassword } from '../lib/index';
 
 function login(navigateTo) {
-  const containerLogin = document.createElement('div');
-  const buttonReturn = document.createElement('button');
+  const divLogin = document.createElement('div');
+  divLogin.className = 'divLogin';
+
+  const logoBon = document.createElement('img');
+  logoBon.className = 'logoBon';
+
   const inputEmail = document.createElement('input');
-  inputEmail.className = 'inputEmail';
-  inputEmail.type = 'email';
+  inputEmail.className = 'input inputEmail';
+  inputEmail.setAttribute('type', 'email');
   inputEmail.setAttribute('placeholder', 'Correo electronico');
-  inputEmail.setAttribute('required', '');  
+  inputEmail.setAttribute('required', '');
+
   const inputPass = document.createElement('input');
-  inputPass.className = 'inputPass';
+  inputPass.className = 'input inputPass';
   inputPass.setAttribute('type', 'password');
-  inputPass.setAttribute('placeholder', 'EScribe tu contraseña');
-  inputPass.setAttribute('required', '');  
-  const forgetPassword = document.createElement('h6'); // debe redirigirte a un formulario para hacer tu clave
-  forgetPassword.textContent = 'Olvidaste tu contraseña?';
-  forgetPassword.className = 'forgotet';
-  const errorMessageL = document.createElement('h4');
-  errorMessageL.className = 'errorMessage';
-  errorMessageL.id = 'errorMessage';
-  errorMessageL.style.display = 'none';
+  inputPass.setAttribute('placeholder', 'Crea tu contraseña');
+  inputPass.setAttribute('required', '');
 
   const buttonLogin = document.createElement('button');
-  buttonLogin.textContent = 'Continuar';
+  buttonLogin.className = 'button buttonLogin';
+  buttonLogin.textContent = 'Inicia sesión';
 
-  const buttonSign = document.createElement('h6'); // boton que dirige a register
-  buttonSign.textContent = 'No tienes una cuenta? Registrate';
-  buttonSign.className = 'buttonSign';
+  const buttonReturn = document.createElement('button');
+  buttonReturn.className = 'button buttonReturnLogin';
+  buttonReturn.textContent = 'Regresar';
 
-  buttonReturn.textContent = 'back to home';
+  const  errorMessageL = document.createElement('p');
+  errorMessageL.className = 'parrafo';
+  errorMessageL.textContent = 'errorMessage';
+  errorMessageL.style.display = 'none';
+  errorMessageL.id = ' errorMessageL';
+
+  const buttonGoogle = document.createElement('button');
+  buttonGoogle.className = 'button buttonGoogle';
+  const strong = document.createElement('strong');
+  strong.textContent = 'Google';
+  strong.className = 'textGoogle';
+  const imgGoogle = document.createElement('img');
+  imgGoogle.className = 'imgGoogle';
+
+  const textRegistrateCon = document.createElement('p');
+  textRegistrateCon.className = 'parrafo';
+  textRegistrateCon.textContent = 'O ingresa con...';
+
   buttonReturn.addEventListener('click', () => {
     navigateTo('/');
   });
-  containerLogin.append(inputEmail, inputPass, errorMessageL, forgetPassword, buttonLogin, buttonSign, buttonReturn);
+
+  divLogin.appendChild(logoBon);
+  divLogin.append(inputEmail, inputPass);
+  divLogin.appendChild( errorMessageL);
+  divLogin.appendChild(buttonLogin);
+  divLogin.appendChild(textRegistrateCon);
+  divLogin.appendChild(buttonGoogle);
+  buttonGoogle.append(imgGoogle, strong);
+  divLogin.appendChild(buttonReturn);
 
   buttonLogin.addEventListener('click', () => {
     const emailValue = inputEmail.value;
@@ -40,11 +64,11 @@ function login(navigateTo) {
     console.log(emailValue);
     if (emailValue === '' || passwordValue === '') {
       errorMessageL.style.display = 'block';
-      errorMessageL.textContent = 'Los campos no pueden estar vacios'; 
+      errorMessageL.textContent = 'Los campos no pueden estar vacios';
     } else {
       const user = {
-        email : emailValue,
-        emailPassword : passwordValue,
+        email: emailValue,
+        emailPassword: passwordValue,
       };
       signInWithPassword(user.email, user.emailPassword)
         .then((userCredential) => {
@@ -53,7 +77,7 @@ function login(navigateTo) {
         });
     }
   });
-  return containerLogin;
+  return divLogin;
 }
 
 export default login;

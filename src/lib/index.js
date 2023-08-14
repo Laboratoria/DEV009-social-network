@@ -2,7 +2,7 @@
 
 import { GoogleAuthProvider } from 'firebase/auth';
 import {
-  auth, createUserWithEmailAndPassword, updateProfile, saveUser, provider, signInWithPopup, signInWithEmailAndPassword, 
+  auth, createUserWithEmailAndPassword, updateProfile, saveUser, provider, signInWithPopup, signInWithEmailAndPassword,
 } from './initializeFirebase.js';
 // eslint-disable-next-line max-len
 export const registerWithEmail = (email, password, displayName) => createUserWithEmailAndPassword(auth, email, password)
@@ -22,6 +22,7 @@ export const signInWithGoogle = () => {
   const user = result.user;
 };
 
-export const signInWithPassword = (email, password) => {
-  return signInWithEmailAndPassword(auth, email, password)
-}
+export const signInWithPassword = (email, password) =>
+{
+  return signInWithEmailAndPassword(auth, email, password);
+};

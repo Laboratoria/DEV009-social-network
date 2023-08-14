@@ -17,44 +17,88 @@ body{
   align-items: center;
 }
 
-.contenedor {
+.divHome, .divRegister, .divLogin {
   display: flex;
+  margin-top: 10%;
   width: 100%;
   flex-direction: column;
   justify-content:center;
   align-items:center;
 }
 
+.logoBonHome {
+  background-image: url('../imagenes/logoHome.png');
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: top;
+  padding: 50%;
+}
+
+.logoBon {
+  background-image: url('../imagenes/logoBon.png');
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: top;
+  padding: 45% 45% 30% 45%;
+}
+
 .button {
-  width: 160px;
+  width: 250px;
   height: 40px;
-  padding: 5px;
   font-weight: bold;
   border-radius: 40px;
   border: 2px solid var(--secondary);
   background: var(--secondary) ;
   text-align: center;
   box-shadow: 1px 2px 4px rgba(0,0,0,0.6);
+  margin: 1em;
   cursor: pointer;
 }
 
-.logo {
-  background-image: url('../imagenes/logo_home.png');
-  background-size:contain;
-  background-repeat: no-repeat;
-  background-position: top;
-  width: 400px;
-  padding-top: 25%;
-  margin-bottom: 50px;
+.input {
+  width: 250px;
+  height: 40px;
+  border-radius: 10px;
+  font-size:large;
+  text-align: center;
+  margin: 0.5em;
+  border: 1px solid;
 }
 
-.buttonSignInHome {
-  margin-bottom: 10px;
+.buttonGoogle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: whitesmoke;
+  border: whitesmoke;
 }
+
+.imgGoogle {
+  background-image: url('../imagenes/googleLogo.png');
+  height: 50px;
+  width: 50px;
+  scale: 0.7;
+   }
+
+.parrafo {
+  font-weight: bold;
+}
+
+#errorRegister {
+  margin: 0.5em;
+  color:red;
+}
+
+.displayName {
+  margin-top: 0;
+}
+
 
 h2 {
   margin: 5px;
 }
+
+
 
 footer {
   margin-top: 30px;

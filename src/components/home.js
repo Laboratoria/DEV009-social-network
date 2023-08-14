@@ -1,9 +1,13 @@
 function home(navigateTo) {
-  const contenedorGeneral = document.createElement('div');
-  contenedorGeneral.className = 'contenedor';
+  const divHome = document.createElement('div');
+  divHome.className = 'divHome';
+
+  const logoBonHome = document.createElement('img');
+  logoBonHome.className = 'logoBonHome';
 
   const buttonInicio = document.createElement('button');
   buttonInicio.className = 'button buttonSignInHome';
+  buttonInicio.textContent = 'Inicia sesión';
 
   const buttonParrafo = document.createElement('h2');
   buttonParrafo.textContent = 'Y si no tienes cuenta...';
@@ -11,7 +15,6 @@ function home(navigateTo) {
   const buttonRegistro = document.createElement('button');
   buttonRegistro.className = 'button buttonLoginHome';
 
-  buttonInicio.textContent = 'Inicia sesión';
   buttonInicio.addEventListener('click', () => {
     navigateTo('/login');
   });
@@ -22,11 +25,12 @@ function home(navigateTo) {
     navigateTo('/registro');
   });
 
-  contenedorGeneral.appendChild(buttonInicio);
-  contenedorGeneral.appendChild(buttonParrafo);
-  contenedorGeneral.appendChild(buttonRegistro);
+  divHome.appendChild(logoBonHome);
+  divHome.appendChild(buttonInicio);
+  divHome.appendChild(buttonParrafo);
+  divHome.appendChild(buttonRegistro);
 
-  return contenedorGeneral;
+  return divHome;
 }
 
 export default home;

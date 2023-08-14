@@ -2,47 +2,55 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import { registerWithEmail, signInWithGoogle } from '../lib/index';
 
 function registro(navigateTo) {
-  const section = document.createElement('section');
-  section.className = 'section';
+  const divRegister = document.createElement('div');
+  divRegister.className = 'divRegister';
+
+  const logoBon = document.createElement('img');
+  logoBon.className = 'logoBon';
+
   const inputName = document.createElement('input');
-
-  inputName.className = 'displayName';
-
+  inputName.className = 'input displayName';
   inputName.setAttribute('type', 'name');
   inputName.setAttribute('placeholder', 'Nombre de Usuario');
   inputName.setAttribute('required', '');
 
   const inputEmail = document.createElement('input');
-  inputName.className = 'inputEmail';
+  inputEmail.className = 'input inputEmail';
   inputEmail.setAttribute('type', 'email');
   inputEmail.setAttribute('placeholder', 'Correo electronico');
   inputEmail.setAttribute('required', '');
+
   const inputPass = document.createElement('input');
-  inputPass.className = 'inputPass';
+  inputPass.className = 'input inputPass';
   inputPass.setAttribute('type', 'password');
   inputPass.setAttribute('placeholder', 'Crea tu contraseña');
   inputPass.setAttribute('required', '');
+
   const buttonRegistro = document.createElement('button');
   buttonRegistro.className = 'button buttonSignInRegistro';
+  buttonRegistro.textContent = 'Registro';
+
   const buttonReturn = document.createElement('button');
   buttonReturn.className = 'button buttonReturnRegistro';
-  const errorRegister = document.createElement('h3');
+  buttonReturn.textContent = 'Regresar';
 
-  inputName.placeholder = 'Nombre de usuario';
-  inputName.className = 'displayName';
-  inputEmail.placeholder = 'Correo';
-  inputPass.placeholder = 'Contraseña';
-
-  buttonRegistro.textContent = 'Registro';
+  const errorRegister = document.createElement('p');
+  errorRegister.className = 'parrafo';
   errorRegister.textContent = 'errorMessage';
   errorRegister.style.display = 'none';
   errorRegister.id = 'errorRegister';
 
   const buttonGoogle = document.createElement('button');
-  buttonGoogle.className = 'buttonGoogle';
+  buttonGoogle.className = 'button buttonGoogle';
   const strong = document.createElement('strong');
-  strong.textContent = 'Seguir con Google';
+  strong.textContent = 'Google';
   strong.className = 'textGoogle';
+  const imgGoogle = document.createElement('img');
+  imgGoogle.className = 'imgGoogle';
+
+  const textRegistrateCon = document.createElement('p');
+  textRegistrateCon.className = 'parrafo';
+  textRegistrateCon.textContent = 'O registrate con...';
 
   buttonRegistro.addEventListener('click', () => {
     const emailValue = inputEmail.value;
@@ -92,14 +100,18 @@ function registro(navigateTo) {
       });
   });
 
-  buttonReturn.textContent = 'Regresar';
   buttonReturn.addEventListener('click', () => {
     navigateTo('/');
   });
 
-  // eslint-disable-next-line max-len
-  section.append(inputName, inputEmail, inputPass, buttonRegistro, buttonReturn, errorRegister, buttonGoogle);
-  buttonGoogle.appendChild(strong);
+  divRegister.appendChild(logoBon);
+  divRegister.append(inputName, inputEmail, inputPass);
+  divRegister.appendChild(errorRegister);
+  divRegister.appendChild(buttonRegistro);
+  divRegister.appendChild(textRegistrateCon);
+  divRegister.appendChild(buttonGoogle);
+  buttonGoogle.append(imgGoogle, strong);
+  divRegister.appendChild(buttonReturn);
 
   buttonGoogle.addEventListener('click', () => {
     signInWithGoogle()
@@ -118,7 +130,7 @@ function registro(navigateTo) {
         navigateTo('/'); // si nos marca error nos manda al home
       });
   });
-  return section;
+  return divRegister;
 }
 
 export default registro;
