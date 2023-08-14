@@ -27,7 +27,6 @@ export const loginUser = (email, password) => new Promise((resolve, reject) => {
     .then((userCredential) => {
       const user = userCredential.user;
       if (user.emailVerified) {
-        alert('You are logged in!');
         resolve(user);
       } else {
         alert('Please verify your email address');
@@ -40,8 +39,6 @@ export const loginUser = (email, password) => new Promise((resolve, reject) => {
 export const createAccountWithEmail = (name, email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((result) => {
-      console.log(result);
-      console.log(result.user);
       updateProfile(result.user, {
         displayName: name,
       }).then(() => {
@@ -50,28 +47,22 @@ export const createAccountWithEmail = (name, email, password) => {
       sendEmailVerification(result.user)
         .catch((err) => {
           console.error(err);
-          alert('Error sending email');
         });
 
       signOut(auth);
-      alert(`Hello ${name}, please complete the verification process`);
     })
     .catch((err) => {
       console.error(err);
-      alert('Error creating an account');
     });
 };
 
 // Función para autenticar con Google
 export const authWithGoogle = () => {
   signInWithPopup(auth, provider)
-    .then((result) => {
-      console.log(result.user);
-      alert(`Hello ${result.user.displayName}! You're logged in with Google`);
+    .then(() => {
     })
     .catch((err) => {
       console.error(err);
-      alert(`Authentication error: ${err}`);
     });
 };
 
@@ -79,7 +70,6 @@ export const authWithGoogle = () => {
 export const signOutUser = () => {
   auth.signOut()
     .then(() => {
-      console.log('User has logged out.');
     })
     .catch((err) => {
       console.error('Error logging out:', err);
@@ -94,7 +84,6 @@ export const resetPass = (email) => {
     .catch((err) => {
       const errorMessage = err.message;
       console.log(errorMessage);
-      alert(err);
     });
 };
 
@@ -109,7 +98,6 @@ export const addPost = async (author, content, date) => {
       likesArr: [],
       likesSum: 0,
     });
-    console.log('Post added successfully to Firestore');
   } catch (error) {
     console.error('Error adding the post:', error);
   }
@@ -119,7 +107,6 @@ export const addPost = async (author, content, date) => {
 export const deletePost = async (postRef) => {
   try {
     await deleteDoc(postRef);
-    console.log('Post deleted successfully');
   } catch (error) {
     console.error('Error deleting the post:', error);
   }
@@ -161,28 +148,20 @@ export const displayUserPosts = async (user, containerElement) => {
 
     likeButton.addEventListener('click', async () => {
       const userId = user.uid;
-      const arrayLinks = post.likesArr;
-      console.log(arrayLinks);
 
       const tempLikesArray = post.likesArr || [];
-      console.log(tempLikesArray);
       userGaveLike = tempLikesArray.includes(userId);
-      console.log(userGaveLike);
 
       try {
         if (userGaveLike) {
           const indexUserLikesArray = tempLikesArray.indexOf(userId);
           tempLikesArray.splice(indexUserLikesArray, 1);
-          console.log(tempLikesArray);
           const likesArrayLength = tempLikesArray.length;
 
           await updateDoc(doc.ref, { likesArr: tempLikesArray });
           await updateDoc(doc.ref, { likesSum: likesArrayLength });
           like.src = './img/heart-no-fill.svg';
           likeCounter.textContent = `${likesArrayLength}  likes`;
-          console.log(post.likesArr);
-          console.log(tempLikesArray);
-          console.log(post.likesSum);
         } else {
           tempLikesArray.push(userId);
           const likesArrayLength = tempLikesArray.length;
@@ -190,8 +169,6 @@ export const displayUserPosts = async (user, containerElement) => {
           await updateDoc(doc.ref, { likesSum: likesArrayLength });
           like.src = './img/heart-fill.svg';
           likeCounter.textContent = `${likesArrayLength}  Likes`;
-          console.log(post.likesArr);
-          console.log(tempLikesArray);
         }
       } catch (error) {
         console.error('Error updating the post:', error);
@@ -288,9 +265,7 @@ export const displayAllUserPosts = async (user, containerElement) => {
 
   postsSnapshot.forEach((doc) => {
     const post = doc.data();
-    console.log(`likes array in displayAllUserPosts: ${post.likesArr}`);
     let userGaveLike = post.likesArr.includes(user.uid);
-    console.log(userGaveLike);
     const postElement = document.createElement('div');
     postElement.classList.add('user-post');
 
@@ -318,28 +293,20 @@ export const displayAllUserPosts = async (user, containerElement) => {
 
     likeButton.addEventListener('click', async () => {
       const userId = user.uid;
-      const arrayLinks = post.likesArr;
-      console.log(arrayLinks);
 
       const tempLikesArray = post.likesArr || [];
-      console.log(tempLikesArray);
       userGaveLike = tempLikesArray.includes(userId);
-      console.log(userGaveLike);
 
       try {
         if (userGaveLike) {
           const indexUserLikesArray = tempLikesArray.indexOf(userId);
           tempLikesArray.splice(indexUserLikesArray, 1);
-          console.log(tempLikesArray);
           const likesArrayLength = tempLikesArray.length;
 
           await updateDoc(doc.ref, { likesArr: tempLikesArray });
           await updateDoc(doc.ref, { likesSum: likesArrayLength });
           like.src = './img/heart-no-fill.svg';
           likeCounter.textContent = `${likesArrayLength}  likes`;
-          console.log(post.likesArr);
-          console.log(tempLikesArray);
-          console.log(post.likesSum);
         } else {
           tempLikesArray.push(userId);
           const likesArrayLength = tempLikesArray.length;
@@ -347,8 +314,6 @@ export const displayAllUserPosts = async (user, containerElement) => {
           await updateDoc(doc.ref, { likesSum: likesArrayLength });
           like.src = './img/heart-fill.svg';
           likeCounter.textContent = `${likesArrayLength}  Likes`;
-          console.log(post.likesArr);
-          console.log(tempLikesArray);
         }
       } catch (error) {
         console.error('Error updating the post:', error);
@@ -388,7 +353,6 @@ export const displayAllUserPosts = async (user, containerElement) => {
             const newContent = editForm.querySelector('.edit-content').value;
             try {
               await updateDoc(doc.ref, { content: newContent });
-              console.log(`doc.ref in saveButton: ${doc.ref}`);
               post.content = newContent;
               const contentElement = postElement.querySelector('.post-content');
               contentElement.textContent = newContent;

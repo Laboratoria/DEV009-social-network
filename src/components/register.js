@@ -78,7 +78,6 @@ function register(navigateTo) {
   buttonGoogle.addEventListener('click', () => {
     signInWithRedirect(auth, provider);
     navigateTo('/welcomeGoogle');
-    alert('You are logged with Google');
   });
 
   closeModal.addEventListener('click', () => {

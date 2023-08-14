@@ -190,10 +190,7 @@ function profile(navigateTo) {
         displayUserPosts(user, postsContainer);
         createPost.value = '';
       });
-    } else {
-      alert('Please write something');
     }
-
     post.style.display = 'none';
   });
 
