@@ -22,7 +22,7 @@ function login(navigateTo) {
       </button>
       <div class="container-button-login">
         <p class="message">Don’t have an account?</p>
-        <button class="no-button">Sign Up</button>
+        <button class="no-button"> Sign Up</button>
       </div>
     </form>
     <div class="modal">

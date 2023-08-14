@@ -21,7 +21,7 @@ function register(navigateTo) {
         </button>
         <div class="container-button-register">
           <p>Already have an account?</p>
-          <button class="no-button">Sign In</button>
+          <button class="no-button"> Sign In</button>
         </div>
       </form>
       <div class="modal">
@@ -77,7 +77,7 @@ function register(navigateTo) {
 
   buttonGoogle.addEventListener('click', () => {
     signInWithRedirect(auth, provider);
-    navigateTo('/welcomeUserGoogle');
+    navigateTo('/welcomeGoogle');
     alert('You are logged with Google');
   });
 

@@ -18,6 +18,22 @@ function home(navigateTo) {
   const buttonRegister = section.querySelector('.button');
   const button = section.querySelector('.button-second-style');
 
+  const views = section.querySelector('.first-view');
+
+  let currentIndex = 0;
+
+  const backgrounds = [
+    'url(./img/cat.png)',
+    'url(./img/dog.png)',
+    'url(./img/img-first.png)',
+  ];
+
+  function changeBackground() {
+    currentIndex = (currentIndex + 1) % backgrounds.length;
+    views.style.backgroundImage = backgrounds[currentIndex];
+  }
+  setInterval(changeBackground, 5000);
+
   button.addEventListener('click', () => {
     navigateTo('/login');
   });

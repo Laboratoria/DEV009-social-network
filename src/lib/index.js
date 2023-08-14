@@ -1,5 +1,5 @@
 // Importaciones necesarias
-import { arrayRemove, arrayUnion, increment } from 'firebase/firestore';
+// import { arrayRemove, arrayUnion } from 'firebase/firestore';
 import {
   auth,
   createUserWithEmailAndPassword,
@@ -106,6 +106,8 @@ export const addPost = async (author, content, date) => {
       author,
       content,
       date,
+      likesArr: [],
+      likesSum: 0,
     });
     console.log('Post added successfully to Firestore');
   } catch (error) {
@@ -132,20 +134,69 @@ export const displayUserPosts = async (user, containerElement) => {
 
   postsSnapshot.forEach((doc) => {
     const post = doc.data();
+    let userGaveLike = post.likesArr.includes(user.uid);
     const postElement = document.createElement('div');
     const isCurrentUserPost = post.author === user.displayName;
     const authorPhotoURL = isCurrentUserPost ? (user.photoURL || './img/person-circle.svg') : './img/person-circle.svg';
     postElement.classList.add('user-post');
+
     postElement.innerHTML = `
-      <div class="post-author">
-        <img src="${user.photoURL || './img/person-circle.svg'}" class="user-avatar" />
+      <div class="post-author" data-postId=${doc.ref.id}>
+        <img src="${authorPhotoURL}" class="user-avatar" />
         ${post.author}
       </div>
       <div class="post-content">${post.content}</div>
-      <img class="edit-post" src="./img/pencil.svg">
-      <img class="delete-post" src="./img/trash.svg">
+      ${isCurrentUserPost ? '<img class="edit-post" src="./img/pencil.svg">' : ''}
+      ${isCurrentUserPost ? '<img class="delete-post" src="./img/trash.svg">' : ''}
+      <button class="btn-like">
+        <img src='./img/heart-no-fill.svg' class="like"></img>
+      </button>
+      <div class="like-count">${post.likesSum}  Likes</div>
       <div class="post-date">${post.date.toDate().toLocaleDateString()}</div>
     `;
+    const likeCounter = postElement.querySelector('.like-count');
+    const like = postElement.querySelector('.like');
+    like.src = userGaveLike ? './img/heart-fill.svg' : './img/heart-no-fill.svg';
+    const likeButton = postElement.querySelector('.btn-like');
+
+    likeButton.addEventListener('click', async () => {
+      const userId = user.uid;
+      const arrayLinks = post.likesArr;
+      console.log(arrayLinks);
+
+      const tempLikesArray = post.likesArr || [];
+      console.log(tempLikesArray);
+      userGaveLike = tempLikesArray.includes(userId);
+      console.log(userGaveLike);
+
+      try {
+        if (userGaveLike) {
+          const indexUserLikesArray = tempLikesArray.indexOf(userId);
+          tempLikesArray.splice(indexUserLikesArray, 1);
+          console.log(tempLikesArray);
+          const likesArrayLength = tempLikesArray.length;
+
+          await updateDoc(doc.ref, { likesArr: tempLikesArray });
+          await updateDoc(doc.ref, { likesSum: likesArrayLength });
+          like.src = './img/heart-no-fill.svg';
+          likeCounter.textContent = `${likesArrayLength}  likes`;
+          console.log(post.likesArr);
+          console.log(tempLikesArray);
+          console.log(post.likesSum);
+        } else {
+          tempLikesArray.push(userId);
+          const likesArrayLength = tempLikesArray.length;
+          await updateDoc(doc.ref, { likesArr: tempLikesArray });
+          await updateDoc(doc.ref, { likesSum: likesArrayLength });
+          like.src = './img/heart-fill.svg';
+          likeCounter.textContent = `${likesArrayLength}  Likes`;
+          console.log(post.likesArr);
+          console.log(tempLikesArray);
+        }
+      } catch (error) {
+        console.error('Error updating the post:', error);
+      }
+    });
     const editButton = postElement.querySelector('.edit-post');
     if (editButton) {
       editButton.addEventListener('click', () => {
@@ -237,6 +288,9 @@ export const displayAllUserPosts = async (user, containerElement) => {
 
   postsSnapshot.forEach((doc) => {
     const post = doc.data();
+    console.log(`likes array in displayAllUserPosts: ${post.likesArr}`);
+    let userGaveLike = post.likesArr.includes(user.uid);
+    console.log(userGaveLike);
     const postElement = document.createElement('div');
     postElement.classList.add('user-post');
 
@@ -251,28 +305,53 @@ export const displayAllUserPosts = async (user, containerElement) => {
       <div class="post-content">${post.content}</div>
       ${isCurrentUserPost ? '<img class="edit-post" src="./img/pencil.svg">' : ''}
       ${isCurrentUserPost ? '<img class="delete-post" src="./img/trash.svg">' : ''}
+      <button class="btn-like">
+        <img src='./img/heart-no-fill.svg' class="like"></img>
+      </button>
+      <div class="like-count">${post.likesSum}  Likes</div>
       <div class="post-date">${post.date.toDate().toLocaleDateString()}</div>
     `;
-
-    const likeButton = postElement.querySelector('.user-avatar');
+    const likeCounter = postElement.querySelector('.like-count');
+    const like = postElement.querySelector('.like');
+    like.src = userGaveLike ? './img/heart-fill.svg' : './img/heart-no-fill.svg';
+    const likeButton = postElement.querySelector('.btn-like');
 
     likeButton.addEventListener('click', async () => {
       const userId = user.uid;
+      const arrayLinks = post.likesArr;
+      console.log(arrayLinks);
 
       const tempLikesArray = post.likesArr || [];
-      const userGaveLike = tempLikesArray.includes(userId);
+      console.log(tempLikesArray);
+      userGaveLike = tempLikesArray.includes(userId);
+      console.log(userGaveLike);
 
-      if (userGaveLike) {
-        const indexUserLikesArray = tempLikesArray.indexOf(userId);
-        tempLikesArray.splice(indexUserLikesArray, 1);
-        const likesArrayLength = tempLikesArray.length;
-        await updateDoc(doc.ref, { likesArr: tempLikesArray });
-        await updateDoc(doc.ref, { likesSum: likesArrayLength });
-      } else {
-        tempLikesArray.push(userId);
-        const likesArrayLength = tempLikesArray.length;
-        await updateDoc(doc.ref, { likesArr: tempLikesArray });
-        await updateDoc(doc.ref, { likesSum: likesArrayLength });
+      try {
+        if (userGaveLike) {
+          const indexUserLikesArray = tempLikesArray.indexOf(userId);
+          tempLikesArray.splice(indexUserLikesArray, 1);
+          console.log(tempLikesArray);
+          const likesArrayLength = tempLikesArray.length;
+
+          await updateDoc(doc.ref, { likesArr: tempLikesArray });
+          await updateDoc(doc.ref, { likesSum: likesArrayLength });
+          like.src = './img/heart-no-fill.svg';
+          likeCounter.textContent = `${likesArrayLength}  likes`;
+          console.log(post.likesArr);
+          console.log(tempLikesArray);
+          console.log(post.likesSum);
+        } else {
+          tempLikesArray.push(userId);
+          const likesArrayLength = tempLikesArray.length;
+          await updateDoc(doc.ref, { likesArr: tempLikesArray });
+          await updateDoc(doc.ref, { likesSum: likesArrayLength });
+          like.src = './img/heart-fill.svg';
+          likeCounter.textContent = `${likesArrayLength}  Likes`;
+          console.log(post.likesArr);
+          console.log(tempLikesArray);
+        }
+      } catch (error) {
+        console.error('Error updating the post:', error);
       }
     });
 

@@ -7,7 +7,7 @@ function welcomeGoogle(navigateTo) {
       </header>
       <h2>Welcome</h2>
       <p>We're delighted to have you join our pet-loving community.</p>
-      <button type="submit" class="button-welcome">Take me to Home</button>
+      <button type="submit" class="button-welcome">Take me to Profile</button>
     </form>
   `;
   const formWelcome = section.querySelector('.welcome-view');
