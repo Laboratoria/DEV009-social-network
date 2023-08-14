@@ -1,7 +1,8 @@
 import {
   collection, addDoc, getDocs, doc, updateDoc, // querySnapshot
 } from 'firebase/firestore';
-import { db } from './firebaseAuth';
+import { db, auth } from './firebaseAuth';
+import { EmailAuthCredential } from 'firebase/auth';
 
 export const addPost = async (userId, content) => {
   try {
@@ -20,9 +21,9 @@ export const addPost = async (userId, content) => {
 export const getPosts = async () => {
   try {
     const querySnapshot = await getDocs(collection(db, 'posts'));
-    const posts = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
+    const posts = querySnapshot.docs.map((document) => ({
+      id: document.id,
+      ...document.data(),
     }));
     return posts;
   } catch (error) {
