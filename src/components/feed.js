@@ -1,6 +1,6 @@
 import { async } from 'regenerator-runtime';
 import { logoutUser } from '../lib';
-import { addRecipe } from '../lib/DataBase';
+import { addRecipe, fetchRecipe } from '../lib/dataBase';
 
 function feed(navigateTo) {
   const section = document.createElement('section');
@@ -11,10 +11,10 @@ function feed(navigateTo) {
   const write = document.createElement('button');
   const logo = document.createElement('img');
   const logoutButtom = document.createElement('button');
-  const logoutMessage = document.createElement('p');
-  const logoutMessageError = document.createElement('p');
-  const recipe = document.createElement('textarea');
-  const formRecipe = document.createElement('form');
+  const MessageOk = document.createElement('p');
+  const MessageError = document.createElement('p');
+  const recipe = document.createElement ('textarea');
+  const formRecipe = document.createElement ('form');
   const nameSteps = document.createElement('input');
   const add = document.createElement('button');
 
@@ -30,8 +30,9 @@ function feed(navigateTo) {
   nameSteps.placeholder = 'Nombre de la receta';
   add.textContent = 'Agregar';
   logoutButtom.textContent = 'Cerrar Sesión';
-  logoutMessage.style.color = 'green';
-  logoutMessageError.style.color = 'grey';
+  MessageOk.style.color = 'green';
+  MessageError.style.color = 'grey';
+
   logoutButtom.addEventListener('click', () => {
     logoutUser();
     navigateTo('/');
@@ -39,25 +40,38 @@ function feed(navigateTo) {
   
   write.addEventListener('click', () => {
     formRecipe.style.display = 'block'
+    write.style.display = 'none';
   })
 
   add.addEventListener('click', async (event) =>{
   event.preventDefault();
-  const data = recipe.value;
-  const stepsRecipe = nameSteps.value;
-  console.log(data)
-  if (!stepsRecipe || !data){
-    logoutMessageError.textContent = 'Por favor, completa ambos campos.';
+  const recipeData = recipe.value;
+  const nameRecipe = nameSteps.value;
+
+  if (!nameRecipe || !recipeData){
+    MessageError.textContent = 'Por favor, completa ambos campos.';
     console.log('Por favor, completa ambos campos.');
     return;
+  } else{
+    const newRecipeId = await addRecipe(nameRecipe, recipeData);
+    if (newRecipeId){
+      const recipeContent = await fetchRecipe(newRecipeId);
+      if (recipeContent){
+        console.log('Receta obtenida:', recipeContent);
+        MessageOk.textContent = 'Receta agregada exitosamente. ID: ' + recipeContent;
+        formRecipe.style.display ==='none';
+    } else {
+      MessageError.textContent = 'Error al obtener la receta.';
+    }
+    } else {
+      MessageError.textContent = 'Error al agregar la receta.';
+      console.log('Error al agregar la receta.');
+    }
   }
-
-  await addRecipe(stepsRecipe, data);
-  console.log('Receta agregada exitosamente.');
 });
 
   section.append(logo, formRecipe, write, nav, logoutButtom,);
-  formRecipe.append(nameSteps, recipe, add, logoutMessageError)
+  formRecipe.append(nameSteps, recipe, add, MessageError, MessageOk)
   nav.append(select);
   select.append(option1, option2);
   return section;
