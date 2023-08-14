@@ -1,6 +1,6 @@
 // Importamos la función que vamos a testear
 import { registerWithEmail } from '../src/lib/index';
-import { registro } from '../src/components/registro.js';
+import registro from '../src/components/registro.js';
 
 // Mockeamos la función importada para realizar pruebas aisladas
 jest.mock('../src/lib/index');

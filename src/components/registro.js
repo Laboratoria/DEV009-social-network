@@ -1,3 +1,4 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import { registerWithEmail, signInWithGoogle } from '../lib/index';
 
 function registro(navigateTo) {
