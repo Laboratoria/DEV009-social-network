@@ -2,11 +2,12 @@ import { registerUser } from '../lib/credentials.js';
 
 function register(navigateTo) {
   const inputs = {
-    nombre: false,
-    apellido: false,
-    usuario: false,
-    correo: false,
-    contraseña: false,
+    name: false,
+    LastName: false,
+    User: false,
+    Email: false,
+    Password: false,
+    confirmPassword: false,
   };
 
   const expresiones = {
@@ -15,8 +16,8 @@ function register(navigateTo) {
     apellido: /^[a-zA-ZñÑ ]+$/, //
     usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, //
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, //
-    contraseña: /^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d_.+-]{6,10}$/, //
-    confirmacionContraseña: /^(?=.*[0-9])(?=.*[!@#$%^&*]).{6,10}$/, //
+    contraseña: /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[.!@#$%^&*]).{6,10}$/, //
+    confirmacionContraseña: /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[.!@#$%^&*]).{6,10}$/, //
   };
 
   const validarCampo = (input, expresion, divGroup, icon, errorMessage) => {
@@ -27,14 +28,15 @@ function register(navigateTo) {
         icon.classList.add('fa-circle-check');
         icon.classList.remove('fa-circle-xmark');
         errorMessage.classList.remove('formulario__input-error-activo');
-        inputs[expresion] = true;
+        inputs[input.id] = true;
+        console.log(inputs[input.id]);
       } else {
         divGroup.classList.add('formulario__grupo-incorrecto');
         divGroup.classList.remove('formulario__grupo-correcto');
         icon.classList.add('fa-circle-xmark');
         icon.classList.remove('fa-circle-check');
         errorMessage.classList.add('formulario__input-error-activo');
-        inputs[expresion] = false;
+        inputs[inputs.id] = false;
       }
     });
   };
@@ -190,22 +192,13 @@ function register(navigateTo) {
   divInputEmail.append(inputEmail, iconEmail);
   divGroupEmail.append(labelEmail, divInputEmail, errorMessageEmail);
 
-  inputEmail.addEventListener('focusout', () => {
-    if (inputEmail.checkValidity()) {
-      divGroupEmail.classList.remove('formulario__grupo-incorrecto');
-      divGroupEmail.classList.add('formulario__grupo-correcto');
-      iconEmail.classList.add('fa-circle-check');
-      iconEmail.classList.remove('fa-circle-xmark');
-      errorMessageEmail.classList.remove('formulario__input-error-activo');
-    } else {
-      divGroupEmail.classList.add('formulario__grupo-incorrecto');
-      divGroupEmail.classList.remove('formulario__grupo-correcto');
-      iconEmail.classList.add('fa-circle-xmark');
-      iconEmail.classList.remove('fa-circle-check');
-      errorMessageEmail.classList.add('formulario__input-error-activo');
-    }
-  });
-
+  validarCampo(
+    inputEmail,
+    expresiones.correo,
+    divGroupEmail,
+    iconEmail,
+    errorMessageEmail,
+  );
   // input Contraseña
   const divGroupPassword = document.createElement('div');
   divGroupPassword.classList.add('formulario__grupo');
@@ -239,22 +232,13 @@ function register(navigateTo) {
   divInputPassword.append(inputPassword, iconPassword);
   divGroupPassword.append(labelPassword, divInputPassword, errorMessagePassword);
 
-  inputPassword.addEventListener('focusout', (e) => {
-    if (expresiones.contraseña.test(e.target.value)) {
-      divGroupPassword.classList.remove('formulario__grupo-incorrecto');
-      divGroupPassword.classList.add('formulario__grupo-correcto');
-      iconPassword.classList.add('fa-circle-check');
-      iconPassword.classList.remove('fa-circle-xmark');
-      errorMessagePassword.classList.remove('formulario__input-error-activo');
-    } else {
-      divGroupPassword.classList.add('formulario__grupo-incorrecto');
-      divGroupPassword.classList.remove('formulario__grupo-correcto');
-      iconPassword.classList.add('fa-circle-xmark');
-      iconPassword.classList.remove('fa-circle-check');
-      errorMessagePassword.classList.add('formulario__input-error-activo');
-    }
-  });
-
+  validarCampo(
+    inputPassword,
+    expresiones.contraseña,
+    divGroupPassword,
+    iconPassword,
+    errorMessagePassword,
+  );
   // input confirmacion Contraseña
   const divGroupConfirmPassword = document.createElement('div');
   divGroupConfirmPassword.classList.add('formulario__grupo');
@@ -329,13 +313,23 @@ function register(navigateTo) {
   successfulMessage.textContent = '¡Formulario enviado exitosamente!';
 
   buttonCreateAccount.addEventListener('click', () => {
-    if (inputs.nombre && inputs.apellido && inputs.usuario
-      && inputs.correo && inputs.contraseña) {
+    if (inputs.name && inputs.LastName && inputs.User
+      && inputs.Email && inputs.Password) {
       registerUser(inputEmail.value, inputPassword.value);
       // Falta verificar que se haya creado la cuenta satisfactoriamente
+
       successfulMessage.classList.add('formulario__mensaje-exito-activo');
     } else {
       groupError.classList.add('form-message-activo');
+      const  userData = {
+        user: inputUser.value,
+        pasword: inputPassword.value,
+        name: inputName.value,
+        lastname: inputLastName.value,
+        email: inputEmail.value,
+
+      }
+      console.log(userData, inputs);
     }
   });
 
