@@ -41,15 +41,13 @@ password.placeholder = "Contraseña";
 password.type= "password";
 password.setAttribute('required', '');
 password.setAttribute('pattern', '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}');
-password.setAttribute('title', 'debe contener 8 o más caracteres que sean al menos un número y una letra mayúscula y minúscula');
+password.setAttribute('title', 'Debe contener 8 o más caracteres que sean al menos un número, una letra mayúscula y una minúscula');
 
 btnSignup.textContent = "Registrarse";
 toLogin.textContent = "Ya tengo una cuenta";
 or.textContent = "ó";
 signupWithGmail.textContent = "Registrarse con  ";
 linkGmail.src = "./icons/gmail.svg";
-//linkGmail.width = 20;
-//linkGmail.height = 20;
 
 formRegister.addEventListener('submit',(e)=>{
     e.preventDefault();
