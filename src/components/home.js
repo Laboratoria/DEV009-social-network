@@ -46,15 +46,8 @@ export const home = (navigateTo) => {
     logInWithGoogle(googleAlert);
   });
 
-  const passwordReset = document.createElement('a');
-  passwordReset.textContent = 'Unu ¿Olvidaste tu contraseña?';
-  passwordReset.id = 'password-reset';
-  passwordReset.addEventListener('click', () => {
-    navigateTo('/resetpassword');
-  });
-
   googleButton.append(googleIcon);
   buttonContainer.append(googleButton, logInButton, registerButton);
-  section.append(logo, title, slogan, description, buttonContainer, passwordReset);
+  section.append(logo, title, slogan, description, buttonContainer);
   return section;
 };

@@ -24,7 +24,13 @@ export const resetPassword = (navigateTo) => {
     resetPasswordEmail(email, sendemail);
   });
 
-  section.append(logo, title, emailInput, sendButton);
+  const backButton = document.createElement('button');
+  backButton.textContent = 'Regresar';
+  backButton.addEventListener('click', () => {
+    navigateTo('/login');
+  });
+
+  section.append(logo, title, emailInput, sendButton, backButton);
 
   return section;
 };

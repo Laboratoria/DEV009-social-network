@@ -21,13 +21,6 @@ export const register2 = (navigateTo) => {
   const registerInvalidPassMessage = document.createElement('span');
   registerInvalidPassMessage.classList.add('register-error');
 
-  // const confirmPassMessage = document.createElement('p');
-  // confirmPassMessage.textContent = 'Confirma tu contraseña';
-
-  // const confirmedPasswordInput = document.createElement('input');
-  // confirmedPasswordInput.type = 'password';
-  // confirmedPasswordInput.setAttribute('placeholder', 'Password');
-
   const backButton = document.createElement('button');
   backButton.textContent = 'Regresr';
   backButton.addEventListener('click', () => {
