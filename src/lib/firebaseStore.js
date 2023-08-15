@@ -1,14 +1,17 @@
 import {
-  collection, addDoc, getDocs, doc, updateDoc, // querySnapshot
+  collection, addDoc, getDocs, getDoc, doc, updateDoc, arrayUnion,
+  arrayRemove,
 } from 'firebase/firestore';
 import { db, auth } from './firebaseAuth';
 import { EmailAuthCredential } from 'firebase/auth';
+import { auth, db } from './firebaseAuth';
 
 export const addPost = async (userId, content) => {
   try {
     const docRef = await addDoc(collection(db, 'posts'), {
       userId,
       content,
+      liked_by: [],
       timestamp: new Date(),
     });
     return docRef.id; // Devolver el ID del nuevo documento
@@ -18,9 +21,25 @@ export const addPost = async (userId, content) => {
   }
 };
 
+export const updateLikePost = async (postRef, freshPost) => {
+  const userRef = doc(db, 'users', auth.currentUser.uid);
+  const userAlreadyLiked = freshPost.liked_by.find((lover) => lover.path === userRef.path);
+  if (userAlreadyLiked) {
+    await updateDoc(postRef, {
+      liked_by: arrayRemove(userRef),
+    });
+
+    return './recursos/heart-regular.svg';
+  }
+  await updateDoc(postRef, {
+    liked_by: arrayUnion(userRef),
+  });
+  return './recursos/heart-regular.svg';
+};
 export const getPosts = async () => {
   try {
     const querySnapshot = await getDocs(collection(db, 'posts'));
+    // eslint-disable-next-line no-shadow
     const posts = querySnapshot.docs.map((document) => ({
       id: document.id,
       ...document.data(),
@@ -31,6 +50,14 @@ export const getPosts = async () => {
     throw error;
   }
 };
+
+export const getDataAuthor = (ref) => new Promise((resolve, reject) => {
+  getDoc(ref).then((authorDocument) => {
+    resolve(authorDocument.data());
+  }).catch((error) => {
+    reject(error);
+  });
+});
 
 // ********Editar post**********
 export const updatePost = async (postId, newContent) => {

@@ -1,5 +1,11 @@
 import { logOut, auth } from '../lib/firebaseAuth.js';
-import { addPost, getPosts, updatePost } from '../lib/firebaseStore.js';
+import {
+  addPost,
+  getPosts,
+  updatePost,
+  updateLikePost,
+  getDataAuthor,
+} from '../lib/firebaseStore.js';
 
 export const muro = (navigateTo) => {
   const section = document.createElement('section');
@@ -15,6 +21,30 @@ export const muro = (navigateTo) => {
   botonCompartir.classList.add('boton-compartir');
   botonCompartir.textContent = 'Compartir';
 
+  // *************Evento click del botón Compartir*************
+  botonCompartir.addEventListener('click', async () => {
+    if (areaText.value.trim() !== '') {
+      try {
+        const user = auth.currentUser;
+        if (user) {
+          const userId = user.uid;
+          const postId = await addPost(userId, areaText.value.trim());
+          if (postId) {
+            areaText.value = '';
+            // eslint-disable-next-line no-use-before-define
+            await updatePostsList(); // Llamada a la función aquí después de agregar la publicación
+          } else {
+            console.log('Error al agregar la publicación');
+          }
+        } else {
+          console.log('Usuario no autenticado');
+        }
+      } catch (error) {
+        console.error('Error al agregar la publicación:', error);
+      }
+    }
+  });
+  publicacion.append(areaText, botonCompartir);
   // *************Contenedor para los posts*************
   const postsContainer = document.createElement('div');
   postsContainer.classList.add('posts-container');
@@ -69,7 +99,7 @@ export const muro = (navigateTo) => {
       section.append(logoMuro, publicacion, postsContainer, logOutButton);
 
       // *************Mostrar los posts en el contenedor*************
-      posts.forEach((post) => {
+      posts.forEach(async (post) => {
         const postElement = document.createElement('div');
         postElement.classList.add('post');
 
@@ -79,7 +109,22 @@ export const muro = (navigateTo) => {
 
         const getLikes = document.createElement('div');
         getLikes.classList.add('likes');
-        getLikes.innerHTML += '<button class="like-button">Like</button><span> <strong>0</strong> Likes</span>';
+        const heartIcon3 = document.createElement('img');
+        heartIcon3.className = 'heart-icon';
+        heartIcon3.src = './recursos/heart-regular.svg';
+        heartIcon3.alt = 'heart-icon';
+        getLikes.appendChild(heartIcon3);
+
+        const likesCounter = document.createElement('span');
+        likesCounter.className = 'likes-counter';
+        likesCounter.innerText = ` ${post.liked_by.length} `;
+        getLikes.appendChild(likesCounter);
+
+        heartIcon3.addEventListener('click', async () => {
+          const freshPost = await getDataAuthor(posts.ref);
+          const heartIconPost = await updateLikePost(posts.ref, freshPost);
+          heartIcon3.src = heartIconPost;
+        });
 
         const user = auth.currentUser;
         const userEmail = user.email;
@@ -106,7 +151,6 @@ export const muro = (navigateTo) => {
   };
 
   // Llamar a la función para actualizar la lista de publicaciones al cargar la página inicialmente
-
   updatePostsList();
   return section;
 };
