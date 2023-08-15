@@ -1,9 +1,9 @@
 import {
   getFirestore,
-  collection, addDoc, getDocs, getDoc, doc, updateDoc, arrayUnion,
-  arrayRemove, deleteDoc,
+  increment,
+  collection, addDoc, getDocs, getDoc, doc, updateDoc, deleteDoc,
 } from 'firebase/firestore';
-import { db, auth } from './firebaseAuth';
+import { db } from './firebaseAuth';
 
 const firestore = getFirestore();
 
@@ -22,21 +22,13 @@ export const addPost = async (userId, content) => {
   }
 };
 
-export const updateLikePost = async (postRef, freshPost) => {
-  const userRef = doc(db, 'users', auth.currentUser.uid);
-  const userAlreadyLiked = freshPost.liked_by.find((lover) => lover.path === userRef.path);
-  if (userAlreadyLiked) {
-    await updateDoc(postRef, {
-      liked_by: arrayRemove(userRef),
-    });
-
-    return './recursos/heart-regular.svg';
-  }
+export async function updateLikePost(id) {
+  const postRef = doc(db, 'likesCounter', id);
   await updateDoc(postRef, {
-    liked_by: arrayUnion(userRef),
+    liked_by: increment(1),
   });
-  return './recursos/heart-regular.svg';
-};
+}
+
 export const getPosts = async () => {
   try {
     const querySnapshot = await getDocs(collection(db, 'posts'));
@@ -88,7 +80,7 @@ export const updatePost = async (postId, newContent) => {
 
 export const deletePost = async (postId) => {
   try {
-    const postRef = doc(db, "posts", postId);
+    const postRef = doc(db, 'posts', postId);
     await deleteDoc(postRef);
     console.log('Publicación eliminada');
   } catch (error) {
