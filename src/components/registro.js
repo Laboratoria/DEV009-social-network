@@ -8,25 +8,28 @@ function registro(navigateTo) {
   const logoBon = document.createElement('img');
   logoBon.className = 'logoBon';
 
+  const formRegistro = document.createElement ('form');
+  formRegistro.className = 'formRegistro';
   const inputName = document.createElement('input');
   inputName.className = 'input displayName';
-  inputName.setAttribute('type', 'name');
+  inputName.setAttribute('type', 'text');
   inputName.setAttribute('placeholder', 'Nombre de Usuario');
-  inputName.setAttribute('required', '');
+  inputName.required = true;
 
   const inputEmail = document.createElement('input');
   inputEmail.className = 'input inputEmail';
   inputEmail.setAttribute('type', 'email');
   inputEmail.setAttribute('placeholder', 'Correo electronico');
-  inputEmail.setAttribute('required', '');
+  inputEmail.required = true;
 
   const inputPass = document.createElement('input');
   inputPass.className = 'input inputPass';
   inputPass.setAttribute('type', 'password');
   inputPass.setAttribute('placeholder', 'Crea tu contraseña');
-  inputPass.setAttribute('required', '');
+  inputPass.required = true;
 
-  const buttonRegistro = document.createElement('button');
+  const buttonRegistro = document.createElement('input');
+  buttonRegistro.setAttribute('type','submit');
   buttonRegistro.className = 'button buttonSignInRegistro';
   buttonRegistro.textContent = 'Registro';
 
@@ -52,7 +55,7 @@ function registro(navigateTo) {
   textRegistrateCon.className = 'parrafo';
   textRegistrateCon.textContent = 'O registrate con...';
 
-  buttonRegistro.addEventListener('click', () => {
+  buttonRegistro.addEventListener('submit', () => {
     const emailValue = inputEmail.value;
     const nameValue = inputName.value;
     const passwordValue = inputPass.value;
@@ -105,9 +108,9 @@ function registro(navigateTo) {
   });
 
   divRegister.appendChild(logoBon);
-  divRegister.append(inputName, inputEmail, inputPass);
+  divRegister.appendChild(formRegistro);
+  formRegistro.append(inputName, inputEmail, inputPass,buttonRegistro);
   divRegister.appendChild(errorRegister);
-  divRegister.appendChild(buttonRegistro);
   divRegister.appendChild(textRegistrateCon);
   divRegister.appendChild(buttonGoogle);
   buttonGoogle.append(imgGoogle, strong);
