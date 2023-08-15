@@ -1,10 +1,11 @@
 import {
+  getFirestore,
   collection, addDoc, getDocs, getDoc, doc, updateDoc, arrayUnion,
-  arrayRemove,
+  arrayRemove, deleteDoc,
 } from 'firebase/firestore';
 import { db, auth } from './firebaseAuth';
-import { EmailAuthCredential } from 'firebase/auth';
-import { auth, db } from './firebaseAuth';
+
+const firestore = getFirestore();
 
 export const addPost = async (userId, content) => {
   try {
@@ -51,13 +52,24 @@ export const getPosts = async () => {
   }
 };
 
-export const getDataAuthor = (ref) => new Promise((resolve, reject) => {
-  getDoc(ref).then((authorDocument) => {
-    resolve(authorDocument.data());
-  }).catch((error) => {
-    reject(error);
+export const getDataAuthor = (authorId) => {
+  // Crea una referencia al documento del autor utilizando el ID del autor
+  const authorRef = doc(firestore, 'authors', authorId);
+
+  // Devuelve una nueva promesa
+  return new Promise((resolve, reject) => {
+    // Obtiene el documento del autor usando la referencia
+    getDoc(authorRef)
+      .then((authorDocument) => {
+        // Resuelve la promesa con los datos del documento
+        resolve(authorDocument.data());
+      })
+      .catch((error) => {
+        // Rechaza la promesa con el error
+        reject(error);
+      });
   });
-});
+};
 
 // ********Editar post**********
 export const updatePost = async (postId, newContent) => {
@@ -70,6 +82,17 @@ export const updatePost = async (postId, newContent) => {
     console.log('publicacion actualizada');
   } catch (error) {
     console.error('error al actualizar publicacion', error);
+    throw error;
+  }
+};
+
+export const deletePost = async (postId) => {
+  try {
+    const postRef = doc(db, "posts", postId);
+    await deleteDoc(postRef);
+    console.log('Publicación eliminada');
+  } catch (error) {
+    console.error('Error al eliminar la publicación', error);
     throw error;
   }
 };
