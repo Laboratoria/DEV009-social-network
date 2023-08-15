@@ -9,14 +9,13 @@ function home(navigateTo) {
   const registerUser = document.createElement('button');
   const passwordLogin = document.createElement('input');
   const emailLogin = document.createElement('input');
-  const nameLogin = document.createElement('input');
   const buttonGoogle = document.createElement('button');
   const h3 = document.createElement('h3');
 
   title.textContent = 'Las Recetas de ahora';
-  nameLogin.placeholder = 'Usuario';
   emailLogin.placeholder = 'email';
   passwordLogin.placeholder = 'Contraseña';
+  passwordLogin.type = 'password';
   registerUser.textContent = 'Registrarse';
   login.textContent = 'Ingresar';
   logo.src = './imagenes/image.png';
@@ -51,6 +50,7 @@ function home(navigateTo) {
       try {
         await signInEP(email, password);
         navigateTo('/feed');
+        console.log(sing)
       } catch (error) {
         errorMessage.textContent = error.message;
       }
@@ -58,7 +58,7 @@ function home(navigateTo) {
       errorMessage.textContent = 'Por favor, ingresa un correo y una contraseña válida.';
     }
   });
-  section.append(logo, title, nameLogin, passwordLogin, emailLogin, login);
+  section.append(logo, title, passwordLogin, emailLogin, login);
   section.append(errorMessage, registerUser, buttonGoogle, h3);
   return section;
 }

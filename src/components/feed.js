@@ -1,5 +1,5 @@
 import { logoutUser } from '../lib';
-import { addRecipe, fetchRecipe } from '../lib/dataBase';
+import { addRecipe, fetchRecipe, querySnapshot } from '../lib/dataBase';
 
 function feed(navigateTo) {
   const section = document.createElement('section');
@@ -16,6 +16,7 @@ function feed(navigateTo) {
   const formRecipe = document.createElement ('form');
   const nameSteps = document.createElement('input');
   const add = document.createElement('button');
+  const showPostFeed = document.createElement('div');
 
   logo.src = './imagenes/image.png';
   write.textContent = 'Añade una Receta';
@@ -43,6 +44,7 @@ function feed(navigateTo) {
     write.style.display = 'none';
   })
 
+
   add.addEventListener('click', async (event) =>{
   event.preventDefault();
   const recipeData = recipe.value;
@@ -59,9 +61,25 @@ function feed(navigateTo) {
       if (recipeContent){
         console.log('Receta obtenida:', recipeContent);
         MessageOk.textContent = 'Receta agregada exitosamente. ID: ' + recipeContent;
-        formRecipe.style.display ==='none';
+        MessageError.textContent = '';
+
+        
+  function showPost (){
+    showPostFeed.innerHTML = '';
+    querySnapshot.forEach((doc) => {
+    const postRecipe = `<button class= "postRecipe">
+    <h3 class= "user">Usuario:</h3></h3>
+    <p  class="name">Receta: ${recipeContent.name} 
+    <p class="steps">Pasos: ${recipeContent.Pasos}</p>
+    </button>`;
+    showPostFeed.innerHTML += postRecipe;
+    });
+  }
+  formRecipe.style.display = 'none';
+        return showPost();
     } else {
       MessageError.textContent = 'Error al obtener la receta.';
+      MessageOk = '';
     }
     } else {
       MessageError.textContent = 'Error al agregar la receta.';
@@ -69,7 +87,6 @@ function feed(navigateTo) {
     }
   }
 });
-
 
   section.append(logo, formRecipe, write, nav, logoutButtom,);
   formRecipe.append(nameSteps, recipe, add, MessageError, MessageOk)
