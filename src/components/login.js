@@ -16,7 +16,7 @@ function login(navigateTo) {
   const inputPass = document.createElement('input');
   inputPass.className = 'input inputPass';
   inputPass.setAttribute('type', 'password');
-  inputPass.setAttribute('placeholder', 'Crea tu contraseña');
+  inputPass.setAttribute('placeholder', 'Ingresa tu contraseña');
   inputPass.setAttribute('required', '');
 
   const buttonLogin = document.createElement('button');
@@ -27,7 +27,7 @@ function login(navigateTo) {
   buttonReturn.className = 'button buttonReturnLogin';
   buttonReturn.textContent = 'Regresar';
 
-  const  errorMessageL = document.createElement('p');
+  const errorMessageL = document.createElement('p');
   errorMessageL.className = 'parrafo';
   errorMessageL.textContent = 'errorMessage';
   errorMessageL.style.display = 'none';
@@ -51,7 +51,7 @@ function login(navigateTo) {
 
   divLogin.appendChild(logoBon);
   divLogin.append(inputEmail, inputPass);
-  divLogin.appendChild( errorMessageL);
+  divLogin.appendChild(errorMessageL);
   divLogin.appendChild(buttonLogin);
   divLogin.appendChild(textRegistrateCon);
   divLogin.appendChild(buttonGoogle);
