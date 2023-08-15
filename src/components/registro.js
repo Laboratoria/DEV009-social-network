@@ -20,7 +20,7 @@ function registro(navigateTo) {
   inputEmail.className = 'input inputEmail';
   inputEmail.setAttribute('type', 'email');
   inputEmail.setAttribute('placeholder', 'Correo electronico');
-  inputEmail.required = true;
+  /*inputEmail.required = true;*/
 
   const inputPass = document.createElement('input');
   inputPass.className = 'input inputPass';
@@ -55,7 +55,7 @@ function registro(navigateTo) {
   textRegistrateCon.className = 'parrafo';
   textRegistrateCon.textContent = 'O registrate con...';
 
-  buttonRegistro.addEventListener('submit', () => {
+  buttonRegistro.addEventListener('click', () => {
     const emailValue = inputEmail.value;
     const nameValue = inputName.value;
     const passwordValue = inputPass.value;
@@ -71,7 +71,7 @@ function registro(navigateTo) {
       name: nameValue,
       password: passwordValue,
     };
-
+console.log(userInfo);
     registerWithEmail(
       userInfo.email,
       userInfo.password,
