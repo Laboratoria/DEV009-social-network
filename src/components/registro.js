@@ -6,7 +6,6 @@ function registro(navigateTo) {
 
   const logoBon = document.createElement('img');
   logoBon.className = 'logoBon';
-  logoBon.alt = 'Logo de pastelillo con el nombre Bon';
 
   const formRegistro = document.createElement('form');
   formRegistro.className = 'formRegistro';
@@ -50,7 +49,6 @@ function registro(navigateTo) {
   strong.className = 'textGoogle';
   const imgGoogle = document.createElement('img');
   imgGoogle.className = 'imgGoogle';
-  imgGoogle.alt = 'Logo de google';
 
   const textRegistrateCon = document.createElement('p');
   textRegistrateCon.className = 'parrafo';
