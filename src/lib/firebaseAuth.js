@@ -8,7 +8,6 @@ import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
-  onAuthStateChanged,
 } from 'firebase/auth';
 
 import { getFirestore } from 'firebase/firestore';
@@ -118,24 +117,18 @@ export const registerUser = (email, password, callback) => {
 export const logInWithGoogle = (callback) => {
   signInWithRedirect(auth, new GoogleAuthProvider());
   getRedirectResult(auth)
-    .then((result) => {
+    .then(() => {
     // This gives you a Google Access Token. You can use it to access Google APIs.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-
+      // const credential = GoogleAuthProvider.credentialFromResult(result);
       // The signed-in user info.
-      const user = result.user;
       // IdP data available using getAdditionalUserInfo(result)
       // ...
       callback(true);
-    }).catch((error) => {
+    }).catch(() => {
     // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
+    // The email of the user's account used.
       // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
+      // const credential = GoogleAuthProvider.credentialFromError(error);
       callback(false);
     });
 };
@@ -205,24 +198,8 @@ export const resetPasswordEmail = (email, callback) => {
     .then(() => {
       callback(true);
     })
-    .catch((error) => {
+    .catch(() => {
       callback(false);
-      const errorCode = error.code;
-      const errorMessage = error.message;
     // ..
     });
 };
-
-/*export const authStateChangeListener = (callback) => {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/auth.user
-      const uid = user.uid;
-      // ...
-    } else {
-      // User is signed out
-      // ...
-    }
-  });
-};*/

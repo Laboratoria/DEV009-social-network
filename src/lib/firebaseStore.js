@@ -2,6 +2,8 @@ import {
   collection, addDoc, getDocs, getDoc, doc, updateDoc, arrayUnion,
   arrayRemove,
 } from 'firebase/firestore';
+import { db, auth } from './firebaseAuth';
+import { EmailAuthCredential } from 'firebase/auth';
 import { auth, db } from './firebaseAuth';
 
 export const addPost = async (userId, content) => {
@@ -38,9 +40,9 @@ export const getPosts = async () => {
   try {
     const querySnapshot = await getDocs(collection(db, 'posts'));
     // eslint-disable-next-line no-shadow
-    const posts = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
+    const posts = querySnapshot.docs.map((document) => ({
+      id: document.id,
+      ...document.data(),
     }));
     return posts;
   } catch (error) {

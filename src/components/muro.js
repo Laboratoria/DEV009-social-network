@@ -49,28 +49,54 @@ export const muro = (navigateTo) => {
   const postsContainer = document.createElement('div');
   postsContainer.classList.add('posts-container');
 
-  // *************Boton de cierre de sesión*************
-  const logOutButton = document.createElement('button');
-  logOutButton.classList.add('logOut-button');
-  logOutButton.textContent = 'Cerrar sesion';
-  logOutButton.addEventListener('click', () => {
-    const logOutAlert = (valid) => {
-      if (valid === true) {
-        navigateTo('/');
-      }
-    };
-
-    logOut(logOutAlert);
-  });
-  publicacion.append(areaText, botonCompartir);
-
-  section.append(logoMuro, publicacion, postsContainer, logOutButton);
-
   // Actualizar la lista de publicaciones
   const updatePostsList = async () => {
     try {
       const posts = await getPosts();
       postsContainer.innerHTML = '';
+
+      // *************Evento click del botón Compartir*************
+      botonCompartir.addEventListener('click', async () => {
+        if (areaText.value.trim() !== '') {
+          try {
+            const user = auth.currentUser;
+            if (user) {
+              const userId = user.email;
+              console.log(userId);
+              const postId = await addPost(userId, areaText.value.trim());
+              if (postId) {
+                areaText.value = '';
+                // Llamada a la función aquí después de agregar la publicación
+                await updatePostsList();
+              } else {
+                console.log('Error al agregar la publicación');
+              }
+            } else {
+              console.log('Usuario no autenticado');
+            }
+          } catch (error) {
+            console.error('Error al agregar la publicación:', error);
+          }
+        }
+      });
+      publicacion.append(areaText, botonCompartir);
+
+      // *************Boton de cierre de sesión*************
+      const logOutButton = document.createElement('button');
+      logOutButton.classList.add('logOut-button');
+      logOutButton.textContent = 'Cerrar sesion';
+      logOutButton.addEventListener('click', () => {
+        const logOutAlert = (valid) => {
+          if (valid === true) {
+            navigateTo('/');
+          }
+        };
+
+        logOut(logOutAlert);
+      });
+      publicacion.append(areaText, botonCompartir);
+
+      section.append(logoMuro, publicacion, postsContainer, logOutButton);
 
       // *************Mostrar los posts en el contenedor*************
       posts.forEach(async (post) => {
@@ -100,15 +126,17 @@ export const muro = (navigateTo) => {
           heartIcon3.src = heartIconPost;
         });
 
+        const user = auth.currentUser;
+        const userEmail = user.email;
         const userElement = document.createElement('h6');
-        userElement.textContent = `Publicado por: ${post.userId}`;
+        userElement.textContent = `Publicado por: ${userEmail}`;
 
         const editButton = document.createElement('button');
         editButton.textContent = 'Editar 🧁';
         editButton.addEventListener('click', async () => {
           const newContent = prompt('Editar Contenido', contentElement.textContent);
           if (newContent !== null && newContent.trim() !== '') {
-            await updatePost(post.id, newContent);
+            await updatePost(post.email, newContent);
             updatePostsList();
           }
         });
