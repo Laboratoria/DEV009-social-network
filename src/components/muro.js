@@ -5,6 +5,7 @@ import {
   updatePost,
   updateLikePost,
   getDataAuthor,
+  deletePost,
 } from '../lib/firebaseStore.js';
 
 export const muro = (navigateTo) => {
@@ -81,23 +82,6 @@ export const muro = (navigateTo) => {
       });
       publicacion.append(areaText, botonCompartir);
 
-      // *************Boton de cierre de sesión*************
-      const logOutButton = document.createElement('button');
-      logOutButton.classList.add('logOut-button');
-      logOutButton.textContent = 'Cerrar sesion';
-      logOutButton.addEventListener('click', () => {
-        const logOutAlert = (valid) => {
-          if (valid === true) {
-            navigateTo('/');
-          }
-        };
-
-        logOut(logOutAlert);
-      });
-      publicacion.append(areaText, botonCompartir);
-
-      section.append(logoMuro, publicacion, postsContainer, logOutButton);
-
       // *************Mostrar los posts en el contenedor*************
       posts.forEach(async (post) => {
         const postElement = document.createElement('div');
@@ -117,13 +101,16 @@ export const muro = (navigateTo) => {
 
         const likesCounter = document.createElement('span');
         likesCounter.className = 'likes-counter';
-        likesCounter.innerText = ` ${post.liked_by.length} `;
+        likesCounter.innerText = ` ${post.liked_by.length} Likes`;
         getLikes.appendChild(likesCounter);
 
         heartIcon3.addEventListener('click', async () => {
           const freshPost = await getDataAuthor(posts.ref);
           const heartIconPost = await updateLikePost(posts.ref, freshPost);
-          heartIcon3.src = heartIconPost;
+          return new Promise((resolve) => {
+            heartIcon3.src = heartIconPost;
+            resolve();
+          });
         });
 
         const user = auth.currentUser;
@@ -140,8 +127,17 @@ export const muro = (navigateTo) => {
             updatePostsList();
           }
         });
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Eliminar ❌';
+        deleteButton.addEventListener('click', async () => {
+          const confirmed = confirm('¿Estás seguro de que deseas eliminar esta publicación?');
+          if (confirmed) {
+            await deletePost(post.id);
+            updatePostsList();
+          }
+        });
 
-        postElement.append(userElement, contentElement, getLikes, editButton);
+        postElement.append(userElement, contentElement, getLikes, editButton, deleteButton);
 
         postsContainer.append(postElement);
       });
@@ -150,7 +146,22 @@ export const muro = (navigateTo) => {
     }
   };
 
+  // *************Boton de cierre de sesión*************
+  const logOutButton = document.createElement('button');
+  logOutButton.classList.add('logOut-button');
+  logOutButton.textContent = 'Cerrar sesion';
+  logOutButton.addEventListener('click', () => {
+    const logOutAlert = (valid) => {
+      if (valid === true) {
+        navigateTo('/');
+      }
+    };
+    logOut(logOutAlert);
+  });
+
   // Llamar a la función para actualizar la lista de publicaciones al cargar la página inicialmente
   updatePostsList();
+
+  section.append(logoMuro, publicacion, postsContainer, logOutButton);
   return section;
 };
