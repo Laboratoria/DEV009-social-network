@@ -42,8 +42,17 @@ function feed(navigateTo) {
   write.addEventListener('click', () => {
     formRecipe.style.display = 'block'
     write.style.display = 'none';
+
+    recipe.value = '';
+    nameSteps.value = '';
   })
 
+  const allRecipes = [];
+
+  querySnapshot.forEach((doc) => {
+    const recipeData = doc.data();
+    allRecipes.push(recipeData);
+  });
 
   add.addEventListener('click', async (event) =>{
   event.preventDefault();
@@ -60,23 +69,12 @@ function feed(navigateTo) {
       const recipeContent = await fetchRecipe(newRecipeId);
       if (recipeContent){
         console.log('Receta obtenida:', recipeContent);
-        MessageOk.textContent = 'Receta agregada exitosamente. ID: ' + recipeContent;
-        MessageError.textContent = '';
 
+        showAllRecipes();
         
-  function showPost (){
-    showPostFeed.innerHTML = '';
-    querySnapshot.forEach((doc) => {
-    const postRecipe = `<button class= "postRecipe">
-    <h3 class= "user">Usuario:</h3></h3>
-    <p  class="name">Receta: ${recipeContent.name} 
-    <p class="steps">Pasos: ${recipeContent.Pasos}</p>
-    </button>`;
-    showPostFeed.innerHTML += postRecipe;
-    });
-  }
-  formRecipe.style.display = 'none';
-        return showPost();
+        formRecipe.style.display = 'none';
+        write.style.display = 'block';
+
     } else {
       MessageError.textContent = 'Error al obtener la receta.';
       MessageOk = '';
@@ -88,7 +86,23 @@ function feed(navigateTo) {
   }
 });
 
-  section.append(logo, formRecipe, write, nav, logoutButtom,);
+function showAllRecipes() {
+  showPostFeed.innerHTML = '';
+  allRecipes.forEach((recipeContent) => {
+    const postRecipe = `
+      <button class="postRecipe">
+        <h3 class="user">Usuario:</h3>
+        <p class="name">Receta: ${recipeContent.name}</p>
+        <p class="steps">Pasos: ${recipeContent.Pasos}</p>
+      </button>`;
+    showPostFeed.innerHTML += postRecipe;
+  });
+}
+
+showAllRecipes(); 
+
+  section.append(logo, showPostFeed, formRecipe, write, nav, logoutButtom);
+
   formRecipe.append(nameSteps, recipe, add, MessageError, MessageOk)
   nav.append(select);
   select.append(option1, option2);
