@@ -20,7 +20,7 @@ function register(navigateTo) {
   buttonGoogle.className = 'button-google';
   password.placeholder = 'Crea tu Contraseña';
   password.className = 'input-password';
-  password.type = 'password';
+  password.type ='password';
   name.placeholder = 'Ingresa tu nombre';
   email.className = 'input-email';
   email.placeholder = 'Ingresa tu Email';
@@ -37,6 +37,7 @@ function register(navigateTo) {
         successMessage.textContent = 'Usuario registrado con éxito';
         errorMessage.textContent = '';
         navigateTo('/feed');
+        console.log(createUser())
       } catch (error) {
         errorMessage.textContent = error.message;
         successMessage.textContent = '';

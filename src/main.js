@@ -1,6 +1,4 @@
-// Este es el punto de entrada de tu aplicacion
-
-import home from './components/home.js';
+import home from './components/login.js';
 import register from './components/register.js';
 import feed from './components/feed.js';
 
