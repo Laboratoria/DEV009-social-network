@@ -1,4 +1,4 @@
-function principal(navigateTo) {
+function principal() {
   const divPrincipal = document.createElement('div');
 
   const divHead = document.createElement('div');
