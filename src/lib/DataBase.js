@@ -1,5 +1,5 @@
 
-import { getFirestore, collection, addDoc,  doc, getDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc,  doc, getDoc, getDocs } from "firebase/firestore";
 import { app } from './firebase.js';
 
 export const db = getFirestore(app);
@@ -8,7 +8,7 @@ export async function addRecipe(name, steps) {
   try {
     const docRef = await addDoc(collection(db, "recetas"), {
       name: name,
-      Pasos: steps
+      steps: steps
     });
     console.log("Recipe added with ID: ", docRef.id);
     return docRef.id;
@@ -36,3 +36,9 @@ export async function  fetchRecipe(recipeId){
     return null;
 }
 }
+
+export const querySnapshot = await getDocs(collection(db, "recetas"));
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+});
