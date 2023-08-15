@@ -17,7 +17,7 @@ body{
   align-items: center;
 }
 
-.divHome, .divRegister, .divLogin {
+.divHome, .divRegister, .divLogin, .formRegistro {
   display: flex;
   margin-top: 10%;
   width: 100%;
