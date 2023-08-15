@@ -39,7 +39,23 @@ export const login = (navigateTo) => {
   inputEmail.placeholder = 'Escribe tu Email';
   inputPass.placeholder = 'Contraseña';
 
+  const passwordReset = document.createElement('a');
+  passwordReset.textContent = '¿Olvidaste tu contraseña?';
+  passwordReset.id = 'password-reset';
+  passwordReset.addEventListener('click', () => {
+    navigateTo('/resetpassword');
+  });
+
   buttonContainer.append(buttonLog, buttonReturn);
-  section.append(logo, title, inputEmail, inputPass, logInInvalidPassMessage, buttonContainer);
+  section.append(
+    logo,
+    title,
+    inputEmail,
+    inputPass,
+    logInInvalidPassMessage,
+    passwordReset,
+    buttonContainer,
+  );
+
   return section;
 };
