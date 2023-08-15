@@ -1,6 +1,5 @@
 // Importamos la función que vamos a testear
 import { registerWithEmail } from '../src/lib/index';
-import registro from '../src/components/registro.js';
 
 // Mockeamos la función importada para realizar pruebas aisladas
 jest.mock('../src/lib/index');
@@ -12,7 +11,7 @@ describe('Test para la función registro que usa registerWithEmail', () => {
     const passwordValue = 'contraseña123';
 
     // Llamamos a la función registro para obtener los elementos simulados
-    const registroResult = registro();
+    const registroResult = registerWithEmail();
 
     // Extraemos los elementos simulados del resultado de registro
     const {

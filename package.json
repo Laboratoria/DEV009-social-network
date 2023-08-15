@@ -44,5 +44,8 @@
   },
   "dependencies": {
     "firebase": "^10.1.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
   }
 }
