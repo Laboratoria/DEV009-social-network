@@ -15,7 +15,8 @@ export async function addRecipe(name, steps) {
   } catch (error) {
     console.error("Error adding recipe: ", error);
   }
-}
+
+};
 
 export async function  fetchRecipe(recipeId){
   const recipeRef = doc(db, "recetas", recipeId);
@@ -42,3 +43,4 @@ querySnapshot.forEach((doc) => {
   // doc.data() is never undefined for query doc snapshots
   console.log(doc.id, " => ", doc.data());
 });
+
