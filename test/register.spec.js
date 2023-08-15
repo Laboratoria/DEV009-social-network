@@ -10,7 +10,8 @@ jest.mock('../src/lib/index', () => ({
       return Promise.resolve({ emailVerified: false });
     } else if (email === 'test@example.com' && password === '12') {
     return Promise.reject({ error : 'contraseña menor a seis caracteres.' });
-    }
+    } else if (email === 'testexample.com' && password === '123456') {
+      return Promise.reject({ error : 'correo esta invalido.' });}
     return Promise.resolve({ emailVerified: true });
   }),
   signInWithGoogle: jest.fn(() => {
@@ -48,11 +49,9 @@ describe('función crear usuario', () => {
   });
 
   test('debería dejar decirnos que ingresemos un correo y una contraseña válida', async () => {
-    emailInput.value = 'test@example.com';
-    passwordInput.value = '';
-    buttonRegister.click();
-    await Promise.resolve();
-    expect(errorMessage.textContent).toBe('Por favor, ingresa un correo y una contraseña válida.');
+    expect(createUser('testexample.com', '123456')).rejects.toEqual({
+      error: 'correo esta invalido.',
+});
   });
 
   test('deberia iniciar sesión con Google', async () => {

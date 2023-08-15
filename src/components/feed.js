@@ -1,4 +1,3 @@
-import { async } from 'regenerator-runtime';
 import { logoutUser } from '../lib';
 import { addRecipe, fetchRecipe } from '../lib/dataBase';
 
@@ -32,6 +31,7 @@ function feed(navigateTo) {
   logoutButtom.textContent = 'Cerrar Sesión';
   MessageOk.style.color = 'green';
   MessageError.style.color = 'grey';
+
 
   logoutButtom.addEventListener('click', () => {
     logoutUser();
@@ -69,6 +69,7 @@ function feed(navigateTo) {
     }
   }
 });
+
 
   section.append(logo, formRecipe, write, nav, logoutButtom,);
   formRecipe.append(nameSteps, recipe, add, MessageError, MessageOk)
