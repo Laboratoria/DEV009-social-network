@@ -16,7 +16,7 @@ function login(navigateTo) {
   const inputPass = document.createElement('input');
   inputPass.className = 'input inputPass';
   inputPass.setAttribute('type', 'password');
-  inputPass.setAttribute('placeholder', 'Crea tu contraseña');
+  inputPass.setAttribute('placeholder', 'Ingresa tu contraseña');
   inputPass.setAttribute('required', '');
 
   const buttonLogin = document.createElement('button');
@@ -71,8 +71,7 @@ function login(navigateTo) {
         emailPassword: passwordValue,
       };
       signInWithPassword(user.email, user.emailPassword)
-        .then((userCredential) => {
-          const user = userCredential.user;
+        .then(() => {
           navigateTo('/principal');
         });
     }

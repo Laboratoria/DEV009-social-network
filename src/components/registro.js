@@ -1,4 +1,3 @@
-import { GoogleAuthProvider } from 'firebase/auth';
 import { registerWithEmail, signInWithGoogle } from '../lib/index';
 
 function registro(navigateTo) {
@@ -7,8 +6,9 @@ function registro(navigateTo) {
 
   const logoBon = document.createElement('img');
   logoBon.className = 'logoBon';
+  logoBon.alt = 'Logo de pastelillo con el nombre Bon';
 
-  const formRegistro = document.createElement ('form');
+  const formRegistro = document.createElement('form');
   formRegistro.className = 'formRegistro';
   const inputName = document.createElement('input');
   inputName.className = 'input displayName';
@@ -20,7 +20,7 @@ function registro(navigateTo) {
   inputEmail.className = 'input inputEmail';
   inputEmail.setAttribute('type', 'email');
   inputEmail.setAttribute('placeholder', 'Correo electronico');
-  /*inputEmail.required = true;*/
+  inputEmail.required = true;
 
   const inputPass = document.createElement('input');
   inputPass.className = 'input inputPass';
@@ -29,7 +29,7 @@ function registro(navigateTo) {
   inputPass.required = true;
 
   const buttonRegistro = document.createElement('input');
-  buttonRegistro.setAttribute('type','submit');
+  buttonRegistro.setAttribute('type', 'submit');
   buttonRegistro.className = 'button buttonSignInRegistro';
   buttonRegistro.textContent = 'Registro';
 
@@ -50,34 +50,24 @@ function registro(navigateTo) {
   strong.className = 'textGoogle';
   const imgGoogle = document.createElement('img');
   imgGoogle.className = 'imgGoogle';
+  imgGoogle.alt = 'Logo de google';
 
   const textRegistrateCon = document.createElement('p');
   textRegistrateCon.className = 'parrafo';
   textRegistrateCon.textContent = 'O registrate con...';
 
-  buttonRegistro.addEventListener('click', () => {
+  formRegistro.addEventListener('submit', (e) => {
+    e.preventDefault();
     const emailValue = inputEmail.value;
     const nameValue = inputName.value;
     const passwordValue = inputPass.value;
 
-    if (nameValue === '') {
-      errorRegister.style.display = 'block';
-      errorRegister.textContent = 'Los campos no puede estar vacíos';
-      return;
-    }
-
-    const userInfo = {
-      email: emailValue,
-      name: nameValue,
-      password: passwordValue,
-    };
-console.log(userInfo);
     registerWithEmail(
-      userInfo.email,
-      userInfo.password,
-      userInfo.name,
+      emailValue,
+      passwordValue,
+      nameValue,
     )
-      .then((user) => {
+      .then(() => {
         navigateTo('/principal');
       })
       .catch((error) => {
@@ -98,7 +88,6 @@ console.log(userInfo);
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'Falta colocar contraseña';
         }
-        console.log(error.code);
         return error;
       });
   });
@@ -109,7 +98,7 @@ console.log(userInfo);
 
   divRegister.appendChild(logoBon);
   divRegister.appendChild(formRegistro);
-  formRegistro.append(inputName, inputEmail, inputPass,buttonRegistro);
+  formRegistro.append(inputName, inputEmail, inputPass, buttonRegistro);
   divRegister.appendChild(errorRegister);
   divRegister.appendChild(textRegistrateCon);
   divRegister.appendChild(buttonGoogle);
@@ -118,18 +107,10 @@ console.log(userInfo);
 
   buttonGoogle.addEventListener('click', () => {
     signInWithGoogle()
-      .then((result) => {
+      .then(() => {
         navigateTo('/principal');
       })
-      .catch((error) => {
-        console.log('estes es', error);
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // el correo de la cuenta del usuario.
-        const email = error.customData.email;
-        // la credencial Auth que fue usada.
-        const credential = GoogleAuthProvider.credentialFromError(error);
+      .catch(() => {
         navigateTo('/'); // si nos marca error nos manda al home
       });
   });
