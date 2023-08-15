@@ -71,8 +71,7 @@ function login(navigateTo) {
         emailPassword: passwordValue,
       };
       signInWithPassword(user.email, user.emailPassword)
-        .then((userCredential) => {
-          const user = userCredential.user;
+        .then(() => {
           navigateTo('/principal');
         });
     }
