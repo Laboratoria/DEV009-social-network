@@ -20,7 +20,7 @@ function register(navigateTo) {
   buttonGoogle.className = 'button-google';
   password.placeholder = 'Crea tu Contraseña';
   password.className = 'input-password';
-  password.type = 'password';
+  password.type ='password';
   name.placeholder = 'Ingresa tu nombre';
   email.className = 'input-email';
   email.placeholder = 'Ingresa tu Email';
@@ -37,6 +37,7 @@ function register(navigateTo) {
         successMessage.textContent = 'Usuario registrado con éxito';
         errorMessage.textContent = '';
         navigateTo('/feed');
+        console.log(createUser())
       } catch (error) {
         errorMessage.textContent = error.message;
         successMessage.textContent = '';
@@ -46,7 +47,6 @@ function register(navigateTo) {
     }
   });
 
-
   buttonGoogle.addEventListener('click', async () => {
     try {
       await signInWithGoogle();
@@ -55,7 +55,7 @@ function register(navigateTo) {
       errorMessage.textContent = error.message;
     }
   });
-  
+
   section.append(logo, avatar, name, email, password, buttonRegister);
   section.append(buttonGoogle, errorMessage, successMessage);
 
