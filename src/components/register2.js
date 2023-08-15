@@ -50,8 +50,6 @@ export const register2 = (navigateTo) => {
     emailInput,
     passwordInput,
     registerInvalidPassMessage,
-    // confirmPassMessage,
-    // confirmedPasswordInput,
     regsiterButton,
     backButton,
   );
