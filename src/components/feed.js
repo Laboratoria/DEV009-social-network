@@ -74,9 +74,8 @@ function feed(navigateTo) {
     showPostFeed.innerHTML += postRecipe;
     });
   }
-
+  formRecipe.style.display = 'none';
         return showPost();
-       // formRecipe.style.display ==='none';
     } else {
       MessageError.textContent = 'Error al obtener la receta.';
       MessageOk = '';
