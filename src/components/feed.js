@@ -33,6 +33,7 @@ function feed(navigateTo) {
   MessageOk.style.color = 'green';
   MessageError.style.color = 'grey';
 
+
   logoutButtom.addEventListener('click', () => {
     logoutUser();
     navigateTo('/');
@@ -87,7 +88,7 @@ function feed(navigateTo) {
   }
 });
 
-  section.append(logo, formRecipe, write, nav, logoutButtom, showPostFeed);
+  section.append(logo, formRecipe, write, nav, logoutButtom,);
   formRecipe.append(nameSteps, recipe, add, MessageError, MessageOk)
   nav.append(select);
   select.append(option1, option2);

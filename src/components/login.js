@@ -19,7 +19,7 @@ function home(navigateTo) {
   registerUser.textContent = 'Registrarse';
   login.textContent = 'Ingresar';
   logo.src = './imagenes/image.png';
-  buttonGoogle.textContent = 'ó notContinuar con Google';
+  buttonGoogle.textContent = 'ó Continuar con google';
   h3.textContent = '¡Unete a CocinArte hoy mismo!';
   errorMessage.style.color = 'beige';
 
