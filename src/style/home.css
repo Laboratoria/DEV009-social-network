@@ -8,22 +8,23 @@
 :root{
   --primary: #F4EBE2;
   --secondary: #EFBA73;
+  --sloganColor: #e8c8bb;
+  --recetarioColor: #F7D7AD; 
 }
 
 body{
   background-color: var(--primary);
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .divHome, .divRegister, .divLogin, .formRegistro {
   display: flex;
-  margin-top: 10%;
-  width: 100%;
   flex-direction: column;
   justify-content:center;
   align-items:center;
+  margin-top: 10%;
+  width: 100%;
 }
 
 .logoBonHome {
@@ -89,16 +90,55 @@ body{
   color:red;
 }
 
-.displayName {
-  margin-top: 0;
+.divPrincipal {
+  display: flex;
+  width: 100%;
 }
 
-
-h2 {
-  margin: 5px;
+.divHead {
+  max-width: 100%;
+  margin-top: 10%;
+  display: flex;
+  align-items: center;
 }
 
+.logoBonMuro{
+  background-image: url('../imagenes/logoBon.png');
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: top;
+  padding:15%; 
+  margin-left: 5%;
+}
 
+.sloganBon {
+  width: 190px;
+  background-color: var(--sloganColor);
+  font-weight: bold;
+  font-size: medium;
+  margin-left: 15%; 
+}
+
+.nameUser {
+  align-items: center;
+  margin: 5% 50%;
+  font-weight: bold;
+}
+
+.divReceta {
+  height: 7em;
+  width: 100%;
+  background-color: var(--recetarioColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recetaUser {
+  height: 5em;
+  width: 80%;
+  text-align:center;
+}
 
 footer {
   margin-top: 30px;
