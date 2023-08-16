@@ -1,17 +1,33 @@
 // Import the functions you need from the SDKs you need
-
 import {
   auth, provider, createUserWithEmailAndPassword, signInWithPopup, getRedirectResult,
-  GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword,
+
+  GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword, database, set, ref,
+
 } from './initializerFirebase.js';
 
-export const registerUser = (email, password) => {
+function writeUserData(userId, Name, lastName, userName) {
+  const db = database;
+  set(ref(db, `users/${userId}`), {
+    username: userName,
+    name: Name,
+    lastname: lastName,
+  });
+}
+
+function registerUser(email, password, name, lastname, userName) {
   try {
-    createUserWithEmailAndPassword(auth, email, password);
+    createUserWithEmailAndPassword(
+      auth,
+      email,
+      password,
+    ).then((userId) => {
+      writeUserData(userId.user.uid, name, lastname, userName);
+    });
   } catch (error) {
     throw error.message;
   }
-};
+}
 
 //iniciar Sesion
 export const startSession = (email, password) => {
@@ -55,6 +71,11 @@ export const signIn = () => {
   } catch (error) {
     throw error.message;
   }
+};
+
+export {
+  registerUser,
+  writeUserData,
 };
 // export const redirectGoogle = () => {
 //   try {

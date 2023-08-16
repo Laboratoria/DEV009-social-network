@@ -1,4 +1,4 @@
-import { registerUser } from '../lib/credentials.js';
+import { registerUser, writeUserData } from '../lib/credentials.js';
 
 function register(navigateTo) {
   const inputs = {
@@ -29,7 +29,6 @@ function register(navigateTo) {
         icon.classList.remove('fa-circle-xmark');
         errorMessage.classList.remove('formulario__input-error-activo');
         inputs[input.id] = true;
-        console.log(inputs[input.id]);
       } else {
         divGroup.classList.add('formulario__grupo-incorrecto');
         divGroup.classList.remove('formulario__grupo-correcto');
@@ -324,21 +323,17 @@ function register(navigateTo) {
   buttonCreateAccount.addEventListener('click', () => {
     if (inputs.name && inputs.LastName && inputs.User
       && inputs.Email && inputs.Password) {
-      registerUser(inputEmail.value, inputPassword.value);
-      // Falta verificar que se haya creado la cuenta satisfactoriamente
-
+      registerUser(
+        inputEmail.value,
+        inputPassword.value,
+        inputName.value,
+        inputLastName.value,
+        inputUser.value,
+      );
       successfulMessage.classList.add('formulario__mensaje-exito-activo');
+      // Falta verificar que se haya creado la cuenta satisfactoriamente
     } else {
       groupError.classList.add('form-message-activo');
-      const  userData = {
-        user: inputUser.value,
-        pasword: inputPassword.value,
-        name: inputName.value,
-        lastname: inputLastName.value,
-        email: inputEmail.value,
-
-      }
-      console.log(userData, inputs);
     }
   });
 
