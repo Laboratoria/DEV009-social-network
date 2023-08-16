@@ -4,7 +4,7 @@ import {
   getPosts,
   updatePost,
   // updateLikePost,
-  //
+  // getDataAuthor
   deletePost,
 } from '../lib/firebaseStore.js';
 
@@ -29,12 +29,13 @@ export const muro = (navigateTo) => {
       try {
         const user = auth.currentUser;
         if (user) {
-          const userId = user.email;
+          const userId = user.uid;
           const postId = await addPost(userId, areaText.value.trim());
           if (postId) {
             areaText.value = '';
             // eslint-disable-next-line no-use-before-define
-            await updatePostsList(); // Llamada a la función aquí después de agregar la publicación
+            // Llamada a la función aquí después de agregar la publicación
+            await updatePostsList();
           } else {
             console.log('Error al agregar la publicación');
           }
@@ -54,106 +55,76 @@ export const muro = (navigateTo) => {
   postsContainer.classList.add('posts-container');
 
   // Actualizar la lista de publicaciones
-  const posts = getPosts();
   const updatePostsList = async () => {
     try {
+      const posts = await getPosts();
       postsContainer.innerHTML = '';
+
+      // *************Mostrar los posts en el contenedor*************
+      posts.forEach(async (post) => {
+        const postElement = document.createElement('div');
+        postElement.classList.add('post');
+
+        const contentElement = document.createElement('p');
+        contentElement.classList.add('user-post');
+        contentElement.textContent = post.content;
+
+        const getLikes = document.createElement('div');
+        getLikes.classList.add('likes');
+        const heartIcon3 = document.createElement('img');
+        heartIcon3.className = 'heart-icon';
+        heartIcon3.src = './recursos/heart-regular.svg';
+        heartIcon3.alt = 'heart-icon';
+        getLikes.appendChild(heartIcon3);
+
+        const spanLikes = document.createElement('span');
+        spanLikes.className = 'likes-span';
+        const likesCounter = document.createElement('i');
+        // likesCounter.id = doc.id;
+        likesCounter.className = 'likes-counter';
+        likesCounter.innerText = ` ${post.liked_by} `;
+        getLikes.appendChild(likesCounter);
+
+        // heartIcon3.addEventListener('click', async () => {
+        //   firebaseStore.updateLikePost(doc.id);
+        //   let counter = Number(document.getElementById(doc.id).innerText);
+        //   counter += 1;
+        //   document.getElementById(doc.id).innerText = counter;
+        // });
+
+        const user = auth.currentUser;
+        const userEmail = user.email;
+        const userElement = document.createElement('h6');
+        userElement.textContent = `Publicado por: ${userEmail}`;
+
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Editar 🧁';
+        editButton.addEventListener('click', async () => {
+          const newContent = prompt('Editar Contenido', contentElement.textContent);
+          if (newContent !== null && newContent.trim() !== '') {
+            await updatePost(post.id, newContent);
+            updatePostsList();
+          }
+        });
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Eliminar ❌';
+        deleteButton.addEventListener('click', async () => {
+          const confirmed = confirm('¿Estás seguro de que deseas eliminar esta publicación?');
+          if (confirmed) {
+            await deletePost(post.id);
+            updatePostsList();
+          }
+        });
+
+        postElement.append(userElement, contentElement, getLikes, editButton, deleteButton);
+
+        postsContainer.append(postElement);
+      });
     } catch (error) {
       console.error('Error al obtener las publicaciones:', error);
     }
   };
-
-  // *************Evento click del botón Compartir*************
-  // botonCompartir.addEventListener('click', async () => {
-  //   if (areaText.value.trim() !== '') {
-  //     try {
-  //       const user = auth.currentUser;
-  //       if (user) {
-  //         const userId = user.email;
-  //         console.log(userId);
-  //         const postId = await addPost(userId, areaText.value.trim());
-  //         if (postId) {
-  //           areaText.value = '';
-  //           // Llamada a la función aquí después de agregar la publicación
-  //           await updatePostsList();
-  //         } else {
-  //           console.log('Error al agregar la publicación');
-  //         }
-  //       } else {
-  //         console.log('Usuario no autenticado');
-  //       }
-  //     } catch (error) {
-  //       console.error('Error al agregar la publicación:', error);
-  //     }
-  //   }
-  // });
-  // publicacion.append(areaText, botonCompartir);
-
-  // *************Mostrar los posts en el contenedor*************
-  const forEachPost = {
-    posts.forEach(async (post) => {
-      const postElement = document.createElement('div');
-      postElement.classList.add('post');
-  
-      const contentElement = document.createElement('p');
-      contentElement.classList.add('user-post');
-      contentElement.textContent = post.content;
-  
-      const getLikes = document.createElement('div');
-      getLikes.classList.add('likes');
-      const heartIcon3 = document.createElement('img');
-      heartIcon3.className = 'heart-icon';
-      heartIcon3.src = './recursos/heart-regular.svg';
-      heartIcon3.alt = 'heart-icon';
-      getLikes.appendChild(heartIcon3);
-  
-      const spanLikes = document.createElement('span');
-      spanLikes.className = 'likes-span';
-      const likesCounter = document.createElement('i');
-      likesCounter.id = doc.id;
-      likesCounter.className = 'likes-counter';
-      likesCounter.innerText = ` ${post.liked_by} `;
-      getLikes.appendChild(likesCounter);
-  
-      // heartIcon3.addEventListener('click', async () => {
-      //   firebaseStore.updateLikePost(doc.id);
-      //   let counter = Number(document.getElementById(doc.id).innerText);
-      //   counter += 1;
-      //   document.getElementById(doc.id).innerText = counter;
-      // });
-  
-      const user = auth.currentUser;
-      const userEmail = user.email;
-      const userElement = document.createElement('h6');
-      userElement.textContent = `Publicado por: ${userEmail}`;
-  
-      const editButton = document.createElement('button');
-      editButton.textContent = 'Editar 🧁';
-      editButton.addEventListener('click', async () => {
-        const newContent = prompt('Editar Contenido', contentElement.textContent);
-        if (newContent !== null && newContent.trim() !== '') {
-          await updatePost(post.email, newContent);
-          updatePostsList();
-        }
-      });
-  
-      const deleteButton = document.createElement('button');
-      deleteButton.textContent = 'Eliminar ❌';
-      deleteButton.addEventListener('click', async () => {
-        const confirmed = confirm('¿Estás seguro de que deseas eliminar esta publicación?');
-        if (confirmed) {
-          await deletePost(post.id);
-          updatePostsList();
-        }
-      });
-  
-      postElement.append(userElement, contentElement, getLikes, editButton, deleteButton);
-  
-      postsContainer.appendChild(postElement);
-    });
-  }
-
-
   // *************Boton de cierre de sesión*************
   const logOutButton = document.createElement('button');
   logOutButton.classList.add('logOut-button');
@@ -164,6 +135,7 @@ export const muro = (navigateTo) => {
         navigateTo('/');
       }
     };
+
     logOut(logOutAlert);
   });
 
@@ -171,5 +143,6 @@ export const muro = (navigateTo) => {
   updatePostsList();
 
   section.append(logoMuro, publicacion, postsContainer, logOutButton);
+
   return section;
 };
