@@ -17,7 +17,8 @@ export async function addRecipe(name, steps) {
   } catch (error) {
     console.error("Error adding recipe: ", error);
   }
-}
+
+};
 
 export async function  fetchRecipe(recipeId){
   const recipeRef = doc(db, "recetas", recipeId);
