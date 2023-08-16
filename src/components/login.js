@@ -52,8 +52,7 @@ function login(navigateTo) {
   });
 
   divLogin.append(logoBon, formLogin);
-  formLogin.append(inputEmail, inputPass, buttonLogin);
-  divLogin.appendChild(errorMessageL);
+  formLogin.append(inputEmail, inputPass, errorMessageL, buttonLogin);
   divLogin.appendChild(textRegistrateCon);
   divLogin.appendChild(buttonGoogle);
   buttonGoogle.append(imgGoogle, strong);
