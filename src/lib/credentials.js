@@ -1,7 +1,9 @@
 // Import the functions you need from the SDKs you need
 import {
   auth, provider, createUserWithEmailAndPassword, signInWithPopup, getRedirectResult,
-  GoogleAuthProvider, signInWithRedirect, database, set, ref,
+
+  GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword, database, set, ref,
+
 } from './initializerFirebase.js';
 
 function writeUserData(userId, Name, lastName, userName) {
@@ -26,6 +28,16 @@ function registerUser(email, password, name, lastname, userName) {
     throw error.message;
   }
 }
+
+//iniciar Sesion
+export const startSession = (email, password) => {
+  try {
+    signInWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    throw error.message;
+  }
+};
+
 
 export const signWithGoogle = () => {
   try {

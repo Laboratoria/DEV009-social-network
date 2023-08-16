@@ -39,6 +39,15 @@ function register(navigateTo) {
       }
     });
   };
+
+  const div=document.createElement('div');
+  div.classList.add('divLogoRegistro');
+  const imagenGuideMaPA=document.createElement('img');
+  imagenGuideMaPA.classList.add('imagenGuideMaPa');
+  imagenGuideMaPA.src='./images/logoWords.png';
+  div.appendChild(imagenGuideMaPA);
+
+
   const section = document.createElement('section');
   section.classList.add('registerSection');
 
@@ -328,6 +337,20 @@ function register(navigateTo) {
     }
   });
 
+  const buttonHome=document.createElement('button');
+  buttonHome.type = 'button';
+  buttonHome.classList.add('buttonHome');
+  const iconHome=document.createElement('img');
+  iconHome.src='./images/home.png';
+  iconHome.classList.add('iconHome');
+  iconHome.width = 40;
+  buttonHome.appendChild(iconHome);
+  iconHome.addEventListener('click',()=>{
+    navigateTo('/');
+  });
+  
+  
+
   groupButton.append(buttonCreateAccount, successfulMessage);
   section.append(
     title,
@@ -339,9 +362,12 @@ function register(navigateTo) {
     divGroupConfirmPassword,
     groupError,
     groupButton,
+    buttonHome,
   );
 
-  return section;
+  div.appendChild(section);
+
+  return div;
 }
 
 export default register;

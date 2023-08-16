@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import {
   getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, getRedirectResult,
-  signInWithRedirect,
+  signInWithRedirect, signOut, signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { getDatabase, ref, set } from 'firebase/database';
 import { firebaseConfig } from './firebaseConfig.js';
@@ -14,5 +14,6 @@ export const database = getDatabase(app);
 
 export {
   createUserWithEmailAndPassword, signInWithPopup, getRedirectResult, GoogleAuthProvider,
-  signInWithRedirect, ref, set, getDatabase, 
+
+  signInWithRedirect, signOut, signInWithEmailAndPassword, ref, set, getDatabase, 
 };

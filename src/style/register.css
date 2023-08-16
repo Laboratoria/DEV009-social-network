@@ -7,7 +7,8 @@
     --color-box: #F6F6F6;
     --shadow-nav: #37C2EA;
     --color-error: rgb(228, 65, 214);
-    --color-is-Valid: rgb(102, 162, 102);
+    /* --color-is-Valid: rgb(102, 162, 102); */
+    --color-is-Valid: #37c2ea ;
 }
 
 * {
@@ -18,8 +19,19 @@ body {
     font-family: 'Roboto', sans-serif;
     background-image: linear-gradient(to bottom, var(--primary-color) 20%, var(--secundary-color) 100%);
     max-width: 900px;
+    max-height: 900px;
     width: 90%;
-    margin: 15rem auto;
+    margin: 1rem auto;
+}
+
+.divLogoRegistro{
+    display:grid;
+    grid-column: 1fr 1fr;
+    grid-row: 0.5fr auto;
+}
+
+.imagenGuideMaPa{
+    width: 20rem;
 }
 
 
@@ -32,10 +44,13 @@ body {
     padding: 40px;
 }
 
+
+
+
 .elementRegister-title{
     grid-column: 1/3;
     justify-self: center;
-    grid-row: 1;
+    grid-row: 2;
     align-self: center;
 }
 
@@ -161,6 +176,16 @@ body {
     cursor: pointer;
     transition: .1s ease all;
 }
+
+.buttonHome{
+    width: 5rem;
+    border: none;
+    grid-row: 1;
+    grid-column: 1/3;
+    justify-self: end;
+}
+
+
 .formulario__btn:hover{
     box-shadow: 3px 0px 30px var(--shadow-nav);
 }
@@ -177,6 +202,7 @@ body {
 
     .registerSection {
         grid-template-columns: 1fr;
+        justify-items: end;
     }
     .form-message,
     .formulario__grupo-btn-enviar{
@@ -187,6 +213,11 @@ body {
     }
     .formulario__btn{
         width: 100%;
+    }
+
+    .buttonHome{
+        grid-row: 1;
+        grid-column: 1;
     }
 
  
