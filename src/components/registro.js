@@ -89,8 +89,7 @@ function registro(navigateTo) {
 
   divRegister.appendChild(logoBon);
   divRegister.appendChild(formRegistro);
-  formRegistro.append(inputName, inputEmail, inputPass, buttonRegistro);
-  divRegister.appendChild(errorRegister);
+  formRegistro.append(inputName, inputEmail, inputPass, errorRegister, buttonRegistro);
   divRegister.appendChild(textRegistrateCon);
   divRegister.appendChild(buttonGoogle);
   buttonGoogle.append(imgGoogle, strong);
