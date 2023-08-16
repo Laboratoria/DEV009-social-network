@@ -5,4 +5,5 @@ export const firebaseConfig = {
   storageBucket: 'guide-mapa.appspot.com',
   messagingSenderId: '240177782618',
   appId: '1:240177782618:web:545f39b9d6c7707c245d63',
+  databaseURL: 'https://guide-mapa-default-rtdb.firebaseio.com/',
 };

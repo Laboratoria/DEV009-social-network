@@ -5,21 +5,23 @@
     --color-text: #0a3748;
     --color-box: #F6F6F6;
     --shadow-nav: #37C2EA;
-    --color-error: rgb(228, 65, 214);
-    --color-is-Valid: rgb(102, 162, 102);
+    --color-error:rgb(228, 65, 214);
+    --color-is-Valid:rgb(102, 162, 102) ;
+    --color--a: #7ACAE0;
+    --color--b: #B25DFF;
 }
 
-body {
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    font-size: large;
-    font-family: 'Montserrat', sans-serif;
-    text-decoration-color: var(--theme-color);
-    background-image: linear-gradient(to bottom, var(--primary-color) 20%, var(--secundary-color) 100%);
-    height: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+body{
+margin:0 0 0 0;
+padding:0 0 0 0;
+font-size: large;
+font-family: 'Montserrat', sans-serif;
+text-decoration-color: var(--theme-color);
+background-image: linear-gradient(to bottom, var(--primary-color) 20%, var(--secundary-color) 100%);
+height: 100%;
+background-repeat: no-repeat;
+background-size: cover;
+background-attachment: fixed;
 }
 
 .loginSectionMain {
@@ -56,13 +58,48 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    justify-items: center;
+    
+    
 }
 
+.logo{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    /* grid-row: 1; */
+    grid-row: 2;
+    padding:1rem;
+    max-width: 25vw;
+    grid-template-rows:2 ;
+    width: 300px;
+    margin-bottom: 100px;   
+}
 
-.loginSection {
-    grid-area: loginSection;
+.logoWords{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    /* grid-row: 2; */
+    grid-row: 2;
+    max-width: 25vw;
+    width: 300px;
+    margin-top: 350px;
+}
+
+.description{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    /* grid-row: 3; */
+    grid-row: 1;
+    color: var(--color-box);
+    
+}
+
+.loginSection{
     grid-column-start: 2;
     grid-column-end: 3;
+    /* grid-row: 1; */
+    /* grid-row: 1/3; */
+    grid-row: 2/3;
     display: grid;
     grid-template-rows: repeat(6, 0.2fr);
     grid-template-columns: 0.5fr 4fr 0.5fr;
@@ -73,8 +110,15 @@ body {
     margin: 5%;
     padding: 5%;
     max-width: 30vw;
-    min-height: 60vh;
+    min-height: 60vh; 
+    box-shadow: 1px 1px 1px 1px var(--color-text);
+}
 
+.titleLogin{
+    
+    text-align: center;
+    grid-column: 1/4;
+    
 
 }
 
@@ -89,6 +133,12 @@ body {
 input {
     text-align: center;
     font-size: 1rem;
+    height: 2rem;
+    
+    border-radius: 5px;
+    border: 1px solid #39c;
+    border-style:outset;
+    border-width: 2px;
 }
 
 .inputEmail {
@@ -117,23 +167,49 @@ button {
     /* max-width: fit-content; */
     place-self: center;
     width: 10rem;
-    ;
+    background-color: var(--color--a);
+    border: 0;
+    color: var(--color-box);
 }
 
-.buttonSiginGoogle {
+/* .buttonSiginGoogle{
     grid-column: 2;
     grid-row: 5;
     max-width: fit-content;
     place-self: center;
+} */
 
-}
-
-.createAccount {
+.buttonSiginGoogle{
     grid-column: 2;
-    grid-row: 6;
+    grid-row: 5;
     max-width: fit-content;
     place-self: center;
+    width: 30px;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px 1px var(--color-text);
+}
 
+.paragraph{
+    grid-row: 6;
+    grid-column: 2/3;
+    font-size: 1rem;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+
+
+.createAccount{
+    grid-column: 2;
+    grid-row: 7;
+    width: 10rem;
+    /* max-width: fit-content; */
+    place-self: center;
+    background-color: var(--color--a);
+    border: 0;
+    color: var(--color-box);
+    
 }
 
 .titleLogin {
@@ -143,25 +219,3 @@ button {
 
 }
 
-@media screen and (max-width: 800px) {
-    .container {
-        grid-template-areas:
-            "logo"
-            "logoWords"
-            "description"
-            "loginSection";
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-    }
-}
-
-@media screen and (min-width: 801px) {
-    .container {
-        grid-template-areas:
-            ". logo .loginSection ."
-            ". logoWords . loginSection ."
-            ". description .loginSection .";
-        grid-template-columns:  1fr 1fr;
-        grid-template-rows: 1fr;
-    }
-}
