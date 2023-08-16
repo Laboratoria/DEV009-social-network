@@ -18,7 +18,7 @@ export const muro = (navigateTo) => {
   const publicacion = document.createElement('div');
   publicacion.classList.add('publicacion');
   const areaText = document.createElement('textarea');
-  areaText.textContent = 'Comparte aquí...';
+  areaText.setAttribute('placeholder', 'Comparte aqui...');
   const botonCompartir = document.createElement('button');
   botonCompartir.classList.add('boton-compartir');
   botonCompartir.textContent = 'Compartir';

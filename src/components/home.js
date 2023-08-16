@@ -33,7 +33,7 @@ export const home = (navigateTo) => {
   const googleIcon = document.createElement('img');
   googleIcon.src = './recursos/google.svg';
   googleIcon.classList.add('icon-google');
-  googleButton.textContent = 'Continuar con Google';
+  googleButton.textContent = '';
   googleButton.classList.add('boton-google');
   googleButton.addEventListener('click', () => {
     const googleAlert = (valid) => {

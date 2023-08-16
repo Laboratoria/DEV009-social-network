@@ -87,11 +87,12 @@ input:hover {
 }
 .boton-google{
     display: flexbox;
-    
+    border-radius: 2rem;
+    width: 40px;
 }
 
 .icon-google {
-    margin: 0rem 1rem 0rem -3.5rem;
+    margin: 0rem 0rem 0rem -6.5rem;
     height: 2rem;
 }
 
