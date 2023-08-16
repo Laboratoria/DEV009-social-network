@@ -1,5 +1,4 @@
 import { loginUser, authWithGoogle } from '../lib/index';
-// import { signInWithRedirect, auth, provider } from '../firebase/initializeFirebase';
 
 function login(navigateTo) {
   const section = document.createElement('section');
@@ -18,11 +17,11 @@ function login(navigateTo) {
       <button type="submit" class="button-input">Sign In</button>
       <p class="text-with-line">Or Sign in with</p>
       <button class="button-google">
-        <span class="fa-brands fa-google"></span>Sign In
+        <span class="fa-brands fa-google"></span> Sign In
       </button>
       <div class="container-button-login">
         <p class="message">Don’t have an account?</p>
-        <button class="no-button"> Sign Up</button>
+        <button class="no-button">Sign Up</button>
       </div>
     </form>
     <div class="modal">
@@ -50,14 +49,8 @@ function login(navigateTo) {
   togglePassword.addEventListener('click', () => {
     const type = inputPass.getAttribute('type') === 'password' ? 'text' : 'password';
     inputPass.setAttribute('type', type);
-
-    // toggle the icon
     togglePassword.classList.toggle('bi-eye');
   });
-
-  // buttonGoogle.addEventListener('click', () => {
-  //   signInWithRedirect(auth, provider);
-  // });
 
   buttonGoogle.addEventListener('click', () => {
     authWithGoogle();

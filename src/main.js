@@ -24,8 +24,17 @@ const routes = [
 
 const defaultRoute = '/';
 
+function isDesktop() {
+  return window.matchMedia('(min-width: 1024px)').matches;
+}
+
 function navigateTo(hash) {
-  const route = routes.find((routeFind) => routeFind.path === hash);
+  let newHash = hash;
+  if (hash === '/' && isDesktop()) {
+    newHash = '/login';
+  }
+
+  const route = routes.find((routeFind) => routeFind.path === newHash);
 
   if (route && route.component) {
     window.history.pushState(
