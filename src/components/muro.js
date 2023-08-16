@@ -1,9 +1,10 @@
+/* eslint-disable max-len */
 import { logOut, auth } from '../lib/firebaseAuth.js';
 import {
   addPost,
   getPosts,
   updatePost,
-  // updateLikePost,
+  updateLikePost,
   // getDataAuthor
   deletePost,
 } from '../lib/firebaseStore.js';
@@ -80,22 +81,24 @@ export const muro = (navigateTo) => {
         const spanLikes = document.createElement('span');
         spanLikes.className = 'likes-span';
         const likesCounter = document.createElement('i');
-        // likesCounter.id = doc.id;
+        likesCounter.id = post.id;
         likesCounter.className = 'likes-counter';
-        likesCounter.innerText = ` ${post.liked_by} `;
+
+        const likesCount = post.liked_by.length || 0; // Inicializar el contador con 0 si no hay likes
+        likesCounter.innerText = likesCount;
         getLikes.appendChild(likesCounter);
 
-        // heartIcon3.addEventListener('click', async () => {
-        //   firebaseStore.updateLikePost(doc.id);
-        //   let counter = Number(document.getElementById(doc.id).innerText);
-        //   counter += 1;
-        //   document.getElementById(doc.id).innerText = counter;
-        // });
+        heartIcon3.addEventListener('click', async () => {
+          updateLikePost(post.id);
+          const currentCount = parseInt(likesCounter.innerText.trim()); // Obtener el contador actual como un número entero
+          const newCount = isNaN(currentCount) ? 1 : currentCount + 1; // Incrementar el contador o asignar 1 si es NaN
+          likesCounter.innerText = newCount;
+        });
 
         const user = auth.currentUser;
         const userEmail = user.email;
         const userElement = document.createElement('h6');
-        userElement.textContent = `Publicado por: ${userEmail}`;
+        userElement.textContent = `${userEmail}`;
 
         const editButton = document.createElement('button');
         editButton.textContent = 'Editar 🧁';
