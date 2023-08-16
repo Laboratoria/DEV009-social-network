@@ -1,6 +1,5 @@
-/* eslint-disable max-len */
 import {
-  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendEmailVerification, signOut,
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendEmailVerification, signOut, onAuthStateChanged
 } from 'firebase/auth';
 import { app } from './firebase.js';
 
@@ -26,6 +25,24 @@ export const createUser = async (userEmail, userPassword) => {
     throw new Error(`Error al registrar usuario: ${errorCode} - ${errorMessageText}`);
   }
 };
+
+export function currentChange (){
+  onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log(user, 'inicio sesion')
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/auth.user
+    const uid = user.uid;
+    // ...
+  } else {
+    console.log('cerro sesion')
+    // User is signed out
+    // ...
+  }
+});
+}
+currentChange()
+
 const provider = new GoogleAuthProvider();
 
 export function signInWithGoogle() {
@@ -54,6 +71,7 @@ export const signInEP = async (userEmail, userPassword) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, userEmail, userPassword);
     const user = userCredential.user;
+    console.log(user)
     return user;
   } catch (error) {
     const errorCode = error.code;
