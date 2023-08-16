@@ -23,7 +23,7 @@ export const addPost = async (userId, content) => {
 };
 
 export async function updateLikePost(id) {
-  const postRef = doc(db, 'likesCounter', id);
+  const postRef = doc(db, 'posts', id);
   await updateDoc(postRef, {
     liked_by: increment(1),
   });
