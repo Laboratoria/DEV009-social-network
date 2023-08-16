@@ -51,8 +51,10 @@ function feed(navigateTo) {
 
   querySnapshot.forEach((doc) => {
     const recipeData = doc.data();
-    allRecipes.push(recipeData);
+    console.log(doc.id);
+    allRecipes.push({...recipeData, id : doc.id});
   });
+console.log(allRecipes)
 
   add.addEventListener('click', async (event) =>{
   event.preventDefault();
@@ -61,7 +63,6 @@ function feed(navigateTo) {
 
   if (!nameRecipe || !recipeData){
     MessageError.textContent = 'Por favor, completa ambos campos.';
-    console.log('Por favor, completa ambos campos.');
     return;
   } else{
     const newRecipeId = await addRecipe(nameRecipe, recipeData);
@@ -91,13 +92,17 @@ function showAllRecipes() {
   allRecipes.forEach((recipeContent) => {
     const postRecipe = `
       <button class="postRecipe">
-        <h3 class="user">Usuario:</h3>
+        <h3 class="user">Usuario: ${recipeContent.user}</h3>
         <p class="name">Receta: ${recipeContent.name}</p>
-        <p class="steps">Pasos: ${recipeContent.Pasos}</p>
+        <p class="steps">Pasos: ${recipeContent.steps}</p>
+        <button id="delete" value="${recipeContent.id}">Eliminar</button>
       </button>`;
     showPostFeed.innerHTML += postRecipe;
   });
 }
+
+const deleteButton = document.getElementById('delete');
+
 
 showAllRecipes(); 
 
