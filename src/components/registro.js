@@ -49,7 +49,7 @@ function registro(navigateTo) {
   strong.className = 'textGoogle';
   const imgGoogle = document.createElement('img');
   imgGoogle.className = 'imgGoogle';
-
+  
   const textRegistrateCon = document.createElement('p');
   textRegistrateCon.className = 'parrafo';
   textRegistrateCon.textContent = 'O registrate con...';
@@ -76,15 +76,9 @@ function registro(navigateTo) {
         } else if (errorCode === 'auth/invalid-email') {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'Email invalido';
-        } else if (errorCode === 'auth/missing-email') {
-          errorRegister.style.display = 'block';
-          errorRegister.textContent = 'Falta colocar correo';
         } else if (errorCode === 'auth/email-already-in-use') {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'El correo electrónico ya se encuentra registrado';
-        } else if (errorCode === 'auth/internal-error') {
-          errorRegister.style.display = 'block';
-          errorRegister.textContent = 'Falta colocar contraseña';
         }
         return error;
       });
@@ -96,8 +90,7 @@ function registro(navigateTo) {
 
   divRegister.appendChild(logoBon);
   divRegister.appendChild(formRegistro);
-  formRegistro.append(inputName, inputEmail, inputPass, buttonRegistro);
-  divRegister.appendChild(errorRegister);
+  formRegistro.append(inputName, inputEmail, inputPass, errorRegister, buttonRegistro);
   divRegister.appendChild(textRegistrateCon);
   divRegister.appendChild(buttonGoogle);
   buttonGoogle.append(imgGoogle, strong);
