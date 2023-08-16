@@ -27,54 +27,56 @@ export const loginUser = (email, password) => new Promise((resolve, reject) => {
     .then((userCredential) => {
       const user = userCredential.user;
       if (user.emailVerified) {
+        alert('You are logged in!');
         resolve(user);
       } else {
-        alert('Please verify your email address');
+        resolve(null);
       }
     })
     .catch((err) => reject(err));
 });
 
 // Función para crear una cuenta con correo electrónico
-export const createAccountWithEmail = (name, email, password) => {
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((result) => {
-      updateProfile(result.user, {
-        displayName: name,
-      }).then(() => {
-        // Actualización de perfil
-      });
-      sendEmailVerification(result.user)
-        .catch((err) => {
-          console.error(err);
-        });
+export const createAccountWithEmail = async (name, email, password) => {
+  try {
+    const result = await createUserWithEmailAndPassword(auth, email, password);
+    await updateProfile(result.user, { displayName: name });
 
+    try {
+      await sendEmailVerification(result.user);
       signOut(auth);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+    } catch (sendEmailError) {
+      console.error(sendEmailError);
+      throw sendEmailError;
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };
 
 // Función para autenticar con Google
 export const authWithGoogle = () => {
   signInWithPopup(auth, provider)
-    .then(() => {
+    .then((result) => {
+      console.log(result.user);
+      alert(`Hello ${result.user.displayName}! You're logged in with Google`);
     })
     .catch((err) => {
       console.error(err);
+      alert(`Authentication error: ${err}`);
     });
 };
 
 // Función para cerrar sesión de usuario
-export const signOutUser = () => {
-  auth.signOut()
-    .then(() => {
-    })
-    .catch((err) => {
-      console.error('Error logging out:', err);
-    });
-};
+export const signOutUser = () => auth.signOut()
+  .then(() => {
+    console.log('User has logged out.');
+  })
+  .catch((err) => {
+    console.error('Error logging out:', err);
+    throw err;
+  });
 
 // Función para restablecer contraseña
 export const resetPass = (email) => {
@@ -84,6 +86,7 @@ export const resetPass = (email) => {
     .catch((err) => {
       const errorMessage = err.message;
       console.log(errorMessage);
+      alert(err);
     });
 };
 
@@ -98,6 +101,7 @@ export const addPost = async (author, content, date) => {
       likesArr: [],
       likesSum: 0,
     });
+    console.log('Post added successfully to Firestore');
   } catch (error) {
     console.error('Error adding the post:', error);
   }
@@ -107,6 +111,7 @@ export const addPost = async (author, content, date) => {
 export const deletePost = async (postRef) => {
   try {
     await deleteDoc(postRef);
+    console.log('Post deleted successfully');
   } catch (error) {
     console.error('Error deleting the post:', error);
   }
@@ -148,20 +153,28 @@ export const displayUserPosts = async (user, containerElement) => {
 
     likeButton.addEventListener('click', async () => {
       const userId = user.uid;
+      const arrayLinks = post.likesArr;
+      console.log(arrayLinks);
 
       const tempLikesArray = post.likesArr || [];
+      console.log(tempLikesArray);
       userGaveLike = tempLikesArray.includes(userId);
+      console.log(userGaveLike);
 
       try {
         if (userGaveLike) {
           const indexUserLikesArray = tempLikesArray.indexOf(userId);
           tempLikesArray.splice(indexUserLikesArray, 1);
+          console.log(tempLikesArray);
           const likesArrayLength = tempLikesArray.length;
 
           await updateDoc(doc.ref, { likesArr: tempLikesArray });
           await updateDoc(doc.ref, { likesSum: likesArrayLength });
           like.src = './img/heart-no-fill.svg';
           likeCounter.textContent = `${likesArrayLength}  likes`;
+          console.log(post.likesArr);
+          console.log(tempLikesArray);
+          console.log(post.likesSum);
         } else {
           tempLikesArray.push(userId);
           const likesArrayLength = tempLikesArray.length;
@@ -169,6 +182,8 @@ export const displayUserPosts = async (user, containerElement) => {
           await updateDoc(doc.ref, { likesSum: likesArrayLength });
           like.src = './img/heart-fill.svg';
           likeCounter.textContent = `${likesArrayLength}  Likes`;
+          console.log(post.likesArr);
+          console.log(tempLikesArray);
         }
       } catch (error) {
         console.error('Error updating the post:', error);
@@ -265,7 +280,9 @@ export const displayAllUserPosts = async (user, containerElement) => {
 
   postsSnapshot.forEach((doc) => {
     const post = doc.data();
+    console.log(`likes array in displayAllUserPosts: ${post.likesArr}`);
     let userGaveLike = post.likesArr.includes(user.uid);
+    console.log(userGaveLike);
     const postElement = document.createElement('div');
     postElement.classList.add('user-post');
 
@@ -293,20 +310,28 @@ export const displayAllUserPosts = async (user, containerElement) => {
 
     likeButton.addEventListener('click', async () => {
       const userId = user.uid;
+      const arrayLinks = post.likesArr;
+      console.log(arrayLinks);
 
       const tempLikesArray = post.likesArr || [];
+      console.log(tempLikesArray);
       userGaveLike = tempLikesArray.includes(userId);
+      console.log(userGaveLike);
 
       try {
         if (userGaveLike) {
           const indexUserLikesArray = tempLikesArray.indexOf(userId);
           tempLikesArray.splice(indexUserLikesArray, 1);
+          console.log(tempLikesArray);
           const likesArrayLength = tempLikesArray.length;
 
           await updateDoc(doc.ref, { likesArr: tempLikesArray });
           await updateDoc(doc.ref, { likesSum: likesArrayLength });
           like.src = './img/heart-no-fill.svg';
           likeCounter.textContent = `${likesArrayLength}  likes`;
+          console.log(post.likesArr);
+          console.log(tempLikesArray);
+          console.log(post.likesSum);
         } else {
           tempLikesArray.push(userId);
           const likesArrayLength = tempLikesArray.length;
@@ -314,6 +339,8 @@ export const displayAllUserPosts = async (user, containerElement) => {
           await updateDoc(doc.ref, { likesSum: likesArrayLength });
           like.src = './img/heart-fill.svg';
           likeCounter.textContent = `${likesArrayLength}  Likes`;
+          console.log(post.likesArr);
+          console.log(tempLikesArray);
         }
       } catch (error) {
         console.error('Error updating the post:', error);
@@ -353,6 +380,7 @@ export const displayAllUserPosts = async (user, containerElement) => {
             const newContent = editForm.querySelector('.edit-content').value;
             try {
               await updateDoc(doc.ref, { content: newContent });
+              console.log(`doc.ref in saveButton: ${doc.ref}`);
               post.content = newContent;
               const contentElement = postElement.querySelector('.post-content');
               contentElement.textContent = newContent;

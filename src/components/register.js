@@ -1,11 +1,10 @@
-import { createAccountWithEmail } from '../lib/index';
-import { signInWithRedirect, auth, provider } from '../firebase/initializeFirebase';
+import { authWithGoogle, createAccountWithEmail } from '../lib/index';
 
 function register(navigateTo) {
   const section = document.createElement('section');
   section.innerHTML = `
     <section>
-      <form class="login-view">
+      <form class="register-view">
         <header class="logo">
           <img class="logo" src="./img/logo.png">
         </header>
@@ -17,7 +16,7 @@ function register(navigateTo) {
             minLength="6" placeholder="Confirm Password">
         <button type="submit" class="button-input">Sign Up</button>
         <button class="button-google">
-         <span class="fa-brands fa-google"></span>Sign In
+         <span class="fa-brands fa-google"></span> Sign In
         </button>
         <div class="container-button-register">
           <p>Already have an account?</p>
@@ -57,12 +56,14 @@ function register(navigateTo) {
 
     if (confirmPass === password) {
       try {
-        createAccountWithEmail(name, email, password);
+        await createAccountWithEmail(name, email, password);
         navigateTo('/welcome');
       } catch (error) {
-        messageModal.textContent = 'The user already exists';
-        whereToGo = '/login';
-        containerModal.style.display = 'block';
+        if (error.code === 'auth/email-already-in-use') {
+          messageModal.textContent = 'The user already exists';
+          containerModal.style.display = 'block';
+          whereToGo = '/login';
+        }
       }
     } else {
       messageModal.textContent = "Passwords don't match";
@@ -76,7 +77,7 @@ function register(navigateTo) {
   });
 
   buttonGoogle.addEventListener('click', () => {
-    signInWithRedirect(auth, provider);
+    authWithGoogle();
     navigateTo('/welcomeGoogle');
   });
 

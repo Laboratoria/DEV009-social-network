@@ -10,6 +10,7 @@ function welcome(navigateTo) {
       <h2>Welcome</h2>
       <p>We've sent you an email, please check your inbox</p>
       <button type="submit" class="button-welcome">Take me to login</button>
+      <div class="overlay-image"></div>
     </form>
   `;
   const nameUser = section.querySelector('.name-user');

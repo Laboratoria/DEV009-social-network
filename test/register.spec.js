@@ -1,89 +1,78 @@
-import { createAccountWithEmail, authWithGoogle } from '../src/lib';
+import { createAccountWithEmail, authWithGoogle } from '../src/lib/index';
 import register from '../src/components/register';
-import { auth, provider } from '../src/firebase/initializeFirebase';
 
 jest.mock('../src/lib/index', () => ({
-  registerUser: jest.fn(),
+  createAccountWithEmail: jest.fn(),
   authWithGoogle: jest.fn(),
-  auth: jest.fn(),
-  provider: jest.fn(),
+  signInWithPopup: jest.fn(),
 }));
-
-const originalAlert = window.alert;
-beforeEach(() => {
-  window.alert = jest.fn();
-});
-
-afterEach(() => {
-  window.alert = originalAlert;
-});
 
 describe('register', () => {
   const navigateToMock = jest.fn();
-  const section = register(navigateToMock);
+  const registerComponent = register(navigateToMock);
+  const inputName = registerComponent.querySelector('.input-name');
+  const inputEmail = registerComponent.querySelector('.input-email');
+  const inputPass = registerComponent.querySelector('.input-pass');
+  const inputConfirmPass = registerComponent.querySelector('.input-pass-confirm');
+  const submitButton = registerComponent.querySelector('.button-input');
+  const modal = registerComponent.querySelector('.modal');
+  const closeModal = registerComponent.querySelector('.close');
+
   beforeEach(() => {
     document.body.innerHTML = '';
-    document.body.appendChild(section);
+    document.body.appendChild(registerComponent);
   });
 
   it('should register a new user with matching passwords', async () => {
-    const inputName = section.querySelector('.input-name');
-    const inputUserName = section.querySelector('.input-user-name');
-    const inputEmail = section.querySelector('.input-email');
-    const inputPass = section.querySelector('.input-pass');
-    const inputConfirmPass = section.querySelector('.input-pass-confirm');
-    const submitButton = section.querySelector('.button-input');
     inputName.value = 'John Doe';
-    inputUserName.value = 'johndoe';
     inputEmail.value = 'john@example.com';
     inputPass.value = 'password123';
     inputConfirmPass.value = 'password123';
+
     submitButton.click();
     await Promise.resolve();
-    expect(createAccountWithEmail).toHaveBeenCalledWith('John Doe', 'johndoe', 'john@example.com', 'password123');
+
+    expect(createAccountWithEmail).toHaveBeenCalledWith('John Doe', 'john@example.com', 'password123');
     expect(navigateToMock).toHaveBeenCalledWith('/welcome');
   });
 
-  it('should display an error modal when user already exists', async () => {
-    createAccountWithEmail.mockRejectedValue(new Error('User already exists'));
-    section.querySelector('.button-input').click();
+  it('should display an error modal when registration fails due to existing user', async () => {
+    createAccountWithEmail.mockRejectedValue({ code: 'auth/email-already-in-use' });
+
+    submitButton.click();
     await Promise.resolve();
-    const modal = section.querySelector('.modal');
+
     expect(getComputedStyle(modal).getPropertyValue('display')).toBe('block');
-    expect(navigateToMock).toHaveBeenCalled();
-    section.querySelector('.close').click();
-    expect(getComputedStyle(section.querySelector('.modal')).getPropertyValue('display')).toBe('none');
+    closeModal.click();
+    expect(getComputedStyle(registerComponent.querySelector('.modal')).getPropertyValue('display')).toBe('none');
   });
 
   it('should display a modal with an error message when passwords do not match', async () => {
-    const inputPass = section.querySelector('.input-pass');
-    const inputConfirmPass = section.querySelector('.input-pass-confirm');
-    const submitButton = section.querySelector('.button-input');
     inputPass.value = 'password1';
     inputConfirmPass.value = 'password2';
+
     submitButton.click();
     await Promise.resolve();
-    const modal = section.querySelector('.modal');
-    expect(modal.style.display).toBe('block');
-    const modalContent = section.querySelector('.modal-content p');
+
+    expect(getComputedStyle(modal).getPropertyValue('display')).toBe('block');
+    const modalContent = registerComponent.querySelector('.modal-content p');
     expect(modalContent.textContent).toBe("Passwords don't match");
   });
 
-  it('should call signInWithRedirect when clicking on the Google button', () => {
-    const buttonGoogle = section.querySelector('.button-google');
+  it('should call authWithGoogle when clicking on the Google button', () => {
+    const buttonGoogle = registerComponent.querySelector('.button-google');
     buttonGoogle.click();
-    expect(authWithGoogle).toHaveBeenCalledWith(auth, provider);
+    expect(authWithGoogle).toHaveBeenCalledTimes(1);
   });
 
   it('should close the modal and navigate to appropriate location when clicking the close button', () => {
-    const closeModal = section.querySelector('.close');
     closeModal.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-    expect(section.querySelector('.modal').style.display).toBe('none');
+    expect(registerComponent.querySelector('.modal').style.display).toBe('none');
     expect(navigateToMock).toHaveBeenCalledWith('/register');
   });
 
   it('should navigate to login when clicking on the "Sign In" button', () => {
-    const buttonLogin = section.querySelector('.no-button');
+    const buttonLogin = registerComponent.querySelector('.no-button');
     buttonLogin.click();
     expect(navigateToMock).toHaveBeenCalledWith('/login');
   });

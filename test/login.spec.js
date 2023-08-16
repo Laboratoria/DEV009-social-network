@@ -1,9 +1,8 @@
-// importamos la funcion que vamos a testear
 import { authWithGoogle, loginUser } from '../src/lib';
 import login from '../src/components/login';
-import { provider, auth } from '../src/firebase/initializeFirebase';
 
 jest.mock('../src/lib/index');
+
 jest.mock('../src/firebase/initializeFirebase', () => ({
   signInWithRedirect: jest.fn(),
   provider: jest.fn(),
@@ -16,6 +15,9 @@ describe('login', () => {
   const inputEmail = loginComponent.querySelector('.input-email');
   const inputPass = loginComponent.querySelector('.input-pass');
   const submitButton = loginComponent.querySelector('.button-input');
+  const closeModal = loginComponent.querySelector('.close');
+  const containerModal = loginComponent.querySelector('.modal');
+
   beforeEach(() => {
     document.body.innerHTML = '';
     document.body.appendChild(loginComponent);
@@ -34,8 +36,10 @@ describe('login', () => {
     loginUser.mockRejectedValue(new Error('Invalid password'));
     inputEmail.value = 'john@example.com';
     inputPass.value = 'wrongpassword';
+
     submitButton.click();
     await Promise.resolve();
+
     expect(loginComponent.querySelector('.message-modal').textContent).toBe('Passwords don\'t match');
   });
 
@@ -52,8 +56,6 @@ describe('login', () => {
   });
 
   it('should close the modal when clicking the close button', () => {
-    const closeModal = loginComponent.querySelector('.close');
-    const containerModal = loginComponent.querySelector('.modal');
     closeModal.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     expect(containerModal.style.display).toBe('none');
   });

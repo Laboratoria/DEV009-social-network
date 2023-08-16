@@ -8,6 +8,7 @@ function welcomeGoogle(navigateTo) {
       <h2>Welcome</h2>
       <p>We're delighted to have you join our pet-loving community.</p>
       <button type="submit" class="button-welcome">Take me to Profile</button>
+      <div class="overlay-image"></div>
     </form>
   `;
   const formWelcome = section.querySelector('.welcome-view');

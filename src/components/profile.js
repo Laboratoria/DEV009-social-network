@@ -1,10 +1,10 @@
 import { onAuthStateChanged, auth, serverTimestamp } from '../firebase/initializeFirebase';
-import { signOutUser, addPost, displayUserPosts } from '../lib/index';
+import { signOutUser, addPost, displayUserPosts } from '../lib/index.js';
 
 function profile(navigateTo) {
   // Crear el elemento de la sección
   const section = document.createElement('section');
-
+  section.classList.add('profile');
   // HTML de la sección
   section.innerHTML = `
     <!-- Encabezado de la vista de perfil -->
@@ -171,9 +171,6 @@ function profile(navigateTo) {
       const shortName = wholeUserName.slice(0, wholeUserName.indexOf(' '));
       userName.textContent = shortName;
       userNameProfile.textContent = shortName;
-    } else {
-      // Usuario no autenticado
-      // ...
     }
   });
 
