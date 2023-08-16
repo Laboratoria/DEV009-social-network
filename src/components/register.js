@@ -34,6 +34,7 @@ function register(navigateTo) {
     if (userEmail && userPassword) {
       try {
         await createUser(userEmail, userPassword);
+
         successMessage.textContent = 'Usuario registrado con éxito';
         errorMessage.textContent = '';
         navigateTo('/feed');

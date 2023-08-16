@@ -1,4 +1,4 @@
-import { signInEP, signInWithGoogle } from '../lib';
+import { signInEP, signInWithGoogle, currentChange } from '../lib/index.js';
 
 function home(navigateTo) {
   const section = document.createElement('section');
@@ -19,7 +19,7 @@ function home(navigateTo) {
   registerUser.textContent = 'Registrarse';
   login.textContent = 'Ingresar';
   logo.src = './imagenes/image.png';
-  buttonGoogle.textContent = 'ó notContinuar con Google';
+  buttonGoogle.textContent = 'Continuar con Google';
   h3.textContent = '¡Unete a CocinArte hoy mismo!';
   errorMessage.style.color = 'beige';
 
@@ -51,15 +51,17 @@ function home(navigateTo) {
         await signInEP(email, password);
         navigateTo('/feed');
         console.log(sing)
+        currentChange()
       } catch (error) {
         errorMessage.textContent = error.message;
       }
     } else {
       errorMessage.textContent = 'Por favor, ingresa un correo y una contraseña válida.';
     }
+
   });
   section.append(logo, title, passwordLogin, emailLogin, login);
   section.append(errorMessage, registerUser, buttonGoogle, h3);
   return section;
 }
-export default home;
+export default  home; 
