@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import {
   getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, getRedirectResult,
-  signInWithRedirect,
+  signInWithRedirect, signOut, signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { firebaseConfig } from './firebaseConfig.js';
 
@@ -11,5 +11,5 @@ export const provider = new GoogleAuthProvider();
 
 export {
   createUserWithEmailAndPassword, signInWithPopup, getRedirectResult, GoogleAuthProvider,
-  signInWithRedirect,
+  signInWithRedirect, signOut, signInWithEmailAndPassword,
 };

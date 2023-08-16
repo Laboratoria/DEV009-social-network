@@ -2,7 +2,7 @@
 
 import {
   auth, provider, createUserWithEmailAndPassword, signInWithPopup, getRedirectResult,
-  GoogleAuthProvider, signInWithRedirect,
+  GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword,
 } from './initializerFirebase.js';
 
 export const registerUser = (email, password) => {
@@ -12,6 +12,16 @@ export const registerUser = (email, password) => {
     throw error.message;
   }
 };
+
+//iniciar Sesion
+export const startSession = (email, password) => {
+  try {
+    signInWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    throw error.message;
+  }
+};
+
 
 export const signWithGoogle = () => {
   try {

@@ -1,10 +1,12 @@
-import { signWithGoogle, signIn } from '../lib/credentials.js';
+import { signWithGoogle, signIn, startSession } from '../lib/credentials.js';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 
 function login(navigateTo) {
   const sectionP = document.createElement('section');
   sectionP.classList.add('loginSectionMain');
+
+ 
 
   const logo = document.createElement('img');
   logo.src = './images/logoLogin.png';
@@ -43,19 +45,26 @@ function login(navigateTo) {
   buttonStartSession.textContent = 'Iniciar sesión';
   buttonStartSession.classList.add('startSession');
   buttonStartSession.addEventListener('click', () => {
-    navigateTo('/timeline');
+    startSession(inputEmail.value, inputPassword.value);
   });
 
-  const buttonSiginGoogle = document.createElement('button');
-  buttonSiginGoogle.textContent = 'Ingresar con Google';
+  // const buttonSiginGoogle = document.createElement('button');
+  // buttonSiginGoogle.textContent = 'Ingresar con Google';
+  // buttonSiginGoogle.classList.add('buttonSiginGoogle');
+  // buttonSiginGoogle.addEventListener('click', () => {
+  //   signIn();
+  // });
+
+  const buttonSiginGoogle = document.createElement('img');
+  buttonSiginGoogle.src='./images/iconGoogle.png'
   buttonSiginGoogle.classList.add('buttonSiginGoogle');
   buttonSiginGoogle.addEventListener('click', () => {
-    /*signWithGoogle();*/
     signIn();
-    navigateTo('/timeline');
-    //redirectGoogle();
-    /* navigateTo('/timeline'); */
   });
+
+  const paragraphYouAreNotRegistered=document.createElement('p');
+  paragraphYouAreNotRegistered.innerText='¿Aún no estas registrado?';
+  paragraphYouAreNotRegistered.classList.add('paragraph');
 
   const buttonCreateAccount = document.createElement('button');
   buttonCreateAccount.textContent = 'Crear cuenta';
@@ -72,27 +81,30 @@ function login(navigateTo) {
     inputPassword,
     buttonStartSession,
     buttonSiginGoogle,
+    paragraphYouAreNotRegistered,
     buttonCreateAccount,
   );
   sectionP.append(logo, logoInWords, description, section);
 
+  
+
   return (sectionP);
 }
 
-const auth = getAuth()
-onAuthStateChanged(auth, (user) => {
-  console.log('user: ' + user);
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/auth.user
-    navigateTo('/timeline');
-    console.log("YES");
-    // ...
-  } else {
-    // User is signed out
-    // ...
-    console.log("NO");
-  }
-});
+// const auth = getAuth()
+// onAuthStateChanged(auth, (user) => {
+//   console.log('user: ' + user);
+//   if (user) {
+//     // User is signed in, see docs for a list of available properties
+//     // https://firebase.google.com/docs/reference/js/auth.user
+//     navigateTo('/timeline');
+//     console.log("YES");
+//     // ...
+//   } else {
+//     // User is signed out
+//     // ...
+//     console.log("NO");
+//   }
+// });
 
 export default login;
