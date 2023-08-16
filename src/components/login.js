@@ -3,7 +3,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 
 function login(navigateTo) {
-  const sectionP = document.createElement('section');
+  const sectionP = document.createElement('header');
   sectionP.classList.add('loginSectionMain');
 
   const logo = document.createElement('img');
@@ -21,7 +21,7 @@ function login(navigateTo) {
   description.classList.add('description');
 
 
-  const section = document.createElement('section');
+  const section = document.createElement('main');
   section.classList.add('loginSection');
 
   const title = document.createElement('h2');
@@ -74,8 +74,9 @@ function login(navigateTo) {
     buttonSiginGoogle,
     buttonCreateAccount,
   );
-  sectionP.append(logo, logoInWords, description, section);
-
+  
+  sectionP.append(logo, logoInWords, description);
+  root.append(sectionP, section)
   return (sectionP);
 }
 
