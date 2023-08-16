@@ -27,9 +27,9 @@ function principal() {
 
   const divRecetasUsers = document.createElement('div');
   divRecetasUsers.className = 'divRecetasUsers';
-  
+
   divHead.append(logoBon, divSloganUser);
-  divSloganUser.append(sloganBon, nameUser)
+  divSloganUser.append(sloganBon, nameUser);
   divReceta.append(recetaUser);
   divPrincipal.append(divHead, divReceta, divRecetasUsers);
   return divPrincipal;
