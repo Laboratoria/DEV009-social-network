@@ -29,7 +29,8 @@ function feed(navigateTo) {
   nameSteps.type = 'text';
   nameSteps.placeholder = 'Nombre de la receta';
   add.textContent = 'Agregar';
-  logoutButtom.textContent = 'Cerrar Sesión';
+  logoutButtom.textContent = 'Cerrar Sesión 💨';
+  logoutButtom.className = 'logout';
   MessageOk.style.color = 'green';
   MessageError.style.color = 'grey';
 
@@ -93,7 +94,7 @@ function showAllRecipes() {
       <button class="postRecipe">
         <h3 class="user">Usuario:</h3>
         <p class="name">Receta: ${recipeContent.name}</p>
-        <p class="steps">Pasos: ${recipeContent.Pasos}</p>
+        <p class="steps">Pasos: ${recipeContent.steps}</p>
       </button>`;
     showPostFeed.innerHTML += postRecipe;
   });

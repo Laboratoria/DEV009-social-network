@@ -102,6 +102,26 @@ button {
   padding-top: 12px;
 }
 
+.postRecipe,h3 {
+  text-align: center;
+  color: black;
+ }
+ .postRecipe{
+  background-color: #FAB838;
+  border-bottom: #393939;
+  border-radius: 20px;
+ }
+ .postRecipe,p{
+  color: black;
+ }
+.logout{
+  color: white;
+  background-color: black;
+  align-items: center;
+  display: flex;
+  bottom: -20px;
+}
+
 /* Media query para pantallas más pequeñas, como teléfonos */
 @media (max-width: 600px) {
   img.avatar {
