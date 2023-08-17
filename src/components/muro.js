@@ -5,8 +5,8 @@ import {
   getPosts,
   updatePost,
   updateLikePost,
-  // getDataAuthor
   deletePost,
+  getDataAuthor,
 } from '../lib/firebaseStore.js';
 
 export const muro = (navigateTo) => {
@@ -75,7 +75,6 @@ export const muro = (navigateTo) => {
         const heartIcon3 = document.createElement('img');
         heartIcon3.className = 'heart-icon';
         heartIcon3.src = './recursos/heart-regular.svg';
-        heartIcon3.alt = 'heart-icon';
         getLikes.appendChild(heartIcon3);
 
         const spanLikes = document.createElement('span');
@@ -84,14 +83,13 @@ export const muro = (navigateTo) => {
         likesCounter.id = post.id;
         likesCounter.className = 'likes-counter';
 
-        const likesCount = post.liked_by || 0; // Inicializar el contador con 0 si no hay likes
+        const likesCount = post.likeCounter; // Inicializar el contador con 0 si no hay likes
         likesCounter.innerText = likesCount;
         getLikes.appendChild(likesCounter);
 
-        heartIcon3.addEventListener('click', async () => {
+        heartIcon3.addEventListener('click', () => {
           updateLikePost(post.id);
-          const newCount = Number(post.liked_by);
-          likesCounter.innerText = newCount;
+          updatePostsList();
         });
 
         const editButton = document.createElement('button');
@@ -146,7 +144,7 @@ export const muro = (navigateTo) => {
 
   const welcomeUserEmail = document.createElement('p');
   welcomeUserEmail.classList.add('welcome-user-email');
-  welcomeUserEmail.textContent = 'Bienvenida ' + userEmail;
+  welcomeUserEmail.textContent = `Bienvenida ${userEmail}`;
 
   // Llamar a la función para actualizar la lista de publicaciones al cargar la página inicialmente
   updatePostsList();
