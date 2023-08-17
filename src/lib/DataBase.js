@@ -1,5 +1,5 @@
 
-import { getFirestore, collection, addDoc,  doc, getDoc, getDocs } from "firebase/firestore";
+import { getFirestore, collection, addDoc,  doc, getDoc, getDocs, deleteDoc} from "firebase/firestore";
 import { app } from './firebase.js';
 import { auth } from "./index.js"; 
 
@@ -44,4 +44,18 @@ querySnapshot.forEach((doc) => {
   // doc.data() is never undefined for query doc snapshots
   console.log(doc.id, " => ", doc.data());
 });
+
+export const deletePost = async (recipeId, currentUser) => {
+  try {
+    const recipeData = await fetchRecipe(recipeId);
+    if (recipeData && recipeData.user === currentUser) {
+      await deleteDoc(doc(db, "recetas", recipeId));
+      console.log("Recipe deleted successfully");
+    } else {
+      console.log("Recipe not found or unauthorized");
+    }
+  } catch (error) {
+    console.error("Error deleting recipe: ", error);
+  }
+};
 

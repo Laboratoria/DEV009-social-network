@@ -1,5 +1,6 @@
-import { logoutUser } from '../lib';
-import { addRecipe, fetchRecipe, querySnapshot } from '../lib/dataBase';
+import { logoutUser } from '../lib/index.js';
+import { addRecipe, fetchRecipe, querySnapshot, deletePost } from '../lib/dataBase.js';
+import { currentChange } from '../lib/index.js';
 
 function feed(navigateTo) {
   const section = document.createElement('section');
@@ -90,18 +91,33 @@ function showAllRecipes() {
   showPostFeed.innerHTML = '';
   allRecipes.forEach((recipeContent) => {
     const postRecipe = `
-      <button class="postRecipe">
-        <h3 class="user">Usuario: ${recipeContent.user}</h3>
+      <div class="postRecipe">
+        <h3 class="user">${recipeContent.user}</h3>
         <p class="name">Receta: ${recipeContent.name}</p>
         <p class="steps">Pasos: ${recipeContent.steps}</p>
-        <button id="delete" value="${recipeContent.id}">Eliminar</button>
-      </button>`;
+        <button class="delete" value="${recipeContent.id}">Eliminar</button>
+      </div>`;
     showPostFeed.innerHTML += postRecipe;
   });
 }
 
-const deleteButton = document.getElementById('delete');
+window.addEventListener("DOMContentLoaded", async (event) => {
+  const deleteButtons = document.querySelectorAll('.delete');
+  
+  console.log(currentUser);
 
+  deleteButtons.forEach((button) => {
+    button.addEventListener('click', async () => {
+      const recipeId = button.value;
+      const confirmDelete = window.confirm("¿Estás seguro de borrar la receta?");
+      
+      if (confirmDelete) {
+        await deletePost(recipeId, currentUser);
+        showAllRecipes();
+      }
+    });
+  });
+});
 
 showAllRecipes(); 
 
