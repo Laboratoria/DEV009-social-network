@@ -24,13 +24,14 @@ export const resetPassword = (navigateTo) => {
     resetPasswordEmail(email, sendemail);
   });
 
-  const backButton = document.createElement('button');
-  backButton.textContent = 'Regresar';
+  const backButton = document.createElement('img');
+  backButton.classList.add('back-button');
+  backButton.src = './recursos/arrow-left-solid.svg';
+  backButton.alt = 'back button';
   backButton.addEventListener('click', () => {
-    navigateTo('/login');
+    navigateTo('/');
   });
-
-  section.append(logo, title, emailInput, sendButton, backButton);
+  section.append(backButton, logo, title, emailInput, sendButton);
 
   return section;
 };

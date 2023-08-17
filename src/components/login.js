@@ -21,7 +21,7 @@ export const login = (navigateTo) => {
   backButton.src = './recursos/arrow-left-solid.svg';
   backButton.alt = 'back button';
   backButton.addEventListener('click', () => {
-    navigateTo('/register');
+    navigateTo('/');
   });
 
   const buttonLog = document.createElement('button');
