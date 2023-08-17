@@ -5,6 +5,14 @@ export const register = (navigateTo) => {
   const title = document.createElement('h2');
   title.textContent = 'Registrate!';
 
+  const backButton = document.createElement('img');
+  backButton.classList.add('back-button');
+  backButton.src = './recursos/arrow-left-solid.svg';
+  backButton.alt = 'back button';
+  backButton.addEventListener('click', () => {
+    navigateTo('/');
+  });
+
   const nameInput = document.createElement('input');
   nameInput.type = 'text';
   nameInput.setAttribute('placeholder', 'First Name');
@@ -34,6 +42,16 @@ export const register = (navigateTo) => {
 
   selection.append(genderOption1, genderOption2);
 
-  section.append(logo, title, nameInput, lastNameInput, ageInput, selection, nextRegisterButton);
+  section.append(
+    backButton,
+    logo,
+    title,
+    nameInput,
+    lastNameInput,
+    ageInput,
+    selection,
+    nextRegisterButton,
+  );
+
   return section;
 };

@@ -93,7 +93,6 @@ export const muro = (navigateTo) => {
           const newCount = Number(post.liked_by);
           likesCounter.innerText = newCount;
         });
-
         const user = auth.currentUser;
         const userEmail = user.email;
         const userElement = document.createElement('h6');
@@ -128,9 +127,10 @@ export const muro = (navigateTo) => {
     }
   };
   // *************Boton de cierre de sesión*************
-  const logOutButton = document.createElement('button');
+  const logOutButton = document.createElement('img');
   logOutButton.classList.add('logOut-button');
-  logOutButton.textContent = 'Cerrar sesion';
+  logOutButton.src = './recursos/logout.svg';
+  logOutButton.alt = 'logOut';
   logOutButton.addEventListener('click', () => {
     const logOutAlert = (valid) => {
       if (valid === true) {
@@ -144,7 +144,7 @@ export const muro = (navigateTo) => {
   // Llamar a la función para actualizar la lista de publicaciones al cargar la página inicialmente
   updatePostsList();
 
-  section.append(logoMuro, publicacion, postsContainer, logOutButton);
+  section.append(logOutButton, logoMuro, publicacion, postsContainer);
 
   return section;
 };
