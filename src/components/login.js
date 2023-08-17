@@ -16,10 +16,12 @@ export const login = (navigateTo) => {
   const buttonContainer = document.createElement('div');
   buttonContainer.classList.add('botones-inicio-sesion');
 
-  const buttonReturn = document.createElement('button');
-  buttonReturn.textContent = 'Regresar';
-  buttonReturn.addEventListener('click', () => {
-    navigateTo('/');
+  const backButton = document.createElement('img');
+  backButton.classList.add('back-button');
+  backButton.src = './recursos/arrow-left-solid.svg';
+  backButton.alt = 'back button';
+  backButton.addEventListener('click', () => {
+    navigateTo('/register');
   });
 
   const buttonLog = document.createElement('button');
@@ -46,15 +48,16 @@ export const login = (navigateTo) => {
     navigateTo('/resetpassword');
   });
 
-  buttonContainer.append(buttonLog, buttonReturn);
+  buttonContainer.append(buttonLog);
   section.append(
+    backButton,
     logo,
     title,
     inputEmail,
     inputPass,
     logInInvalidPassMessage,
-    passwordReset,
     buttonContainer,
+    passwordReset,
   );
 
   return section;

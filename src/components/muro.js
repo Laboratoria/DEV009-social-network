@@ -89,12 +89,11 @@ export const muro = (navigateTo) => {
         getLikes.appendChild(likesCounter);
 
         heartIcon3.addEventListener('click', async () => {
-          updateLikePost(post.id);
-          const currentCount = parseInt(likesCounter.innerText.trim()); // Obtener el contador actual como un número entero
-          const newCount = isNaN(currentCount) ? 1 : currentCount + 1; // Incrementar el contador o asignar 1 si es NaN
+          await db.collection('posts').doc(post.id).update({ liked_by: firebase.firestore.FieldValue.arrayUnion(userId) });
+          let currentCount = parseInt(likesCounter.innerText.trim());
+          let newCount = isNaN(currentCount) ? 1 : currentCount + 1;
           likesCounter.innerText = newCount;
         });
-
         const user = auth.currentUser;
         const userEmail = user.email;
         const userElement = document.createElement('h6');
@@ -129,9 +128,10 @@ export const muro = (navigateTo) => {
     }
   };
   // *************Boton de cierre de sesión*************
-  const logOutButton = document.createElement('button');
+  const logOutButton = document.createElement('img');
   logOutButton.classList.add('logOut-button');
-  logOutButton.textContent = 'Cerrar sesion';
+  logOutButton.src = './recursos/logout.svg';
+  logOutButton.alt = 'logOut';
   logOutButton.addEventListener('click', () => {
     const logOutAlert = (valid) => {
       if (valid === true) {
@@ -145,7 +145,7 @@ export const muro = (navigateTo) => {
   // Llamar a la función para actualizar la lista de publicaciones al cargar la página inicialmente
   updatePostsList();
 
-  section.append(logoMuro, publicacion, postsContainer, logOutButton);
+  section.append(logOutButton, logoMuro, publicacion, postsContainer);
 
   return section;
 };

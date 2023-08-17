@@ -21,8 +21,10 @@ export const register2 = (navigateTo) => {
   const registerInvalidPassMessage = document.createElement('span');
   registerInvalidPassMessage.classList.add('register-error');
 
-  const backButton = document.createElement('button');
-  backButton.textContent = 'Regresr';
+  const backButton = document.createElement('img');
+  backButton.classList.add('back-button');
+  backButton.src = './recursos/arrow-left-solid.svg';
+  backButton.alt = 'back button';
   backButton.addEventListener('click', () => {
     navigateTo('/register');
   });
@@ -44,6 +46,7 @@ export const register2 = (navigateTo) => {
   });
 
   section.append(
+    backButton,
     logo,
     title,
     userNameInput,
@@ -51,7 +54,6 @@ export const register2 = (navigateTo) => {
     passwordInput,
     registerInvalidPassMessage,
     regsiterButton,
-    backButton,
   );
 
   return section;

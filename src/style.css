@@ -78,13 +78,19 @@ input:hover {
     background:  rgb(232, 217, 190);
     border: rgb(152, 83, 221);
 }
+
 .botones-inicio-sesion {
-    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    margin-bottom: 20px;
 }
+
+#password-reset{
+font-size: 12px;
+cursor: pointer;
+}
+
 .boton-google{
     display: flexbox;
     border-radius: 2rem;
@@ -199,5 +205,18 @@ h6 {
 
 .logOut-button{
     display: block;
-    text-align: center;
+    transform: scale(-1);
+    height: 30px;
+    width: 30px;
+    margin-inline: 15px; 
+    cursor: pointer;
 }
+
+.back-button {
+    display: block;
+    height: 30px;
+    width: 30px;
+    margin-inline: 15px; 
+    cursor: pointer;
+}
+
