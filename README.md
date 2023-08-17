@@ -114,8 +114,8 @@ Se solicito feedback a tráves de un [formulario](https://forms.gle/cngory53PhV6
 ```
 ## Detalle de archivos 
 
-**main.js**:
-**index.html**:
+**main.js**:En este archivo estan configuradas las rutas y el comportamiento de la navegación en la aplicación, así como manejo del estado de autenticación de Firebase. 
+**index.html**:Contiene la estructura básica de la página web.
 **README.md**:
 **package.json**:
 **explaindev.json**:
@@ -123,17 +123,17 @@ Se solicito feedback a tráves de un [formulario](https://forms.gle/cngory53PhV6
 **src**:
 
 **lib**:
-**credentials.js**:
-**firebaseConfig.js**:
-**initializerFirebase.js**:
+**firebaseConfig.js**: Contiene _"firebaseConfig"_ el cual es un objeto de configuración de Firebase. Este objeto contiene los valores necesarios para conectar la aplicación web con los servicios de Firebase. 
+**initializerFirebase.js**: Es donde  se inicializa Firebase y se exportan varias funciones y objetos relacionados con la autenticación y la base de datos. 
+**credentials.js**:esta enfocado en la autenticación y manejo de usuarios de la aplicación.
 **localStore.js**:
 
 **components**: 
-**registrer.js**:
-**login.js**:
-**timeline.js**:
-**error.js**:
-**newPost.js**:
+**registrer.js**: Este componente crea y configura la interfaz de usuario para la página de registro.
+**login.js**: Este componente crea y configura la interfaz de usuario para la página de inicio de sesión.
+**timeline.js**: Este componente crea y configura la interfaz de usuario para el muro de la aplicación.
+**error.js**: Este componente crea y configura la interfaz de usuario para mostrar un mensaje de error cuando se accede a una página que no se encuentra (error 404).
+**newPost.js**:Este componente crea y configura la interfaz de usuario para permitir a los usuarios escribir y publicar nuevas publicaciones en el muro de la aplicación
 
 **images**: Contiene las imágenes utilizadas en la página.
 **imagReadme**: Contiene todas las imágenes de este readme.
