@@ -44,10 +44,7 @@ function wall(navigateTo) {
       navigateTo('/wall');
     });
 
-    exit.addEventListener('click', () => {
-        exitUser();
-        navigateTo('/');
-        });
+  
 
     windowPost.append(titleCreate, txtPost, btnPublicar);
   });
@@ -58,7 +55,10 @@ function wall(navigateTo) {
   post.append(userName, postContent, like, countLikes);
   header.appendChild(logo);
   
-
+  exit.addEventListener('click', () => {
+    exitUser(navigateTo);
+    
+    });
   return mainConteiner;
 }
 

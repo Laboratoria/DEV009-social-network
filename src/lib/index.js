@@ -65,8 +65,9 @@ export const loginUser = async (email, pass, callback) => {
   });
 }
 
-export const exitUser = async () => {
+export const exitUser = async (navigateTo) => {
   await signOut(auth).then(() => {
+    navigateTo('/');
     // Sign-out successful.
   }).catch((error) => {
     console.log ("error")
