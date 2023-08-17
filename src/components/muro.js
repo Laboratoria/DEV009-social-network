@@ -114,7 +114,7 @@ export const muro = (navigateTo) => {
           }
         });
 
-        postElement.append(userElement, contentElement, getLikes, editButton, deleteButton);
+        postElement.append(contentElement, getLikes, editButton, deleteButton);
 
         postsContainer.append(postElement);
       });
@@ -147,7 +147,6 @@ export const muro = (navigateTo) => {
   const welcomeUserEmail = document.createElement('p');
   welcomeUserEmail.classList.add('welcome-user-email');
   welcomeUserEmail.textContent = 'Bienvenida ' + userEmail;
-
 
   // Llamar a la función para actualizar la lista de publicaciones al cargar la página inicialmente
   updatePostsList();
