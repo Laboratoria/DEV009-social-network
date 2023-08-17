@@ -1,5 +1,7 @@
+import { loginUser } from '../lib/index.js';
 function login(navigateTo) {
   const section = document.createElement('section');
+  const frmLogin = document.createElement('form');
   const logo = document.createElement('img');
   const title = document.createElement('h2');
   const email = document.createElement('input');
@@ -11,16 +13,27 @@ function login(navigateTo) {
   title.textContent = 'Ingresa a tu sesión';
   email.placeholder = 'Correo';
   password.placeholder = 'Contraseña';
+  password.type = 'password';
   btnLogin.textContent = 'Iniciar sesión';
   toSignup.textContent = '¿Aún no tienes cuenta? ¡Regístrate!';
 
-  btnLogin.addEventListener('click', () => {
-    navigateTo('/wall');
+  frmLogin.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const emailUser = email.value;
+    const passUser = password.value;
+    const alertLogin = (boolean) => {
+      if (boolean) {
+        navigateTo('/wall');
+      }
+    };
+    loginUser(emailUser, passUser, alertLogin);
   });
   toSignup.addEventListener('click', () => {
     navigateTo('/signup');
   });
-  section.append(logo, title, email, password, btnLogin, toSignup);
+  section.append(logo, title, frmLogin, toSignup);
+  frmLogin.append(email, password, btnLogin);
   return section;
+
 }
 export default login;
