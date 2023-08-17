@@ -49,7 +49,7 @@ h2{
 
 button:hover, 
 button:focus {
-    outline: 3px solid blue;
+    outline: 3px solid rgb(191, 144, 215);
     background-color: aliceblue;
     cursor: pointer;
 }
