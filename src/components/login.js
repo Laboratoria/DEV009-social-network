@@ -1,27 +1,23 @@
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { signWithGoogle, signIn, startSession } from '../lib/credentials.js';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-
 
 function login(navigateTo) {
   const sectionP = document.createElement('section');
   sectionP.classList.add('loginSectionMain');
 
- 
-
   const logo = document.createElement('img');
   logo.src = './images/logoLogin.png';
   logo.classList.add('logo');
-  logo.alt='logo de Guide Ma+Pa';
+  logo.alt = 'logo de Guide Ma+Pa';
 
-  const logoInWords =document.createElement ('img');
-  logoInWords.src= './images/logoWords.png';
+  const logoInWords = document.createElement('img');
+  logoInWords.src = './images/logoWords.png';
   logoInWords.classList.add('logoWords');
-  logoInWords.alt='Guide Ma+Pa';
+  logoInWords.alt = 'Guide Ma+Pa';
 
   const description = document.createElement('h2');
   description.textContent = '"Descubre cómo criar sin morir en el intento, donde lo caótico se convierte en una aventura compartida en esta red social."';
   description.classList.add('description');
-
 
   const section = document.createElement('section');
   section.classList.add('loginSection');
@@ -56,14 +52,14 @@ function login(navigateTo) {
   // });
 
   const buttonSiginGoogle = document.createElement('img');
-  buttonSiginGoogle.src='./images/iconGoogle.png'
+  buttonSiginGoogle.src = './images/iconGoogle.png';
   buttonSiginGoogle.classList.add('buttonSiginGoogle');
   buttonSiginGoogle.addEventListener('click', () => {
     signIn();
   });
 
-  const paragraphYouAreNotRegistered=document.createElement('p');
-  paragraphYouAreNotRegistered.innerText='¿Aún no estas registrado?';
+  const paragraphYouAreNotRegistered = document.createElement('p');
+  paragraphYouAreNotRegistered.innerText = '¿Aún no estas registrado?';
   paragraphYouAreNotRegistered.classList.add('paragraph');
 
   const buttonCreateAccount = document.createElement('button');
@@ -72,8 +68,6 @@ function login(navigateTo) {
   buttonCreateAccount.addEventListener('click', () => {
     navigateTo('/register');
   });
-
-
 
   section.append(
     title,
@@ -85,8 +79,6 @@ function login(navigateTo) {
     buttonCreateAccount,
   );
   sectionP.append(logo, logoInWords, description, section);
-
-  
 
   return (sectionP);
 }
