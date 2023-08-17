@@ -1,4 +1,5 @@
 import { loginUser } from '../lib/index.js';
+
 function login(navigateTo) {
   const section = document.createElement('section');
   const frmLogin = document.createElement('form');
@@ -17,6 +18,13 @@ function login(navigateTo) {
   btnLogin.textContent = 'Iniciar sesión';
   toSignup.textContent = '¿Aún no tienes cuenta? ¡Regístrate!';
 
+  section.classList.add('sectionLogin');
+  frmLogin.classList.add('frmLogin');
+  logo.classList.add('logoLogin');
+  title.classList.add('title');
+  email.classList.add('info', 'email');
+  password.classList.add('info');
+
   frmLogin.addEventListener('submit', (e) => {
     e.preventDefault();
     const emailUser = email.value;
@@ -34,6 +42,5 @@ function login(navigateTo) {
   section.append(logo, title, frmLogin, toSignup);
   frmLogin.append(email, password, btnLogin);
   return section;
-
 }
 export default login;
