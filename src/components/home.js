@@ -7,6 +7,7 @@ export const home = (navigateTo) => {
   logo.src = './recursos/LogoSinLetras.png';
   const title = document.createElement('h2');
   const slogan = document.createElement('h4');
+  slogan.className = 'slogan';
   const description = document.createElement('p');
   const buttonContainer = document.createElement('div');
   buttonContainer.classList.add('botones-home');

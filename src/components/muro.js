@@ -10,7 +10,7 @@ import {
 } from '../lib/firebaseStore.js';
 
 export const muro = (navigateTo) => {
-  const section = document.createElement('section');
+  const section = document.createElement('picture');
   const logoMuro = document.createElement('img');
   logoMuro.src = './recursos/LogoSinLetras.png';
   logoMuro.classList.add('logo-muro');
@@ -79,7 +79,7 @@ export const muro = (navigateTo) => {
 
         const spanLikes = document.createElement('span');
         spanLikes.className = 'likes-span';
-        const likesCounter = document.createElement('i');
+        const likesCounter = document.createElement('strong');
         likesCounter.id = post.id;
         likesCounter.className = 'likes-counter';
 
@@ -93,6 +93,7 @@ export const muro = (navigateTo) => {
         });
 
         const editButton = document.createElement('button');
+        editButton.className = 'editButton';
         editButton.textContent = 'Editar 🧁';
         editButton.addEventListener('click', async () => {
           const newContent = prompt('Editar Contenido', contentElement.textContent);
@@ -103,6 +104,7 @@ export const muro = (navigateTo) => {
         });
 
         const deleteButton = document.createElement('button');
+        deleteButton.className = 'deleteButton';
         deleteButton.textContent = 'Eliminar 💩';
         deleteButton.addEventListener('click', async () => {
           const confirmed = confirm('¿Estás seguro de que deseas eliminar esta publicación?');
@@ -142,14 +144,14 @@ export const muro = (navigateTo) => {
   const userElement = document.createElement('h6');
   userElement.textContent = `${userEmail}`;
 
-  const welcomeUserEmail = document.createElement('p');
+  const welcomeUserEmail = document.createElement('section');
   welcomeUserEmail.classList.add('welcome-user-email');
   welcomeUserEmail.textContent = `Bienvenida ${userEmail}`;
 
   // Llamar a la función para actualizar la lista de publicaciones al cargar la página inicialmente
   updatePostsList();
 
-  section.append(logOutButton, welcomeUserEmail, logoMuro, publicacion, postsContainer);
+  section.append(logOutButton, logoMuro, welcomeUserEmail, publicacion, postsContainer);
 
   return section;
 };
