@@ -93,10 +93,6 @@ export const muro = (navigateTo) => {
           const newCount = Number(post.liked_by);
           likesCounter.innerText = newCount;
         });
-        const user = auth.currentUser;
-        const userEmail = user.email;
-        const userElement = document.createElement('h6');
-        userElement.textContent = `${userEmail}`;
 
         const editButton = document.createElement('button');
         editButton.textContent = 'Editar 🧁';
@@ -141,10 +137,22 @@ export const muro = (navigateTo) => {
     logOut(logOutAlert);
   });
 
+  // *************Boton de cierre de sesión*************
+
+  const user = auth.currentUser;
+  const userEmail = user.email;
+  const userElement = document.createElement('h6');
+  userElement.textContent = `${userEmail}`;
+
+  const welcomeUserEmail = document.createElement('p');
+  welcomeUserEmail.classList.add('welcome-user-email');
+  welcomeUserEmail.textContent = 'Bienvenida ' + userEmail;
+
+
   // Llamar a la función para actualizar la lista de publicaciones al cargar la página inicialmente
   updatePostsList();
 
-  section.append(logOutButton, logoMuro, publicacion, postsContainer);
+  section.append(logOutButton, welcomeUserEmail, logoMuro, publicacion, postsContainer);
 
   return section;
 };
