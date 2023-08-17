@@ -110,7 +110,7 @@ export const muro = (navigateTo) => {
         });
 
         const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Eliminar ❌';
+        deleteButton.textContent = 'Eliminar 💩';
         deleteButton.addEventListener('click', async () => {
           const confirmed = confirm('¿Estás seguro de que deseas eliminar esta publicación?');
           if (confirmed) {
