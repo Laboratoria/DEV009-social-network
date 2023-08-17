@@ -84,14 +84,13 @@ export const muro = (navigateTo) => {
         likesCounter.id = post.id;
         likesCounter.className = 'likes-counter';
 
-        const likesCount = post.liked_by.length || 0; // Inicializar el contador con 0 si no hay likes
+        const likesCount = post.liked_by || 0; // Inicializar el contador con 0 si no hay likes
         likesCounter.innerText = likesCount;
         getLikes.appendChild(likesCounter);
 
         heartIcon3.addEventListener('click', async () => {
           updateLikePost(post.id);
-          const currentCount = parseInt(likesCounter.innerText.trim()); // Obtener el contador actual como un número entero
-          const newCount = isNaN(currentCount) ? 1 : currentCount + 1; // Incrementar el contador o asignar 1 si es NaN
+          const newCount = Number(post.liked_by);
           likesCounter.innerText = newCount;
         });
 
