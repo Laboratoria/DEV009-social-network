@@ -4,11 +4,12 @@
 
 import { home } from '../src/components/home';
 import { logInWithGoogle } from '../src/lib/firebaseAuth';
+
 // Mock para la función de redirección
 const navigateToMock = jest.fn();
 
 // Mock para logInWithGoogle
-jest.mock('../lib/firebaseAuth', () => ({
+jest.mock('../src/lib/firebaseAuth', () => ({
   logInWithGoogle: jest.fn((callback) => {
     const success = true;
     callback(success);
