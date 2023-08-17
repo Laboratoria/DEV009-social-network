@@ -152,7 +152,7 @@ textarea:active {
 
 .boton-compartir{
     align-content: center;
-    margin: 0rem 0rem 0rem 12rem;
+    margin: 0rem 0rem 0rem 14.5rem;
 }
 
 /***********************Posts*******/
@@ -175,7 +175,8 @@ h6 {
     text-align: left;
 }
 .likes{
-    display: flexbox;
+    margin-top: -2.5rem;
+    display: grid;
     justify-content: left;
 }
 
@@ -191,16 +192,12 @@ h6 {
     margin-left: 1rem;
   }
 
-  .like-button:focus {
-    background-color: rgba(169, 169, 169, 0) ;
-    background-repeat: no-repeat;
-    background-position: left;
-    padding: .2rem;
-  }
-  span{
-    margin-top: 1rem;
-    margin-left: .5rem;
-    font-size: .8rem;
+  i{
+    margin-top: -0.8rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-family: 'Montserrat Alternates', sans-serif;
   }
 
 .logOut-button{

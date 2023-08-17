@@ -84,14 +84,13 @@ export const muro = (navigateTo) => {
         likesCounter.id = post.id;
         likesCounter.className = 'likes-counter';
 
-        const likesCount = post.liked_by.length || 0; // Inicializar el contador con 0 si no hay likes
+        const likesCount = post.liked_by || 0; // Inicializar el contador con 0 si no hay likes
         likesCounter.innerText = likesCount;
         getLikes.appendChild(likesCounter);
 
         heartIcon3.addEventListener('click', async () => {
-          await db.collection('posts').doc(post.id).update({ liked_by: firebase.firestore.FieldValue.arrayUnion(userId) });
-          let currentCount = parseInt(likesCounter.innerText.trim());
-          let newCount = isNaN(currentCount) ? 1 : currentCount + 1;
+          updateLikePost(post.id);
+          const newCount = Number(post.liked_by);
           likesCounter.innerText = newCount;
         });
         const user = auth.currentUser;
@@ -110,7 +109,7 @@ export const muro = (navigateTo) => {
         });
 
         const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Eliminar ❌';
+        deleteButton.textContent = 'Eliminar 💩';
         deleteButton.addEventListener('click', async () => {
           const confirmed = confirm('¿Estás seguro de que deseas eliminar esta publicación?');
           if (confirmed) {
