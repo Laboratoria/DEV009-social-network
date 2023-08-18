@@ -327,9 +327,11 @@ function register(navigateTo) {
         inputName.value,
         inputLastName.value,
         inputUser.value,
-      );
-      successfulMessage.classList.add('formulario__mensaje-exito-activo');
-      // Falta verificar que se haya creado la cuenta satisfactoriamente
+      ).catch((error) => {
+        if (error === 'auth/email-already-in-use') {
+          alert('El correo electronico ingresado esta asociado con un usuario existente');
+        }
+      });
     } else {
       groupError.classList.add('form-message-activo');
     }

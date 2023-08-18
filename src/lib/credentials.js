@@ -6,30 +6,25 @@ import {
 
 } from './initializerFirebase.js';
 
-function writeUserData(userId, Name, lastName, userName) {
+async function writeUserData(userId, Name, lastName, userName) {
   try {
     const db = database;
-    set(ref(db, `users/${userId}`), {
+    await set(ref(db, `users/${userId}`), {
       username: userName,
       name: Name,
       lastname: lastName,
     });
   } catch (error) {
-
+    throw error.code;
   }
 }
 
-function registerUser(email, password, name, lastname, userName) {
+async function registerUser(email, password, name, lastname, userName) {
   try {
-    createUserWithEmailAndPassword(
-      auth,
-      email,
-      password,
-    ).then((userId) => {
-      writeUserData(userId.user.uid, name, lastname, userName);
-    });
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const userId = await writeUserData(userCredential.user.uid, name, lastname, userName);
   } catch (error) {
-    throw error.message;
+    throw error.code;
   }
 }
 
