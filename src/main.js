@@ -16,7 +16,7 @@ const routest = [
 
 const defaultRoute = '/';
 
-function navigateTo(hash) {
+export function navigateTo(hash) {
   const route = routest.find((routefind) => routefind.path === hash);
   if (route && route.component) {
     window.history.pushState(

@@ -1,5 +1,6 @@
 // importamos la funcion que vamos a testear
-import { registerUser } from '../src/lib/index';
+import signup from '../src/components/signup.js';
+import { registerUser } from '../src/lib/index.js';
 import { createUserWithEmailAndPassword, auth } from '../src/firebase/initializeFirebase.js';
 import { callback } from '../src/components/signup.js';
 
@@ -12,11 +13,18 @@ jest.mock('../src/components/signup.js', () => ({
   callback: jest.fn(),
 }));
 
+  const navigateTo = jest.fn();
+  const signupComponent = signup(navigateTo);
+
 describe('Test para la función registerUser', () => {
-  /* const callback = (boolean) => {
-  }; */
   const email = 'logout@gmail.com';
   const pass = 'Kk654321';
+
+  beforeEach(() => {
+    document.body.innerHTML = '';
+    document.body.appendChild(signupComponent);
+  });
+
   it('debería ser una función', () => {
     expect(typeof registerUser).toBe('function');
   });
@@ -27,8 +35,17 @@ describe('Test para la función registerUser', () => {
   });
 
   it('debería recibir los parámetros de la función createUserWithEmailAndPassword', async () => {
-    createUserWithEmailAndPassword.mockClear();
+    //createUserWithEmailAndPassword.mockClear();
     await registerUser(email, pass, callback);
     expect(createUserWithEmailAndPassword).toHaveBeenCalledWith(auth, email, pass);
+  });
+
+});
+
+describe('Test para la función registerUser', () => {
+  test('debería redireccionar al login al hacer click', () => {
+    const redirectionate = signupComponent.querySelector('.toLogin');
+    redirectionate.click(); 
+    expect(navigateTo).toHaveBeenCalledWith('/');
   });
 });
