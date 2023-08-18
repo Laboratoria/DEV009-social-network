@@ -1,21 +1,41 @@
-// aqui exportaras las funciones que necesites
-
+/* eslint-disable no-alert */
+/* eslint-disable import/named */
+/* eslint-disable no-console */
+/* eslint-disable arrow-body-style */
+import { GoogleAuthProvider } from 'firebase/auth';
 import {
   auth,
   createUserWithEmailAndPassword,
+  updateProfile,
   provider,
   signInWithPopup,
   signInWithEmailAndPassword,
   sendEmailVerification,
 } from './initializeFirebase.js';
 // eslint-disable-next-line max-len
-export const registerWithEmail = (email, password) => createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    const user = userCredential.user;
-    sendEmailVerification(userCredential.user);
-    return user;
+export const registerWithEmail = (email, password, username) => {
+  return createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      updateProfile(userCredential.user, {
+        displayName: username,
+      });
+      sendEmailVerification(userCredential.user);
+      return user;
+    });
+};
+export const signInWithGoogle = () => signInWithPopup(auth, provider)
+  .then((result) => {
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    const user = result.user;
+    return (token, user);
   });
-
-export const signInWithGoogle = () => signInWithPopup(auth, provider);
 // eslint-disable-next-line max-len
-export const signInWithPassword = (email, password) => signInWithEmailAndPassword(auth, email, password);
+export const loginWithEmail = (email, password) => {
+  return signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      return (user);
+    });
+};

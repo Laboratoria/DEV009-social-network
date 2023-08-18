@@ -1,4 +1,4 @@
-import { signInWithPassword, signInWithGoogle } from '../lib/index';
+import { loginWithEmail, signInWithGoogle } from '../lib/index';
 
 function login(navigateTo) {
   const divLogin = document.createElement('div');
@@ -62,8 +62,11 @@ function login(navigateTo) {
     e.preventDefault();
     const emailValue = inputEmail.value;
     const passwordValue = inputPass.value;
-    signInWithPassword(emailValue, passwordValue)
-      .then(() => {
+    loginWithEmail(emailValue, passwordValue)
+      .then((user) => {
+        if (!user.emailVerified) {
+          throw new Error('Primero verifica tu correo electrónico');
+        }
         navigateTo('/principal');
       });
   });
