@@ -22,8 +22,10 @@ function login(navigateTo) {
   frmLogin.classList.add('frmLogin');
   logo.classList.add('logoLogin');
   title.classList.add('title');
-  email.classList.add('info', 'email');
-  password.classList.add('info');
+  email.classList.add('infoLogin', 'email');
+  password.classList.add('infoLogin');
+  toSignup.classList.add('toSignup');
+  btnLogin.classList.add('btnLogin');
 
   frmLogin.addEventListener('submit', (e) => {
     e.preventDefault();
