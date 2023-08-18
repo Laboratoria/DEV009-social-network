@@ -1,4 +1,4 @@
-import { signIn, startSession } from '../lib/credentials.js';
+import { startSession, signInWithGoogle } from '../lib/credentials.js';
 
 function login(navigateTo) {
   const sectionP = document.createElement('section');
@@ -51,7 +51,7 @@ function login(navigateTo) {
   iconGoogle.classList.add('iconGoogle');
   buttonSiginGoogle.appendChild(iconGoogle);
   buttonSiginGoogle.addEventListener('click', () => {
-    signIn();
+    signInWithGoogle();
   });
 
   const paragraphYouAreNotRegistered = document.createElement('p');
