@@ -25,6 +25,7 @@ function registro(navigateTo) {
   inputPass.className = 'input inputPass';
   inputPass.setAttribute('type', 'password');
   inputPass.setAttribute('placeholder', 'Crea tu contraseña');
+  inputPass.setAttribute('minlength', '6');
   inputPass.required = true;
 
   const buttonRegistro = document.createElement('input');
@@ -70,10 +71,7 @@ function registro(navigateTo) {
       })
       .catch((error) => {
         const errorCode = error.code;
-        if (errorCode === 'auth/weak-password') {
-          errorRegister.style.display = 'block';
-          errorRegister.textContent = 'La contraseña debe tener al menos 6 caracteres';
-        } else if (errorCode === 'auth/invalid-email') {
+        if (errorCode === 'auth/invalid-email') {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'Email invalido';
         } else if (errorCode === 'auth/email-already-in-use') {
