@@ -1,5 +1,5 @@
 
-import { signWithGoogle, signIn, startSession } from '../lib/credentials.js';
+import { signIn, startSession } from '../lib/credentials.js';
 ​
 ​
 function login(navigateTo) {
@@ -46,17 +46,14 @@ function login(navigateTo) {
   buttonStartSession.addEventListener('click', () => {
     startSession(inputEmail.value, inputPassword.value);
   });
-​
-  // const buttonSiginGoogle = document.createElement('button');
-  // buttonSiginGoogle.textContent = 'Ingresar con Google';
-  // buttonSiginGoogle.classList.add('buttonSiginGoogle');
-  // buttonSiginGoogle.addEventListener('click', () => {
-  //   signIn();
-  // });
-​
-  const buttonSiginGoogle = document.createElement('img');
-  buttonSiginGoogle.src = './images/iconGoogle.png';
+
+  const buttonSiginGoogle = document.createElement('button');
+  buttonSiginGoogle.textContent = 'Ingresar con Google';
   buttonSiginGoogle.classList.add('buttonSiginGoogle');
+  const iconGoogle = document.createElement('img');
+  iconGoogle.src = './images/iconoGoogle.png';
+  iconGoogle.classList.add('iconGoogle');
+  buttonSiginGoogle.appendChild(iconGoogle);
   buttonSiginGoogle.addEventListener('click', () => {
     signIn();
   });
@@ -86,6 +83,5 @@ function login(navigateTo) {
   sectionP.append(logo, logoInWords, description, section);
   return (sectionP);
 }
-​
-​
+
 export default login;

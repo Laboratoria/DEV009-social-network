@@ -1,4 +1,4 @@
-import { registerUser, writeUserData } from '../lib/credentials.js';
+import { registerUser } from '../lib/credentials.js';
 
 function register(navigateTo) {
   const inputs = {
@@ -40,19 +40,17 @@ function register(navigateTo) {
     });
   };
 
-  const div=document.createElement('div');
+  const div = document.createElement('div');
   div.classList.add('divLogoRegistro');
-  const imagenGuideMaPA=document.createElement('img');
+  const imagenGuideMaPA = document.createElement('img');
   imagenGuideMaPA.classList.add('imagenGuideMaPa');
-  imagenGuideMaPA.src='./images/logoWords.png';
+  imagenGuideMaPA.src = './images/logoWords.png';
   div.appendChild(imagenGuideMaPA);
-
 
   const section = document.createElement('section');
   section.classList.add('registerSection');
 
   const title = document.createElement('h2');
-  // title.textContent = 'Registro de nuevo usuario';
   title.textContent = 'Regístrate, ¡Únete a una comunidad de ma+padres increíbles!';
   title.classList.add('elementRegister-title');
 
@@ -337,19 +335,17 @@ function register(navigateTo) {
     }
   });
 
-  const buttonHome=document.createElement('button');
+  const buttonHome = document.createElement('button');
   buttonHome.type = 'button';
   buttonHome.classList.add('buttonHome');
-  const iconHome=document.createElement('img');
-  iconHome.src='./images/home.png';
+  const iconHome = document.createElement('img');
+  iconHome.src = './images/home.png';
   iconHome.classList.add('iconHome');
-  iconHome.width = 40;
+  iconHome.width = 25;
   buttonHome.appendChild(iconHome);
-  iconHome.addEventListener('click',()=>{
+  iconHome.addEventListener('click', () => {
     navigateTo('/');
   });
-  
-  
 
   groupButton.append(buttonCreateAccount, successfulMessage);
   section.append(
