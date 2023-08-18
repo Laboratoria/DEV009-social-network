@@ -1,5 +1,3 @@
-import login from './login';
-
 function home(navigateTo) {
   const section = document.createElement('section');
   section.innerHTML = `

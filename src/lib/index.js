@@ -4,7 +4,6 @@ import {
   auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  sendPasswordResetEmail,
   sendEmailVerification,
   signOut,
   updateProfile,
@@ -27,7 +26,6 @@ export const loginUser = (email, password) => new Promise((resolve, reject) => {
     .then((userCredential) => {
       const user = userCredential.user;
       if (user.emailVerified) {
-        alert('You are logged in!');
         resolve(user);
       } else {
         resolve(null);
@@ -38,83 +36,37 @@ export const loginUser = (email, password) => new Promise((resolve, reject) => {
 
 // Función para crear una cuenta con correo electrónico
 export const createAccountWithEmail = async (name, email, password) => {
-  try {
-    const result = await createUserWithEmailAndPassword(auth, email, password);
-    await updateProfile(result.user, { displayName: name });
-
-    try {
-      await sendEmailVerification(result.user);
-      signOut(auth);
-    } catch (sendEmailError) {
-      console.error(sendEmailError);
-      throw sendEmailError;
-    }
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+  const result = await createUserWithEmailAndPassword(auth, email, password);
+  await updateProfile(result.user, { displayName: name });
+  await sendEmailVerification(result.user);
+  signOut(auth);
 };
 
 // Función para autenticar con Google
-export const authWithGoogle = () => {
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      console.log(result.user);
-      alert(`Hello ${result.user.displayName}! You're logged in with Google`);
-    })
-    .catch((err) => {
-      console.error(err);
-      alert(`Authentication error: ${err}`);
-    });
+export const authWithGoogle = async () => {
+  await signInWithPopup(auth, provider);
 };
 
 // Función para cerrar sesión de usuario
-export const signOutUser = () => auth.signOut()
-  .then(() => {
-    console.log('User has logged out.');
-  })
-  .catch((err) => {
-    console.error('Error logging out:', err);
-    throw err;
-  });
-
-// Función para restablecer contraseña
-export const resetPass = (email) => {
-  sendPasswordResetEmail(auth, email)
-    .then(() => {
-    })
-    .catch((err) => {
-      const errorMessage = err.message;
-      console.log(errorMessage);
-      alert(err);
-    });
+export const signOutUser = async () => {
+  await signOut(auth);
 };
 
 // Función para agregar un nuevo post
 export const addPost = async (author, content, date) => {
-  try {
-    const postsCollection = collection(db, 'posts');
-    await addDoc(postsCollection, {
-      author,
-      content,
-      date,
-      likesArr: [],
-      likesSum: 0,
-    });
-    console.log('Post added successfully to Firestore');
-  } catch (error) {
-    console.error('Error adding the post:', error);
-  }
+  const postsCollection = collection(db, 'posts');
+  await addDoc(postsCollection, {
+    author,
+    content,
+    date,
+    likesArr: [],
+    likesSum: 0,
+  });
 };
 
 // Función para eliminar un post
 export const deletePost = async (postRef) => {
-  try {
-    await deleteDoc(postRef);
-    console.log('Post deleted successfully');
-  } catch (error) {
-    console.error('Error deleting the post:', error);
-  }
+  await deleteDoc(postRef);
 };
 
 // Función para mostrar los posts del usuario actual
