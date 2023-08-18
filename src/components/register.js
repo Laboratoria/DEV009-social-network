@@ -35,7 +35,7 @@ function register(navigateTo) {
         icon.classList.add('fa-circle-xmark');
         icon.classList.remove('fa-circle-check');
         errorMessage.classList.add('formulario__input-error-activo');
-        inputs[inputs.id] = false;
+        inputs[input.id] = false;
       }
     });
   };
