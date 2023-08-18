@@ -13,7 +13,7 @@ function home(navigateTo) {
   buttonParrafo.textContent = 'Y si no tienes cuenta...';
 
   const buttonRegistro = document.createElement('button');
-  buttonRegistro.className = 'button buttonLoginHome';
+  buttonRegistro.className = 'button buttonRegistroHome';
 
   buttonInicio.addEventListener('click', () => {
     navigateTo('/login');
