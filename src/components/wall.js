@@ -1,7 +1,7 @@
-import { async } from 'regenerator-runtime';
 import { exitUser } from '../lib/index.js';
+
 function wall(navigateTo) {
-  const mainConteiner = document.createElement('section');
+  const mainContainer = document.createElement('section');
   const section = document.createElement('section');
   const header = document.createElement('header');
   const logo = document.createElement('img');
@@ -18,7 +18,6 @@ function wall(navigateTo) {
   const home = document.createElement('img');
   const profile = document.createElement('img');
   const exit = document.createElement('img');
-  const btnExit = document.createElement('button');
 
   logo.src = './img/logo.png';
   profilePic.src = './img/perfil.png';
@@ -44,22 +43,19 @@ function wall(navigateTo) {
       navigateTo('/wall');
     });
 
-  
-
     windowPost.append(titleCreate, txtPost, btnPublicar);
   });
 
-  mainConteiner.append(section, post, header, menu);
+  mainContainer.append(section, post, header, menu);
   menu.append(home, profile, exit);
   section.append(header, profilePic, createPost, post, menu);
   post.append(userName, postContent, like, countLikes);
   header.appendChild(logo);
-  
+
   exit.addEventListener('click', () => {
     exitUser(navigateTo);
-    
-    });
-  return mainConteiner;
+  });
+  return mainContainer;
 }
 
 export default wall;
