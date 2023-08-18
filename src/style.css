@@ -11,6 +11,8 @@ body {
     font-family: 'Montserrat Alternates', sans-serif;
 }
 img {
+    display: block;
+    margin-top: 1rem;
     width: 15rem;
     margin: 2rem auto;
 }
@@ -18,20 +20,22 @@ h2{
     font-family:  'Borel', cursive;
     font-size: 45px;
     color: purple;
-    margin-top: -1rem;
+    margin-top: 1rem;
 }
 
-.bienvenida h4{
+.slogan{
     margin-top: -4rem;
+    text-align: center;
     color: rgb(72, 177, 211);
+    display: block;
 }
 
 .bienvenida p {
-    background-color: #fbc0cc;
+    background-color: #fbc0cc75;
     max-width: 300px;
     border: none;
     border-radius: 5px;
-    padding: 5px;
+    padding: 1rem;
     margin: 3rem auto;
     font-family:'Montserrat Alternates', sans-serif;
     color: purple;
@@ -49,7 +53,7 @@ h2{
 
 button:hover, 
 button:focus {
-    outline: 3px solid blue;
+    outline: 3px solid rgb(191, 144, 215);
     background-color: aliceblue;
     cursor: pointer;
 }
@@ -165,7 +169,7 @@ textarea:active {
 
 .boton-compartir{
     align-content: center;
-    margin: 0rem 0rem 0rem 14.5rem;
+    margin: 0rem 0rem 0rem 12.5rem;
 }
 
 /***********************Posts*******/
@@ -187,10 +191,10 @@ h6 {
     color: grey;
     text-align: left;
 }
+
 .likes{
     margin-top: -2.5rem;
     display: grid;
-    justify-content: left;
 }
 
 .heart-icon {
@@ -205,14 +209,27 @@ h6 {
     margin-left: 1rem;
   }
 
-  i{
-    margin-top: -0.8rem;
-    margin-left: 1rem;
+  .likes-counter{
+    margin-top: -2.5rem;
+    margin-left: -12rem;
     margin-bottom: 1rem;
     font-size: 1rem;
     font-family: 'Montserrat Alternates', sans-serif;
   }
 
+  .editButton{
+    display: inline;
+    position: relative;
+    margin: 0rem 2rem 0rem 0rem;
+  }
+  .deleteButton{
+    position: relative;
+    margin: -2rem 1rem 0rem 9rem;
+  }
+  .deleteButton,
+  .editButton{
+  height: 2rem;
+  }
 .logOut-button{
     display: block;
     transform: scale(-1);
@@ -220,6 +237,7 @@ h6 {
     width: 30px;
     margin-inline: 15px; 
     cursor: pointer;
+    margin-bottom: -3.5rem;
 }
 
 .back-button {
@@ -228,5 +246,12 @@ h6 {
     width: 30px;
     margin-inline: 15px; 
     cursor: pointer;
+}
+
+section{
+    margin-bottom: 1rem;
+    margin-left: 1.5rem;
+    text-align: left;
+    color: #623058;
 }
 

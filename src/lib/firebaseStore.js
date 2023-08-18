@@ -1,9 +1,8 @@
 import {
-  getFirestore,
-  increment,
-  collection, addDoc, getDocs, getDoc, doc, updateDoc, deleteDoc,
+  getFirestore, 
+  collection, addDoc, getDocs, getDoc, doc, updateDoc, deleteDoc, arrayRemove, arrayUnion
 } from 'firebase/firestore';
-import { db } from './firebaseAuth';
+import { db, auth } from './firebaseAuth';
 
 const firestore = getFirestore();
 
@@ -12,7 +11,8 @@ export const addPost = async (userId, content) => {
     const docRef = await addDoc(collection(db, 'posts'), {
       userId,
       content,
-      liked_by: [],
+      likedBy: [],
+      likeCounter: 0,
       timestamp: new Date(),
     });
     return docRef.id; // Devolver el ID del nuevo documento
@@ -22,24 +22,40 @@ export const addPost = async (userId, content) => {
   }
 };
 
-export async function updateLikePost(id) {
-  const postRef = doc(db, 'posts', id);
-  await updateDoc(postRef, {
-    liked_by: increment(1),
-  });
+export async function updateLikePost(userId) {
+  const postRef = doc(db, "posts", userId);
+  const postDoc = await getDoc(postRef);
+  const data = postDoc.data();
+console.log(data);
+  if ((data.likedBy).includes(auth.currentUser.uid)) {
+    await updateDoc(postRef, {
+      likedBy: arrayRemove(auth.currentUser.uid),
+      likeCounter: data.likeCounter - 1,
+    });
+  }
+  else{
+    await updateDoc(postRef, {
+      likedBy: arrayUnion(auth.currentUser.uid),
+      likeCounter: data.likeCounter + 1,
+    });
+  }
 }
 
 export const getPosts = async () => {
   try {
-    const querySnapshot = await getDocs(collection(db, 'posts'));
-    // eslint-disable-next-line no-shadow
-    const posts = querySnapshot.docs.map((document) => ({
-      id: document.id,
-      ...document.data(),
-    }));
+    const querySnapshot = await getDocs(collection(db, "posts"));
+    const posts = querySnapshot.docs.map((document) => {
+      const data = document.data();
+
+      return {
+        id: document.id,
+        ...data,
+      };
+    });
+
     return posts;
   } catch (error) {
-    console.error('Error getting posts: ', error);
+    console.error("Error getting posts: ", error);
     throw error;
   }
 };
