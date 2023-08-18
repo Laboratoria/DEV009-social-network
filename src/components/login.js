@@ -2,12 +2,13 @@ import { loginUser, authWithGoogle } from '../lib/index';
 
 function login(navigateTo) {
   const section = document.createElement('section');
+  section.classList.add('login-section');
   section.innerHTML = `
     <form class="login-view">
       <header class="logo-header logo">
         <img class="logo-img logo" src="./img/logo.png">
       </header>
-      <h2 >Welcome Back</h2>
+      <h2>Welcome Back</h2>
       <p class="message-login">Login to your account</p>
       <input placeholder="Email" class="input-email input">
       <div class="password-container">
