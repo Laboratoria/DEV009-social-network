@@ -1,5 +1,3 @@
-// Importaciones necesarias
-// import { arrayRemove, arrayUnion } from 'firebase/firestore';
 import {
   auth,
   createUserWithEmailAndPassword,

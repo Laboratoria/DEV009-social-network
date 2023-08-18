@@ -1,558 +1,214 @@
-# Creando una Red Social
+<p align="center">
+  <img src="./src/img/logo.png" width="200px" alt="logo">
+</p>
+<div align="center">
+<a title="Firebase" href="https://firebase.google.com/?gad=1&gclid=CjwKCAjwivemBhBhEiwAJxNWN-YZlV8Q1gn9Hg46tsf5_z5NrshAxOrKfZBHlb9qUEO8LSWKnyoSZRoCfdMQAvD_BwE&gclsrc=aw.ds&hl=es-419"><img width="80" height="30"  src="https://firebase.google.com/static/downloads/brand-guidelines/PNG/logo-built_white.png?hl=es-419"    ></a><a title="JavaScript" href="https://developer.mozilla.org/es/docs/Web/JavaScript"><img  src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E"></a>
+<a title="Jest" href="https://jestjs.io/"><img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white"></a>
 
-## Índice
+Pawssport is a dedicated social network platform for the community of pet enthusiasts, particularly those who love to travel with their furry friends. Whether you're looking to share a cherished memory of a beach day with your dog or seeking advice on cat-friendly cafes in Paris, Pawssport is your go-to destination.
 
-* [1. Preámbulo](#1-preámbulo)
-* [2. Resumen del proyecto](#2-resumen-del-proyecto)
-* [3. Objetivos de aprendizaje](#3-objetivos-de-aprendizaje)
-* [4. Consideraciones generales](#4-consideraciones-generales)
-* [5. Criterios de aceptación mínimos del proyecto](#5-criterios-de-aceptación-mínimos-del-proyecto)
-* [6. Hacker edition](#6-hacker-edition)
-* [7. Entrega](#7-entrega)
-* [8. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)
+[Introduction](#introduction) •
+[User Research and Analysis](#uxresearch) •
+[Design and User Experience](#design) •
+[Development Process](#development-process) •
+[Usability Testing](#usabilitytesting) •
+[Contributions](#contribution) •
 
-## 1. Preámbulo
+</div>
 
-Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. Las redes
-sociales han invadido nuestras vidas. Las amamos u odiamos, y muchos no podemos
-vivir sin ellas.
+---
 
-![adem-ay-Tk9m_HP4rgQ-unsplash](https://user-images.githubusercontent.com/110297/135544666-4efa54f1-4ff6-4c4c-b398-6df04ef56117.jpg)
+<a name='introduction'></a>
+##  :point_right: Introduction
 
-Hay redes sociales de todo tipo y para todo tipo de intereses. Por ejemplo,
-en una ronda de financiamiento con inversionistas, se presentó una red social
-para químicos en la que los usuarios podían publicar artículos sobre sus
-investigaciones, comentar en los artículos de sus colegas, y filtrar artículos
-de acuerdo a determinadas etiquetas o su popularidad, lo más reciente, o lo
-más comentado.
+### Features
+- :feet:  **User Authentication**: Easily sign up using an email-password combination or streamline the process with Google authentication.
+-  :feet:  **Dynamic Posting**: Share your pet-related adventures, edit them as memories evolve, or delete them if you change your mind.
+- :feet:  **Engagement**: Engage with the community by liking posts, and let others engage with your shared memories.
+- :feet:  **User-centric Design**: Navigate through the community's collective experiences on the home view, or curate your own pet tales in a personal profile space.
 
-## 2. Resumen del proyecto
+#### The Problem Pawssport Addresses 
+Every day, millions of pet owners around the world face challenges when traveling or going on adventures with their pets. From not knowing which places are pet-friendly to lacking insights on how to handle pets during different travel scenarios, there’s a void of collective knowledge and shared experiences. Furthermore, traditional social media platforms don’t cater specifically to this niche, leaving pet lovers scattered and their experiences diluted.
 
-En este proyecto construirás una Red Social sobre lo que decidan tú y tu equipo.
-Podría ser, por ejemplo, sobre alimentación saludable, feminismo, educación,
-salud, energías renovables, amantes de las [Empanadas](https://es.wikipedia.org/wiki/Empanada)
-o de los [Tacos de Canasta](https://es.wikipedia.org/wiki/Taco),
-de la [Feijoada](https://es.wikipedia.org/wiki/Feijoada), o de lo que sea.
+Of course, here are the user stories in Markdown format:
 
-Tu Red Social tendrá que permitir a cualquier usuario crear una cuenta de acceso
-y loguearse con ella; crear, editar, borrar y _"likear"_ publicacciones.
+### User Stories
 
-Por lo tanto, en este proyecto construirás una
-[Single-page Application (SPA)](https://es.wikipedia.org/wiki/Single-page_application)
-[_responsive_](https://curriculum.laboratoria.la/es/topics/css/02-responsive) (con más de una vista / página)
-en la que podamos **leer y escribir datos**.
+#### Story 1: Exploring New Adventures
 
-### Los objetivos generales de este proyecto son los siguientes
+As an avid pet lover like Pablo, I want to create an account on Pawssport to share my pet travel stories. This will allow me to connect with a community that shares my enthusiasm for traveling with furry companions. The acceptance criteria include:
 
-* Desarrollar una SPA con temática de red social
-* Aplicar los conceptos de responsividad en el desarrollo de las vistas (templates)
-* Implementar un router para la navegación entre las diferentes vistas de la aplicación
-* Emplear un servicio externo para la persistencia de datos de la aplicación
-* Crear una suite de pruebas unitarias que permitan testear código asíncrono
+- Users can create an account using a valid email and password or through Google authentication.
+- Clear error messages are displayed if incorrect information is entered during account creation.
+- Password requirements are outlined, and users have the option to reveal their password.
+- The interface is responsive, aligning with established style guidelines.
+- User data is securely stored using Firebase authentication.
+- The feature has undergone code review and unit testing.
 
-Para lograr estos objetivos, deberás aprender y hacer uso de las siguientes
-herramientas o habilidades técnicas:
+#### Story 2: Easy Access and Engagement
 
-## 3. Objetivos de aprendizaje
+Carolina, a user of Pawssport, aims to effortlessly access her account and find travel tips for her feline friend, Felix. She values the option to sign in using her email and password or through Google. The criteria for this story include:
 
-Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en tu proyecto. Piensa en eso al decidir tu estrategia de trabajo.
+- Users can log in using their email and password or their Google account.
+- Clear error messages are displayed if login credentials are incorrect.
+- The user can explore the platform's feed and navigate to their profile.
+- The interface maintains responsiveness and adheres to design guidelines.
+- User data remains secure through Firebase authentication.
+- The feature has been subjected to code review and unit testing.
 
-### HTML
+#### Story 3: Sharing and Editing Experiences
 
-- [ ] **Uso de HTML semántico**
+José, an active member of Pawssport, desires to share valuable travel tips and update his posts as his pet-related experiences evolve. He values the ability to edit and delete his posts. The acceptance criteria include:
 
-  <details><summary>Links</summary><p>
+- Users can create, edit, and delete their posts.
+- Upon clicking the edit button, the post's text transforms into an editable input field.
+- Users can save changes and revert to normal view mode.
+- The interface maintains responsiveness and adheres to design guidelines.
+- User data is securely stored using Firebase.
+- The feature has undergone code review, unit testing, and usability testing.
 
-  * [HTML semántico](https://curriculum.laboratoria.la/es/topics/html/02-html5/02-semantic-html)
-  * [Semantics - MDN Web Docs Glossary](https://developer.mozilla.org/en-US/docs/Glossary/Semantics#Semantics_in_HTML)
-</p></details>
+#### Story 4: Discovering and Interacting
 
-### CSS
+As an aspiring traveler, Manuela wishes to read about other users' pet travel experiences to prepare for her upcoming journey. She wants the ability to like posts that resonate with her. The criteria for this story include:
 
-- [ ] **Uso de selectores de CSS**
+- Users can access a "Home" section containing posts from other users.
+- Users can like and unlike posts.
+- Each user can only like a post once.
+- The interface maintains responsiveness and adheres to design guidelines.
+- User data is securely stored using Firebase.
+- The feature has undergone code review, unit testing, and usability testing.
 
-  <details><summary>Links</summary><p>
+These user stories embody the core functionalities and interactions within Pawssport, reflecting a diverse range of user needs and desires that we've aimed to address in our platform design.
 
-  * [Intro a CSS](https://curriculum.laboratoria.la/es/topics/css/01-css/01-intro-css)
-  * [CSS Selectors - MDN](https://developer.mozilla.org/es/docs/Web/CSS/CSS_Selectors)
-</p></details>
+---
 
-- [ ] **Modelo de caja (box model): borde, margen, padding**
+<a name='uxresearch'></a>
+##  :point_right: User Research and Analysis
+We conducted a survey using [this form](https://form.jotform.com/232084743834661) to gather insights from potential users. A total of 27 responses were collected, providing valuable data for our project.You can access the full report of our survey results here: - [User Research Report](https://www.jotform.com/report/23208681728205628?st=N0RCa2Y2Z3pocG0rVmJRUWdlOW5tQlhWQWxxK2RxYlYzU3FjdTh3dVZTT0FNZEJLRndQNmh0MUhEenBCM0JwQzlMM2NMTU81RmYzSDZTOW8wTjhVTDRsOEVwWGRVL2tSUStQNDhacTM4dTh2cENCTUdaelFKMjNjS1JwUDZwTVU=)
 
-  <details><summary>Links</summary><p>
+### Survey Results:
 
-  * [Box Model & Display](https://curriculum.laboratoria.la/es/topics/css/01-css/02-boxmodel-and-display)
-  * [The box model - MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model)
-  * [Introduction to the CSS box model - MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model)
-  * [CSS display - MDN](https://developer.mozilla.org/pt-BR/docs/Web/CSS/display)
-  * [display - CSS Tricks](https://css-tricks.com/almanac/properties/d/display/)
-</p></details>
+- **Travel Experience with Pets:** When asked about their travel experiences with pets, 71% of respondents had not traveled with their pets, while the remaining 29% had.
 
-- [ ] **Uso de flexbox en CSS**
+- **Reasons for Traveling with Pets:** Among those who traveled with their pets, 41% mentioned that they did so to avoid leaving their pets alone, 29% did it to alleviate their pets' stress, and 24% found it enjoyable.
 
-  <details><summary>Links</summary><p>
+- **Interest in Traveling with Pets:** Interestingly, 71% of all respondents expressed an interest in traveling with their pets, while the remaining 29% did not consider it.
 
-  * [A Complete Guide to Flexbox - CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
-  * [Flexbox Froggy](https://flexboxfroggy.com/#es)
-  * [Flexbox - MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox)
-</p></details>
+- **Community Participation:** A significant 75% of the surveyed users indicated that they would like to be part of a community where pet experiences are shared.
 
-- [ ] **Uso de CSS Grid Layout**
+These survey findings shed light on the attitudes and preferences of potential users, highlighting a strong desire for a platform like Pawssport that caters to pet travel experiences. The insights gathered from this survey will be instrumental in shaping the features and functionalities of our social network.
 
-  <details><summary>Links</summary><p>
 
-  * [A Complete Guide to Grid - CSS Tricks](https://css-tricks.com/snippets/css/complete-guide-grid/)
-  * [Grids - MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids)
-</p></details>
+### The Solution :raised_hands::sparkles:
+Pawssport brings together pet enthusiasts in a singular, dedicated platform. It serves as a collective diary of shared pet adventures, allowing users to not only flaunt their experiences but also gain insights from others. Whether you're a novice pet owner preparing for your first trip or a seasoned traveler with pets looking for new adventures, Pawssport provides a space to both learn and share. :smile_cat::rainbow:
 
-### Web APIs
+---
 
-- [ ] **Uso de selectores del DOM**
+<a name='design'></a>
+##  :point_right: Design and User Experience
 
-  <details><summary>Links</summary><p>
+In the design and user experience phase, our focus was on creating an engaging and visually captivating platform that embodies the essence of Pawssport as a dedicated social network for sharing pet travel tips. The design reflects adventure, playfulness, and warmth, establishing a strong connection between users, their pets, and their shared experiences.
 
-  * [Manipulación del DOM](https://curriculum.laboratoria.la/es/topics/browser/02-dom/03-1-dom-methods-selection)
-  * [Introducción al DOM - MDN](https://developer.mozilla.org/es/docs/Web/API/Document_Object_Model/Introduction)
-  * [Localizando elementos DOM usando selectores - MDN](https://developer.mozilla.org/es/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors)
-</p></details>
+### Color Palette and Visual Identity
 
-- [ ] **Manejo de eventos del DOM (listeners, propagación, delegación)**
+We carefully curated a color palette that captures the spirit of pet travel experiences. The following colors were selected to evoke emotions of companionship, exploration, and excitement:
 
-  <details><summary>Links</summary><p>
+- **Royal Purple (#6A66D9)**
+- **Pale Lavender (#C2C9F2)**
+- **Baby Blue (#D8E8F2)**
+- **Coral (#D98162)**
+- **Crimson Red (#F25244)**
+- **Charcoal Gray (#232526)**
+- **Slate Gray (#4F5559)**
+- **Light Gray (#F2F2F2)**
 
-  * [Introducción a eventos - MDN](https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Events)
-  * [EventTarget.addEventListener() - MDN](https://developer.mozilla.org/es/docs/Web/API/EventTarget/addEventListener)
-  * [EventTarget.removeEventListener() - MDN](https://developer.mozilla.org/es/docs/Web/API/EventTarget/removeEventListener)
-  * [El objeto Event](https://developer.mozilla.org/es/docs/Web/API/Event)
-</p></details>
+This palette enhances visual clarity, accessibility, and user engagement throughout the platform.
 
-- [ ] **Manipulación dinámica del DOM**
+### Typography and Font Selection
 
-  <details><summary>Links</summary><p>
+To complement the color palette and establish a consistent brand identity, we chose the "Montserrat" font family. Its modern and clean appearance enhances readability while adding a touch of sophistication and approachability.
 
-  * [Introducción al DOM](https://developer.mozilla.org/es/docs/Web/API/Document_Object_Model/Introduction)
-  * [Node.appendChild() - MDN](https://developer.mozilla.org/es/docs/Web/API/Node/appendChild)
-  * [Document.createElement() - MDN](https://developer.mozilla.org/es/docs/Web/API/Document/createElement)
-  * [Document.createTextNode()](https://developer.mozilla.org/es/docs/Web/API/Document/createTextNode)
-  * [Element.innerHTML - MDN](https://developer.mozilla.org/es/docs/Web/API/Element/innerHTML)
-  * [Node.textContent - MDN](https://developer.mozilla.org/es/docs/Web/API/Node/textContent)
-</p></details>
+### Design Approach: Minimalist and Playful
 
-- [ ] **Ruteado (History API, evento hashchange, window.location)**
+Pawssport's design follows a minimalist yet playful approach, ensuring a user-friendly and enjoyable experience. The minimalism reduces clutter, allowing users to focus on content, while playful elements, such as subtle animations and pet-themed icons, infuse joy into interactions. This balance fosters a strong connection between users, their pets, and their shared stories.
 
-  <details><summary>Links</summary><p>
+### Prototyping: From Low-Fidelity to High-Fidelity
 
-  * [Manipulando el historial del navegador - MDN](https://developer.mozilla.org/es/docs/DOM/Manipulando_el_historial_del_navegador)
-</p></details>
+Our prototyping process involved two stages: low-fidelity and high-fidelity prototypes.
 
-### JavaScript
+**Low-Fidelity Prototypes:**
+- [View Low Fidelity Mobile Prototype](https://www.figma.com/file/UBQNGtOpSKFJWE4yAbhNyx/Untitled?type=design&node-id=0-1&mode=design&t=Kd9kUA0bYju2GsjU-0)
+- [View Low Fidelity Desktop Prototype](https://www.figma.com/file/znPFqN98qQxrCIFTznmAAi/Prototipo-baja-resolución-Pawssport?type=design&node-id=0-1&mode=design&t=KBkoIMofHs2aCmip-0)
 
-- [ ] **Arrays (arreglos)**
+**High-Fidelity Prototypes:**
+- [View High Fidelity Mobile Prototype](https://www.figma.com/file/gBimm1vWngkus7vRenfP4N/Prototype-Pawssport?type=design&node-id=0%3A1&mode=design&t=esgOiKZD0RJrRgvL-1)
+- [View High Fidelity Desktop Prototype](https://www.figma.com/proto/gBimm1vWngkus7vRenfP4N/Prototype-Pawssport?type=design&node-id=256-163&t=eGBmCBMe41w1440E-1&scaling=scale-down&page-id=256%3A162&starting-point-node-id=256%3A163&show-proto-sidebar=1&mode=design)
 
-  <details><summary>Links</summary><p>
+By blending thoughtful color choices, typography, and a minimalist yet engaging design, Pawssport provides an immersive and delightful user experience. Users are encouraged to share their cherished pet travel memories and connect with fellow pet enthusiasts in a visually appealing and intuitive environment.
 
-  * [Arreglos](https://curriculum.laboratoria.la/es/topics/javascript/04-arrays)
-  * [Array - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/)
-  * [Array.prototype.sort() - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
-  * [Array.prototype.forEach() - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
-  * [Array.prototype.map() - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
-  * [Array.prototype.filter() - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
-  * [Array.prototype.reduce() - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
-</p></details>
+---
 
-- [ ] **Objetos (key, value)**
+<a name='development-process'></a>
+## :point_right: Development Process
 
-  <details><summary>Links</summary><p>
+The development of Pawssport was a collaborative effort that involved a dedicated team of developers and designers. We employed agile methodologies to plan, execute, and deliver functionalities in an iterative manner. Our focus was on efficiency, constant communication, and adaptability as we progressed through the development.
 
-  * [Objetos en JavaScript](https://curriculum.laboratoria.la/es/topics/javascript/05-objects/01-objects)
-</p></details>
+### Planning and Collaborative Work
 
-- [ ] **Diferenciar entre tipos de datos primitivos y no primitivos**
+To plan and track our work, we utilized GitHub Projects. You can view our planning board directly on GitHub: [Pawssport GitHub Project Board](https://github.com/users/agiraldomolina/projects/2/views/1).
 
-- [ ] **Variables (declaración, asignación, ámbito)**
+Within this board, we divided functionalities into cards and organized them into columns based on their status, such as "To Do," "In Progress," and "Done." This approach allowed us to clearly visualize the progress of each task and assign them to team members.
 
-  <details><summary>Links</summary><p>
+### Agile Methodology
 
-  * [Valores, tipos de datos y operadores](https://curriculum.laboratoria.la/es/topics/javascript/01-basics/01-values-variables-and-types)
-  * [Variables](https://curriculum.laboratoria.la/es/topics/javascript/01-basics/02-variables)
-</p></details>
+We embraced an agile methodology to maintain flexibility and responsiveness as new ideas and challenges arose. Regular team meetings were held to review project status, set priorities, and adjust our focus as needed. Iterations enabled us to consistently deliver valuable functionalities and maintain ongoing feedback among team members.
 
-- [ ] **Uso de condicionales (if-else, switch, operador ternario, lógica booleana)**
+### Use of GitHub and Version Control
 
-  <details><summary>Links</summary><p>
+GitHub played a pivotal role in our collaboration and version control. We employed repositories to store and share source code, making pull requests for code review and merging changes. Feature branches enabled parallel work without interference and ensured seamless integration of functionalities.
 
-  * [Estructuras condicionales y repetitivas](https://curriculum.laboratoria.la/es/topics/javascript/02-flow-control/01-conditionals-and-loops)
-  * [Tomando decisiones en tu código — condicionales - MDN](https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/conditionals)
-</p></details>
+### Communication and Coordination
 
-- [ ] **Uso de bucles/ciclos (while, for, for..of)**
+We maintained constant communication through channels such as Slack and online meetings. Additionally, we documented key decisions and technical details within our documentation repository to ensure shared understanding.
 
-  <details><summary>Links</summary><p>
+### Outcomes of Collaborative Work
 
-  * [Bucles (Loops)](https://curriculum.laboratoria.la/es/topics/javascript/02-flow-control/02-loops)
-  * [Bucles e iteración - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Loops_and_iteration)
-</p></details>
+Our collaborative development strategy empowered us to progress effectively, maintain a high level of quality, and deliver functionalities in a timely manner. Ongoing collaboration and detailed planning within GitHub Projects were instrumental in our success.
 
-- [ ] **Funciones (params, args, return)**
+---
 
-  <details><summary>Links</summary><p>
+Sure, here's the section you can add to your document for usability testing with the final product. Please note that you can fill in the results once you have them:
 
-  * [Funciones (control de flujo)](https://curriculum.laboratoria.la/es/topics/javascript/02-flow-control/03-functions)
-  * [Funciones clásicas](https://curriculum.laboratoria.la/es/topics/javascript/03-functions/01-classic)
-  * [Arrow Functions](https://curriculum.laboratoria.la/es/topics/javascript/03-functions/02-arrow)
-  * [Funciones — bloques de código reutilizables - MDN](https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions)
-</p></details>
+---
 
-- [ ] **Pruebas unitarias (unit tests)**
+<a name='usabilitytesting'></a>
+## :point_right: Usability Testing
 
-  <details><summary>Links</summary><p>
+To ensure that Pawssport provides a seamless and user-friendly experience, we conducted usability testing with a select group of participants. The goal was to gather insights into the usability of the platform and identify any areas for improvement. We used the following form to collect usability testing results: [Usability Testing Form](https://form.jotform.com/231796850498675).
 
-  * [Empezando con Jest - Documentación oficial](https://jestjs.io/docs/es-ES/getting-started)
-</p></details>
+### Usability Testing Process
 
-- [ ] **Pruebas asíncronas**
+1. **Participant Selection:** We carefully selected participants who represent our target user demographic. This included individuals who love traveling with their pets and are interested in sharing their experiences on Pawssport.
 
-  <details><summary>Links</summary><p>
+2. **Test Scenarios:** Participants were provided with specific tasks to complete on the Pawssport platform. These tasks covered various aspects of the user journey, such as signing up, creating and editing posts, exploring the feed, and engaging with other users' content.
 
-  * [Tests de código asincrónico con Jest - Documentación oficial](https://jestjs.io/docs/es-ES/asynchronous)
-</p></details>
+3. **Data Collection:** Participants used the platform while their interactions were recorded. They were encouraged to think aloud, sharing their thoughts and observations as they navigated the interface.
 
-- [ ] **Uso de mocks y espías**
+4. **Feedback and Observations:** We collected valuable feedback and observations from participants regarding their experience. This included insights into usability, navigation, clarity of instructions, and overall satisfaction.
 
-  <details><summary>Links</summary><p>
+### Usability Testing Results (Coming Soon)
 
-  * [Manual Mocks con Jest - Documentación oficial](https://jestjs.io/docs/es-ES/manual-mocks)
-</p></details>
+We are currently in the process of analyzing the usability testing results to gain a comprehensive understanding of the user experience. Once the analysis is complete, we will update this section with detailed insights, observations, and recommendations based on the feedback received from participants.
 
-- [ ] **Módulos de ECMAScript (ES Modules)**
+Stay tuned for the finalized usability testing results, which will provide valuable insights into the strengths of Pawssport and opportunities for further enhancement.
 
-  <details><summary>Links</summary><p>
+---
 
-  * [import - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/import)
-  * [export - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/export)
-</p></details>
+<a name='contribution'></a>
+### A Special Thank You
+This project is the result of countless hours of effort, brainstorming, coding, and debugging. Behind every line of code, there's a story of dedication, dreams, adversities, resilience and passion. We hope that our work can be of help to others and make their journey a bit easier or inspiring 🩷.
+Developed with an immense amount of love and care by:
 
-- [ ] **Uso de linter (ESLINT)**
-
-- [ ] **Uso de identificadores descriptivos (Nomenclatura y Semántica)**
-
-- [ ] **Diferenciar entre expresiones (expressions) y sentencias (statements)**
-
-- [ ] **Callbacks**
-
-  <details><summary>Links</summary><p>
-
-  * [Función Callback - MDN](https://developer.mozilla.org/es/docs/Glossary/Callback_function)
-</p></details>
-
-- [ ] **Promesas**
-
-  <details><summary>Links</summary><p>
-
-  * [Promise - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-  * [How to Write a JavaScript Promise - freecodecamp (en inglés)](https://www.freecodecamp.org/news/how-to-write-a-javascript-promise-4ed8d44292b8/)
-</p></details>
-
-### Control de Versiones (Git y GitHub)
-
-- [ ] **Git: Instalación y configuración**
-
-- [ ] **Git: Control de versiones con git (init, clone, add, commit, status, push, pull, remote)**
-
-- [ ] **Git: Integración de cambios entre ramas (branch, checkout, fetch, merge, reset, rebase, tag)**
-
-- [ ] **GitHub: Creación de cuenta y repos, configuración de llaves SSH**
-
-- [ ] **GitHub: Despliegue con GitHub Pages**
-
-  <details><summary>Links</summary><p>
-
-  * [Sitio oficial de GitHub Pages](https://pages.github.com/)
-</p></details>
-
-- [ ] **GitHub: Colaboración en Github (branches | forks | pull requests | code review | tags)**
-
-- [ ] **GitHub: Organización en Github (projects | issues | labels | milestones | releases)**
-
-### Centrado en el usuario
-
-- [ ] **Diseñar y desarrollar un producto o servicio poniendo a las usuarias en el centro**
-
-### Diseño de producto
-
-- [ ] **Crear prototipos de alta fidelidad que incluyan interacciones**
-
-- [ ] **Seguir los principios básicos de diseño visual**
-
-### Investigación
-
-- [ ] **Planear y ejecutar testeos de usabilidad de prototipos en distintos niveles de fidelidad**
-
-  <details><summary>Links</summary><p>
-
-  * [Intro a testeos usabilidad](https://coda.io/@bootcamp-laboratoria/contenido-ux/test-de-usabilidad-15)
-  * [Pruebas con Usuarios 1 — ¿Qué, cuándo y para qué testeamos?](https://eugeniacasabona.medium.com/pruebas-con-usuarios-1-qu%C3%A9-cu%C3%A1ndo-y-para-qu%C3%A9-testeamos-7c3a89b4b5e7)
-</p></details>
-
-### Firebase
-
-- [ ] **Firebase Auth**
-
-  <details><summary>Links</summary><p>
-
-  * [Primeros pasos con Firebase Authentication en sitios web - Documentación oficial](https://firebase.google.com/docs/auth/web/start?hl=es)
-  * [Administra usuarios en Firebase (onAuthStateChanged)](https://firebase.google.com/docs/auth/web/manage-users?hl=es#get_the_currently_signed-in_user)
-</p></details>
-
-- [ ] **Firestore**
-
-  <details><summary>Links</summary><p>
-
-  * [Firestore - Documentación oficial](https://firebase.google.com/docs/firestore?hl=es)
-  * [Reglas de seguridad de Firestore - Documentación oficial](https://firebase.google.com/docs/rules?hl=es)
-  * [Obtén actualizaciones en tiempo real con Cloud Firestore - Documentación oficial](https://firebase.google.com/docs/firestore/query-data/listen?hl=es)
-</p></details>
-
-## 4. Consideraciones generales
-
-* Este proyecto se debe trabajar en equipos de tres.
-
-* El rango de tiempo estimado para completar el proyecto es de 4 a 5 Sprints.
-
-* La lógica del proyecto debe estar implementada completamente en JavaScript
-  (ES6+), HTML y CSS :smiley:. Para este proyecto **no está permitido** utilizar
-  _frameworks_ o librerías de CSS y JS.
-
-* La división y organización del trabajo debe permitir, sin excepciones, que
-  **cada integrante** del equipo practique el aprendizaje de todo lo involucrado
-  en **cada historia**. _No se dividan el trabajo como en una fábrica._
-  - ¿Hasta acá has avanzado en tus proyectos con cierta fluidez y sin mayores
-    problemas? Sé generosa con tus compañeras, permíteles aprender y practicar
-    sin restricciones, aunque tome un poco más de tiempo. Aproveha de
-    _coachearlas_, de hacer _pair programming_, una de las mejores maneras de
-    aprender es explicando verbalmente.
-
-  - ¿Se te está haciendo difícil y te cuesta un poco más avanzar? No te quedes
-    con las partes "fáciles" del proyecto, conversa, negocia, exige tu oportunidad
-    para practicar y aprender lo que se te hace más difícil.
-
-* Solamente pueden trabajar en una única historia por vez, no pueden avanzar a
-  la siguiente sin haber completado la anterior. La historia se completa cuando
-  se cumplen **todos** sus Criterios de Aceptación + **toda** su Definición
-  de Terminado.
-
-Para comenzar tendrás que hacer un _fork_ y _clonar_ este repositorio.
-
-## 5. Criterios de aceptación mínimos del proyecto
-
-### 5.1 Boilerplate
-
-Este proyecto no incluye un _boilerplate_ completo, solo algunos archivos de
-configuración basico, así es que tendrás que definir la estructura de carpetas
-y escribir tus propias Pruebas Unitarias (_tests_). Para hacerlo, puedes guiarte
-de los proyectos anteriores y/o organizar los archivos siguiendo una estructura
-de [Modelo-Vista-Controlador](https://developer.mozilla.org/es/docs/Glossary/MVC).
-
-En este proyecto vamos a usar una herramienta llamada
-[Vite](https://es.vitejs.dev/) para empaquetar nuestros módulos y arrancar
-el servidor de desarrollo, el cual provee nuestros archivos utilizando
-la estrategia `Hot Module Replacement`
-[(HMR)](https://es.vitejs.dev/guide/features.html#hot-module-replacement),
-esto significa que cuando hagas cambios en los archivos que estén siendo
-servidos, el navegador automáticamente se actualizará sin tener que refrescar
-y volver a cargar todo el sitio. Debes tener especial cuidado de no tener
-ninguna _dependencia circular_ en tu código ya que
-[eso puede ocasionar problemas con HMR](https://es.vitejs.dev/guide/troubleshooting.html#ocurre-un-refresco-completo-en-lugar-de-hmr).
-(`eslint-plugin-import` tiene una regla
-[import/no-cycle](https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-cycle.md)
-que va a avisar si las tiene.)
-
-### 5.2 Definición del producto
-
-En el `README.md` cuéntanos brevemente cómo descubriste las necesidades de los
-usuarios y cómo llegaste a la definición final de tu producto. Es importante
-que detalles:
-
-* Quiénes son los principales usuarios de producto.
-* Qué problema resuelve el producto / para qué le servirá a estos usuarios.
-
-### 5.3 Historias de usuario
-
-Una vez que entiendas las necesidades de tus usuarixs, escribe las Historias de
-Usuario que representen todo lo que necesitan hacer/ver en la Red Social. Cada
-una de tus Historias de Usuario debe tener:
-
-* **Criterios de Aceptación:** todo lo que debe ocurrir para satisfacer las
-  necesidades del usuario.
-
-* **Definición de terminado:** todos los aspectos técnicos que deben cumplirse
-  para que, como equipo, sepan que esa historia está terminada y lista
-  para publicarse. **Todas** tus Historias de Usuario (salvo excepciones), deben
-  incluir estos aspectos en su Definición de Terminado (más todo lo que
-  necesiten agregar):
-
-  - Debe ser una SPA.
-  - Debe ser _responsive_.
-  - Deben haber recibido _code review_ de al menos una compañera de otro equipo.
-  - Hicieron los _test_ unitarios
-  - Testearon manualmente buscando errores e imperfecciones simples.
-  - Hicieron _pruebas_ de usabilidad e incorporaron el _feedback_ de los
-    usuarios como mejoras.
-  - Desplegaron su aplicación y etiquetaron la versión (git tag).
-
-### 5.4 Diseño de la Interfaz de Usuario (prototipo de baja fidelidad)
-
-Debes definir cuál será el flujo que seguirá el usuario dentro de tu aplicación
-y, con eso, diseña la Interfaz de Usuario (UI por sus siglas en inglés) que
-siga este flujo.
-
-### 5.5 Responsive
-
-Debe verse bien en dispositivos de pantallas grandes
-(computadoras/es, laptops, etc.) y pequeñas (_tablets_, celulares, etc.). Te
-sugerimos seguir la técnica de _`mobile first`_ (más detalles sobre esta técnica
-al final).
-
-### 5.6 Consideraciones del comportamiento de la interfaz de usuario (UI)
-
-Estas consideraciones te ayudarán a escribir las Definiciones de Terminado de
-tus H.U.:
-
-#### Creación de cuenta de usuario e inicio de sesión
-
-* _Login_ con Firebase:
-  - Para el _login_ y las publicaciones en el muro puedes utilizar [Firebase](https://firebase.google.com/products/database/)
-  - Creación de cuenta de acceso y autenticación con cuenta de correo y
-    contraseña, y también con una cuenta de Google.
-* Validaciones:
-  - Solamente se permite el acceso a usuarios con cuentas válidas.
-  - No pueden haber usuarios repetidos.
-  - La cuenta de usuario debe ser un correo electrónico válido.
-  - Lo que se escriba en el campo (_input_) de contraseña debe ser secreto.
-* Comportamiento:
-  - Al enviarse el formulario de registro o inicio de sesión, debe validarse.
-  - Si hay errores, se deben mostrar mensajes descriptivos para ayudar al
-  usuario a corregirlos.
-
-#### Muro/timeline
-
-* Validaciones:
-  - Al publicar, se debe validar que exista contenido en el _input_.
-* Comportamiento:
-  - Al recargar la aplicación, se debe verificar si el usuario está _logueado_
-    antes de mostrar contenido.
-  - Poder publicar un _post_.
-  - Poder dar y quitar _like_ a una publicación. Máximo uno por usuario.
-  - Llevar un conteo de los _likes_.
-  - Poder eliminar un post específico.
-  - Pedir confirmación antes de eliminar un _post_.
-  - Al dar _click_ para editar un _post_, debe cambiar el texto por un _input_
-    que permita editar el texto y luego guardar los cambios.
-  - Al guardar los cambios debe cambiar de vuelta a un texto normal pero con la
-    información editada.
-  - Al recargar la página debo de poder ver los textos editados.
-
-### 5.7 Consideraciones técnicas Front-end
-
-* Separar la manipulación del DOM de la lógica (Separación de responsabilidades).
-* Contar con múltiples vistas. Para esto, tu aplicación debe ser una
- [Single Page Application (SPA)](https://es.wikipedia.org/wiki/Single-page_application)
-* Alterar y persistir datos. Los datos que agregues o modifiques deberán
-  persistir a lo largo de la aplicación. Te recomendamos que uses
-  [Firebase](https://firebase.google.com/) para eso también.
-
-#### Pruebas unitarias (unit tests)
-
-* Recuerda que no hay un _setup_ de **tests** definido, dependerá de
-  la estructura de tu proyecto. Algo que no debes de olvidar es pensar en éstas
-  pruebas, te pueden ayudar a definir la estructura y nomenclatura de tu lógica.
-
-* Los tests unitarios deben cubrir un mínimo del 70% de _statements_, _functions_,
-  _lines_, y _branches_.
-
-### 5.8 Consideraciones técnicas UX
-
-* Hacer al menos 2 entrevistas con usuarios.
-* Hacer un  prototipo de baja fidelidad.
-* Asegurarte de que la implementación en código siga los lineamientos del
-  diseño.
-* Hacer sesiones de _testing de usabilidad_ con el producto en HTML.
-
-## 6. Hacker edition
-
-Las secciones llamadas _Hacker Edition_ son **opcionales**. Si **terminaste**
-con todo lo anterior y te queda tiempo, intenta completarlas. Así podrás
-profundizar y/o ejercitar más sobre los objetivos de aprendizaje del proyecto.
-
-* Permite crear posts con imágenes.
-* Permite buscar usuarios, agregar y eliminar "amigos".
-* Permite definir la privacidad de los _posts_ (público o solamente para amigos).
-* Permite ver su muro de cualquier usuario "no-amigo" (solamente los
-  posts _públicos_).
-* Permite comentar o responder una publicación.
-* Permite editar perfil.
-
-## 7. Entrega
-
-El proyecto será _entregado_ subiendo tu código a GitHub (`commit`/`push`) y la
-interfaz será desplegada usando GitHub pages u otro servicio de hosting
-(Firebase, Netlify, Vercel, etc) que puedas haber encontrado en el camino.
-Revisa la [documentación de Vite](https://vitejs.dev/guide/static-deploy.html)
-para guiarte con eso.
-
-***
-
-## 8. Pistas, tips y Lecturas complementarias
-
-Súmate al canal de Slack
-[#project-social-network](https://claseslaboratoria.slack.com/archives/C03SE63GFJQ)
-para conversar y pedir ayuda del proyecto.
-
-### Mobile first
-
-El concepto de [_mobile first_](https://www.mediaclick.es/blog/diseno-web-responsive-design-y-la-importancia-del-mobile-first/)
-hace referencia a un proceso de diseño y desarrollo donde partimos de cómo se ve
-y cómo funciona la aplicación en un dispositivo móvil primero, y más adelante se
-ve como adaptar la aplicación a pantallas progresivamente grandes y
-características específicas del entorno desktop. Esto es en contraposición al
-modelo tradicional, donde primero se diseñaban los websites (o webapps) para
-desktop y después se trataba de _arrugar_ el diseño para que entre en pantallas
-más chicas. La clave acá es asegurarse de que desde el principio diseñan usando
-la vista _responsive_ de las herramientas de desarrollador (developer tools) del
-navegador. De esa forma, partimos de cómo se ve y comporta la aplicación en una
-pantalla y entorno móvil.
-
-### Múltiples vistas
-
-En proyectos anteriores nuestras aplicaciones habían estado compuestas de una
-sola _vista_ principal (una sóla _página_). En este proyecto se introduce la
-necesidad de tener que dividir nuestra interfaz en varias _vistas_ o _páginas_
-y ofrecer una manera de navegar entre estas vistas. Este problema se puede
-afrontar de muchas maneras: con archivos HTML independientes (cada uno con su
-URL) y links tradicionales, manteniendo estado en memoria y rederizando
-condicionalmente (sin refrescar la página), [manipulando el historial del
-navegador](https://developer.mozilla.org/es/docs/DOM/Manipulando_el_historial_del_navegador)
-con [`window.history`](https://developer.mozilla.org/es/docs/Web/API/Window/history).
-En este proyecto te invitamos a explorar opciones y decidir una opción
-de implementación.
-
-### Escritura de datos
-
-En los proyectos anteriores hemos consumido (leído) datos, pero todavía no
-habíamos escrito datos (salvar cambios, crear datos, borrar, ...). En este
-proyecto tendrás que crear (salvar) nuevos datos, así como leer, actualizar y
-modificar datos existentes. Estos datos se podrán guardar de forma remota
-usando [Firebase](https://firebase.google.com/).
-
-Para usar Firebase hay que crear un proyecto en la consola de Firebase e
-instalar la dependencia `firebase` utilizando `npm`.
-Lee [las instrucciones paso a paso aqui](https://firebase.google.com/docs/web/setup).
-
-Otras:
-
-* [Modulos: Export](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/export)
-* [Modulos: Import](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/import)
-* [Diseño web, responsive design y la importancia del mobile first - Media Click](https://www.mediaclick.es/blog/diseno-web-responsive-design-y-la-importancia-del-mobile-first/)
-* [Mobile First: el enfoque actual del diseño web móvil - 1and1](https://www.1and1.es/digitalguide/paginas-web/diseno-web/mobile-first-la-nueva-tendencia-del-diseno-web/)
-* [Mobile First - desarrolloweb.com](https://desarrolloweb.com/articulos/mobile-first-responsive.html)
-* [Mobile First Is NOT Mobile Only - Nielsen Norman Group](https://www.nngroup.com/articles/mobile-first-not-mobile-only/)
+- [Dulce Maria Ramirez](https://github.com/Dulceramr)
+- [Alba Giraldo](https://co.linkedin.com/in/alba-giraldo-6086a046)
+- [María Fernanda Orostegui](https://co.linkedin.com/in/mariaorostegui-webdev)
