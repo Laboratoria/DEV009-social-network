@@ -1,6 +1,4 @@
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-
-
+import { getAuth, signOut } from 'firebase/auth';
 
 function timeline(navigateTo) {
   const section = document.createElement('section');
@@ -17,9 +15,9 @@ function timeline(navigateTo) {
     navigateTo('/newPost');
   });
 
-  const auth= getAuth();
+  const auth = getAuth();
   const buttonLogOut = document.createElement('img');
-  buttonLogOut.src='./images/logOut.png';
+  buttonLogOut.src = './images/logOut.png';
   buttonLogOut.classList.add('buttonLogOut');
   buttonLogOut.addEventListener('click', () => {
     signOut(auth);
@@ -29,22 +27,5 @@ function timeline(navigateTo) {
 
   return section;
 }
-
-
-// const auth = getAuth()
-// onAuthStateChanged(auth, (user) => {
-//   console.log('user: ' + user)
-//   if (user) {
-//     // User is signed in, see docs for a list of available properties
-//     // https://firebase.google.com/docs/reference/js/auth.user
-    
-//     console.log("YES")
-//     // ...
-//   } else {
-//     // User is signed out
-//     // ...
-//     console.log("NO")
-//   }
-// });
 
 export default timeline;
