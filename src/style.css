@@ -946,8 +946,9 @@ body {
     grid-template-columns: repeat(2, auto);
     grid-template-rows: repeat(3, auto);
     padding-bottom: 50px;
-    background-image: url('img/background.png');
-    background-size:cover;
+    background-image: url('img/prueba.png');
+    background-size: contain;
+    background-position-x: 10vw;
     min-height: 100vh;
   }
 
@@ -1109,8 +1110,9 @@ body {
     display: grid;
     grid-template-columns: repeat(2, auto);
     grid-template-rows: repeat(2, auto);
-    background-image: url('img/background-timeline.png');
-    background-size: cover;
+    background-image: url('img/prueba.png');
+    background-size: contain;
+    background-position-x: 10vw;
     margin-top: 0px;
     width: 100vw;
     padding-bottom: 30px;
