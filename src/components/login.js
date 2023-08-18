@@ -1,5 +1,4 @@
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { signWithGoogle, signIn, startSession } from '../lib/credentials.js';
+import { signIn, startSession } from '../lib/credentials.js';
 
 function login(navigateTo) {
   const sectionP = document.createElement('section');
@@ -44,16 +43,13 @@ function login(navigateTo) {
     startSession(inputEmail.value, inputPassword.value);
   });
 
-  // const buttonSiginGoogle = document.createElement('button');
-  // buttonSiginGoogle.textContent = 'Ingresar con Google';
-  // buttonSiginGoogle.classList.add('buttonSiginGoogle');
-  // buttonSiginGoogle.addEventListener('click', () => {
-  //   signIn();
-  // });
-
-  const buttonSiginGoogle = document.createElement('img');
-  buttonSiginGoogle.src = './images/iconGoogle.png';
+  const buttonSiginGoogle = document.createElement('button');
+  buttonSiginGoogle.textContent = 'Ingresar con Google';
   buttonSiginGoogle.classList.add('buttonSiginGoogle');
+  const iconGoogle = document.createElement('img');
+  iconGoogle.src = './images/iconoGoogle.png';
+  iconGoogle.classList.add('iconGoogle');
+  buttonSiginGoogle.appendChild(iconGoogle);
   buttonSiginGoogle.addEventListener('click', () => {
     signIn();
   });
@@ -82,21 +78,5 @@ function login(navigateTo) {
 
   return (sectionP);
 }
-
-// const auth = getAuth()
-// onAuthStateChanged(auth, (user) => {
-//   console.log('user: ' + user);
-//   if (user) {
-//     // User is signed in, see docs for a list of available properties
-//     // https://firebase.google.com/docs/reference/js/auth.user
-//     navigateTo('/timeline');
-//     console.log("YES");
-//     // ...
-//   } else {
-//     // User is signed out
-//     // ...
-//     console.log("NO");
-//   }
-// });
 
 export default login;
