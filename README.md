@@ -74,6 +74,7 @@ En cuanto al diseño de la página, lo primero después de definir el tema a tra
 <img src="./src/imgReadme/bocetoMovil.png" alt="prototipo de baja fidelidad" width="600px" />
 
 ### Prototipo de alta fidelidad en Figma
+<img src="./src/imgReadme/protAlta1.png" alt="Primer prototipo de alta fidelidad" width="600px" />
 
 ### Testeos de usabilidad a tráves de _Googleform_
 
@@ -81,6 +82,8 @@ Se solicito feedback a traves de un formulario y asi obtener opiniones y sugeren
 
 
 
+### Prototipo de alta fidelidad después del feedback 
+<img src="./src/imgReadme/protAlta2.png" alt="Prototipo de alta fidelidad post iteración" width="600px" />
 
 ## 6. Estructura de archivos
 ```
@@ -114,6 +117,36 @@ Se solicito feedback a traves de un formulario y asi obtener opiniones y sugeren
 ```
 ## Detalle de archivos 
 
+**main.js**:En este archivo estan configuradas las rutas y el comportamiento de la navegación en la aplicación, así como manejo del estado de autenticación de Firebase. 
+**index.html**:Contiene la estructura básica de la página web.
+**README.md**:
+**package.json**:
+**explaindev.json**:
+**vite.config.js**:
+**src**:
+
+**lib**:
+**firebaseConfig.js**: Contiene _"firebaseConfig"_ el cual es un objeto de configuración de Firebase. Este objeto contiene los valores necesarios para conectar la aplicación web con los servicios de Firebase. 
+**initializerFirebase.js**: Es donde  se inicializa Firebase y se exportan varias funciones y objetos relacionados con la autenticación y la base de datos. 
+**credentials.js**:esta enfocado en la autenticación y manejo de usuarios de la aplicación.
+**localStore.js**:
+
+**components**: 
+**registrer.js**: Este componente crea y configura la interfaz de usuario para la página de registro.
+**login.js**: Este componente crea y configura la interfaz de usuario para la página de inicio de sesión.
+**timeline.js**: Este componente crea y configura la interfaz de usuario para el muro de la aplicación.
+**error.js**: Este componente crea y configura la interfaz de usuario para mostrar un mensaje de error cuando se accede a una página que no se encuentra (error 404).
+**newPost.js**:Este componente crea y configura la interfaz de usuario para permitir a los usuarios escribir y publicar nuevas publicaciones en el muro de la aplicación
+
+**images**: Contiene las imágenes utilizadas en la página.
+**imagReadme**: Contiene todas las imágenes de este readme.
+
+**styles**:Esta carpeta, contiene los estilos CSS del sitio web, aplicados para darle una apariencia visual atractiva
+**registrer.css**:
+**login.css**:
+**timeline.css**:
+
+**index.spec.js**:
 
 ## 7. Pruebas unitarias
 
