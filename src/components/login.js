@@ -20,8 +20,8 @@ function login(navigateTo) {
   const description = document.createElement('h2');
   description.textContent = '"Descubre cómo criar sin morir en el intento, donde lo caótico se convierte en una aventura compartida en esta red social."';
   description.classList.add('description');
-​
-​
+
+
   const section = document.createElement('section');
   section.classList.add('loginSection');
 ​
@@ -84,9 +84,6 @@ function login(navigateTo) {
     buttonCreateAccount,
   );
   sectionP.append(logo, logoInWords, description, section);
-​
-  
-​
   return (sectionP);
 }
 ​

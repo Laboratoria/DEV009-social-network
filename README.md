@@ -21,7 +21,7 @@ Para nuestro proyecto  **Guide Ma+Pa**, deberemos tener en cuenta las necesidade
 ## 3. Consideraciones generales
 * Este proyecto se debe trabajar en equipos de tres.
 * El rango de tiempo estimado para completar el proyecto es de 4 a 5 Sprints.
-* La lógica del proyecto debe estar implementada completamente en JavaScript (ES6+), HTML y CSS. (Sin hacer uso de librerias).
+* La lógica del proyecto debe estar implementada completamente en JavaScript (ES6+), HTML y CSS 😃. (Sin hacer uso de librerias).
 
 ## 4. Tecnologías Utilizadas
 
@@ -51,15 +51,16 @@ Para nuestro proyecto  **Guide Ma+Pa**, deberemos tener en cuenta las necesidade
 
 
 ## 5. Flujo de trabajo
-Para establecer un flujo de trabajo eficiente, comenzamos organizando nuestro espacio en **Github Project**. Segmentamos todas las tareas requeridas en el proyecto, los objetivos de aprendizaje, las historias de usuario y los prototipos de baja y alta fidelidad. Progresivamente, profundizamos en cada uno de ellos, dividiéndolos en categorías como _"Backlog"_, _"Sprint Backlog"_ , _"In progress"_, _"In review"_ y _"Ready"_. Este enfoque nos permitió tener una visión clara de las tareas pendientes y su progreso, lo que contribuyó a un desarrollo efectivo del proyecto.
+Para establecer un flujo de trabajo eficiente, comenzamos organizando nuestro espacio en **Github Project**. Segmentamos todas las tareas requeridas en el proyecto, los objetivos de aprendizaje, las historias de usuario y los prototipos de baja y alta fidelidad. Progresivamente, profundizamos en cada uno de ellos, dividiéndolos en categorías como "Backlog", "Sprint Backlog" , "In progress", "In review" y "Ready". Este enfoque nos permitió tener una visión clara de las tareas pendientes y su progreso, lo que contribuyó a un desarrollo efectivo del proyecto.
 ## Definición del producto
 
-Criar hijos es una de las experiencias más gratificantes y significantes de la vida de cualquier persona, sin embargo, es una tarea desafiante que requiere dedicación, paciencia y esfuerzo, lo cual es _¡agotador!_. En _Guide Ma+Pa_, creemos firmemente que la crianza puede ser una aventura enriquecedora y positiva para padres y madres _(mapadres)_ incluso para quienes aún no lo son. Nuestra plataforma ofrece un espacio seguro en donde puedes compartir recursos, consejos y apoyo para fomentar la colaboración en la crianza. Desde el anhelado embarazo hasta la desafiante adolescencia, queremos formar una comunidad confiable que brinde una experiencia gratificante y enriquecedora en este viaje maravilloso de criar.
+Criar hijos es una de las experiencias más gratificantes y significantes de la vida de cualquier persona, sin embargo, es una tarea desafiante que requiere dedicación, paciencia y esfuerzo, lo cual es ¡agotador!. En Guide Ma+Pa, creemos firmemente que la crianza puede ser una aventura enriquecedora y positiva para padres y madres (mapadres) incluso para quienes aún no lo son. Nuestra plataforma ofrece un espacio seguro en donde puedes compartir recursos, consejos y apoyo para fomentar la colaboración en la crianza. Desde el anhelado embarazo hasta la desafiante adolescencia, queremos formar una comunidad confiable que brinde una experiencia gratificante y enriquecedora en este viaje maravilloso de criar.
 
-_¡Únase a Guide Ma+Pa y descubra la alegría de criar juntos!_
+¡Únase a Guide Ma+Pa y descubra la alegría de criar juntos!
+
+## Historias de usuario
 
 ### Historia de usuario 1
-<img src="./src/imgReadme/hu1.png" alt="prototipo de baja fidelidad" width="800px" />
 
 ### Historia de usuario 2
 
@@ -77,7 +78,9 @@ En cuanto al diseño de la página, lo primero después de definir el tema a tra
 
 ### Testeos de usabilidad a tráves de _Googleform_
 
-Se solicito feedback a tráves de un [formulario](https://forms.gle/cngory53PhV6qmoC8) y asi obtener opiniones y sugerencias para realizar mejoras iterativas de nuestro proyecto. Tras las diversidad de [respuestas](https://docs.google.com/forms/d/1ujGxGMyHTl73f7lHnqRUpeoa2yCs1evfnm0Fmat8PgY/edit#responses) optamos por los siguientes cambios.
+Se solicito feedback a traves de un formulario y asi obtener opiniones y sugerencias para realizar mejoras iterativas de nuestro proyecto. Tras las diversidad de respuestas optamos por los siguientes cambios.
+
+
 
 ### Prototipo de alta fidelidad después del feedback 
 <img src="./src/imgReadme/protAlta2.png" alt="Prototipo de alta fidelidad post iteración" width="600px" />
@@ -146,7 +149,6 @@ Se solicito feedback a tráves de un [formulario](https://forms.gle/cngory53PhV6
 **index.spec.js**:
 
 ## 7. Pruebas unitarias
-Estos test contribuyen al mantenimiento y la calidad del código, permiten detectar rápidamente problemas que puedan surgir tras cambios en el código.
 
 ## 8. Interfaz desplegada
 Versión móvil
