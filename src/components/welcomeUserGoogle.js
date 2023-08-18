@@ -1,5 +1,6 @@
 function welcomeGoogle(navigateTo) {
   const section = document.createElement('section');
+  section.classList.add('welcome-component');
   section.innerHTML = `
     <form class="welcome-view">
       <header class="logo">

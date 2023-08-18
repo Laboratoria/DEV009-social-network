@@ -2,6 +2,7 @@ import { onAuthStateChanged, auth } from '../firebase/initializeFirebase';
 
 function welcome(navigateTo) {
   const section = document.createElement('section');
+  section.classList.add('welcome-component');
   section.innerHTML = `
     <form class="welcome-view">
       <header class="logo">
@@ -18,10 +19,6 @@ function welcome(navigateTo) {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       nameUser.textContent = user.displayName;
-    // ...
-    } else {
-    // User is signed out
-    // ...
     }
   });
   const formWelcome = section.querySelector('.welcome-view');
