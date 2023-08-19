@@ -95,12 +95,33 @@ export const muro = (navigateTo) => {
         const editButton = document.createElement('button');
         editButton.className = 'editButton';
         editButton.textContent = 'Editar 🧁';
-        editButton.addEventListener('click', async () => {
-          const newContent = prompt('Editar Contenido', contentElement.textContent);
-          if (newContent !== null && newContent.trim() !== '') {
-            await updatePost(post.id, newContent);
-            updatePostsList();
-          }
+        editButton.addEventListener('click', () => {
+          const originalContent = contentElement.textContent;
+
+          // Crear un textarea con el contenido actual
+          const textarea = document.createElement('textarea');
+          textarea.value = originalContent;
+
+          const saveButton = document.createElement('button');
+          saveButton.textContent = 'Guardar';
+
+          const cancelButton = document.createElement('button');
+          cancelButton.textContent = 'Cancelar';
+
+          contentElement.innerHTML = '';
+          contentElement.append(textarea, saveButton, cancelButton);
+
+          saveButton.addEventListener('click', async () => {
+            const newContent = textarea.value.trim();
+            if (newContent !== '') {
+              await updatePost(post.id, newContent);
+              await updatePostsList();
+            }
+          });
+
+          cancelButton.addEventListener('click', () => {
+            contentElement.textContent = originalContent;
+          });
         });
 
         const deleteButton = document.createElement('button');
