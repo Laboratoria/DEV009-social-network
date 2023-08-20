@@ -27,6 +27,7 @@ export const login = (navigateTo) => {
   const buttonLog = document.createElement('button');
   title.textContent = 'Inicio de sesion';
   buttonLog.textContent = 'Iniciar sesion';
+  buttonLog.classList.add('login-button');
   buttonLog.addEventListener('click', () => {
     const email = inputEmail.value;
     const password = inputPass.value;

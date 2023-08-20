@@ -1,3 +1,6 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-console */
 /* eslint-disable max-len */
 import { logOut, auth } from '../lib/firebaseAuth.js';
 import {
@@ -35,6 +38,7 @@ export const muro = (navigateTo) => {
             areaText.value = '';
             // eslint-disable-next-line no-use-before-define
             // Llamada a la función aquí después de agregar la publicación
+            // eslint-disable-next-line no-use-before-define
             await updatePostsList();
           } else {
             console.log('Error al agregar la publicación');

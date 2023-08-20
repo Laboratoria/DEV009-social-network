@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {
   getFirestore,
   collection, addDoc, getDocs, getDoc, doc, updateDoc, deleteDoc, arrayRemove, arrayUnion,
