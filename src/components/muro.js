@@ -6,7 +6,6 @@ import {
   updatePost,
   updateLikePost,
   deletePost,
-  getDataAuthor,
 } from '../lib/firebaseStore.js';
 
 export const muro = (navigateTo) => {

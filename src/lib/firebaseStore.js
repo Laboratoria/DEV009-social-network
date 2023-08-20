@@ -1,6 +1,6 @@
 import {
-  getFirestore, 
-  collection, addDoc, getDocs, getDoc, doc, updateDoc, deleteDoc, arrayRemove, arrayUnion
+  getFirestore,
+  collection, addDoc, getDocs, getDoc, doc, updateDoc, deleteDoc, arrayRemove, arrayUnion,
 } from 'firebase/firestore';
 import { db, auth } from './firebaseAuth';
 
@@ -23,17 +23,16 @@ export const addPost = async (userId, content) => {
 };
 
 export async function updateLikePost(userId) {
-  const postRef = doc(db, "posts", userId);
+  const postRef = doc(db, 'posts', userId);
   const postDoc = await getDoc(postRef);
   const data = postDoc.data();
-console.log(data);
+  console.log(data);
   if ((data.likedBy).includes(auth.currentUser.uid)) {
     await updateDoc(postRef, {
       likedBy: arrayRemove(auth.currentUser.uid),
       likeCounter: data.likeCounter - 1,
     });
-  }
-  else{
+  } else {
     await updateDoc(postRef, {
       likedBy: arrayUnion(auth.currentUser.uid),
       likeCounter: data.likeCounter + 1,
@@ -43,7 +42,7 @@ console.log(data);
 
 export const getPosts = async () => {
   try {
-    const querySnapshot = await getDocs(collection(db, "posts"));
+    const querySnapshot = await getDocs(collection(db, 'posts'));
     const posts = querySnapshot.docs.map((document) => {
       const data = document.data();
 
@@ -55,7 +54,7 @@ export const getPosts = async () => {
 
     return posts;
   } catch (error) {
-    console.error("Error getting posts: ", error);
+    console.error('Error getting posts: ', error);
     throw error;
   }
 };

@@ -1,4 +1,3 @@
-// Import the func tions you need from the SDKs you need
 import {
   getAuth,
   GoogleAuthProvider,
