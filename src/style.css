@@ -33,10 +33,11 @@ img.avatar {
 section {
   max-width: 300px;
   margin: auto;
-  padding: 20px;
+  padding-top: 200px;
   background-color: #641B42;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 
 input {
@@ -102,17 +103,27 @@ button {
   padding-top: 12px;
 }
 
-.postRecipe,h3 {
-  text-align: center;
-  color: black;
- }
  .postRecipe{
   background-color: #FAB838;
   border-bottom: #393939;
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: start;
  }
- .postRecipe,p{
-  color: black;
+
+ .footer-post{
+  display: flex;
+ }
+
+ .name{
+  padding-top: 5px;
+ }
+ h5{
+  align-self: flex-end;
  }
 .logout{
   color: white;

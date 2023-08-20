@@ -1,5 +1,6 @@
-import { logoutUser } from '../lib';
-import { addRecipe, fetchRecipe, querySnapshot } from '../lib/dataBase';
+import { logoutUser } from '../lib/index.js';
+import { addRecipe, querySnapshot, deletePost, editTextPost } from '../lib/dataBase';
+import { documentId } from '@firebase/firestore';
 
 function feed(navigateTo) {
   const section = document.createElement('section');
@@ -12,11 +13,12 @@ function feed(navigateTo) {
   const logoutButtom = document.createElement('button');
   const MessageOk = document.createElement('p');
   const MessageError = document.createElement('p');
-  const recipe = document.createElement ('textarea');
-  const formRecipe = document.createElement ('form');
+  const recipe = document.createElement('textarea');
+  const formRecipe = document.createElement('form');
   const nameSteps = document.createElement('input');
   const add = document.createElement('button');
   const showPostFeed = document.createElement('div');
+
 
   logo.src = './imagenes/image.png';
   write.textContent = 'Añade una Receta';
@@ -34,78 +36,117 @@ function feed(navigateTo) {
   MessageOk.style.color = 'green';
   MessageError.style.color = 'grey';
 
+  function showAllRecipes(allRecipes) {
+    showPostFeed.innerHTML = '';
+    allRecipes.forEach((recipeContent) => {
+      const postRecipe = `
+        <div class="postRecipe" id="post-${recipeContent.id}">
+          <p class="name">Receta: ${recipeContent.name}</p>
+          <p>Pasos:</p>
+          <textarea  type="text" id="edit-${recipeContent.id}" class="steps" disabled>${recipeContent.steps}</textarea>
+          <h5 class="user">By: ${recipeContent.user}</h5>
+          <div class="footer-post">
+          <button id="like-${recipeContent.id}">👍</button>
+          <button class="edit" id="b-edit-${recipeContent.id}">🖋️</button>
+          <button class="delete" id="delete-${recipeContent.id}"  >🗑️</button>
+          </div>
+          
+        </div>`;
+      showPostFeed.innerHTML += postRecipe;
+    });
+  }
 
   logoutButtom.addEventListener('click', () => {
     logoutUser();
     navigateTo('/');
   });
-  
+
   write.addEventListener('click', () => {
     formRecipe.style.display = 'block'
     write.style.display = 'none';
-
     recipe.value = '';
     nameSteps.value = '';
   })
 
-  const allRecipes = [];
 
-  querySnapshot.forEach((doc) => {
-    const recipeData = doc.data();
-    console.log(doc.id);
-    allRecipes.push({...recipeData, id : doc.id});
+
+
+  add.addEventListener('click', async (event) => {
+    event.preventDefault();
+    const recipeData = recipe.value;
+    const nameRecipe = nameSteps.value;
+
+    if (!nameRecipe || !recipeData) {
+      MessageError.textContent = 'Por favor, completa ambos campos.';
+      return;
+    } else {
+      const newRecipeId = await addRecipe(nameRecipe, recipeData);
+      if (newRecipeId) {
+        querySnapshot()
+          .then((doc) => {
+            console.log('docu', doc)
+            showAllRecipes(doc);
+          })
+          .catch((error) => {
+            console.error('Error al obtener posts', error);
+          });
+
+      } else {
+        MessageError.textContent = 'Error al agregar la receta.';
+        console.log('Error al agregar la receta.');
+      }
+    }
   });
-console.log(allRecipes)
 
-  add.addEventListener('click', async (event) =>{
-  event.preventDefault();
-  const recipeData = recipe.value;
-  const nameRecipe = nameSteps.value;
+  querySnapshot()
+    .then((doc) => {
+      console.log('docu', doc)
+      showAllRecipes(doc);
+    })
+    .catch((error) => {
+      console.error('Error al obtener posts', error);
+    });
 
-  if (!nameRecipe || !recipeData){
-    MessageError.textContent = 'Por favor, completa ambos campos.';
-    return;
-  } else{
-    const newRecipeId = await addRecipe(nameRecipe, recipeData);
-    if (newRecipeId){
-      const recipeContent = await fetchRecipe(newRecipeId);
-      if (recipeContent){
-        console.log('Receta obtenida:', recipeContent);
+  function postEdit() {
+    addEventListener.editPost('click', () => {
+      console.log("editando post ")
+    })
 
-        showAllRecipes();
-        
-        formRecipe.style.display = 'none';
-        write.style.display = 'block';
-
-    } else {
-      MessageError.textContent = 'Error al obtener la receta.';
-      MessageOk = '';
-    }
-    } else {
-      MessageError.textContent = 'Error al agregar la receta.';
-      console.log('Error al agregar la receta.');
-    }
   }
-});
 
-function showAllRecipes() {
-  showPostFeed.innerHTML = '';
-  allRecipes.forEach((recipeContent) => {
-    const postRecipe = `
-      <button class="postRecipe">
-        <h3 class="user">Usuario: ${recipeContent.user}</h3>
-        <p class="name">Receta: ${recipeContent.name}</p>
-        <p class="steps">Pasos: ${recipeContent.steps}</p>
-        <button id="delete" value="${recipeContent.id}">Eliminar</button>
-      </button>`;
-    showPostFeed.innerHTML += postRecipe;
-  });
-}
+  section.addEventListener('click', async (event) => {
+    const key = (event.target.id);
+    console.log('key ', key);
+    if (key.includes('delete-')) {
+      deletePost(key.replace('delete-', ''))
+        .then((data) => {
+          querySnapshot()
+            .then((doc) => {
+              console.log('docu', doc)
+              showAllRecipes(doc);
+            })
+            .catch((error) => {
+              console.error('Error al obtener posts', error);
+            });
+        })
+        .catch((error) => {
+          console.log('error delete', error);
+        })
+    }else if(key.includes('b-edit-')){
+      const uidPost = key.replace('b-edit-', '');
+      const postText = document.getElementById(`edit-${uidPost}`);
+      postText.removeAttribute('disabled');
+      postText.focus();
+      postText.addEventListener('keydown', async (evnt) => {
+        if (evnt.keyCode === 13) {
+          console.log('postText.value',postText.value)
+          await editTextPost(uidPost, postText.value);
+          postText.setAttribute('disabled', '');
+        }
+      });
+    }
+  })
 
-const deleteButton = document.getElementById('delete');
-
-
-showAllRecipes(); 
 
   section.append(logo, showPostFeed, formRecipe, write, nav, logoutButtom);
 
