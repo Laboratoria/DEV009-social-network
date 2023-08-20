@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { resetPasswordEmail } from '../lib/firebaseAuth.js';
 
 export const resetPassword = (navigateTo) => {

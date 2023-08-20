@@ -41,6 +41,7 @@ export const home = (navigateTo) => {
       if (valid === true) {
         navigateTo('/muro');
       } else {
+        // eslint-disable-next-line no-alert
         alert('Error al iniciar sesión con Google');
       }
     };
