@@ -7,7 +7,9 @@ export const login = (navigateTo) => {
   const title = document.createElement('h2');
   title.classList.add('inicio-sesion');
   const inputEmail = document.createElement('input');
+  inputEmail.classList.add('email');
   const inputPass = document.createElement('input');
+  inputPass.classList.add('pass');
   inputPass.type = 'password';
 
   const logInInvalidPassMessage = document.createElement('span');
