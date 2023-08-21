@@ -30,7 +30,7 @@ function registro(navigateTo) {
 
   const buttonRegistro = document.createElement('input');
   buttonRegistro.setAttribute('type', 'submit');
-  buttonRegistro.className = 'button buttonSignInRegistro';
+  buttonRegistro.className = 'button buttonEnviarRegistro';
   buttonRegistro.textContent = 'Registro';
 
   const buttonReturn = document.createElement('button');
@@ -67,7 +67,8 @@ function registro(navigateTo) {
       nameValue,
     )
       .then(() => {
-        navigateTo('/principal');
+        alert("Correo de verificación enviado")
+        navigateTo('/login');
       })
       .catch((error) => {
         const errorCode = error.code;
