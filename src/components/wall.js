@@ -29,6 +29,8 @@ function wall(navigateTo) {
   profilePic.width = 50;
   exit.src = './icons/exit.svg';
 
+  exit.classList.add('exit');
+
   createPost.addEventListener('click', () => {
     const windowPost = document.createElement('div');
     const titleCreate = document.createElement('h2');
@@ -39,10 +41,6 @@ function wall(navigateTo) {
     txtPost.placeholder = 'Cuéntanos la experiencia de tu último viaje...';
     btnPublicar.textContent = 'Publicar';
 
-    btnPublicar.addEventListener('click', () => {
-      navigateTo('/wall');
-    });
-
     windowPost.append(titleCreate, txtPost, btnPublicar);
   });
 
@@ -52,8 +50,20 @@ function wall(navigateTo) {
   post.append(userName, postContent, like, countLikes);
   header.appendChild(logo);
 
-  exit.addEventListener('click', () => {
-    exitUser(navigateTo);
+  home.addEventListener('click', () => {
+    navigateTo('/wall');
+  });
+  profilePic.addEventListener('click', () => {
+    navigateTo('/profile');
+  });
+  exit.addEventListener('click', (e) => {
+    e.preventDefault();
+    const alertlogOut = (boolean) => {
+      if (boolean) {
+        navigateTo('/');
+      }
+    };
+    exitUser(alertlogOut);
   });
   return mainContainer;
 }

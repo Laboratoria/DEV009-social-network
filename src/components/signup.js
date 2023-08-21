@@ -58,6 +58,7 @@ function signup(navigateTo) {
     };
     registerUser(emailUser, passUser, alertRegister);
   });
+
   toLogin.addEventListener('click', () => {
     navigateTo('/');
   });
