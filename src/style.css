@@ -30,7 +30,6 @@ h2{
 }
 
 .bienvenida p {
-    background-color: #fbc0cc75;
     max-width: 300px;
     border: none;
     border-radius: 5px;
@@ -247,10 +246,57 @@ h6 {
     cursor: pointer;
 }
 
-section{
+.welcome-user-email{
     margin-bottom: 1rem;
     margin-left: 1.5rem;
     text-align: left;
     color: #623058;
 }
 
+@media (min-width:1034px) {
+
+    .bienvenida {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: 100vh;
+    }
+
+    .bienvenida p {
+        max-width: 300px;
+        border: none;
+        border-radius: 5px;
+        padding: 1rem;
+        margin: 3rem auto;
+        font-family:'Montserrat Alternates', sans-serif;
+        color: purple;
+    }
+
+    .botones-home {
+        padding: 30px;
+        background-color:  rgb(228, 178, 215);
+        justify-content: center;
+        border-radius: 15px;
+        width: 300px;
+        height: 300px;
+        box-shadow: -4px 2px 4px 0px rgba(202, 102, 176, 0.548);
+        margin-left: 40px;
+    }
+
+    .bienvenida-container {
+        margin-right: 40px;
+    }
+
+    .left-grid {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .right-grid {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+ 
+}

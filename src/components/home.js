@@ -3,12 +3,18 @@ import { logInWithGoogle } from '../lib/firebaseAuth.js';
 export const home = (navigateTo) => {
   const section = document.createElement('section');
   section.classList.add('bienvenida');
+  const leftContainer = document.createElement('div');
+  leftContainer.classList.add('left-grid');
+  const bienvenidaContainer = document.createElement('div');
+  bienvenidaContainer.classList.add('bienvenida-container');
   const logo = document.createElement('img');
   logo.src = './recursos/LogoSinLetras.png';
   const title = document.createElement('h2');
   const slogan = document.createElement('h4');
   slogan.className = 'slogan';
   const description = document.createElement('p');
+  const rigthContainer = document.createElement('div');
+  rigthContainer.className = 'right-grid';
   const buttonContainer = document.createElement('div');
   buttonContainer.classList.add('botones-home');
 
@@ -48,8 +54,11 @@ export const home = (navigateTo) => {
     logInWithGoogle(googleAlert);
   });
 
+  leftContainer.appendChild(bienvenidaContainer);
+  bienvenidaContainer.append(logo, title, slogan, description);
+  rigthContainer.appendChild(buttonContainer);
   googleButton.append(googleIcon);
   buttonContainer.append(googleButton, logInButton, registerButton);
-  section.append(logo, title, slogan, description, buttonContainer);
+  section.append(leftContainer, rigthContainer);
   return section;
 };
