@@ -1,5 +1,5 @@
 
-import { getFirestore, collection, addDoc,  doc, getDoc, getDocs } from "firebase/firestore";
+import { getFirestore, collection, addDoc,  doc, getDoc, getDocs, deleteDoc ,updateDoc } from "firebase/firestore";
 import { app } from './firebase.js';
 import { auth } from "./index.js"; 
 
@@ -10,9 +10,9 @@ export async function addRecipe(name, steps) {
     const docRef = await addDoc(collection(db, "recetas"), {
       name: name,
       steps: steps,
-      user: auth.currentUser.email
+      user: auth.currentUser.email,
+      likes:0
     });
-    console.log("Recipe added with ID: ", docRef.id);
     return docRef.id;
   } catch (error) {
     console.error("Error adding recipe: ", error);
@@ -27,7 +27,6 @@ export async function  fetchRecipe(recipeId){
 
   if (docSnap.exists()) {
     const recipeData = docSnap.data();
-    console.log("Document data:", recipeData);
     return recipeData;
   } else {
     // docSnap.data() will be undefined in this case
@@ -40,9 +39,29 @@ export async function  fetchRecipe(recipeId){
 }
 }
 
-export const querySnapshot = await getDocs(collection(db, "recetas"));
-querySnapshot.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
-  console.log(doc.id, " => ", doc.data());
-});
+export const querySnapshot = async ()=>{
+  let result = [];
+  const querySnapshot = await getDocs(collection(db, "recetas"));
+  querySnapshot.forEach((doc) => {
+    result.push({id:doc.id, ...doc.data()});
+  });
+  return result;
+}
 
+export const deletePost = async (id)=>{
+ const result = await deleteDoc(doc(db, "recetas", id));
+ console.log('delteeeeee',id, result);
+}
+
+export const editTextPost = async (id,data) => {
+  await updateDoc(doc(db, "recetas", id), {steps:data});
+};
+
+export const likePost = async (id,cantLikes) => {
+  await updateDoc(doc(db, "recetas", id), {likes: parseInt(cantLikes)+1});
+};
+
+
+/* const unsubscribe = onSnapshot(collection(db, "cities"), (data) => {
+ console.log('aca',)
+}); */

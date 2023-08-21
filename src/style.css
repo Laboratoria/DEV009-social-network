@@ -33,10 +33,11 @@ img.avatar {
 section {
   max-width: 300px;
   margin: auto;
-  padding: 20px;
+  padding-top: 200px;
   background-color: #641B42;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 
 input {
@@ -100,6 +101,36 @@ button {
   align-content: center;
   margin-right: 10px;
   padding-top: 12px;
+}
+
+ .postRecipe{
+  background-color: #FAB838;
+  border-bottom: #393939;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: start;
+ }
+
+ .footer-post{
+  display: flex;
+ }
+
+ .name{
+  padding-top: 5px;
+ }
+ h5{
+  align-self: flex-end;
+ }
+.logout{
+  color: white;
+  background-color: black;
+  align-items: center;
+  display: flex;
+  bottom: -20px;
 }
 
 /* Media query para pantallas más pequeñas, como teléfonos */
