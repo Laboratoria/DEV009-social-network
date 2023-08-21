@@ -1,4 +1,5 @@
 import { onAuthStateChanged, auth } from '../firebase/initializeFirebase';
+import logo from '../img/logo.png';
 
 function welcome(navigateTo) {
   const section = document.createElement('section');
@@ -6,7 +7,7 @@ function welcome(navigateTo) {
   section.innerHTML = `
     <form class="welcome-view">
       <header class="logo">
-        <img class="logo" src="./img/logo.png" alt="Logo">
+        <img class="logo" src=${logo} alt="Logo">
       </header>
       <h2>Welcome</h2>
       <p>We've sent you an email, please check your inbox</p>

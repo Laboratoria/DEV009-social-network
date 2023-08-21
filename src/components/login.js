@@ -1,4 +1,5 @@
 import { loginUser, authWithGoogle } from '../lib/index';
+import logo from '../img/logo.png';
 
 function login(navigateTo) {
   const section = document.createElement('section');
@@ -6,7 +7,7 @@ function login(navigateTo) {
   section.innerHTML = `
     <form class="login-view">
       <header class="logo-header logo">
-        <img class="logo-img logo" src="./img/logo.png">
+      <img class="logo-img logo" src=${logo}>
       </header>
       <h2>Welcome Back</h2>
       <p class="message-login">Login to your account</p>

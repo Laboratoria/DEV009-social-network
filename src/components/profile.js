@@ -1,5 +1,8 @@
 import { onAuthStateChanged, auth, serverTimestamp } from '../firebase/initializeFirebase';
 import { signOutUser, addPost, displayUserPosts } from '../lib/index.js';
+import logoProfile from '../img/logo-profile.png';
+import paw from '../img/paw-fill.png';
+import personCircle from '../img/person-circle.svg';
 
 function profile(navigateTo) {
   // Crear el elemento de la sección
@@ -9,7 +12,7 @@ function profile(navigateTo) {
   section.innerHTML = `
     <!-- Encabezado de la vista de perfil -->
     <header class="view-profile">
-      <img class="logo-profile" src="./img/logo-profile.png">
+      <img class="logo-profile" src=${logoProfile}>
       <button class="menu-button">
         <i class="fa-solid fa-bars" style="color: #675ABF;"></i>
       </button>
@@ -57,7 +60,7 @@ function profile(navigateTo) {
         <div class="new-post">
           <div class="container-picture-user-name">
             <div class="container-profile-picture-create">
-              <img src="./img/imagenGatoHumanoPrueba.jpeg" class="profile-picture-create-post">
+              <img src="" class="profile-picture-create-post">
               <p class="user-name-create-post"></p>
             </div>
           </div>
@@ -97,7 +100,7 @@ function profile(navigateTo) {
           </svg>
         </button>
         <button class="profile-nav">
-          <img src="./img/paw-fill.png" width="35"></img>
+          <img src=${paw} width="35"></img>
         </button>
       </nav>
     </footer>
@@ -166,7 +169,7 @@ function profile(navigateTo) {
       // Mostrar información de usuario autenticado
       const postsContainer = section.querySelector('.user-posts-container');
       await displayUserPosts(user, postsContainer);
-      const srcPhoto = user.photoURL || './img/person-circle.svg';
+      const srcPhoto = user.photoURL || `${personCircle}`;
       profileImage.src = srcPhoto;
       profileImg.innerHTML = `<img class="photo-URL" src="${srcPhoto}" />`;
 

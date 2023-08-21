@@ -127,6 +127,7 @@ body {
   margin: 10px;
   border-style: none;
   background-color: rgba(224, 241, 255, 0.4);
+  z-index: 999;
 }
 
 .input-email {

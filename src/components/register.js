@@ -1,4 +1,5 @@
 import { authWithGoogle, createAccountWithEmail } from '../lib/index';
+import logo from '../img/logo.png';
 
 function register(navigateTo) {
   const section = document.createElement('section');
@@ -6,7 +7,7 @@ function register(navigateTo) {
     <section>
       <form class="register-view">
         <header class="logo">
-          <img class="logo" src="./img/logo.png">
+          <img class="logo" src=${logo}>
         </header>
         <h2 >Create account</h2>
         <input class="input input-name" type="text" minLength="2" placeholder="Name">

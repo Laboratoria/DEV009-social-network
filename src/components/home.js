@@ -1,3 +1,7 @@
+import cat from '../img/cat.png';
+import dog from '../img/dog.png';
+import firstImage from '../img/img-first.png';
+
 function home(navigateTo) {
   const section = document.createElement('section');
   section.innerHTML = `
@@ -23,9 +27,9 @@ function home(navigateTo) {
   let currentIndex = 0;
 
   const backgrounds = [
-    'url(./img/cat.png)',
-    'url(./img/dog.png)',
-    'url(./img/img-first.png)',
+    `url(${cat})`,
+    `url(${dog})`,
+    `url(${firstImage})`,
   ];
 
   function changeBackground() {
