@@ -244,7 +244,7 @@ h2 {
     }
 
     section.containerSignup {
-        margin: 50px;
+        margin: 6.5vw;
         background: white;
         border-radius: 8px;
         display: grid;
@@ -319,7 +319,7 @@ h2 {
     }
     /* vista login */ 
     .sectionLogin{
-        margin: 50px;
+        margin: 6.5vw;
         background: white;
         border-radius: 8px;
         display: grid;
@@ -341,7 +341,7 @@ h2 {
 @media only screen and (min-width:320px) and (max-width:480px) {
 
     section.containerSignup {
-        margin: 50px;
+        margin: 6vh;
         background: white;
         border-radius: 8px;
         display: grid;
@@ -410,7 +410,7 @@ h2 {
     }
     /* vista login */
     .sectionLogin{
-        margin: 50px;
+        margin: 6vh;
         background: white;
         border-radius: 8px;
         display: grid;

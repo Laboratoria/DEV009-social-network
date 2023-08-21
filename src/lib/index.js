@@ -1,5 +1,6 @@
 // aqui exportaras las funciones que necesites
 
+import { async } from 'regenerator-runtime';
 import {
   createUserWithEmailAndPassword,
   auth,
@@ -45,7 +46,7 @@ export const registerWithGoogle = async (callback) => {
     // The email of the user's account used.
     const email = error.email;
     // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
+    //const credential = GoogleAuthProvider.credentialFromError(error);
     // ...
     callback(false);
   }
@@ -53,26 +54,24 @@ export const registerWithGoogle = async (callback) => {
 
 // ----                   login                   --- //
 export const loginUser = async (email, pass, callback) => {
-  await signInWithEmailAndPassword(auth, email, pass)
-    .then((userCredential) => {
-    // Signed in
-      const user = userCredential.user;
-      // ...
-      callback(true);
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      errorCode = alert('Usuario o contraseña incorrecta');
-      callback(false);
-    });
+  try {
+    await signInWithEmailAndPassword(auth, email, pass);
+    callback(true);
+  } catch (error) {
+    const errorCode = error.code;
+    errorCode = alert('Usuario o contraseña incorrecta');
+    callback(false);
+  }
 };
 
-export const exitUser = async (navigateTo) => {
-  await signOut(auth).then(() => {
-    navigateTo('/');
-    // Sign-out successful.
-  }).catch((error) => {
-    console.log('error');
-    // An error happened.
-  });
+// ---           logOut            --- //
+export const exitUser = async (callback) => {
+  try {
+    await signOut(auth);
+    // alert('Vuelve pronto!');
+    callback(true);
+  } catch (error) {
+    console.log(error);
+    callback(false);
+  }
 };

@@ -1,4 +1,6 @@
-function profile() {
+import { exitUser } from '../lib/index.js';
+
+function profile(navigateTo) {
   const mainConteiner = document.createElement('section');
   const section = document.createElement('section');
   const header = document.createElement('header');
@@ -29,6 +31,17 @@ function profile() {
   countLikes.textContent = '0';
   home.src = './icons/home.svg';
   exit.src = './icons/exit.svg';
+
+  home.addEventListener('click', () => {
+    navigateTo('/wall');
+  });
+  profilePic.addEventListener('click', () => {
+    navigateTo('/profile');
+  });
+
+  exit.addEventListener('click', () => {
+    exitUser(navigateTo);
+  });
 
   editPost.addEventListener('click', () => {
     // editar post
