@@ -28,13 +28,10 @@ function principal() {
   const divRecetasUsers = document.createElement('div');
   divRecetasUsers.className = 'divRecetasUsers';
 
-  const cerrar = document.createElement('img');
-  cerrar.src = cerrar.jpg;
-
   divHead.append(logoBon, divSloganUser);
   divSloganUser.append(sloganBon, nameUser);
   divReceta.append(recetaUser);
-  divPrincipal.append(divHead, divReceta, divRecetasUsers, cerrar);
+  divPrincipal.append(divHead, divReceta, divRecetasUsers);
   return divPrincipal;
 }
 

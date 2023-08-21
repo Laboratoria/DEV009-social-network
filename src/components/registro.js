@@ -7,7 +7,6 @@ function registro(navigateTo) {
 
   const logoBonBon = document.createElement('img');
   logoBonBon.src = logoBon;
-  logoBonBon.setAttribute('id', 'logo-registro-login');
 
   const formRegistro = document.createElement('form');
   formRegistro.className = 'formRegistro';
