@@ -87,10 +87,11 @@ function login(navigateTo) {
     const passwordValue = inputPass.value;
     loginWithEmail(emailValue, passwordValue)
       .then((user) => {
-        if (!user.emailVerified) {
-          throw new Error('Primero verifica tu correo electrónico');
+        if (user.emailVerified) {
+          navigateTo('/principal');
+        } else{
+          alert('Primero verifica tu correo electrónico');
         }
-        navigateTo('/principal');
       });
   });
 
