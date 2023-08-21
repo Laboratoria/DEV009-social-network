@@ -1,5 +1,5 @@
 import { logoutUser } from '../lib/index.js';
-import { addRecipe, querySnapshot, deletePost, editTextPost } from '../lib/dataBase';
+import { addRecipe, querySnapshot, deletePost, editTextPost, likePost } from '../lib/dataBase';
 import { documentId } from '@firebase/firestore';
 
 function feed(navigateTo) {
@@ -46,11 +46,11 @@ function feed(navigateTo) {
           <textarea  type="text" id="edit-${recipeContent.id}" class="steps" disabled>${recipeContent.steps}</textarea>
           <h5 class="user">By: ${recipeContent.user}</h5>
           <div class="footer-post">
-          <button id="like-${recipeContent.id}">👍</button>
+          <p>${recipeContent.likes}</p>
+          <button id="like-${recipeContent.id}-${recipeContent.likes}">👍</button>
           <button class="edit" id="b-edit-${recipeContent.id}">🖋️</button>
           <button class="delete" id="delete-${recipeContent.id}"  >🗑️</button>
           </div>
-          
         </div>`;
       showPostFeed.innerHTML += postRecipe;
     });
@@ -139,11 +139,27 @@ function feed(navigateTo) {
       postText.focus();
       postText.addEventListener('keydown', async (evnt) => {
         if (evnt.keyCode === 13) {
-          console.log('postText.value',postText.value)
           await editTextPost(uidPost, postText.value);
           postText.setAttribute('disabled', '');
         }
       });
+    }else if (key.includes('like-')){
+      const data = key.split('-');
+      console.log('147', data )
+      likePost(data[1], data[2] )
+      .then(() => {
+        querySnapshot()
+          .then((doc) => {
+            console.log('docu', doc)
+            showAllRecipes(doc);
+          })
+          .catch((error) => {
+            console.error('Error al obtener posts', error);
+          });
+      })
+      .catch((error) => {
+        console.log('error delete', error);
+      })
     }
   })
 

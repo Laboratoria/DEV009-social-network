@@ -10,7 +10,8 @@ export async function addRecipe(name, steps) {
     const docRef = await addDoc(collection(db, "recetas"), {
       name: name,
       steps: steps,
-      user: auth.currentUser.email
+      user: auth.currentUser.email,
+      likes:0
     });
     return docRef.id;
   } catch (error) {
@@ -53,8 +54,11 @@ export const deletePost = async (id)=>{
 }
 
 export const editTextPost = async (id,data) => {
-
   await updateDoc(doc(db, "recetas", id), {steps:data});
+};
+
+export const likePost = async (id,cantLikes) => {
+  await updateDoc(doc(db, "recetas", id), {likes: parseInt(cantLikes)+1});
 };
 
 
