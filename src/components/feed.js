@@ -1,5 +1,5 @@
 import { logoutUser } from '../lib/index.js';
-import { addRecipe, querySnapshot, deletePost, editTextPost, likePost } from '../lib/dataBase';
+import { addRecipe, querySnapshot, deletePost, editTextPost, likePost } from '../lib/DataBase.js';
 import { documentId } from '@firebase/firestore';
 
 function feed(navigateTo) {
