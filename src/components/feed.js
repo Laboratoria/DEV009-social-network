@@ -1,6 +1,5 @@
 import { logoutUser } from '../lib/index.js';
 import { addRecipe, querySnapshot, deletePost, editTextPost, likePost } from '../lib/dataBase';
-import { documentId } from '@firebase/firestore';
 
 function feed(navigateTo) {
   const section = document.createElement('section');
@@ -44,10 +43,10 @@ function feed(navigateTo) {
           <p class="name">Receta: ${recipeContent.name}</p>
           <p>Pasos:</p>
           <textarea  type="text" id="edit-${recipeContent.id}" class="steps" disabled>${recipeContent.steps}</textarea>
-          <h5 class="user">By: ${recipeContent.user}</h5>
+          <h5 class="user">By: ${recipeContent.user.split('@')[0]}</h5>
           <div class="footer-post">
           <p>${recipeContent.likes}</p>
-          <button id="like-${recipeContent.id}-${recipeContent.likes}">👍</button>
+          <button id="like-${recipeContent.id}-${recipeContent.likes}">⭐</button>
           <button class="edit" id="b-edit-${recipeContent.id}">🖋️</button>
           <button class="delete" id="delete-${recipeContent.id}"  >🗑️</button>
           </div>
@@ -145,7 +144,6 @@ function feed(navigateTo) {
       });
     }else if (key.includes('like-')){
       const data = key.split('-');
-      console.log('147', data )
       likePost(data[1], data[2] )
       .then(() => {
         querySnapshot()

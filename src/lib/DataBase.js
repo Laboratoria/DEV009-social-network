@@ -60,7 +60,7 @@ export const editTextPost = async (id,data) => {
 export const likePost = async (id,cantLikes) => {
   await updateDoc(doc(db, "recetas", id), {likes: parseInt(cantLikes)+1});
 };
-
+// en vez de hacer una suma, hacer una funcion que me guarde los ids, y solo se podra dar like 1 vez. 
 
 /* const unsubscribe = onSnapshot(collection(db, "cities"), (data) => {
  console.log('aca',)
