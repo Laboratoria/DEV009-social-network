@@ -6,10 +6,9 @@ function registro(navigateTo) {
   divRegister.className = 'divRegister';
 
   const logoBonBon = document.createElement('img');
-  logoBonBon.src=logoBon;
+  logoBonBon.src = logoBon;
   logoBonBon.setAttribute('id', 'logo-registro-login');
   
-
   const formRegistro = document.createElement('form');
   formRegistro.className = 'formRegistro';
   const inputName = document.createElement('input');
