@@ -48,7 +48,6 @@ function register(navigateTo) {
     }
   });
 
-
   buttonGoogle.addEventListener('click', async () => {
     try {
       await signInWithGoogle();
@@ -57,7 +56,7 @@ function register(navigateTo) {
       errorMessage.textContent = error.message;
     }
   });
-  
+
   section.append(logo, avatar, name, email, password, buttonRegister);
   section.append(buttonGoogle, errorMessage, successMessage);
 
