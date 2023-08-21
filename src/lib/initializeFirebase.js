@@ -8,6 +8,7 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   sendEmailVerification,
+  signOut,
 } from 'firebase/auth';
 import { firebaseConfig } from './firebaseConfig.js';
 
@@ -30,5 +31,6 @@ export {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   sendEmailVerification,
+  signOut,
 };
 export const saveUser = (user) => addDoc(collection(db, 'Users'), user);

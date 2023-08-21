@@ -11,8 +11,9 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   sendEmailVerification,
+  signOut,
 } from './initializeFirebase.js';
-// eslint-disable-next-line max-len
+
 export const registerWithEmail = (email, password, username) => {
   return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -31,7 +32,7 @@ export const signInWithGoogle = () => signInWithPopup(auth, provider)
     const user = result.user;
     return (token, user);
   });
-// eslint-disable-next-line max-len
+
 export const loginWithEmail = (email, password) => {
   return signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -39,3 +40,5 @@ export const loginWithEmail = (email, password) => {
       return (user);
     });
 };
+
+export const outSession = () => signOut(auth);
