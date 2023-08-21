@@ -1,4 +1,4 @@
-import { registerWithEmail, signInWithGoogle } from '../lib/index';
+import { registerWithEmail } from '../lib/index';
 import logoBon from '../imagenes/logoBon.png';
 
 function registro(navigateTo) {
@@ -7,8 +7,7 @@ function registro(navigateTo) {
 
   const logoBonBon = document.createElement('img');
   logoBonBon.src = logoBon;
-  logoBonBon.setAttribute('id', 'logo-registro-login');
-  
+
   const formRegistro = document.createElement('form');
   formRegistro.className = 'formRegistro';
   const inputName = document.createElement('input');
@@ -51,7 +50,6 @@ function registro(navigateTo) {
 
   showPassword.append(showPasswordCheckbox, showPasswordText);
 
-
   const buttonRegistro = document.createElement('input');
   buttonRegistro.setAttribute('type', 'submit');
   buttonRegistro.className = 'button buttonEnviarRegistro';
@@ -61,17 +59,10 @@ function registro(navigateTo) {
   buttonReturn.className = 'button buttonReturnRegistro';
   buttonReturn.textContent = 'Regresar';
 
-  const buttonGoogle = document.createElement('button');
-  buttonGoogle.className = 'button buttonGoogle';
-  const strong = document.createElement('strong');
-  strong.textContent = 'Google';
-  strong.className = 'textGoogle';
-  const imgGoogle = document.createElement('img');
-  imgGoogle.className = 'imgGoogle';
-
-  const textRegistrateCon = document.createElement('p');
-  textRegistrateCon.className = 'parrafo';
-  textRegistrateCon.textContent = 'O registrate con...';
+  const errorRegister = document.createElement('p');
+  errorRegister.className = 'parrafo';
+  errorRegister.style.display = 'none';
+  errorRegister.id = 'errorRegister';
 
   formRegistro.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -85,36 +76,30 @@ function registro(navigateTo) {
       nameValue,
     )
       .then(() => {
-        alert("Correo de verificación enviado")
+        alert('Correo de verificación enviado');
         navigateTo('/login');
       })
       .catch(() => {
-        modal.style.display = 'block';
-        modalMessage.textContent = 'Ya existe una cuenta para ese correo electrónico o el correo es inválido.';
+        errorRegister.style.display = 'block';
+        errorRegister.textContent = 'Ya existe una cuenta para ese correo electrónico o el correo es inválido.';
       });
-  }); 
-      
-    buttonReturn.addEventListener('click', () => {
+  });
+
+  buttonReturn.addEventListener('click', () => {
     navigateTo('/');
   });
 
-  
-  divRegister.append(logoBonBon,formRegistro);
-  formRegistro.append(inputName, inputEmail, inputPass, showPassword, buttonRegistro);
-  divRegister.appendChild(textRegistrateCon);
-  divRegister.appendChild(buttonGoogle);
-  buttonGoogle.append(imgGoogle, strong);
+  divRegister.append(logoBonBon, formRegistro);
+  formRegistro.append(
+    inputName,
+    inputEmail,
+    inputPass,
+    showPassword,
+    errorRegister,
+    buttonRegistro,
+  );
   divRegister.appendChild(buttonReturn);
 
-  buttonGoogle.addEventListener('click', () => {
-    signInWithGoogle()
-      .then(() => {
-        navigateTo('/principal');
-      })
-      .catch(() => {
-        navigateTo('/'); // si nos marca error nos manda al home
-      });
-  });
   return divRegister;
 }
 
