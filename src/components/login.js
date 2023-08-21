@@ -28,12 +28,35 @@ function login(navigateTo) {
   const buttonReturn = document.createElement('button');
   buttonReturn.className = 'button buttonReturnLogin';
   buttonReturn.textContent = 'Regresar';
+  const showPassword = document.createElement('div');
+  showPassword.className = 'show-password';
 
-  const errorMessageL = document.createElement('p');
+  const showPasswordText = document.createElement('label');
+  showPasswordText.className = 'show-password-text';
+  showPasswordText.setAttribute('for', 'password-checkbox');
+  showPasswordText.textContent = 'Mostrar contraseña';
+
+  const showPasswordCheckbox = document.createElement('input');
+  showPasswordCheckbox.className = 'show-password-checkbox';
+  showPasswordCheckbox.setAttribute('type', 'checkbox');
+  showPasswordCheckbox.setAttribute('name', 'password-checkbox');
+
+  showPasswordCheckbox.addEventListener('click', () => {
+    inputPass.type = inputPass.type === 'password'
+      ? inputPass.type = 'text'
+      : inputPass.type = 'password';
+  });
+
+  showPassword.append(showPasswordCheckbox, showPasswordText);
+
+
+  
+  
+  /*const errorMessageL = document.createElement('p');
   errorMessageL.className = 'parrafo';
   errorMessageL.textContent = 'errorMessage';
   errorMessageL.style.display = 'none';
-  errorMessageL.id = ' errorMessageL';
+  errorMessageL.id = ' errorMessageL';*/
 
   const buttonGoogle = document.createElement('button');
   buttonGoogle.className = 'button buttonGoogle';
@@ -52,7 +75,7 @@ function login(navigateTo) {
   });
 
   divLogin.append(logoBon, formLogin);
-  formLogin.append(inputEmail, inputPass, errorMessageL, buttonLogin);
+  formLogin.append(inputEmail, inputPass, showPassword, buttonLogin);
   divLogin.appendChild(textRegistrateCon);
   divLogin.appendChild(buttonGoogle);
   buttonGoogle.append(imgGoogle, strong);
