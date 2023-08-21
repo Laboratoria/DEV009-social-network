@@ -49,15 +49,6 @@ function login(navigateTo) {
 
   showPassword.append(showPasswordCheckbox, showPasswordText);
 
-
-  
-  
-  /*const errorMessageL = document.createElement('p');
-  errorMessageL.className = 'parrafo';
-  errorMessageL.textContent = 'errorMessage';
-  errorMessageL.style.display = 'none';
-  errorMessageL.id = ' errorMessageL';*/
-
   const buttonGoogle = document.createElement('button');
   buttonGoogle.className = 'button buttonGoogle';
   const strong = document.createElement('strong');
@@ -89,7 +80,7 @@ function login(navigateTo) {
       .then((user) => {
         if (user.emailVerified) {
           navigateTo('/principal');
-        } else{
+        } else {
           alert('Primero verifica tu correo electrónico');
         }
       });

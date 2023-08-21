@@ -1,7 +1,5 @@
-import cerrar from '../imagenes/cerrar.jpg';
-
 function principal() {
-    const divPrincipal = document.createElement('div');
+  const divPrincipal = document.createElement('div');
 
   const divHead = document.createElement('div');
   divHead.className = 'divHead';
