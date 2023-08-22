@@ -14,7 +14,7 @@ function register(navigateTo) {
 
     nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, //
     apellido: /^[a-zA-ZñÑ ]+$/, //
-    usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, //
+    usuario: /^[a-zA-Z0-9]{4,16}$/,
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, //
     contraseña: /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[.!@#$%^&*]).{6,10}$/, //
     confirmacionContraseña: /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[.!@#$%^&*]).{6,10}$/, //
@@ -158,7 +158,7 @@ function register(navigateTo) {
 
   const errorMessageUser = document.createElement('p');
   errorMessageUser.classList.add('formulario__input-error');
-  errorMessageUser.textContent += 'Solo se permiten letras y números';
+  errorMessageUser.textContent += 'Solo se permiten letras y números (mÍnimo 4 caracteres)';
 
   divInputUser.append(inputUser, iconUser);
   divGroupUser.append(labelUser, divInputUser, errorMessageUser);
@@ -313,10 +313,6 @@ function register(navigateTo) {
   const buttonCreateAccount = document.createElement('button');
   buttonCreateAccount.textContent = 'Crear cuenta';
   buttonCreateAccount.classList.add('formulario__btn');
-  const successfulMessage = document.createElement('p');
-  successfulMessage.classList.add('formulario__mensaje-exito');
-  successfulMessage.setAttribute('id', 'formulario__mensaje-exito');
-  successfulMessage.textContent = '¡Formulario enviado exitosamente!';
 
   buttonCreateAccount.addEventListener('click', () => {
     if (inputs.name && inputs.LastName && inputs.User
@@ -327,9 +323,11 @@ function register(navigateTo) {
         inputName.value,
         inputLastName.value,
         inputUser.value,
-      );
-      successfulMessage.classList.add('formulario__mensaje-exito-activo');
-      // Falta verificar que se haya creado la cuenta satisfactoriamente
+      ).catch((error) => {
+        if (error === 'auth/email-already-in-use') {
+          alert('El correo electronico ingresado esta asociado con un usuario existente');
+        }
+      });
     } else {
       groupError.classList.add('form-message-activo');
     }
@@ -347,7 +345,7 @@ function register(navigateTo) {
     navigateTo('/');
   });
 
-  groupButton.append(buttonCreateAccount, successfulMessage);
+  groupButton.append(buttonCreateAccount);
   section.append(
     title,
     divGroupName,

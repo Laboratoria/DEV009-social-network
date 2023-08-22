@@ -50,6 +50,7 @@ function timeline(navigateTo) {
     navigateTo('/newPost');
   });
 
+
   const buttonLogOut = document.createElement('img');
   buttonLogOut.src = './images/logOut.png';
   buttonLogOut.classList.add('buttonLogOut');
@@ -69,4 +70,6 @@ function timeline(navigateTo) {
   return section;
 }
 
+
 export default timeline;
+

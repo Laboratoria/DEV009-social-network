@@ -1,27 +1,27 @@
 // Import the functions you need from the SDKs you need
 import {
-  auth, provider, createUserWithEmailAndPassword, signInWithPopup, getRedirectResult,
-
+  auth, provider, createUserWithEmailAndPassword, signInWithPopup,
   GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword, database, set, ref,
 
 } from './initializerFirebase.js';
 import {updateProfile} from 'firebase/auth';
 
-function writeUserData(userId, Name, lastName, userName) {
+async function writeUserData(userId, Name, lastName, userName) {
   try {
     const db = database;
-    set(ref(db, `users/${userId}`), {
+    await set(ref(db, `users/${userId}`), {
       username: userName,
       name: Name,
       lastname: lastName,
     });
   } catch (error) {
-
+    throw error.code;
   }
 }
 
-function registerUser(email, password, name, lastname, userName) {
+async function registerUser(email, password, name, lastname, userName) {
   try {
+
     createUserWithEmailAndPassword(
       auth,
       email,
@@ -30,8 +30,9 @@ function registerUser(email, password, name, lastname, userName) {
       updateProfile(userId.user, {displayName : userName})
       writeUserData(userId.user.uid, name, lastname, userName);
     });
+
   } catch (error) {
-    throw error.message;
+    throw error.code;
   }
 }
 
@@ -50,7 +51,7 @@ async function startSession(email, password) {
   }
 }
 
-export const signWithGoogle = () => {
+export const signInWithGoogle = () => {
   try {
     signInWithPopup(auth, provider)
       .then((result) => {
@@ -89,6 +90,7 @@ export {
   writeUserData,
   startSession,
 };
+
 // export const redirectGoogle = () => {
 //   try {
 //     getRedirectResult(auth)
