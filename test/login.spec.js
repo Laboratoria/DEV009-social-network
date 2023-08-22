@@ -12,7 +12,6 @@ const navigateToMock = jest.fn();
 jest.mock('firebase/auth', () => ({
   getAuth: jest.fn(),
   signInWithEmailAndPassword: jest.fn(),
-  signInWithPopup: jest.fn(),
   GoogleAuthProvider: jest.fn(),
 }));
 

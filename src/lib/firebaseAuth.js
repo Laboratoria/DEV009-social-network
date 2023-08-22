@@ -19,7 +19,7 @@ import { app } from './configfirebase.js';
 
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
-export const provider = new GoogleAuthProvider();
+// export const provider = new GoogleAuthProvider();
 
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);

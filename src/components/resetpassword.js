@@ -9,10 +9,12 @@ export const resetPassword = (navigateTo) => {
   title.textContent = 'Recupera tu contraseña!';
 
   const emailInput = document.createElement('input');
+  emailInput.classList.add('email');
   emailInput.type = 'text';
   emailInput.setAttribute('placeholder', 'Email');
 
   const sendButton = document.createElement('button');
+  sendButton.classList.add('send-button');
   sendButton.textContent = 'Enviar';
   sendButton.addEventListener('click', () => {
     const email = emailInput.value;
@@ -21,7 +23,6 @@ export const resetPassword = (navigateTo) => {
         navigateTo('/login');
       }
     };
-    console.log(sendemail);
     resetPasswordEmail(email, sendemail);
   });
 
