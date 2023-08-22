@@ -1,3 +1,8 @@
+import { signOutSession } from '../lib/index.js';
+import iconoReceta from '../imagenes/receta.png';
+import iconoSingOut from '../imagenes/cerrar-sesion.png';
+import logoBonPrincipal from '../imagenes/logoBon.png';
+
 function principal() {
   const divPrincipal = document.createElement('div');
 
@@ -16,7 +21,8 @@ function principal() {
   nameUser.textContent = 'Usuari@';
 
   const logoBon = document.createElement('img');
-  logoBon.className = 'logoBonMuro';
+  logoBon.className = 'logoBon';
+  logoBon.src = logoBonPrincipal;
 
   const divReceta = document.createElement('div');
   divReceta.className = 'divReceta';
@@ -28,13 +34,34 @@ function principal() {
   const divRecetasUsers = document.createElement('div');
   divRecetasUsers.className = 'divRecetasUsers';
 
-  const cerrar = document.createElement('img');
-  cerrar.src = cerrar.jpg;
+  const menu = document.createElement('nav');
+  menu.className = 'menuNav';
+  const recetaIcono = document.createElement('img');
+  recetaIcono.className = 'recetaIcono';
+  recetaIcono.src = iconoReceta;
+  recetaIcono. setAttribute ('width', '30');
+  recetaIcono. setAttribute ('hide', '30');
+  const singOutIcono = document.createElement('img');
+  singOutIcono.className = 'singOut';
+  singOutIcono.src = iconoSingOut;
+  singOutIcono. setAttribute ('width', '40');
+  singOutIcono. setAttribute ('hide', '40');
+  
+  singOutIcono.addEventListener('click', () => {
+    signOutSession()
+      .then(() => {
+        navigateTo('/');
+      })
+      .catch((error) => {
+        throw error;
+      });
+    });
 
   divHead.append(logoBon, divSloganUser);
   divSloganUser.append(sloganBon, nameUser);
   divReceta.append(recetaUser);
-  divPrincipal.append(divHead, divReceta, divRecetasUsers, cerrar);
+  divPrincipal.append(divHead, divReceta, divRecetasUsers,menu);
+  menu.append(recetaIcono, singOutIcono);
   return divPrincipal;
 }
 

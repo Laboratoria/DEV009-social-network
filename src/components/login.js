@@ -1,11 +1,15 @@
 import { loginWithEmail, signInWithGoogle } from '../lib/index';
+import logoBonPrincipal from '../imagenes/logoBon.png';
+import logoGoogle from '../imagenes/googleLogo.png';
 
 function login(navigateTo) {
   const divLogin = document.createElement('div');
   divLogin.className = 'divLogin';
 
-  const logoBon = document.createElement('img');
-  logoBon.className = 'logoBon';
+  const logoBonBon = document.createElement('img');
+  logoBonBon.className = 'logoBon';
+  logoBonBon.src = logoBonPrincipal;
+
   const formLogin = document.createElement('form');
   formLogin.className = 'formLogin';
   const inputEmail = document.createElement('input');
@@ -56,6 +60,7 @@ function login(navigateTo) {
   strong.className = 'textGoogle';
   const imgGoogle = document.createElement('img');
   imgGoogle.className = 'imgGoogle';
+  imgGoogle.src = logoGoogle;
 
   const textRegistrateCon = document.createElement('p');
   textRegistrateCon.className = 'parrafo';
@@ -65,7 +70,7 @@ function login(navigateTo) {
     navigateTo('/');
   });
 
-  divLogin.append(logoBon, formLogin);
+  divLogin.append(logoBonBon, formLogin);
   formLogin.append(inputEmail, inputPass, showPassword, buttonLogin);
   divLogin.appendChild(textRegistrateCon);
   divLogin.appendChild(buttonGoogle);
