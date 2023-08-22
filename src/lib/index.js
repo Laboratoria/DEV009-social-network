@@ -1,6 +1,4 @@
 // aqui exportaras las funciones que necesites
-
-import { async } from 'regenerator-runtime';
 import {
   createUserWithEmailAndPassword,
   auth,
@@ -9,6 +7,8 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signOut,
+  collection, 
+  addDoc,
 } from '../firebase/initializeFirebase.js';
 
 // ----                   signin with new email                    --- //
@@ -75,3 +75,16 @@ export const exitUser = async (callback) => {
     callback(false);
   }
 };
+
+// ---           crear post            --- //
+export const createPostFn = async (content) => {
+  try {
+    const allPosts = {
+      content,
+    };
+    const docRef = await addDoc(collection(db, "post"), allPosts);
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  } 
+}

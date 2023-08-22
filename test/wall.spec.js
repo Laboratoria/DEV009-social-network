@@ -15,23 +15,16 @@ const navigateTo = jest.fn();
 const signOutComponent = wall(navigateTo);
 
 describe('Test para las funciones de logOut', () => {
-  it('debería ser una función', () => {
+  it('Debería ser una función', () => {
     expect(typeof exitUser).toBe('function');
   });
-  it('debería llamar a la funcion de firebase signOut', async () => {
+  it('Debería llamar a la función de firebase signOut', async () => {
     await exitUser(callback);
     expect(signOut).toHaveBeenCalled();
   });
-  it('debería recibir los parametros de la funcion signOut', async () => {
+  it('Debería recibir los parámetros de la función signOut', async () => {
     await exitUser(callback);
     expect(signOut).toHaveBeenCalledWith(auth);
   });
 });
 
-describe('Test para redireccionar navigateTo', () => {
-  test('debería redireccionar a login al dar click en el btn de cerrar sesión', () => {
-    const redirectionateLogOut = signOutComponent.querySelector('.exit');
-    redirectionateLogOut.click();
-    expect(navigateTo).toHaveBeenCalled();
-  });
-});

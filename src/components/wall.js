@@ -1,4 +1,4 @@
-import { exitUser } from '../lib/index.js';
+import { exitUser, createPostFn } from '../lib/index.js';
 
 function wall(navigateTo) {
   const mainContainer = document.createElement('section');
@@ -6,7 +6,7 @@ function wall(navigateTo) {
   const header = document.createElement('header');
   const logo = document.createElement('img');
   const profilePic = document.createElement('img');
-  const createPost = document.createElement('input');
+  const createPost = document.createElement('textarea');
 
   const post = document.createElement('div');
   const userName = document.createElement('h3');
@@ -21,7 +21,11 @@ function wall(navigateTo) {
 
   logo.src = './img/logo.png';
   profilePic.src = './img/perfil.png';
-  createPost.placeholder = '¿Cuál fue el ultimo lugar que visitaste?';
+  createPost.placeholder = '¿Cuál fue el último lugar que visitaste?';
+
+  const formPost = document.createElement('form');
+  const postBtn = document.createElement('button');
+  postBtn.textContent = 'Publicar';
 
   like.src = './icons/plane.svg';
   countLikes.textContent = '0';
@@ -31,31 +35,21 @@ function wall(navigateTo) {
 
   exit.classList.add('exit');
 
-  createPost.addEventListener('click', () => {
-    const windowPost = document.createElement('div');
-    const titleCreate = document.createElement('h2');
-    const txtPost = document.createElement('input');
-    const btnPublicar = document.createElement('button');
-
-    titleCreate.textContent = 'Crear Publicación';
-    txtPost.placeholder = 'Cuéntanos la experiencia de tu último viaje...';
-    btnPublicar.textContent = 'Publicar';
-
-    windowPost.append(titleCreate, txtPost, btnPublicar);
-  });
-
-  mainContainer.append(section, post, header, menu);
+  mainContainer.append(section, post, header, menu, formPost);
   menu.append(home, profile, exit);
-  section.append(header, profilePic, createPost, post, menu);
+  section.append(header, profilePic, formPost, menu);
+  formPost.append(createPost, postBtn);
   post.append(userName, postContent, like, countLikes);
   header.appendChild(logo);
 
   home.addEventListener('click', () => {
     navigateTo('/wall');
   });
+
   profilePic.addEventListener('click', () => {
     navigateTo('/profile');
   });
+
   exit.addEventListener('click', (e) => {
     e.preventDefault();
     const alertlogOut = (boolean) => {
@@ -65,6 +59,16 @@ function wall(navigateTo) {
     };
     exitUser(alertlogOut);
   });
+
+  formPost.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const content = createPost.value;
+
+    await createPostFn(content);
+    console.log(content);
+    formPost.reset();
+    navigateTo('/wall');
+  })
   return mainContainer;
 }
 

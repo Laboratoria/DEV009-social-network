@@ -4,7 +4,6 @@
 import login from '../src/components/login.js';
 import { loginUser } from '../src/lib/index.js';
 import { auth, signInWithEmailAndPassword } from '../src/firebase/initializeFirebase.js';
-import { async } from 'regenerator-runtime';
 
 jest.mock('../src/firebase/initializeFirebase', () => ({
   signInWithEmailAndPassword: jest.fn(),
@@ -18,21 +17,21 @@ describe('Test para la funcion Login User', () => {
   const email = 'logout@gmail.com';
   const pass = 'Kk654321';
 
-  it('deberia ser una function', () => {
+  it('Debería ser una función', () => {
     expect(typeof loginUser).toBe('function');
   });
-  it('debería llamar a la funcion de firebase singinWithEmailandPassword', async () => {
+  it('Debería llamar a la función de firebase singinWithEmailandPassword', async () => {
     await loginUser(email, pass, callback);
     expect(signInWithEmailAndPassword).toHaveBeenCalled();
   });
-  it('debería recibir los parametros de la funcion login', async () => {
+  it('Debería recibir los parámetros de la función login', async () => {
     await loginUser(email, pass, callback);
     expect(signInWithEmailAndPassword).toHaveBeenCalledWith(auth, email, pass);
   });
 });
 
 describe('Test para redireccionar navigateTo', () => {
-  test('debería redireccionar al hacer click en aun no tienes cuenta, Registrate!', () => {
+  test('Debería redireccionar al hacer click en ¿aún no tienes cuenta?, ¡Regístrate!', () => {
     const redirectionate = loginComponent.querySelector('.toSignup');
     redirectionate.click();
     expect(navigateTo).toHaveBeenCalledWith('/signup');

@@ -25,23 +25,23 @@ describe('Test para la función registerUser', () => {
   const email = 'logout@gmail.com';
   const pass = 'Kk654321';
 
-  it('debería ser una función', () => {
+  it('Debería ser una función', () => {
     expect(typeof registerUser).toBe('function');
   });
 
-  it('debería llamar a la función de firebase createUserWithEmailAndPassword', async () => {
+  it('Debería llamar a la función de firebase createUserWithEmailAndPassword', async () => {
     await registerUser(email, pass, callback);
     expect(createUserWithEmailAndPassword).toHaveBeenCalled();
   });
 
-  it('debería recibir los parámetros de la función createUserWithEmailAndPassword', async () => {
+  it('Debería recibir los parámetros de la función createUserWithEmailAndPassword', async () => {
     await registerUser(email, pass, callback);
     expect(createUserWithEmailAndPassword).toHaveBeenCalledWith(auth, email, pass);
   });
 });
 
 describe('Test para redireccionar navigateTo', () => {
-  test('debería redireccionar al login al hacer click en el btn de ya tienes una cuenta', () => {
+  test('Debería redireccionar al login al hacer click en el botón de ya tienes una cuenta', () => {
     const redirectionate = signupComponent.querySelector('.toLogin');
     redirectionate.click();
     expect(navigateTo).toHaveBeenCalledWith('/');
@@ -60,18 +60,18 @@ describe('Test para redireccionar navigateTo', () => {
 
 //              ---      Test Register with Google      --            //
 describe('Test para la función registerWithGoogle', () => {
-  it('debería ser una función', () => {
+  it('Debería ser una función', () => {
     expect(typeof registerWithGoogle).toBe('function');
   });
-  it('debe llamar a la funcion de signInWithPopup', async () => {
+  it('Debería llamar a la funcion de signInWithPopup', async () => {
     await registerWithGoogle(callback);
     expect(signInWithPopup).toHaveBeenCalled();
   });
-  it('debería recibir los parámetros de la función signInWithPopup', async () => {
+  it('Debería recibir los parámetros de la función signInWithPopup', async () => {
     await registerWithGoogle(callback);
     expect(signInWithPopup).toHaveBeenCalledWith(auth, provider);
   });
-  it('debería redireccionar a regisrarse con Google', () => {
+  it('Debería redireccionar a regisrarse con Google', () => {
     const registerWthGoogleComponent = signupComponent.querySelector('.signupWithGmail');
     registerWthGoogleComponent.click();
     expect(navigateTo).toHaveBeenCalled();
