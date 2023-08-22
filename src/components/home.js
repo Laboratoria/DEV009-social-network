@@ -1,3 +1,7 @@
+import logoSinLetras from '../recursos/LogoSinLetras.png';
+import googleIconImage from '../recursos/google.svg';
+
+
 import { logInWithGoogle } from '../lib/firebaseAuth.js';
 
 export const home = (navigateTo) => {
@@ -8,7 +12,7 @@ export const home = (navigateTo) => {
   const bienvenidaContainer = document.createElement('div');
   bienvenidaContainer.classList.add('bienvenida-container');
   const logo = document.createElement('img');
-  logo.src = './recursos/LogoSinLetras.png';
+  logo.src = logoSinLetras;
   const title = document.createElement('h2');
   const slogan = document.createElement('h4');
   slogan.className = 'slogan';
@@ -38,7 +42,7 @@ export const home = (navigateTo) => {
 
   const googleButton = document.createElement('button');
   const googleIcon = document.createElement('img');
-  googleIcon.src = './recursos/google.svg';
+  googleIcon.src = googleIconImage;
   googleIcon.classList.add('icon-google');
   googleButton.textContent = '';
   googleButton.classList.add('boton-google');
