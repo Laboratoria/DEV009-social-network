@@ -1,9 +1,12 @@
+import logoPrincipal from '../imagenes/logoHome.png';
+
 function home(navigateTo) {
   const divHome = document.createElement('div');
   divHome.className = 'divHome';
 
   const logoBonHome = document.createElement('img');
   logoBonHome.className = 'logoBonHome';
+  logoBonHome.src = logoPrincipal;
 
   const buttonInicio = document.createElement('button');
   buttonInicio.className = 'button buttonSignInHome';

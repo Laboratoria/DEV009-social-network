@@ -22,7 +22,7 @@ El uso de la aplicación dependera de estar registrado, por lo que es necesario 
 ## 2. Definición del producto
 
 **Bon-Bon** es una red social enfocado a las personas que les gusta cocinar postres, tienen tiempo limitado y les guste consentir a sus seres queridos.
-Aveces necesitamos nuevas ideas o queremos compartir nuestros conocimiento de coocina y **Bon-Bon** es un espacio donde podemos compartir y crear comunidad entorno a nuestros gustos y tener un lugar donde almacenar nuestras amadas recetas.
+Aveces necesitamos nuevas ideas o queremos compartir nuestros conocimiento de cocina y **Bon-Bon** es un espacio donde podemos compartir y crear comunidad entorno a nuestros gustos y tener un lugar donde almacenar nuestras amadas recetas.
 **Bon-Bon** se desarrolla en una Single-page Application (SPA), con mas de una vista en la que se puede leer y escribir datos.
 Cualquier usuario puede crear una cuenta de acceso y loguearse con ella; crear, editar, borrar y likear publicacciones.
 
@@ -30,13 +30,9 @@ Cualquier usuario puede crear una cuenta de acceso y loguearse con ella; crear, 
 
 Se desarrollaron 9 historias de usuari@ como se presentan a continuación:
 
-**Historia de Usuari@ 1.1**
+**Historia de Usuari@ 1**
 
-![Historia de Usuaria 1.1](/src/imagenes/2_readme_HU1.png)
-
-**Historia de Usuari@ 1.2**
-
-![Historia de Usuaria 1.2](/src/imagenes/2_readme_HU1-1.png)
+![Historia de Usuaria 1](/src/imagenes/2_readme_HU1.png)
 
 **Historia de Usuari@ 2.1**
 

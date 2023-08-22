@@ -41,4 +41,22 @@ export const loginWithEmail = (email, password) => {
     });
 };
 
-export const outSession = () => signOut(auth);
+export const signOutSession = () => signOut(auth);
+
+// crear carpeta con post
+export async function createPost(username, titulo, body, timestamp) {
+  try {
+    const data = {
+      author: username,
+      title: titulo,
+      content: body,
+      date: timestamp,
+      likes: 0,
+      likesArray: [],
+    };
+    const docPost = await addDoc(collection(db, 'Post'), data);
+    console.log('Document written with ID: ', docPost.id);
+  } catch (e) {
+    console.error('Error adding document: ', e);
+  }
+}
