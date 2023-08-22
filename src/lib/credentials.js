@@ -5,6 +5,7 @@ import {
   GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword, database, set, ref,
 
 } from './initializerFirebase.js';
+import {updateProfile} from 'firebase/auth';
 
 function writeUserData(userId, Name, lastName, userName) {
   try {
@@ -26,6 +27,7 @@ function registerUser(email, password, name, lastname, userName) {
       email,
       password,
     ).then((userId) => {
+      updateProfile(userId.user, {displayName : userName})
       writeUserData(userId.user.uid, name, lastname, userName);
     });
   } catch (error) {
