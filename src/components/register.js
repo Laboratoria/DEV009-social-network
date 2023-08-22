@@ -1,13 +1,16 @@
+import logoSinLetras from '../recursos/LogoSinLetras.png';
+import backButtonIcon from '../recursos/arrow-left-solid.svg';
+
 export const register = (navigateTo) => {
   const section = document.createElement('section');
   const logo = document.createElement('img');
-  logo.src = './recursos/LogoSinLetras.png';
+  logo.src = logoSinLetras;
   const title = document.createElement('h2');
   title.textContent = 'Registrate!';
 
   const backButton = document.createElement('img');
   backButton.classList.add('back-button');
-  backButton.src = './recursos/arrow-left-solid.svg';
+  backButton.src = backButtonIcon;
   backButton.alt = 'back button';
   backButton.addEventListener('click', () => {
     navigateTo('/');

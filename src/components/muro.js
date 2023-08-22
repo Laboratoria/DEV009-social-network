@@ -11,10 +11,14 @@ import {
   deletePost,
 } from '../lib/firebaseStore.js';
 
+import logoSinLetras from '../recursos/LogoSinLetras.png';
+import heartIcon from '../recursos/heart-regular.svg';
+import logoutIcon from '../recursos/logout.svg';
+
 export const muro = (navigateTo) => {
   const section = document.createElement('picture');
   const logoMuro = document.createElement('img');
-  logoMuro.src = './recursos/LogoSinLetras.png';
+  logoMuro.src = logoSinLetras;
   logoMuro.classList.add('logo-muro');
 
   // Publicacion
@@ -77,7 +81,7 @@ export const muro = (navigateTo) => {
         getLikes.classList.add('likes');
         const heartIcon3 = document.createElement('img');
         heartIcon3.className = 'heart-icon';
-        heartIcon3.src = './recursos/heart-regular.svg';
+        heartIcon3.src = heartIcon;
         getLikes.appendChild(heartIcon3);
 
         const spanLikes = document.createElement('span');
@@ -149,7 +153,7 @@ export const muro = (navigateTo) => {
   // *************Boton de cierre de sesión*************
   const logOutButton = document.createElement('img');
   logOutButton.classList.add('logOut-button');
-  logOutButton.src = './recursos/logout.svg';
+  logOutButton.src = logoutIcon;
   logOutButton.alt = 'logOut';
   logOutButton.addEventListener('click', () => {
     const logOutAlert = (valid) => {
