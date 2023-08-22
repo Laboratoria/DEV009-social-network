@@ -4,6 +4,7 @@ import {
   GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword, database, set, ref,
 
 } from './initializerFirebase.js';
+import {updateProfile} from 'firebase/auth';
 
 async function writeUserData(userId, Name, lastName, userName) {
   try {
@@ -20,8 +21,16 @@ async function writeUserData(userId, Name, lastName, userName) {
 
 async function registerUser(email, password, name, lastname, userName) {
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    await writeUserData(userCredential.user.uid, name, lastname, userName);
+
+    createUserWithEmailAndPassword(
+      auth,
+      email,
+      password,
+    ).then((userId) => {
+      updateProfile(userId.user, {displayName : userName})
+      writeUserData(userId.user.uid, name, lastname, userName);
+    });
+
   } catch (error) {
     throw error.code;
   }
