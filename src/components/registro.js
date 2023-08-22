@@ -1,13 +1,13 @@
 import { registerWithEmail } from '../lib/index';
-import logoBon from '../imagenes/logoBon.png';
+import logoBonPrincipal from '../imagenes/logoBon.png';
 
 function registro(navigateTo) {
   const divRegister = document.createElement('div');
   divRegister.className = 'divRegister';
 
   const logoBonBon = document.createElement('img');
-  logoBonBon.src = logoBon;
-
+  logoBonBon.className = 'logoBon';
+  logoBonBon.src = logoBonPrincipal
   const formRegistro = document.createElement('form');
   formRegistro.className = 'formRegistro';
   const inputName = document.createElement('input');
