@@ -48,7 +48,7 @@ function feed(navigateTo) {
           <p>${recipeContent.likes}</p>
           <button id="like-${recipeContent.id}">⭐</button>
           <button class="edit" id="b-edit-${recipeContent.id}">🖋️</button>
-          <button class="delete" id="delete-${recipeContent.id}"  >🗑️</button>
+          <button class="delete" id="delete-${recipeContent.id}">🗑️</button>
           </div>
         </div>`;
       showPostFeed.innerHTML += postRecipe;
