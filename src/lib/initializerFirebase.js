@@ -4,15 +4,13 @@ import {
   createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, getRedirectResult,
   signInWithRedirect, signOut, signInWithEmailAndPassword,
 } from 'firebase/auth';
-
-import { getDatabase, ref, set } from 'firebase/database';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import { firebaseConfig } from './firebaseConfig.js';
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
-// Initialize Realtime Database and get a reference to the service
-export const database = getDatabase(app);
+export const db = getFirestore(app);
 
 export {
   createUserWithEmailAndPassword,
@@ -22,7 +20,8 @@ export {
   signInWithRedirect,
   signOut,
   signInWithEmailAndPassword,
-  ref,
-  set,
-  getDatabase,
+  collection,
+  addDoc,
+  getFirestore,
+
 };
