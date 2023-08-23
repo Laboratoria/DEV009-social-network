@@ -1,7 +1,7 @@
 import { exitUser, createPostFn } from '../lib/index.js';
 
 function wall(navigateTo) {
-  const mainContainer = document.createElement('section');
+  const mainContainer = document.createElement('div');
   const section = document.createElement('section');
   const header = document.createElement('header');
   const logo = document.createElement('img');
@@ -16,8 +16,16 @@ function wall(navigateTo) {
 
   const menu = document.createElement('nav');
   const home = document.createElement('img');
-  const profile = document.createElement('img');
+  const profileMenu = document.createElement('img');
   const exit = document.createElement('img');
+
+  const divPost = document.createElement('div');
+  const divUserName = document.createElement('div');
+  const divPostContent = document.createElement('div');
+  const divLikeEditDelete = document.createElement('div');
+  const edit = document.createElement('img');
+  const deleteIcon = document.createElement('img');
+
 
   logo.src = './img/logo.png';
   profilePic.src = './img/perfil.png';
@@ -31,16 +39,33 @@ function wall(navigateTo) {
   countLikes.textContent = '0';
   home.src = './icons/home.svg';
   profilePic.width = 50;
+  profileMenu.src = './img/perfil.png';
   exit.src = './icons/exit.svg';
 
+  mainContainer.classList.add('allContent');
+  section.classList.add('sectionWall');
+  header.classList.add('header');
+  logo.classList.add('logoWall');
+  profilePic.classList.add('profilePic');
+  createPost.classList.add('createPost');
+  createPost.setAttribute('required', '');
+  createPost.setAttribute('autocapitalize', 'sentences');
+  post.classList.add('post');
+  userName.classList.add('userName');
+  postContent.classList.add('postContent');
+  like.classList.add('like');
+  countLikes.classList.add('countLikes');
+  menu.classList.add('menu');
+  home.classList.add('home');
+  profileMenu.classList.add('profileMenu');
   exit.classList.add('exit');
 
-  mainContainer.append(section, post, header, menu, formPost);
-  menu.append(home, profile, exit);
-  section.append(header, profilePic, formPost, menu);
-  formPost.append(createPost, postBtn);
-  post.append(userName, postContent, like, countLikes);
+  mainContainer.append(section, header, post, menu);
+  section.append(header, profilePic, formPost);
   header.appendChild(logo);
+  post.append(userName, postContent, like, countLikes);
+  formPost.append(createPost, postBtn);
+  menu.append(home, profileMenu, exit);
 
   home.addEventListener('click', () => {
     navigateTo('/wall');
@@ -68,7 +93,7 @@ function wall(navigateTo) {
     console.log(content);
     formPost.reset();
     navigateTo('/wall');
-  })
+  });
   return mainContainer;
 }
 

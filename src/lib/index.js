@@ -9,6 +9,7 @@ import {
   signOut,
   collection, 
   addDoc,
+  db,
 } from '../firebase/initializeFirebase.js';
 
 // ----                   signin with new email                    --- //
@@ -87,4 +88,4 @@ export const createPostFn = async (content) => {
   } catch (e) {
     console.error("Error adding document: ", e);
   } 
-}
+};
