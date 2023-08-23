@@ -2,7 +2,7 @@
 import { getFirestore, collection, addDoc, doc, getDoc, getDocs, deleteDoc, updateDoc } from "firebase/firestore";
 import { app } from './firebase.js';
 import { auth } from "./index.js";
-import { async } from "regenerator-runtime";
+
 
 export const db = getFirestore(app);
 
