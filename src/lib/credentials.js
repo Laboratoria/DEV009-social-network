@@ -1,38 +1,33 @@
 // Import the functions you need from the SDKs you need
+import { updateProfile } from 'firebase/auth';
 import {
-  auth, provider, createUserWithEmailAndPassword, signInWithPopup,
-  GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword, database, set, ref,
-
+  app, auth, provider, createUserWithEmailAndPassword, signInWithPopup,
+  GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword, db,
+  collection, addDoc, getFirestore,
 } from './initializerFirebase.js';
-import {updateProfile} from 'firebase/auth';
 
-async function writeUserData(userId, Name, lastName, userName) {
-  try {
-    const db = database;
-    await set(ref(db, `users/${userId}`), {
-      username: userName,
-      name: Name,
-      lastname: lastName,
-    });
-  } catch (error) {
-    throw error.code;
-  }
+async function saveNewUser(Name, lastName, userName) {
+  await addDoc(collection(getFirestore(app), '/users'), {
+    username: userName,
+    name: Name,
+    lastname: lastName,
+  });
 }
-
 async function registerUser(email, password, name, lastname, userName) {
   try {
-
-    createUserWithEmailAndPassword(
+    const userId = await createUserWithEmailAndPassword(
       auth,
       email,
       password,
-    ).then((userId) => {
-      updateProfile(userId.user, {displayName : userName})
-      writeUserData(userId.user.uid, name, lastname, userName);
-    });
-
+    );
+    saveNewUser(userId, name, lastname, userName);
+    updateProfile(userId.user, { displayName: userName });
   } catch (error) {
-    throw error.code;
+    if (error.code === 'auth/email-already-in-use') {
+      alert('El correo electronico ingresado esta asociado con un usuario existente');
+    }else {
+      alert(error.message);
+    }
   }
 }
 
@@ -87,7 +82,6 @@ export const signIn = () => {
 
 export {
   registerUser,
-  writeUserData,
   startSession,
 };
 
