@@ -33,4 +33,5 @@ export {
   signOut,
   collection, 
   addDoc,
+  db,
 };
