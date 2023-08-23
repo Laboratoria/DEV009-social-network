@@ -50,12 +50,11 @@ function feed(navigateTo) {
     console.log(allRecipes);
     allRecipes.forEach((recipeContent) => {
       const postRecipe = `
-      <h5 class="user"><img class="perfile" src="./imagenes/Profil.png" />By: ${recipeContent.user}</h5>
+      <h5 class="user"><img class="perfile" src="./imagenes/Profil.png" />By: ${recipeContent.user.split('@')[0]}</h5>
         <div class="postRecipe" id="post-${recipeContent.id}">
           <p class="name">${recipeContent.name}</p>
           <p>Pasos:</p>
           <textarea  type="text" id="edit-${recipeContent.id}" class="steps" disabled>${recipeContent.steps}</textarea>
-          <h5 class="user">👤 ${recipeContent.user.split('@')[0]}</h5>
           <div class="footer-post">
           <p>${recipeContent.likes}</p>
           <button id="like-${recipeContent.id}">⭐</button>
@@ -117,7 +116,6 @@ function feed(navigateTo) {
 
   const modal = document.createElement('div');
   modal.className = 'modal';
-  modal.style.display = 'none';
   const modalContent = document.createElement('div');
   modalContent.className ='modal-content';
   const message = document.createElement('p');
@@ -134,7 +132,7 @@ function feed(navigateTo) {
   modalContent.append(message, deleteButton, cancelButton);
   modal.appendChild(modalContent);
 
-  section.addEventListener('click', async (event) => {
+section.addEventListener('click', async (event) => {
     const key = (event.target.id);
     if (key.includes('delete-')) {
       modal.style.display = 'block';

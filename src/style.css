@@ -48,6 +48,10 @@ img.avatar {
   border-radius: 8px;
 }
 
+.perfile {
+  
+}
+
 img,
 img.avatar {
   display: flex;
