@@ -73,6 +73,7 @@ export const likePost = async (id) => {
             likes: saveLikes -= 1,
             usersLike: saveUsersLike
         })
+        
      
   } else {
     saveUsersLike.push(auth.currentUser.email)
