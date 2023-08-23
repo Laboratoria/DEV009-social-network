@@ -1,4 +1,6 @@
 import { signOutSession } from '../lib/index.js';
+import { auth } from '../lib/initializeFirebase.js';
+
 import iconoReceta from '../imagenes/receta.png';
 import iconoSingOut from '../imagenes/cerrar-sesion.png';
 
@@ -15,9 +17,12 @@ function principal(navigateTo) {
   sloganBon.className = 'sloganBon';
   sloganBon.textContent = 'Consiente a tu familia';
 
+  const user = auth.currentUser;
+  const userName = user.displayName;
+
   const nameUser = document.createElement('p');
   nameUser.className = 'nameUser';
-  nameUser.textContent = 'Usuari@';
+  nameUser.textContent = userName;
 
   const logoBon = document.createElement('img');
   logoBon.className = 'logoBonPrincipal';
@@ -63,6 +68,7 @@ function principal(navigateTo) {
   divPrincipal.append(divHead, divReceta, divRecetasUsers, menu);
   menu.appendChild(divMenu);
   divMenu.append(recetaIcono, singOutIcono);
+
 
   recetaUser.addEventListener('click', () => {
     navigateTo('/editarpost');

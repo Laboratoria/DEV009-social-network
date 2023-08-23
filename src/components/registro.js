@@ -9,6 +9,7 @@ function registro(navigateTo) {
 
   const formRegistro = document.createElement('form');
   formRegistro.className = 'formRegistro';
+
   const inputName = document.createElement('input');
   inputName.className = 'input displayName';
   inputName.setAttribute('type', 'text');

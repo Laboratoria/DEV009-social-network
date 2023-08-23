@@ -57,10 +57,11 @@ export async function createPost(username, titulo, body, timestamp) {
       likes: 0,
       likesArray: [],
     };
-    const docPost = await addDoc(collection(db, 'Post'), data);
+    //const docPost = await addDoc(collection(db, 'Post'), data);
     console.log('Document written with ID: ', docPost.id);
   } catch (e) {
     console.error('Error adding document: ', e);
   }
 }
-// Mostrar todos los post
+
+
