@@ -65,16 +65,14 @@ function feed(navigateTo) {
     write.style.display = 'none';
     recipe.value = '';
     nameSteps.value = '';
-  })
-
-
-
+  });
 
   add.addEventListener('click', async (event) => {
     event.preventDefault();
     const recipeData = recipe.value;
     const nameRecipe = nameSteps.value;
-
+    formRecipe.style.display = 'none';
+    write.style.display = 'block';
     if (!nameRecipe || !recipeData) {
       MessageError.textContent = 'Por favor, completa ambos campos.';
       return;
