@@ -1,6 +1,7 @@
 import registro from '../src/components/registro';
 // import { registerWithEmail } from '../src/lib/index';
 jest.mock('../src/imagenes/logoBon.png');
+
 jest.mock('../src/lib/index');
 const navigateTo = jest.fn();
 

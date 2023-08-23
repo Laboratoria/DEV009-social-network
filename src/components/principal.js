@@ -39,6 +39,8 @@ function principal(navigateTo) {
 
   const menu = document.createElement('nav');
   menu.className = 'menuNav';
+  const divMenu = document.createElement('div');
+  divMenu.className = 'divMenu';
   const recetaIcono = document.createElement('img');
   recetaIcono.className = 'recetaIcono';
   recetaIcono.src = iconoReceta;
@@ -64,7 +66,9 @@ function principal(navigateTo) {
   divSloganUser.append(sloganBon, nameUser);
   divReceta.append(recetaUser);
   divPrincipal.append(divHead, divReceta, divRecetasUsers, menu);
-  menu.append(recetaIcono, singOutIcono);
+  menu.appendChild(divMenu);
+  divMenu.append(recetaIcono, singOutIcono);
+
 
   recetaUser.addEventListener('click', () => {
     navigateTo('/editarpost');

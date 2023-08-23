@@ -12,6 +12,9 @@ import {
   signInWithEmailAndPassword,
   sendEmailVerification,
   signOut,
+  addDoc,
+  collection,
+  db,
 } from './initializeFirebase.js';
 
 export const registerWithEmail = (email, password, username) => {
@@ -44,7 +47,7 @@ export const loginWithEmail = (email, password) => {
 export const signOutSession = () => signOut(auth);
 
 // crear carpeta con post
-/* export async function createPost(username, titulo, body, timestamp) {
+export async function createPost(username, titulo, body, timestamp) {
   try {
     const data = {
       author: username,
@@ -59,4 +62,6 @@ export const signOutSession = () => signOut(auth);
   } catch (e) {
     console.error('Error adding document: ', e);
   }
-} */
+}
+
+
