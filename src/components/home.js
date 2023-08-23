@@ -1,7 +1,5 @@
 import logoSinLetras from '../recursos/LogoSinLetras.png';
 import googleIconImage from '../recursos/google.svg';
-
-
 import { logInWithGoogle } from '../lib/firebaseAuth.js';
 
 export const home = (navigateTo) => {
