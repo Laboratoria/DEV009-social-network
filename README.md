@@ -105,7 +105,7 @@ Definición de Terminado:
 * [✔️] y al clickear para quitar el like se debe actualizar para que se quite el like
 
 ## 5. Diseños de baja fidelidad. 
-![Prototipo de Baja Fidelidad](../DEV009-social-network/src/recursos/PrototipoSN.JPG){:width="450"}
+![Prototipo de Baja Fidelidad](https://github.com/Diana03m/DEV009-social-network/blob/main/src/recursos/PrototipoSN.JPG){:width="450"}
 
 ## 6. Diseño de alta fidelidad (link figma).
 [link figma dinamico](https://www.figma.com/proto/Ucj1nqp6FXmw3dbFFEy8n0/Movile-KawaiiApp?node-id=3-96&starting-point-node-id=3%3A96)
