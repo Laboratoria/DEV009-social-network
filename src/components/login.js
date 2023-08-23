@@ -34,12 +34,15 @@ function home(navigateTo) {
   });
 
   buttonGoogle.addEventListener('click', async () => {
-    try {
+   /* try {
       await signInWithGoogle();
       navigateTo('/feed');
     } catch (error) {
       errorMessage.textContent = error.message;
-    }
+    }*/
+    signInWithGoogle()
+    .then(() => navigateTo('/feed'))
+    .catch((error)=> errorMessage.textContent = error.message)
   });
 
   login.addEventListener('click', async () => {

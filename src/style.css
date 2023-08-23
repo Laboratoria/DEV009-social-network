@@ -22,6 +22,31 @@ img.avatar {
   display: block;
   margin: auto;
 }
+.modal {
+  display: none; /* Por defecto, estará oculto */
+  position: fixed; /* Posición fija */
+  z-index: 1; /* Se situará por encima de otros elementos de la página*/
+  padding-top: 200px; /* El contenido estará situado a 200px de la parte superior */
+  left: 0;
+  top: 0;
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Algura completa */
+  overflow: auto; /* Se activará el scroll si es necesario */
+  background-color: rgba(0,0,0,0.5); /* Color negro con opacidad del 50% */
+}
+
+.modal-content {
+  position: relative; /* Relativo con respecto al contenedor -modal- */
+  background-color: white;
+  margin: auto; /* Centrada */
+  padding: 20px;
+  width: 60%;
+  -webkit-animation-name: animarsuperior;
+  -webkit-animation-duration: 0.5s;
+  animation-name: animarsuperior;
+  animation-duration: 0.5s;
+  border-radius: 8px;
+}
 
 img,
 img.avatar {
@@ -33,7 +58,6 @@ img.avatar {
 section {
   max-width: 300px;
   margin: auto;
-  padding-top: 200px;
   background-color: #641B42;
   justify-content: center;
   align-items: center;
@@ -44,7 +68,7 @@ input {
   display: flex;
   margin: auto;
   max-width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   align-items: center;
   text-align: center;
   border-radius: 15px;
@@ -69,7 +93,7 @@ button {
   color: #393939;
   margin: auto;
   max-width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   align-items: center;
   text-align: center;
   border-radius: 15px;
@@ -106,12 +130,12 @@ button {
  .postRecipe{
   background-color: #FAB838;
   border-bottom: #393939;
-  border-radius: 20px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   width: 300px;
   margin-bottom: 20px;
-  padding: 10px;
+  padding: 15px;
   text-align: start;
  }
 
@@ -120,7 +144,8 @@ button {
  }
 
  .name{
-  padding-top: 5px;
+  font-size: 18px;
+  font-weight: 800;
  }
  h5{
   align-self: flex-end;
