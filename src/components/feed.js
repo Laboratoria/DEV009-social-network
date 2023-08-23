@@ -117,6 +117,7 @@ function feed(navigateTo) {
 
   const modal = document.createElement('div');
   modal.className = 'modal';
+  modal.style.display = 'none';
   const modalContent = document.createElement('div');
   modalContent.className ='modal-content';
   const message = document.createElement('p');
@@ -133,28 +134,34 @@ function feed(navigateTo) {
   modalContent.append(message, deleteButton, cancelButton);
   modal.appendChild(modalContent);
 
-
-  modalContent.addEventListener('click', (event) => {
-    const targetId = event.target.id;
-
-});
   section.addEventListener('click', async (event) => {
     const key = (event.target.id);
     if (key.includes('delete-')) {
       modal.style.display = 'block';
-      deletePost(key.replace('delete-', ''))
-        .then((data) => {
-          querySnapshot()
-            .then((doc) => {
-              showAllRecipes(doc);
-            })
-            .catch((error) => {
-              console.error('Error al obtener posts', error);
-            });
-        })
-        .catch((error) => {
-          console.log('error delete', error);
-        })
+      function awaitModal() {
+        modalContent.addEventListener('click', (event) => {
+          const targetId = event.target.id;
+          if (targetId.includes('deleteButton')){
+            deletePost(key.replace('delete-', ''))
+              .then((data) => {
+                querySnapshot()
+                  .then((doc) => {
+                    showAllRecipes(doc);
+                  })
+                  .catch((error) => {
+                    console.error('Error al obtener posts', error);
+                  });
+              })
+              .catch((error) => {
+                console.log('error delete', error);
+              })
+              modal.style.display ='none';
+          }else if (targetId.includes('cancelButton')){
+            modal.style.display ='none';
+          }
+      });
+      }
+      awaitModal();
     }else if(key.includes('b-edit-')){
       const uidPost = key.replace('b-edit-', '');
       const postText = document.getElementById(`edit-${uidPost}`);
@@ -188,7 +195,7 @@ function feed(navigateTo) {
   })
 
 
-  section.append(logo, showPostFeed, formRecipe, write, nav, logoutButtom);
+  section.append(logo, showPostFeed, modal, formRecipe, write, nav, logoutButtom);
 
   formRecipe.append(nameSteps, recipe, add, MessageError, MessageOk)
   nav.append(select);
