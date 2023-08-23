@@ -12,6 +12,9 @@ import {
   signInWithEmailAndPassword,
   sendEmailVerification,
   signOut,
+  addDoc,
+  collection,
+  db,
 } from './initializeFirebase.js';
 
 export const registerWithEmail = (email, password, username) => {
@@ -60,3 +63,4 @@ export async function createPost(username, titulo, body, timestamp) {
     console.error('Error adding document: ', e);
   }
 }
+// Mostrar todos los post

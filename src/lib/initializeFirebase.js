@@ -1,5 +1,10 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp,
+} from 'firebase/firestore';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -32,5 +37,6 @@ export {
   signInWithEmailAndPassword,
   sendEmailVerification,
   signOut,
+  serverTimestamp,
 };
 export const saveUser = (user) => addDoc(collection(db, 'Users'), user);

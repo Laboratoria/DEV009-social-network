@@ -3,6 +3,7 @@ import login from './components/login.js';
 import error from './components/error.js';
 import registro from './components/registro.js';
 import principal from './components/principal.js';
+import editarpost from './components/editarpost.js';
 
 const root = document.getElementById('root');
 
@@ -12,6 +13,7 @@ const routes = [
   { path: '/error', component: error },
   { path: '/registro', component: registro },
   { path: '/principal', component: principal },
+  { path: '/editarpost', component: editarpost },
 ];
 
 const defaultRoute = '/';
@@ -28,7 +30,7 @@ function navigateTo(hash) {
     if (root.firstChild) {
       root.removeChild(root.firstChild);
     }
-    root.appendChild(route.component(navigateTo));
+    root.append(route.component(navigateTo));
   } else {
     navigateTo('/error');
   }

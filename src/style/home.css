@@ -107,7 +107,7 @@ body{
   align-items: center;
 }
 
-.logoBon{
+.logoBonPrincipal{
  /* background-image: url('../imagenes/logoBon.png');*/
   background-repeat: no-repeat;
   background-position: top;
@@ -145,11 +145,15 @@ body{
   text-align:center;
 }
 
-.menuNav{
-  background-color: var var(--recetarioColor);
+
+.divMenu{
+  height: 50%;
+  width: 100%;
+  background-color: var(--recetarioColor);
   display: flex;
   justify-content: space-around;
   margin-top: 100%;
+
 }
 
 footer {
@@ -174,5 +178,5 @@ footer {
 }
 
 .show-password input:checked {
-  border: 8px solid var(--secondary);;
+  border: 8px solid var(--secondary);
 }

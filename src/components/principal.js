@@ -1,9 +1,8 @@
 import { signOutSession } from '../lib/index.js';
 import iconoReceta from '../imagenes/receta.png';
 import iconoSingOut from '../imagenes/cerrar-sesion.png';
-import logoBonPrincipal from '../imagenes/logoBon.png';
 
-function principal() {
+function principal(navigateTo) {
   const divPrincipal = document.createElement('div');
 
   const divHead = document.createElement('div');
@@ -21,8 +20,7 @@ function principal() {
   nameUser.textContent = 'Usuari@';
 
   const logoBon = document.createElement('img');
-  logoBon.className = 'logoBon';
-  logoBon.src = logoBonPrincipal;
+  logoBon.className = 'logoBonPrincipal';
 
   const divReceta = document.createElement('div');
   divReceta.className = 'divReceta';
@@ -36,17 +34,19 @@ function principal() {
 
   const menu = document.createElement('nav');
   menu.className = 'menuNav';
+  const divMenu = document.createElement('div');
+  divMenu.className = 'divMenu';
   const recetaIcono = document.createElement('img');
   recetaIcono.className = 'recetaIcono';
   recetaIcono.src = iconoReceta;
-  recetaIcono. setAttribute ('width', '30');
-  recetaIcono. setAttribute ('hide', '30');
+  recetaIcono.setAttribute('width', '30');
+  recetaIcono.setAttribute('hide', '30');
   const singOutIcono = document.createElement('img');
   singOutIcono.className = 'singOut';
   singOutIcono.src = iconoSingOut;
-  singOutIcono. setAttribute ('width', '40');
-  singOutIcono. setAttribute ('hide', '40');
-  
+  singOutIcono.setAttribute('width', '40');
+  singOutIcono.setAttribute('hide', '40');
+
   singOutIcono.addEventListener('click', () => {
     signOutSession()
       .then(() => {
@@ -55,13 +55,18 @@ function principal() {
       .catch((error) => {
         throw error;
       });
-    });
+  });
 
   divHead.append(logoBon, divSloganUser);
   divSloganUser.append(sloganBon, nameUser);
   divReceta.append(recetaUser);
-  divPrincipal.append(divHead, divReceta, divRecetasUsers,menu);
-  menu.append(recetaIcono, singOutIcono);
+  divPrincipal.append(divHead, divReceta, divRecetasUsers, menu);
+  menu.appendChild(divMenu);
+  divMenu.append(recetaIcono, singOutIcono);
+
+  recetaUser.addEventListener('click', () => {
+    navigateTo('/editarpost');
+  });
   return divPrincipal;
 }
 
