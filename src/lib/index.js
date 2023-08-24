@@ -1,11 +1,11 @@
 import {
-  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendEmailVerification, signOut, onAuthStateChanged
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup,
+  GoogleAuthProvider, sendEmailVerification, signOut,
 } from 'firebase/auth';
 import { app } from './firebase.js';
 
 export const auth = getAuth(app);
-//const currentUser = auth.currentUser.email;
-
+// const currentUser = auth.currentUser.email;
 export const createUser = async (userEmail, userPassword) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, userEmail, userPassword);
@@ -26,29 +26,24 @@ export const createUser = async (userEmail, userPassword) => {
   }
 };
 
-export function currentChange (){
+export function currentChange() {
   auth.onAuthStateChanged((user) => {
-  if (user) {
-    const currentUserEmail = user.email;
-    console.log("Current user email:", currentUserEmail);
-    console.log(user, 'inicio sesion')
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/auth.user
-    const uid = user.uid;
-    // ...
-  } else {
-    console.log('cerro sesion')
-    // User is signed out
-    // ...
-  }
-});
+    if (user) {
+      const currentUserEmail = user.email;
+      const userId = user.uid;
+      console.log('User UID:', currentUserEmail, userId);
+    } else {
+      console.log('cerro sesion');
+    }
+  });
 }
 
 const provider = new GoogleAuthProvider();
 
 export function signInWithGoogle() {
   return signInWithPopup(auth, provider);
-   /* .then((result) => {
+  /*
+  .then((result) => {
     // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
@@ -65,14 +60,14 @@ export function signInWithGoogle() {
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
       console.log(credential);
-    });*/
+    });
+    */
 }
 
 export const signInEP = async (userEmail, userPassword) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, userEmail, userPassword);
     const user = userCredential.user;
-    console.log(user)
     return user;
   } catch (error) {
     const errorCode = error.code;
@@ -88,4 +83,3 @@ export function logoutUser() {
   // An error happened.
   });
 }
-
