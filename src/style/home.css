@@ -124,14 +124,14 @@ body{
 }
 
 .nameUser {
-  align-items: center;
-  margin: 5% 50%;
+  align-items:center;
+  margin: 5% 5%;
   font-weight: bold;
 }
 
 .divReceta {
-  height: 7em;
-  width: 100%;
+  height: 5em;
+  width: 20em;
   background-color: var(--recetarioColor);
   display: flex;
   align-items: center;
@@ -139,7 +139,7 @@ body{
 }
 
 .recetaUser {
-  height: 5em;
+  height: 3em;
   width: 80%;
   text-align:center;
 }
@@ -152,7 +152,6 @@ body{
   display: flex;
   justify-content: space-around;
   margin-top: 100%;
-
 }
 
 footer {
@@ -179,3 +178,5 @@ footer {
 .show-password input:checked {
   border: 8px solid var(--secondary);
 }
+
+

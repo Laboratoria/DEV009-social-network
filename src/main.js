@@ -4,6 +4,7 @@ import error from './components/error.js';
 import registro from './components/registro.js';
 import principal from './components/principal.js';
 import editarpost from './components/editarpost.js';
+import usuarioPost from './components/usuarioPost.js';
 
 const root = document.getElementById('root');
 
@@ -14,6 +15,7 @@ const routes = [
   { path: '/registro', component: registro },
   { path: '/principal', component: principal },
   { path: '/editarpost', component: editarpost },
+  { path: '/usuarioPost', component: usuarioPost },
 ];
 
 const defaultRoute = '/';
