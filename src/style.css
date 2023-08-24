@@ -1,26 +1,10 @@
 body {
-  margin: 0;
-  padding: 0;
+  padding: 20px;
   background-color: #641B42;
-}
-
-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto;
-  gap: 10px;
-  margin: auto;
-  height: 100vh; 
-  width: 100%; 
-}
-
-.logo{
-  width: 400px;
-  grid-row: 1;
-  grid-column: 2;
-  position: absolute;
 }
 
 img {
@@ -64,11 +48,22 @@ img.avatar {
   border-radius: 8px;
 }
 
+.porfile
+
 img,
 img.avatar {
   display: flex;
   width: 100%;
   margin-bottom: 20px;
+}
+
+section {
+  max-width: 300px;
+  margin: auto;
+  background-color: #641B42;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 input {
@@ -135,8 +130,7 @@ button {
 
 .postShowCont{
   display: flex; 
-  grid-row: 3;
-  grid-column: 3;
+  align-items: center;
 }
 
 .perfile{
@@ -149,12 +143,15 @@ button {
   background-color: #FAB838;
   border-bottom: #393939;
   border-radius: 20px;
-  margin-bottom: 20px;
-  margin: 10px;
-  padding: 10px;
-  position: relative;
+  margin-left: 10px;
   display: flex;
-  flex-wrap: nowrap;
+  flex-direction: column;
+  width: 300px;
+  margin-bottom: 20px;
+  padding: 15px;
+  text-align: start;
+  margin-left: 10px;
+  position: relative;
  }
 
  .postRecipe::before {
@@ -175,7 +172,6 @@ button {
 
 .textRecipe{
   margin-bottom: 10px;
-
 }
 
 .icons{
@@ -202,8 +198,6 @@ button {
   margin-left: 10px; /* Ajustar según el espacio deseado entre el botón y la burbuja */
   text-align: start; /* Alinear el contenido del lado derecho */
   display: inline-block; 
-  grid-row:2;
-  grid-column: 2;
  }
 
  .formOpen::before {
@@ -215,6 +209,7 @@ button {
   border-left-color: #ffffff;
  }
 
+
  .formAddRecipe{
   display: grid;
   background-color: #ffffff;
@@ -223,32 +218,10 @@ button {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
  }
-
- .nameRecipe {
-  font-weight: bold;
-  margin-bottom: 5px;
- }
-
- .recipe {
-  padding: 10px;
-  margin-bottom: 15px;
- }
-
- .formButton{
-  background-color: #3b0a24;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
- }
-
- h5{
+ 
+ /*h5{
   align-self: flex-end;
-  color: aliceblue;
- }
-
+ }*/
 .logout{
   color: white;
   background-color: black;
