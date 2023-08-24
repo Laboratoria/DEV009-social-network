@@ -12,24 +12,30 @@ function feed(navigateTo) {
   const logoutButtom = document.createElement('button');
   const MessageOk = document.createElement('p');
   const MessageError = document.createElement('p');
-  const recipe = document.createElement('textarea');
   const formRecipe = document.createElement('form');
-  const nameSteps = document.createElement('input');
+  const nameRecipeForm = document.createElement('input');
+  const recipe = document.createElement('textarea');
   const add = document.createElement('button');
   const showPostFeed = document.createElement('div');
 
 
   logo.src = './imagenes/image.png';
+  logo.className = 'logo';
   write.textContent = 'Añade una Receta';
+  write.className = 'formOpen';
   option1.value = 'Mejores Recetas';
   option1.textContent = 'Mejores Recetas';
   option2.value = 'Usuarios';
   option2.textContent = 'Usuarios';
   recipe.placeholder = 'ingresa tu receta';
+  recipe.className ='recipe';
   formRecipe.style.display = 'none'
-  nameSteps.type = 'text';
-  nameSteps.placeholder = 'Nombre de la receta';
+  formRecipe.className ='formAddRecipe';
+  nameRecipeForm.type = 'text';
+  nameRecipeForm.className = 'nameRecipe';
+  nameRecipeForm.placeholder = 'Nombre de la receta';
   add.textContent = 'Agregar';
+  add.className = 'formButton';
   logoutButtom.textContent = 'Cerrar Sesión 💨';
   logoutButtom.className = 'logout';
   MessageOk.style.color = 'green';
@@ -44,24 +50,28 @@ function feed(navigateTo) {
       console.error('Error al obtener posts', error);
     });
 
-    
+
   function showAllRecipes(allRecipes) {
     showPostFeed.innerHTML = '';
     console.log(allRecipes);
     allRecipes.forEach((recipeContent) => {
       const postRecipe = `
-      <h5 class="user"><img class="perfile" src="./imagenes/Profil.png" />By: ${recipeContent.user}</h5>
+      <div class="postShowCont">
+       <h5 class="user"><img class="perfile" src="./imagenes/Profil.png" /> ${recipeContent.user.split('@')[0]}</h5>
         <div class="postRecipe" id="post-${recipeContent.id}">
-          <p class="name">${recipeContent.name}</p>
+        <div class="textRecipe"> 
+        <p class="name">"${recipeContent.name}"</p>
           <p>Pasos:</p>
           <textarea  type="text" id="edit-${recipeContent.id}" class="steps" disabled>${recipeContent.steps}</textarea>
-          <h5 class="user">👤 ${recipeContent.user.split('@')[0]}</h5>
-          <div class="footer-post">
           <p>${recipeContent.likes}</p>
+          </div> 
+          <div class= "icons">
           <button id="like-${recipeContent.id}">⭐</button>
           <button class="edit" id="b-edit-${recipeContent.id}">🖋️</button>
           <button class="delete" id="delete-${recipeContent.id}"  >🗑️</button>
           </div>
+          </div>
+         </div>
         </div>`;
       showPostFeed.innerHTML += postRecipe;
     });
@@ -75,19 +85,23 @@ function feed(navigateTo) {
     formRecipe.style.display = 'block'
     write.style.display = 'none';
     recipe.value = '';
-    nameSteps.value = '';
+    nameRecipeForm.value = '';
   });
 
   add.addEventListener('click', async (event) => {
     event.preventDefault();
     const recipeData = recipe.value;
-    const nameRecipe = nameSteps.value;
+    const nameRecipe = nameRecipeForm.value;
     formRecipe.style.display = 'none';
     write.style.display = 'block';
-    if (!nameRecipe || !recipeData) {
+    if (!nameRecipe|| !recipeData) {
       MessageError.textContent = 'Por favor, completa ambos campos.';
+      formRecipe.style.display = 'block';
+      write.style.display = 'none';
       return;
     } else {
+      formRecipe.style.display = 'none';
+      MessageError.textContent = '';
       const newRecipeId = await addRecipe(nameRecipe, recipeData);
       if (newRecipeId) {
         querySnapshot()
@@ -103,11 +117,9 @@ function feed(navigateTo) {
         console.log('Error al agregar la receta.');
       }
     }
-    formRecipe.style.display = 'none';
-    write.style.display = 'block';
   });
 
-  
+
 
   function postEdit() {
     addEventListener.editPost('click', () => {
@@ -117,9 +129,8 @@ function feed(navigateTo) {
 
   const modal = document.createElement('div');
   modal.className = 'modal';
-  modal.style.display = 'none';
   const modalContent = document.createElement('div');
-  modalContent.className ='modal-content';
+  modalContent.className = 'modal-content';
   const message = document.createElement('p');
   message.textContent = '¿Estás seguro que deseas eliminar tu receta?';
 
@@ -141,7 +152,7 @@ function feed(navigateTo) {
       function awaitModal() {
         modalContent.addEventListener('click', (event) => {
           const targetId = event.target.id;
-          if (targetId.includes('deleteButton')){
+          if (targetId.includes('deleteButton')) {
             deletePost(key.replace('delete-', ''))
               .then((data) => {
                 querySnapshot()
@@ -155,14 +166,14 @@ function feed(navigateTo) {
               .catch((error) => {
                 console.log('error delete', error);
               })
-              modal.style.display ='none';
-          }else if (targetId.includes('cancelButton')){
-            modal.style.display ='none';
+            modal.style.display = 'none';
+          } else if (targetId.includes('cancelButton')) {
+            modal.style.display = 'none';
           }
-      });
+        });
       }
       awaitModal();
-    }else if(key.includes('b-edit-')){
+    } else if (key.includes('b-edit-')) {
       const uidPost = key.replace('b-edit-', '');
       const postText = document.getElementById(`edit-${uidPost}`);
       postText.removeAttribute('disabled');
@@ -173,31 +184,31 @@ function feed(navigateTo) {
           postText.setAttribute('disabled', '');
         }
       });
-    }else if (key.includes('like-')){
+    } else if (key.includes('like-')) {
       const data = key.split('-');
-     likePost(data[1])
-      .then(() => {
-  
-        querySnapshot()
-          .then((doc) => {
-            console.log('152222222', doc)
-            showAllRecipes(doc);
-          })
-          .catch((error) => {
-            console.error('Error al obtener posts', error);
-          });
-      })
-      .catch((error) => {
-        console.log('error delete', error);
-      })
+      likePost(data[1])
+        .then(() => {
+
+          querySnapshot()
+            .then((doc) => {
+              console.log('152222222', doc)
+              showAllRecipes(doc);
+            })
+            .catch((error) => {
+              console.error('Error al obtener posts', error);
+            });
+        })
+        .catch((error) => {
+          console.log('error delete', error);
+        })
     }
-    
+
   })
 
 
-  section.append(logo, showPostFeed, modal, formRecipe, write, nav, logoutButtom);
+  section.append(logo, nav, showPostFeed, modal, formRecipe, write, logoutButtom);
 
-  formRecipe.append(nameSteps, recipe, add, MessageError, MessageOk)
+  formRecipe.append(nameRecipeForm, recipe, add, MessageError, MessageOk)
   nav.append(select);
   select.append(option1, option2);
   return section;

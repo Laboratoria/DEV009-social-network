@@ -1,10 +1,26 @@
 body {
-  padding: 20px;
+  margin: 0;
+  padding: 0;
   background-color: #641B42;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+section {
   height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 10px;
+  margin: auto;
+  height: 100vh; 
+  width: 100%; 
+}
+
+.logo{
+  width: 400px;
+  grid-row: 1;
+  grid-column: 2;
+  position: absolute;
 }
 
 img {
@@ -55,15 +71,6 @@ img.avatar {
   margin-bottom: 20px;
 }
 
-section {
-  max-width: 300px;
-  margin: auto;
-  background-color: #641B42;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
 input {
   display: flex;
   margin: auto;
@@ -107,7 +114,6 @@ button {
   align-items: center;
   /* Para centrar verticalmente el contenido */
   padding: 5px;
-  /* Ajusta el padding según tus preferencias */
   background-color: #641B42;
   /* Color de fondo del botón */
   color:white;
@@ -127,17 +133,56 @@ button {
   padding-top: 12px;
 }
 
+.postShowCont{
+  display: flex; 
+  grid-row: 3;
+  grid-column: 3;
+}
+
+.perfile{
+  display: flex;
+  width: 50px;
+  margin-bottom: 20px;
+}
+
  .postRecipe{
   background-color: #FAB838;
   border-bottom: #393939;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  width: 300px;
+  border-radius: 20px;
   margin-bottom: 20px;
-  padding: 15px;
-  text-align: start;
+  margin: 10px;
+  padding: 10px;
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
  }
+
+ .postRecipe::before {
+  content: '';
+  position: absolute;
+  top: 10px; /* Ajustar según la apariencia deseada */
+  left: -18px; /* Ajustar según la apariencia deseada */
+  border: 10px solid transparent;
+  border-right-color: #FAB838;
+ }
+
+.postRecipe p,
+.postRecipe textarea,
+.postRecipe h5,
+.postRecipe .footer-post {
+  margin: 0; 
+}
+
+.textRecipe{
+  margin-bottom: 10px;
+
+}
+
+.icons{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
 
  .footer-post{
   display: flex;
@@ -147,9 +192,63 @@ button {
   font-size: 18px;
   font-weight: 800;
  }
+
+ .formOpen{
+  position: relative;
+  border: solid transparent;
+  border-radius: 20px;
+  background-color: #ffffff;
+  padding: 5px;
+  margin-left: 10px; /* Ajustar según el espacio deseado entre el botón y la burbuja */
+  text-align: start; /* Alinear el contenido del lado derecho */
+  display: inline-block; 
+  grid-row:2;
+  grid-column: 2;
+ }
+
+ .formOpen::before {
+  content: '';
+  position: absolute;
+  top: 2px; /* Ajustar según la apariencia deseada */
+  right: -18px; /* Ajustar según la apariencia deseada */
+  border: 10px solid transparent;
+  border-left-color: #ffffff;
+ }
+
+ .formAddRecipe{
+  display: grid;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+ }
+
+ .nameRecipe {
+  font-weight: bold;
+  margin-bottom: 5px;
+ }
+
+ .recipe {
+  padding: 10px;
+  margin-bottom: 15px;
+ }
+
+ .formButton{
+  background-color: #3b0a24;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+ }
+
  h5{
   align-self: flex-end;
+  color: aliceblue;
  }
+
 .logout{
   color: white;
   background-color: black;
@@ -173,24 +272,4 @@ button {
   button {
     max-width: 100%;
   }
-}
-#talkbubble {
-  width: 120px;
-  height: 80px;
-  background: red;
-  position: relative;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-}
-#talkbubble:before {
-  content: "";
-  position: absolute;
-  right: 100%;
-  top: 26px;
-  width: 0;
-  height: 0;
-  border-top: 13px solid transparent;
-  border-right: 26px solid red;
-  border-bottom: 13px solid transparent;
 }
