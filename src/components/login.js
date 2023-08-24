@@ -34,15 +34,19 @@ function home(navigateTo) {
   });
 
   buttonGoogle.addEventListener('click', async () => {
-   /* try {
+    /*
+     try {
       await signInWithGoogle();
       navigateTo('/feed');
     } catch (error) {
       errorMessage.textContent = error.message;
-    }*/
+    }
+    */
     signInWithGoogle()
-    .then(() => navigateTo('/feed'))
-    .catch((error)=> errorMessage.textContent = error.message)
+      .then(() => navigateTo('/feed'))
+      .catch((error) => {
+        errorMessage.textContent = error.message;
+      });
   });
 
   login.addEventListener('click', async () => {
@@ -53,18 +57,16 @@ function home(navigateTo) {
       try {
         await signInEP(email, password);
         navigateTo('/feed');
-        console.log(sing)
-        currentChange()
+        currentChange();
       } catch (error) {
         errorMessage.textContent = error.message;
       }
     } else {
       errorMessage.textContent = 'Por favor, ingresa un correo y una contraseña válida.';
     }
-
   });
   section.append(logo, title, passwordLogin, emailLogin, login);
   section.append(errorMessage, registerUser, buttonGoogle, h3);
   return section;
 }
-export default  home; 
+export default home;

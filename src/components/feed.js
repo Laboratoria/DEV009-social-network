@@ -1,5 +1,11 @@
 import { logoutUser } from '../lib/index.js';
-import { addRecipe, querySnapshot, deletePost, editTextPost, likePost } from '../lib/dataBase';
+import {
+  addRecipe,
+  querySnapshot,
+  deletePost,
+  editTextPost,
+  likePost,
+} from '../lib/dataBase';
 
 function feed(navigateTo) {
   const section = document.createElement('section');
@@ -19,6 +25,9 @@ function feed(navigateTo) {
   const showPostFeed = document.createElement('div');
 
 
+  // Help Hannia
+
+
   logo.src = './imagenes/image.png';
   write.textContent = 'Añade una Receta';
   option1.value = 'Mejores Recetas';
@@ -26,7 +35,7 @@ function feed(navigateTo) {
   option2.value = 'Usuarios';
   option2.textContent = 'Usuarios';
   recipe.placeholder = 'ingresa tu receta';
-  formRecipe.style.display = 'none'
+  formRecipe.style.display = 'none';
   nameSteps.type = 'text';
   nameSteps.placeholder = 'Nombre de la receta';
   add.textContent = 'Agregar';
@@ -35,19 +44,9 @@ function feed(navigateTo) {
   MessageOk.style.color = 'green';
   MessageError.style.color = 'grey';
 
-
-  querySnapshot()
-    .then((doc) => {
-      showAllRecipes(doc);
-    })
-    .catch((error) => {
-      console.error('Error al obtener posts', error);
-    });
-
-    
+  // funcion de mostrar el recipe
   function showAllRecipes(allRecipes) {
     showPostFeed.innerHTML = '';
-    console.log(allRecipes);
     allRecipes.forEach((recipeContent) => {
       const postRecipe = `
       <h5 class="user"><img class="perfile" src="./imagenes/Profil.png" />By: ${recipeContent.user.split('@')[0]}</h5>
@@ -59,19 +58,28 @@ function feed(navigateTo) {
           <p>${recipeContent.likes}</p>
           <button id="like-${recipeContent.id}">⭐</button>
           <button class="edit" id="b-edit-${recipeContent.id}">🖋️</button>
-          <button class="delete" id="delete-${recipeContent.id}"  >🗑️</button>
+          <button class="delete" id="delete-${recipeContent.id}">🗑️</button>
           </div>
         </div>`;
       showPostFeed.innerHTML += postRecipe;
     });
   }
+
+  querySnapshot()
+    .then((doc) => {
+      showAllRecipes(doc);
+    })
+    .catch((error) => {
+      console.error('Error al obtener posts', error);
+    });
+
   logoutButtom.addEventListener('click', () => {
     logoutUser();
     navigateTo('/');
   });
 
   write.addEventListener('click', () => {
-    formRecipe.style.display = 'block'
+    formRecipe.style.display = 'block';
     write.style.display = 'none';
     recipe.value = '';
     nameSteps.value = '';
@@ -86,7 +94,8 @@ function feed(navigateTo) {
     if (!nameRecipe || !recipeData) {
       MessageError.textContent = 'Por favor, completa ambos campos.';
       return;
-    } else {
+    }
+    {
       const newRecipeId = await addRecipe(nameRecipe, recipeData);
       if (newRecipeId) {
         querySnapshot()
@@ -96,28 +105,18 @@ function feed(navigateTo) {
           .catch((error) => {
             console.error('Error al obtener posts', error);
           });
-
       } else {
         MessageError.textContent = 'Error al agregar la receta.';
-        console.log('Error al agregar la receta.');
       }
     }
     formRecipe.style.display = 'none';
     write.style.display = 'block';
   });
-
-  
-
-  function postEdit() {
-    addEventListener.editPost('click', () => {
-      console.log("editando post ")
-    });
-  }
-
+  // ventana modal para eliminar el post
   const modal = document.createElement('div');
   modal.className = 'modal';
   const modalContent = document.createElement('div');
-  modalContent.className ='modal-content';
+  modalContent.className = 'modal-content';
   const message = document.createElement('p');
   message.textContent = '¿Estás seguro que deseas eliminar tu receta?';
 
@@ -132,35 +131,36 @@ function feed(navigateTo) {
   modalContent.append(message, deleteButton, cancelButton);
   modal.appendChild(modalContent);
 
-section.addEventListener('click', async (event) => {
+  function awaitModal(event, key) {
+    modalContent.addEventListener('click', () => {
+      const targetId = event.target.id;
+      if (targetId.includes('deleteButton')) {
+        deletePost(key.replace('delete-', ''))
+          .then(() => {
+            querySnapshot()
+              .then((doc) => {
+                showAllRecipes(doc);
+              })
+              .catch((error) => {
+                console.error('Error al obtener posts', error);
+              });
+          })
+          .catch((error) => {
+            console.log('error delete', error);
+          });
+        modal.style.display = 'none';
+      } else if (targetId.includes('cancelButton')) {
+        modal.style.display = 'none';
+      }
+    });
+  }
+
+  section.addEventListener('click', async (event) => {
     const key = (event.target.id);
     if (key.includes('delete-')) {
       modal.style.display = 'block';
-      function awaitModal() {
-        modalContent.addEventListener('click', (event) => {
-          const targetId = event.target.id;
-          if (targetId.includes('deleteButton')){
-            deletePost(key.replace('delete-', ''))
-              .then((data) => {
-                querySnapshot()
-                  .then((doc) => {
-                    showAllRecipes(doc);
-                  })
-                  .catch((error) => {
-                    console.error('Error al obtener posts', error);
-                  });
-              })
-              .catch((error) => {
-                console.log('error delete', error);
-              })
-              modal.style.display ='none';
-          }else if (targetId.includes('cancelButton')){
-            modal.style.display ='none';
-          }
-      });
-      }
       awaitModal();
-    }else if(key.includes('b-edit-')){
+    } else if (key.includes('b-edit-')) {
       const uidPost = key.replace('b-edit-', '');
       const postText = document.getElementById(`edit-${uidPost}`);
       postText.removeAttribute('disabled');
@@ -171,31 +171,26 @@ section.addEventListener('click', async (event) => {
           postText.setAttribute('disabled', '');
         }
       });
-    }else if (key.includes('like-')){
+    } else if (key.includes('like-')) {
       const data = key.split('-');
-     likePost(data[1])
-      .then(() => {
-  
-        querySnapshot()
-          .then((doc) => {
-            console.log('152222222', doc)
-            showAllRecipes(doc);
-          })
-          .catch((error) => {
-            console.error('Error al obtener posts', error);
-          });
-      })
-      .catch((error) => {
-        console.log('error delete', error);
-      })
+      likePost(data[1])
+        .then(() => {
+          querySnapshot()
+            .then((doc) => {
+              showAllRecipes(doc);
+            })
+            .catch((error) => {
+              console.error('Error al obtener posts', error);
+            });
+        })
+        .catch((error) => {
+          console.log('error delete', error);
+        });
     }
-    
-  })
-
-
+  });
   section.append(logo, showPostFeed, modal, formRecipe, write, nav, logoutButtom);
 
-  formRecipe.append(nameSteps, recipe, add, MessageError, MessageOk)
+  formRecipe.append(nameSteps, recipe, add, MessageError, MessageOk);
   nav.append(select);
   select.append(option1, option2);
   return section;

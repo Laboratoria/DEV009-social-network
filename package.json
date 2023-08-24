@@ -46,7 +46,8 @@
     "firebase": "^10.1.0"
   },
   "directories": {
-    "test": "test"
+   "test": "test"
+ 
   },
   "jest": {
     "testEnvironment": "jsdom"

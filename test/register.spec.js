@@ -6,17 +6,15 @@ const registerMock = register(navigateToMock);
 
 jest.mock('../src/lib/index', () => ({
   createUser: jest.fn((email, password) => {
-    if (email === 'test@example.com' && password === '123456') {
-      return Promise.resolve({ emailVerified: false });
-    } else if (email === 'test@example.com' && password === '12') {
-    return Promise.reject({ error : 'contraseña menor a seis caracteres.' });
-    } else if (email === 'testexample.com' && password === '123456') {
-      return Promise.reject({ error : 'correo esta invalido.' });}
+    if (email === 'test@example.com' && password === '12') {
+      return Promise.reject(new Error('contraseña menor a seis caracteres.'));
+    }
+    if (email === 'testexample.com' && password === '123456') {
+      return Promise.reject(new Error('correo inválido.'));
+    }
     return Promise.resolve({ emailVerified: true });
   }),
-  signInWithGoogle: jest.fn(() => {
-    return Promise.resolve({ emailVerified: false });
-  }),
+  signInWithGoogle: jest.fn(() => Promise.resolve({ emailVerified: false })),
 }));
 
 describe('función crear usuario', () => {
@@ -28,7 +26,6 @@ describe('función crear usuario', () => {
   const passwordInput = registerMock.querySelector('.input-password');
   const buttonRegister = registerMock.querySelector('.button-register');
   const buttonGoole = registerMock.querySelector('.button-google');
-  const errorMessage = registerMock.querySelector('.error-mesagge');
 
   emailInput.value = '';
   passwordInput.value = '';
@@ -42,16 +39,12 @@ describe('función crear usuario', () => {
     expect(navigateToMock).toHaveBeenCalledWith('/feed');
   });
 
-  test('Debería mostrar un mensaje de error al ingresar una contraseña menor a 6 caracteres', () => {
-    expect(createUser('test@example.com', '12')).rejects.toEqual({
-          error: 'contraseña menor a seis caracteres.',
-    });
+  test('Debería mostrar un mensaje de error al ingresar una contraseña menor a 6 caracteres', async () => {
+    await expect(createUser('test@example.com', '12')).rejects.toThrow('contraseña menor a seis caracteres.');
   });
 
   test('debería dejar decirnos que ingresemos un correo y una contraseña válida', async () => {
-    expect(createUser('testexample.com', '123456')).rejects.toEqual({
-      error: 'correo esta invalido.',
-});
+    await expect(createUser('testexample.com', '123456')).rejects.toThrow('correo inválido.');
   });
 
   test('deberia iniciar sesión con Google', async () => {
