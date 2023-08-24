@@ -1,4 +1,5 @@
 // aqui exportaras las funciones que necesites
+import { async } from 'regenerator-runtime';
 import {
   createUserWithEmailAndPassword,
   auth,
@@ -7,15 +8,26 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signOut,
-  collection, 
+  collection,
   addDoc,
   db,
+  getDocs,
+  updateProfile,
 } from '../firebase/initializeFirebase.js';
 
+// -- guardar Datos de usuario (se iran agregando a la coleccion de users) //
+export const saveDataUser = async (Name, Email) => {
+  await addDoc(collection(db, 'users'), {
+    name: Name, // clave - parametro
+    email: Email,
+  });
+};
+
 // ----                   signin with new email                    --- //
-export const registerUser = async (email, pass, callback) => {
+export const registerUser = async (name, email, pass, callback) => {
   try {
-    await createUserWithEmailAndPassword(auth, email, pass);
+    await createUserWithEmailAndPassword(auth, email, pass, name);
+    saveDataUser(name, email);
     callback(true);
   } catch (error) {
     if (error.code === 'auth/email-already-in-use') {
@@ -78,14 +90,51 @@ export const exitUser = async (callback) => {
 };
 
 // ---           crear post            --- //
-export const createPostFn = async (content) => {
+export const createPostFn = async (post, name) => {
   try {
-    const allPosts = {
-      content,
+    const data = {
+      content: post,
+      author: name,
     };
-    const docRef = await addDoc(collection(db, "post"), allPosts);
-    console.log("Document written with ID: ", docRef.id);
+    const docRef = await addDoc(collection(db, 'post'), data);
+    console.log('Document written with ID: ', docRef.post);
   } catch (e) {
-    console.error("Error adding document: ", e);
-  } 
+    console.error('Error adding document: ', e);
+  }
+};
+
+//  ---            leer datos almacenados en firebase        --  //
+export const showData = async () => {
+  try {
+    const querySnapshot = await getDocs(collection(db, 'post'));
+    const timeLineSection = document.querySelector('.timeLineSection');
+
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      // const postId = doc.id;
+      // const user = auth.currentUser;
+      const postConteiner = document.createElement('div');
+      postConteiner.classList.add('postConteiner');
+
+      const userNamePic = document.createElement('div');
+      userNamePic.classList.add('userNamePic');
+
+      const userPicture = document.createElement('img');
+      userPicture.classList.add('userPicture');
+      userPicture.src = './img/perfil.png';
+
+      const nickName = document.createElement('p');
+      nickName.textContent = `${data.author}`;
+      nickName.classList.add('nickName');
+
+      const content = document.createElement('p');
+      content.classList.add('content');
+      content.textContent = data.content;
+      userNamePic.append(userPicture, nickName);
+      postConteiner.append(userNamePic, content);
+      timeLineSection.appendChild(postConteiner);
+    });
+  } catch (e) {
+    console.error('Error', e);
+  }
 };
