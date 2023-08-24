@@ -18,6 +18,7 @@ function feed(navigateTo) {
   const add = document.createElement('button');
   const showPostFeed = document.createElement('div');
 
+  // Help Hannia
 
   logo.src = './imagenes/image.png';
   write.textContent = 'Añade una Receta';
