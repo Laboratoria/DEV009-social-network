@@ -51,12 +51,13 @@ function signup(navigateTo) {
     e.preventDefault();
     const emailUser = email.value;
     const passUser = password.value;
+    const nameUser = name.value;
     const alertRegister = (boolean) => {
       if (boolean) {
         navigateTo('/wall');
       }
     };
-    registerUser(emailUser, passUser, alertRegister);
+    registerUser(nameUser, emailUser, passUser, alertRegister);
   });
 
   toLogin.addEventListener('click', () => {

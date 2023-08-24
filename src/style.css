@@ -340,10 +340,6 @@ h2 {
 /*responsive móvil*/
 @media only screen and (min-width:320px) and (max-width:480px) {
 
-    body{
-        background-color: white;
-        margin: 0;
-    }
     section.containerSignup {
         margin: 6vh;
         background: white;
@@ -446,6 +442,8 @@ h2 {
         height: 6rem;
         margin-top: 0;
         
+        border: 1px solid red;
+        
     }
     .profilePic{
         width: 3em;
@@ -483,5 +481,20 @@ h2 {
     .menu, .home, .exit{
         width: 50px; 
     }
+
+    .mainConteiner{
+        border: 3px solid green;
+        background-color: white;
+        height: 50%;
+    }
+    .sectionWall{
+    
+    }
+    .postContent{
+        border: 3px solid rgb(28, 0, 128);
+    }
+
+
+
 }
 

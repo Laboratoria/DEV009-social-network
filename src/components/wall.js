@@ -1,4 +1,5 @@
-import { exitUser, createPostFn } from '../lib/index.js';
+import { auth } from '../firebase/initializeFirebase.js';
+import { exitUser, createPostFn, showData } from '../lib/index.js';
 
 function wall(navigateTo) {
   const mainContainer = document.createElement('div');
@@ -8,7 +9,7 @@ function wall(navigateTo) {
   const profilePic = document.createElement('img');
   const createPost = document.createElement('textarea');
 
-  const post = document.createElement('div');
+  const timeLineSection = document.createElement('div');
   const userName = document.createElement('h3');
   const postContent = document.createElement('p');
   const like = document.createElement('img');
@@ -26,6 +27,8 @@ function wall(navigateTo) {
   const edit = document.createElement('img');
   const deleteIcon = document.createElement('img');
 
+  edit.src = './icons/edit.svg';
+  deleteIcon.src = './icons/delete.svg';
 
   logo.src = './img/logo.png';
   profilePic.src = './img/perfil.png';
@@ -42,7 +45,7 @@ function wall(navigateTo) {
   profileMenu.src = './img/perfil.png';
   exit.src = './icons/exit.svg';
 
-  mainContainer.classList.add('allContent');
+  mainContainer.classList.add('mainConteiner');
   section.classList.add('sectionWall');
   header.classList.add('header');
   logo.classList.add('logoWall');
@@ -50,7 +53,7 @@ function wall(navigateTo) {
   createPost.classList.add('createPost');
   createPost.setAttribute('required', '');
   createPost.setAttribute('autocapitalize', 'sentences');
-  post.classList.add('post');
+  timeLineSection.classList.add('timeLineSection');
   userName.classList.add('userName');
   postContent.classList.add('postContent');
   like.classList.add('like');
@@ -59,12 +62,20 @@ function wall(navigateTo) {
   home.classList.add('home');
   profileMenu.classList.add('profileMenu');
   exit.classList.add('exit');
+  divPost.classList.add('divPost');
+  divUserName.classList.add('divUserNAme');
+  divPostContent.classList.add('divPostContent');
+  divLikeEditDelete.classList.add('divLikeEditDelete');
+  edit.classList.add('edit');
+  deleteIcon.classList.add('deleteIcon');
 
-  mainContainer.append(section, header, post, menu);
+  mainContainer.append(section, header, timeLineSection, divPost, menu);
   section.append(header, profilePic, formPost);
   header.appendChild(logo);
-  post.append(userName, postContent, like, countLikes);
+  timeLineSection.append(userName, postContent);
   formPost.append(createPost, postBtn);
+  divPost.append(divUserName, divPostContent, divLikeEditDelete);
+  divLikeEditDelete.append(like, countLikes, edit, deleteIcon);
   menu.append(home, profileMenu, exit);
 
   home.addEventListener('click', () => {
@@ -85,12 +96,17 @@ function wall(navigateTo) {
     exitUser(alertlogOut);
   });
 
+  console.log(showData());
+
   formPost.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const content = createPost.value;
 
-    await createPostFn(content);
-    console.log(content);
+    const postCreated = createPost.value;
+    const user = auth.currentUser;
+    const author = user.displayName;
+
+    await createPostFn(postCreated, author);
+    // console.log(content);
     formPost.reset();
     navigateTo('/wall');
   });
