@@ -41,9 +41,9 @@ function editarpost(navigateTo) {
   const receta = document.createElement('input');
   receta.className = 'recetaUser';
   receta.setAttribute('placeholder', 'Escribe tu receta');
-  receta.setAttribute('rows', '5');
-  receta.setAttribute('cols', '50');
-  receta.setAttribute('maxlength', '1500');
+  receta.setAttribute('rows', '8');
+  receta.setAttribute('cols', '100');
+  receta.setAttribute('maxlength', '2500');
   receta.setAttribute('required', '');
   const btnPost = document.createElement('button');
   btnPost.className = 'btn-post';
