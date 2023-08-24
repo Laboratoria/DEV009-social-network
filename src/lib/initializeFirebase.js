@@ -4,6 +4,13 @@ import {
   collection,
   addDoc,
   serverTimestamp,
+  getDocs,
+  query,
+  orderBy,
+  doc,
+  getDoc,
+  updateDoc,
+  where,
 } from 'firebase/firestore';
 import {
   getAuth,
@@ -38,5 +45,12 @@ export {
   sendEmailVerification,
   signOut,
   serverTimestamp,
+  getDocs,
+  query,
+  orderBy,
+  doc,
+  getDoc,
+  updateDoc,
+  where,
 };
 export const saveUser = (user) => addDoc(collection(db, 'Users'), user);
