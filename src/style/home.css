@@ -29,6 +29,10 @@ body{
   width: 100%;
 }
 
+.sectionHome {
+  display: flex;
+}
+
 .formRegistro, .formLogin {
   display: flex;
   flex-direction: column;
@@ -217,8 +221,6 @@ footer {
   width: 20em;
 }
 
-
-
 /* small tablet styles */
 @media screen and (min-width: 620px){
   .divHome, .divRegister, .divLogin {
@@ -238,7 +240,6 @@ footer {
     width: 40em;
 
   }
-
   
 }
 
