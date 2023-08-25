@@ -1,5 +1,4 @@
 // aqui exportaras las funciones que necesites
-import { async } from 'regenerator-runtime';
 import {
   createUserWithEmailAndPassword,
   auth,
@@ -11,34 +10,41 @@ import {
   collection,
   addDoc,
   db,
+  query,
+  where,
   getDocs,
-  updateProfile,
 } from '../firebase/initializeFirebase.js';
 
-// -- guardar Datos de usuario (se iran agregando a la coleccion de users) //
-export const saveDataUser = async (Name, Email) => {
+// -- guardar datos de usuario (se irán agregando a la coleccion de users) //
+export const saveDataUser = async (Name, Email, Uid) => {
   await addDoc(collection(db, 'users'), {
     name: Name, // clave - parametro
     email: Email,
+    uid: Uid,
   });
 };
 
 // ----                   signin with new email                    --- //
 export const registerUser = async (name, email, pass, callback) => {
-  try {
-    await createUserWithEmailAndPassword(auth, email, pass, name);
-    saveDataUser(name, email);
+  createUserWithEmailAndPassword(auth, email, pass, name).then((userCredential) => {
+    // Signed in
+    const user = userCredential.user;
+    // ...
+    saveDataUser(name, email, user.uid);
     callback(true);
-  } catch (error) {
+  }).catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
     if (error.code === 'auth/email-already-in-use') {
       alert('Este email ya está registrado');
     } else if (error.code === 'auth/invalid-email') {
       alert('Este email es inválido');
     }
     callback(false);
-  }
+  // ..
+  });
 };
-
+//
 // ----                   signin with google                    --- //
 export const registerWithGoogle = async (callback) => {
   try {
@@ -49,8 +55,10 @@ export const registerWithGoogle = async (callback) => {
     const token = credential.accessToken;
     // The signed-in user info.
     const user = result.user;
+    console.log(user);
     // IdP data available using getAdditionalUserInfo(result)
     // ...
+    saveDataUser(user.displayName, user.email, user.uid);
     callback(true);
   } catch (error) {
     // Handle Errors here.
@@ -90,20 +98,44 @@ export const exitUser = async (callback) => {
 };
 
 // ---           crear post            --- //
-export const createPostFn = async (post, name) => {
+export const createPostFn = (post) => {
   try {
-    const data = {
-      content: post,
-      author: name,
-    };
-    const docRef = await addDoc(collection(db, 'post'), data);
-    console.log('Document written with ID: ', docRef.post);
+    obtenerUsuario().then(user => {
+      console.log(user);
+      addDoc(collection(db, 'post'), {
+        content: post,
+        author: user,
+      });
+    });
   } catch (e) {
     console.error('Error adding document: ', e);
   }
 };
+// obtener usuario logeado //
+export async function obtenerUsuario() {
+  const querySnapshot = await getDocs(collection(db, 'users'));
+  let userGetName = [];
+  querySnapshot.forEach((doc) => {
+    const user = auth.currentUser.uid;
 
-//  ---            leer datos almacenados en firebase        --  //
+    if (user === doc.data().uid) { // Si el valor de la variable user es igual al valor de la propiedad uid del objeto data del documento actual, se ejecutará el bloque de código dentro del condicional.
+    // The user object has basic properties such as display name, email, etc.
+      // const displayName = user.displayName;
+      // const email = user.email;
+      // const emailVerified = user.emailVerified;
+      userGetName.push(doc.data().name)
+      // The user's ID, unique to the Firebase project. Do NOT use
+      // this value to authenticate with your backend server, if
+      // you have one. Use User.getToken() instead.
+      // const uid = user.uid;
+      // La variable uid se asigna al valor de la propiedad uid del objeto user.
+      // Esto significa que uid contendrá el identificador único del usuario actual.
+    }
+  });
+  return userGetName.join('');
+}
+
+//  ---            leer datos almacenados en firestore        --  //
 export const showData = async () => {
   try {
     const querySnapshot = await getDocs(collection(db, 'post'));
@@ -111,10 +143,11 @@ export const showData = async () => {
 
     querySnapshot.forEach((doc) => {
       const data = doc.data();
-      // const postId = doc.id;
-      // const user = auth.currentUser;
-      const postConteiner = document.createElement('div');
-      postConteiner.classList.add('postConteiner');
+      // const userN = doc.id;
+      const user = auth.currentUser;
+      // const userN = userCredential.user;
+      const postcontainer = document.createElement('div');
+      postcontainer.classList.add('postcontainer');
 
       const userNamePic = document.createElement('div');
       userNamePic.classList.add('userNamePic');
@@ -122,19 +155,73 @@ export const showData = async () => {
       const userPicture = document.createElement('img');
       userPicture.classList.add('userPicture');
       userPicture.src = './img/perfil.png';
+      userPicture.width = 30;
+      userPicture.height = 30;
 
       const nickName = document.createElement('p');
       nickName.textContent = `${data.author}`;
+      // console.log(obtenerUsuario());
       nickName.classList.add('nickName');
 
       const content = document.createElement('p');
       content.classList.add('content');
       content.textContent = data.content;
+
       userNamePic.append(userPicture, nickName);
-      postConteiner.append(userNamePic, content);
-      timeLineSection.appendChild(postConteiner);
+      postcontainer.append(userNamePic, content);
+      timeLineSection.appendChild(postcontainer);
     });
   } catch (e) {
     console.error('Error', e);
   }
 };
+
+//  ---  función para leer publicaciones en el perfil   --- //
+export const readPostProfileUser = async () => {
+  const currentUid = auth.currentUser;
+  console.log(currentUid);
+
+  if (currentUid) {
+    const q = query(collection(db, 'post'), where('uid', '===', currentUid.uid)); // Esta consulta busca documentos en la colección "cities" donde el campo "capital" sea igual a true.
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+
+      const data = doc.data();
+      // const userN = doc.id;
+      // const user = auth.currentUser;
+      // const userN = userCredential.user;
+
+      const postcontainerUserProfile = document.querySelector('.profileSectionPost');
+
+      const postcontainerUser = document.createElement('div');
+      postcontainerUser.classList.add('postcontainerUser');
+
+      const conteninerNameAndPicProfile = document.createElement('div');
+      conteninerNameAndPicProfile.classList.add('conteninerNameAndPicProfile');
+
+      const userPictureProfile = document.createElement('img');
+      userPictureProfile.classList.add('userPicture');
+      userPictureProfile.src = './img/perfil.png';
+      userPictureProfile.width = 30;
+      userPictureProfile.height = 30;
+
+      const nickNameUserProfile = document.createElement('p');
+      nickNameUserProfile.textContent = `${data.author}`;
+      nickNameUserProfile.classList.add('nickNameUserProfile');
+
+      const content = document.createElement('p');
+      content.classList.add('content');
+      content.textContent = data.content;
+
+      conteninerNameAndPicProfile.append(userPictureProfile, nickNameUserProfile);
+      postcontainerUser.append(conteninerNameAndPicProfile, content);
+      postcontainerUserProfile.appendChild(postcontainerUser);
+    });
+  } else {
+    console.log("Usuario no autenticado");
+  }
+};
+
+// -- funcion para leer los post
