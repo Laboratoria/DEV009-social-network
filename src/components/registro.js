@@ -1,11 +1,18 @@
+import { document } from 'postcss';
 import { registerWithEmail } from '../lib/index';
 
 function registro(navigateTo) {
   const divRegister = document.createElement('div');
   divRegister.className = 'divRegister';
 
+  const headerRegistro = document.createElement('header');
+  headerRegistro.className = 'headerReagistro';
+
   const logoBonBon = document.createElement('img');
   logoBonBon.className = 'logoBon';
+
+  const mainRegistro = document.createElement('main');
+  mainRegistro.className = 'mainRegistro';
 
   const formRegistro = document.createElement('form');
   formRegistro.className = 'formRegistro';
@@ -89,7 +96,9 @@ function registro(navigateTo) {
     navigateTo('/');
   });
 
-  divRegister.append(logoBonBon, formRegistro);
+  divRegister.append(headerRegistro, mainRegistro);
+  headerRegistro.appendChild(logoBonBon);
+  mainRegistro.append(formRegistro , buttonReturn);
   formRegistro.append(
     inputName,
     inputEmail,
@@ -98,7 +107,7 @@ function registro(navigateTo) {
     errorRegister,
     buttonRegistro,
   );
-  divRegister.appendChild(buttonReturn);
+ 
 
   return divRegister;
 }
