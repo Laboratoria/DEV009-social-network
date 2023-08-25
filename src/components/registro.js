@@ -1,7 +1,9 @@
 import { registerWithEmail } from '../lib/index';
 
 function registro(navigateTo) {
-  const divRegister = document.createElement('div');
+  const divRegister = document.createElement('div'); 
+  divRegister.className = 'divRegister';
+
   const headerRegistro = document.createElement('header');
   headerRegistro.className = 'headerRegistro';
 
@@ -94,7 +96,8 @@ function registro(navigateTo) {
   });
 
   divRegister.append(headerRegistro, mainRegistro);
-  headerRegistro.appendChild(logoBonBon);
+
+  headerRegistro.append(logoBonBon);
   mainRegistro.append(formRegistro, buttonReturn);
   formRegistro.append(
     inputName,
