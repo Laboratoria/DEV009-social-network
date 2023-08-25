@@ -24,13 +24,33 @@ body{
   flex-direction: column;
   justify-content:center;
   align-items:center;
-  position: relative;
-  margin-top: 10%;
+  position:absolute;
   width: 100%;
+  margin: auto;
 }
 
 .sectionHome {
   display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
+  position: relative;
+}
+
+.headerHome{
+  display: flex;
+  height: 20em;
+  width: 20em;
+  justify-content: center;
+  margin-top: 10% ;
+}
+
+.headerRegistro{
+
+}
+
+.mainRegistro{
+
 }
 
 .formRegistro, .formLogin {
@@ -48,7 +68,9 @@ body{
   background-size:contain;
   background-repeat: no-repeat;
   background-position: top;
-  padding: 50%;
+  height: 20em;
+  width: 20em;
+
 }
 
 .logoBon {
@@ -56,9 +78,8 @@ body{
   background-size:contain;
   background-repeat: no-repeat;
   background-position: top;
-  padding: 40%;
-  width: 80%;
-  height: 80%;
+  width: 10em;
+  height: 10em;
 }
 
 .button {
@@ -268,7 +289,11 @@ footer {
 /* desktop styles */
 @media screen and (min-width: 1200px){
   .divHome, .divRegister, .divLogin {
-    margin-top: 20%;
+    margin-top: 30%;
+  }
+
+  .headerHome{
+    margin-top: 30%;
   }
 
   .divHead {
