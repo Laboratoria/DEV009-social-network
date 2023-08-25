@@ -35,6 +35,10 @@ function principal(navigateTo) {
   recetaUser.className = 'recetaUser';
   recetaUser.setAttribute('placeholder', 'Cual es tu receta?');
 
+  const textAllPostUsers = document.createElement('p');
+  textAllPostUsers.textContent = ('Lo que otros han compartido:');
+  textAllPostUsers.className = 'loQueOtrosHan';
+
   const divRecetasUsers = document.createElement('div');
   divRecetasUsers.className = 'divRecetasUsers';
 
@@ -66,7 +70,7 @@ function principal(navigateTo) {
   divHead.append(logoBon, divSloganUser);
   divSloganUser.append(sloganBon, nameUser);
   divReceta.append(recetaUser);
-  divPrincipal.append(divHead, divReceta, divRecetasUsers, menu);
+  divPrincipal.append(divHead, divReceta, textAllPostUsers, divRecetasUsers, menu);
   menu.appendChild(divMenu);
   divMenu.append(recetaIcono, singOutIcono);
 

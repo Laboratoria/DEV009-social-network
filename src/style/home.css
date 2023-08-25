@@ -19,7 +19,7 @@ body{
   align-items: center;
 }
 
-.divHome, .divRegister, .divLogin, .formRegistro, .formLogin {
+.divHome, .divRegister, .divLogin {
   display: flex;
   flex-direction: column;
   justify-content:center;
@@ -29,8 +29,18 @@ body{
   width: 100%;
 }
 
+.formRegistro, .formLogin {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
+  position: relative;
+  margin-top: 0;
+}
+
+
 .logoBonHome {
- background-image: url('../imagenes/logoHome.png');
+  background-image: url('../imagenes/logoHome.png');
   background-size:contain;
   background-repeat: no-repeat;
   background-position: top;
@@ -100,10 +110,13 @@ body{
 }
 
 .divHead {
-  max-width: 100%;
-  margin-top: 10%;
+  width: 100%;
+  padding: 5% 5% 0% 5%;
   display: flex;
   align-items: center;
+  position: fixed; /* se mantiene por encima de todo y fijo*/
+  top: 0; /* se mantiene arriba */
+  background-color: var(--primary);
 }
 
 .logoBonPrincipal{
@@ -112,7 +125,6 @@ body{
   background-repeat: no-repeat;
   background-position: top;
   padding: 20%; 
-  margin-left: 0%;
 }
 
 .sloganBon {
@@ -125,33 +137,39 @@ body{
 
 .nameUser {
   align-items:center;
-  margin: 5% 5%;
+  margin: 10% 10%;
   font-weight: bold;
 }
 
 .divReceta {
-  height: 5em;
+  height: 4em;
   width: 20em;
   background-color: var(--recetarioColor);
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 10em;
+}
+
+.loQueOtrosHan{
+  margin: 1em 2em;
+  font-weight: bold;
 }
 
 .recetaUser {
   height: 3em;
-  width: 80%;
+  width: 90%;
   text-align:center;
 }
 
 
 .divMenu{
-  height: 50%;
+  height: 8%;
   width: 100%;
   background-color: var(--recetarioColor);
   display: flex;
   justify-content: space-around;
-  margin-top: 100%;
+  margin-top: 5em;
 }
 
 footer {
@@ -179,4 +197,95 @@ footer {
   border: 8px solid var(--secondary);
 }
 
+.post{
+  margin-top: 5%;
+  border-radius: 1em;
+  border: 2px solid var(--sloganColor);
+  padding: 2% 5%;
+}
 
+.sectionRecetaUser{
+  margin: 10em 1em 1em 2em;
+}
+
+.sectionRecetaTitle {
+  margin:1em;
+  font-weight: bold;
+}
+
+.formPost{
+  width: 20em;
+}
+
+
+
+/* small tablet styles */
+@media screen and (min-width: 620px){
+  .divHome, .divRegister, .divLogin {
+    margin-top: 30%;
+  }
+
+  .logoBonPrincipal{
+    padding: 10%;
+  }
+
+  .divReceta, .sectionRecetaUser {
+    margin-top: 12em;
+    width: 40em;
+  }
+
+  .formPost{
+    width: 40em;
+
+  }
+
+  
+}
+
+/* large tablets & laptop styles */
+@media screen and (min-width: 960px){
+  .divHome, .divRegister, .divLogin {
+    margin-top: 10%;
+  }
+
+  .divHead {
+    padding: 3% 3% 0% 3%;
+  }
+
+  .logoBonPrincipal{
+    padding: 5%;
+  }
+
+  .divReceta, .sectionRecetaUser {
+    margin-top: 10em;
+    width: 60em;
+  }
+
+  
+}
+
+/* desktop styles */
+@media screen and (min-width: 1200px){
+  .divHome, .divRegister, .divLogin {
+    margin-top: 20%;
+  }
+
+  .divHead {
+    padding: 2% 2% 0% 2%;
+  }
+
+  .logoBonPrincipal{
+    padding: 4%;
+  }
+
+  .divReceta, .sectionRecetaUser {
+    margin-top: 13em;
+    width: 60em;
+  }
+
+
+
+
+
+}
+  
