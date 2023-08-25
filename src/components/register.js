@@ -55,7 +55,7 @@ function register(navigateTo) {
       errorMessage.textContent = error.message;
     }
   });
-// hola hola
+
   section.append(logo, avatar, name, email, password, buttonRegister);
   section.append(buttonGoogle, errorMessage, successMessage);
 
