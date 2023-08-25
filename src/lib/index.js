@@ -53,13 +53,13 @@ export const loginWithEmail = (email, password) => {
 
 export const signOutSession = () => signOut(auth);
 
-// crear carpeta con post
-export async function createPost(username, titulo, body, timestamp) {
+export async function createPost(username, titulo, ingredientes, preparacion, timestamp) {
   try {
     const data = {
       author: username,
       title: titulo,
-      content: body,
+      ingredients: ingredientes,
+      preparation: preparacion,
       date: timestamp,
       likes: 0,
       likesArray: [],
@@ -85,34 +85,38 @@ export async function displayAllPosts() {
       postDiv.className = 'post';
 
       const divUserInfo = document.createElement('div');
-      divUserInfo.className = 'div-user-info';
+      divUserInfo.className = 'divUserInfo';
 
-      const author = document.createElement('h3');
+      const author = document.createElement('p');
       author.textContent = `${data.author}`;
       author.className = 'author';
 
-      const title = document.createElement('h3');
+      const title = document.createElement('p');
       title.textContent = data.title;
-      title.className = 'title-post';
+      title.className = 'titlePost';
 
-      const content = document.createElement('p');
-      content.textContent = data.content;
-      content.className = 'content';
+      const ingredients = document.createElement('p');
+      ingredients.textContent = data.ingredients;
+      ingredients.className = 'ingredients';
+
+      const preparation = document.createElement('p');
+      preparation.textContent = data.preparation;
+      preparation.className = 'preparation';
 
       const divEndPost = document.createElement('div');
-      divEndPost.className = 'div-bottom-post';
+      divEndPost.className = 'divBtnPost';
 
       const divReaction = document.createElement('div');
-      divReaction.className = 'div-reaction';
+      divReaction.className = 'divReaction';
 
       const reaction = document.createElement('button');
-      reaction.className = 'reaction-button';
+      reaction.className = 'reactionButton';
       reaction.textContent = `${data.likes} 🧁`;
 
       divUserInfo.append(author);
       divReaction.append(reaction);
       divEndPost.append(divReaction);
-      postDiv.append(divUserInfo, title, content, divEndPost);
+      postDiv.append(divUserInfo, title, ingredients, preparation, divEndPost);
       postsSection.appendChild(postDiv);
 
       reaction.addEventListener('click', async () => {
@@ -164,28 +168,32 @@ export async function displayUserPosts(user) {
         postDiv.setAttribute('data-post-id', postId);
 
         const divUserInfo = document.createElement('div');
-        divUserInfo.className = 'div-user-info';
+        divUserInfo.className = 'divUserInfo';
 
-        const author = document.createElement('h3');
+        const author = document.createElement('p');
         author.textContent = `${data.author}`;
         author.className = 'author';
 
-        const title = document.createElement('h3');
+        const title = document.createElement('p');
         title.textContent = data.title;
-        title.className = 'title-post';
+        title.className = 'titlePost';
 
-        const content = document.createElement('p');
-        content.textContent = data.content;
-        content.className = 'content';
+        const ingredients = document.createElement('p');
+        ingredients.textContent = data.ingredients;
+        ingredients.className = 'ingredients';
+
+        const preparation = document.createElement('p');
+        preparation.textContent = data.preparation;
+        preparation.className = 'preparation';
 
         const divEndPost = document.createElement('div');
-        divEndPost.className = 'div-bottom-post';
+        divEndPost.className = 'divButtom-post';
 
         const divReaction = document.createElement('div');
-        divReaction.className = 'div-reaction';
+        divReaction.className = 'divReaction';
 
         const reaction = document.createElement('button');
-        reaction.className = 'reaction-button';
+        reaction.className = 'reactionButton';
         reaction.textContent = `${data.likes} 🧁`;
         reaction.addEventListener('click', async () => {
           const postRef = doc(db, 'Post', postId);
@@ -219,7 +227,7 @@ export async function displayUserPosts(user) {
         divUserInfo.append(author);
         divReaction.append(reaction);
         divEndPost.append(divReaction);
-        postDiv.append(divUserInfo, title, content, divEndPost);
+        postDiv.append(divUserInfo, title, ingredients, preparation, divEndPost);
         postsSection.appendChild(postDiv);
       });
     }
