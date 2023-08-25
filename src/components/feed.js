@@ -135,8 +135,8 @@ function feed(navigateTo) {
   modalContent.append(message, deleteButton, cancelButton);
   modal.appendChild(modalContent);
 
-  function awaitModal(event, key) {
-    modalContent.addEventListener('click', () => {
+  function awaitModal(key) {
+    modalContent.addEventListener('click', (event) => {
       const targetId = event.target.id;
       if (targetId.includes('deleteButton')) {
         deletePost(key.replace('delete-', ''))
@@ -163,7 +163,7 @@ function feed(navigateTo) {
     const key = (event.target.id);
     if (key.includes('delete-')) {
       modal.style.display = 'block';
-      awaitModal();
+      awaitModal(key);
     } else if (key.includes('b-edit-')) {
       const uidPost = key.replace('b-edit-', '');
       const postText = document.getElementById(`edit-${uidPost}`);
