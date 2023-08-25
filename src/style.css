@@ -158,6 +158,19 @@ button {
   bottom: -20px;
 }
 
+.modal-content{
+  position: relative; /* Relativo con respecto al contenedor -modal- */
+  background-color: white;
+  margin: auto; /* Centrada */
+  padding: 20px;
+  width: 60%;
+  animation-name: animarsuperior;
+  animation-duration: 0.5s
+  
+}
+
+
+
 /* Media query para pantallas más pequeñas, como teléfonos */
 @media (max-width: 600px) {
   img.avatar {

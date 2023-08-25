@@ -115,6 +115,49 @@ function feed(navigateTo) {
       console.log("editando post ")
     });
   }
+  const modal = document.createElement('div');
+  modal.className = 'modal';
+  const modalContent = document.createElement('div');
+  modalContent.className ='modal-content';
+  const message = document.createElement('p');
+  message.textContent = '¿Estás seguro que deseas eliminar tu receta?';
+
+  const deleteButton = document.createElement('button');
+  deleteButton.id = 'deleteButton';
+  deleteButton.textContent = 'Eliminar';
+
+  const cancelButton = document.createElement('button');
+  cancelButton.id = 'cancelButton';
+  cancelButton.textContent = 'Cancelar';
+
+  modalContent.append(message, deleteButton, cancelButton);
+  modal.appendChild(modalContent);
+
+  modalContent.addEventListener('click', async (event) => {
+    const targetId = event.target.id;
+    if (targetId === 'deleteButton') {
+        const key = targetId.replace('delete-', ''); // Asegúrate de obtener la key correcta aquí
+        deletePost(key)
+            .then((data) => {
+                querySnapshot()
+                    .then((doc) => {
+                        console.log('docu', doc);
+                        showAllRecipes(doc);
+                        modal.style.display = 'none'; // Cerrar la ventana modal después de eliminar
+                    })
+                    .catch((error) => {
+                        console.error('Error al obtener posts', error);
+                    });
+            })
+            .catch((error) => {
+                console.log('error delete', error);
+            });
+    } else if (targetId === 'cancelButton') {
+        modal.style.display = 'none'; // Cerrar la ventana modal en caso de cancelar
+    }
+});
+
+  modal.style.display='none'
 
   const modal = document.createElement('div');
   modal.className = 'modal';
@@ -137,6 +180,7 @@ function feed(navigateTo) {
 
   section.addEventListener('click', async (event) => {
     const key = (event.target.id);
+<<<<<<< HEAD
     if (key.includes('delete-')) {
       modal.style.display = 'block';
       function awaitModal() {
@@ -163,6 +207,28 @@ function feed(navigateTo) {
       });
       }
       awaitModal();
+=======
+    // const press = (event.target.id);
+    console.log('key ', key);
+    if (key.includes('delete-')) {
+      modal.style.display='block';
+      /*if (press.includes(deleteButton)){
+      deletePost(key.replace('delete-', ''))
+        .then((data) => {
+          querySnapshot()
+            .then((doc) => {
+              console.log('docu', doc)
+              showAllRecipes(doc);
+            })
+            .catch((error) => {
+              console.error('Error al obtener posts', error);
+            });
+        })
+        .catch((error) => {
+          console.log('error delete', error);
+        })
+      }*/
+>>>>>>> c-sn1
     }else if(key.includes('b-edit-')){
       const uidPost = key.replace('b-edit-', '');
       const postText = document.getElementById(`edit-${uidPost}`);
@@ -196,7 +262,11 @@ function feed(navigateTo) {
   })
 
 
+<<<<<<< HEAD
   section.append(logo, showPostFeed, modal, formRecipe, write, nav, logoutButtom);
+=======
+  section.append(logo, showPostFeed, formRecipe, write, nav, logoutButtom, modal);
+>>>>>>> c-sn1
 
   formRecipe.append(nameSteps, recipe, add, MessageError, MessageOk)
   nav.append(select);
