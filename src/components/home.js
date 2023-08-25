@@ -1,7 +1,7 @@
 function home(navigateTo) {
- const divHome = document.createElement('div'); 
- const headerHome = document.createElement('header');
- headerHome.className = 'headerHome';
+  const divHome = document.createElement('div'); 
+  const headerHome = document.createElement('header');
+  headerHome.className = 'headerHome';
 
   const logoBonHome = document.createElement('img');
   logoBonHome.className = 'logoBonHome';
