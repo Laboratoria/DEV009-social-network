@@ -38,13 +38,20 @@ function editarpost(navigateTo) {
   recetaTitle.setAttribute('placeholder', 'Escribe el título ');
   recetaTitle.setAttribute('required', '');
 
-  const receta = document.createElement('input');
-  receta.className = 'recetaUser';
-  receta.setAttribute('placeholder', 'Escribe tu receta');
-  receta.setAttribute('rows', '8');
-  receta.setAttribute('cols', '100');
-  receta.setAttribute('maxlength', '2500');
-  receta.setAttribute('required', '');
+  const ingredientesInput = document.createElement('input');
+  ingredientesInput.className = 'recetaUser';
+  ingredientesInput.setAttribute('type', 'text');
+  ingredientesInput.setAttribute('placeholder', 'Ingresa los ingredientes');
+  ingredientesInput.setAttribute('maxlength', '2500');
+  ingredientesInput.setAttribute('required', '');
+
+  const preparacionInput = document.createElement('input');
+  preparacionInput.className = 'recetaUser';
+  preparacionInput.setAttribute('type', 'text');
+  preparacionInput.setAttribute('placeholder', 'Describe la preparación');
+  preparacionInput.setAttribute('maxlength', '2500');
+  preparacionInput.setAttribute('required', '');
+
   const btnPost = document.createElement('button');
   btnPost.className = 'btn-post';
   btnPost.textContent = 'Publicar';
@@ -52,10 +59,11 @@ function editarpost(navigateTo) {
   formPost.addEventListener('submit', async (e) => {
     e.preventDefault();
     const title = recetaTitle.value;
-    const content = receta.value;
+    const ingredient = ingredientesInput.value;
+    const preparation = preparacionInput.value;
     const date = serverTimestamp();
 
-    await createPost(username, title, content, date);
+    await createPost(username, title, ingredient, preparation, date);
     formPost.reset();
     navigateTo('/principal');
   });
@@ -87,7 +95,7 @@ function editarpost(navigateTo) {
 
   divHead.append(logoBon, divSloganUser);
   divSloganUser.append(sloganBon, nameUser);
-  formPost.append(recetaTitle, receta, btnPost);
+  formPost.append(recetaTitle, ingredientesInput, preparacionInput, btnPost);
   sectionRecetaUser.append(sectionRecetaTitle, formPost);
   divPrincipal.append(divHead, sectionRecetaUser, menu);
   menu.appendChild(divMenu);
