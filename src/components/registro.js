@@ -1,12 +1,11 @@
-import { document } from 'postcss';
 import { registerWithEmail } from '../lib/index';
 
 function registro(navigateTo) {
-  const divRegister = document.createElement('div');
+  const divRegister = document.createElement('div'); 
   divRegister.className = 'divRegister';
 
   const headerRegistro = document.createElement('header');
-  headerRegistro.className = 'headerReagistro';
+  headerRegistro.className = 'headerRegistro';
 
   const logoBonBon = document.createElement('img');
   logoBonBon.className = 'logoBon';
@@ -97,8 +96,8 @@ function registro(navigateTo) {
   });
 
   divRegister.append(headerRegistro, mainRegistro);
-  headerRegistro.appendChild(logoBonBon);
-  mainRegistro.append(formRegistro , buttonReturn);
+  headerRegistro.append(logoBonBon);
+  mainRegistro.append(formRegistro, buttonReturn);
   formRegistro.append(
     inputName,
     inputEmail,
