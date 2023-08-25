@@ -80,7 +80,6 @@ h2,
 h3 {
   color: #FAB838;
   text-align: center;
-  font-family: Merienda One;
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
@@ -107,7 +106,6 @@ button {
   align-items: center;
   /* Para centrar verticalmente el contenido */
   padding: 5px;
-  /* Ajusta el padding según tus preferencias */
   background-color: #641B42;
   /* Color de fondo del botón */
   color:white;
@@ -127,17 +125,57 @@ button {
   padding-top: 12px;
 }
 
+.postShowCont{
+  display: flex; 
+  align-items: center;
+}
+
+.perfile{
+  display: flex;
+  width: 50px;
+  margin-bottom: 20px;
+}
+
  .postRecipe{
   background-color: #FAB838;
   border-bottom: #393939;
-  border-radius: 10px;
+  border-radius: 20px;
+  margin-left: 10px;
   display: flex;
   flex-direction: column;
   width: 300px;
   margin-bottom: 20px;
   padding: 15px;
   text-align: start;
+  margin-left: 10px;
+  position: relative;
  }
+
+ .postRecipe::before {
+  content: '';
+  position: absolute;
+  top: 10px; /* Ajustar según la apariencia deseada */
+  left: -18px; /* Ajustar según la apariencia deseada */
+  border: 10px solid transparent;
+  border-right-color: #FAB838;
+ }
+
+.postRecipe p,
+.postRecipe textarea,
+.postRecipe h5,
+.postRecipe .footer-post {
+  margin: 0; 
+}
+
+.textRecipe{
+  margin-bottom: 10px;
+}
+
+.icons{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
 
  .footer-post{
   display: flex;
@@ -147,9 +185,40 @@ button {
   font-size: 18px;
   font-weight: 800;
  }
- h5{
-  align-self: flex-end;
+
+ .formOpen{
+  position: relative;
+  border: solid transparent;
+  border-radius: 20px;
+  background-color: #ffffff;
+  padding: 5px;
+  margin-left: 10px; /* Ajustar según el espacio deseado entre el botón y la burbuja */
+  text-align: start; /* Alinear el contenido del lado derecho */
+  display: inline-block; 
  }
+
+ .formOpen::before {
+  content: '';
+  position: absolute;
+  top: 2px; /* Ajustar según la apariencia deseada */
+  right: -18px; /* Ajustar según la apariencia deseada */
+  border: 10px solid transparent;
+  border-left-color: #ffffff;
+ }
+
+
+ .formAddRecipe{
+  display: grid;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+ }
+ 
+ /*h5{
+  align-self: flex-end;
+ }*/
 .logout{
   color: white;
   background-color: black;
@@ -186,24 +255,4 @@ button {
   button {
     max-width: 100%;
   }
-}
-#talkbubble {
-  width: 120px;
-  height: 80px;
-  background: red;
-  position: relative;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-}
-#talkbubble:before {
-  content: "";
-  position: absolute;
-  right: 100%;
-  top: 26px;
-  width: 0;
-  height: 0;
-  border-top: 13px solid transparent;
-  border-right: 26px solid red;
-  border-bottom: 13px solid transparent;
 }

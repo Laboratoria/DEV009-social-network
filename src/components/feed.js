@@ -1,5 +1,11 @@
 import { logoutUser } from '../lib/index.js';
-import { addRecipe, querySnapshot, deletePost, editTextPost, likePost } from '../lib/dataBase';
+import {
+  addRecipe,
+  querySnapshot,
+  deletePost,
+  editTextPost,
+  likePost,
+} from '../lib/dataBase';
 
 function feed(navigateTo) {
   const section = document.createElement('section');
@@ -12,30 +18,55 @@ function feed(navigateTo) {
   const logoutButtom = document.createElement('button');
   const MessageOk = document.createElement('p');
   const MessageError = document.createElement('p');
-  const recipe = document.createElement('textarea');
   const formRecipe = document.createElement('form');
-  const nameSteps = document.createElement('input');
+  const nameRecipeForm = document.createElement('input');
+  const recipe = document.createElement('textarea');
   const add = document.createElement('button');
   const showPostFeed = document.createElement('div');
 
+
   // Help Hannia
 
+
   logo.src = './imagenes/image.png';
+  logo.className = 'logo';
   write.textContent = 'Añade una Receta';
+  write.className = 'formOpen';
   option1.value = 'Mejores Recetas';
   option1.textContent = 'Mejores Recetas';
   option2.value = 'Usuarios';
   option2.textContent = 'Usuarios';
   recipe.placeholder = 'ingresa tu receta';
-  formRecipe.style.display = 'none'
+  formRecipe.style.display = 'none';
   nameSteps.type = 'text';
   nameSteps.placeholder = 'Nombre de la receta';
   add.textContent = 'Agregar';
+  add.className = 'formButton';
   logoutButtom.textContent = 'Cerrar Sesión 💨';
   logoutButtom.className = 'logout';
   MessageOk.style.color = 'green';
   MessageError.style.color = 'grey';
 
+  // funcion de mostrar el recipe
+  function showAllRecipes(allRecipes) {
+    showPostFeed.innerHTML = '';
+    allRecipes.forEach((recipeContent) => {
+      const postRecipe = `
+      <h5 class="user"><img class="perfile" src="./imagenes/Profil.png" />By: ${recipeContent.user.split('@')[0]}</h5>
+        <div class="postRecipe" id="post-${recipeContent.id}">
+          <p class="name">${recipeContent.name}</p>
+          <p>Pasos:</p>
+          <textarea  type="text" id="edit-${recipeContent.id}" class="steps" disabled>${recipeContent.steps}</textarea>
+          <div class="footer-post">
+          <p>${recipeContent.likes}</p>
+          <button id="like-${recipeContent.id}">⭐</button>
+          <button class="edit" id="b-edit-${recipeContent.id}">🖋️</button>
+          <button class="delete" id="delete-${recipeContent.id}">🗑️</button>
+          </div>
+        </div>`;
+      showPostFeed.innerHTML += postRecipe;
+    });
+  }
 
   querySnapshot()
     .then((doc) => {
@@ -45,50 +76,32 @@ function feed(navigateTo) {
       console.error('Error al obtener posts', error);
     });
 
-    
-  function showAllRecipes(allRecipes) {
-    showPostFeed.innerHTML = '';
-    console.log(allRecipes);
-    allRecipes.forEach((recipeContent) => {
-      const postRecipe = `
-      <h5 class="user"><img class="perfile" src="./imagenes/Profil.png" />By: ${recipeContent.user}</h5>
-        <div class="postRecipe" id="post-${recipeContent.id}">
-          <p class="name">${recipeContent.name}</p>
-          <p>Pasos:</p>
-          <textarea  type="text" id="edit-${recipeContent.id}" class="steps" disabled>${recipeContent.steps}</textarea>
-          <h5 class="user">👤 ${recipeContent.user.split('@')[0]}</h5>
-          <div class="footer-post">
-          <p>${recipeContent.likes}</p>
-          <button id="like-${recipeContent.id}">⭐</button>
-          <button class="edit" id="b-edit-${recipeContent.id}">🖋️</button>
-          <button class="delete" id="delete-${recipeContent.id}"  >🗑️</button>
-          </div>
-        </div>`;
-      showPostFeed.innerHTML += postRecipe;
-    });
-  }
   logoutButtom.addEventListener('click', () => {
     logoutUser();
     navigateTo('/');
   });
 
   write.addEventListener('click', () => {
-    formRecipe.style.display = 'block'
+    formRecipe.style.display = 'block';
     write.style.display = 'none';
     recipe.value = '';
-    nameSteps.value = '';
+    nameRecipeForm.value = '';
   });
 
   add.addEventListener('click', async (event) => {
     event.preventDefault();
     const recipeData = recipe.value;
-    const nameRecipe = nameSteps.value;
+    const nameRecipe = nameRecipeForm.value;
     formRecipe.style.display = 'none';
     write.style.display = 'block';
-    if (!nameRecipe || !recipeData) {
+    if (!nameRecipe|| !recipeData) {
       MessageError.textContent = 'Por favor, completa ambos campos.';
+      formRecipe.style.display = 'block';
+      write.style.display = 'none';
       return;
     } else {
+      formRecipe.style.display = 'none';
+      MessageError.textContent = '';
       const newRecipeId = await addRecipe(nameRecipe, recipeData);
       if (newRecipeId) {
         querySnapshot()
@@ -98,138 +111,60 @@ function feed(navigateTo) {
           .catch((error) => {
             console.error('Error al obtener posts', error);
           });
-
       } else {
         MessageError.textContent = 'Error al agregar la receta.';
-        console.log('Error al agregar la receta.');
       }
     }
-    formRecipe.style.display = 'none';
-    write.style.display = 'block';
   });
+  // ventana modal para eliminar el post
+  const modal = document.createElement('div');
+  modal.className = 'modal';
+  const modalContent = document.createElement('div');
+  modalContent.className = 'modal-content';
+  const message = document.createElement('p');
+  message.textContent = '¿Estás seguro que deseas eliminar tu receta?';
 
-  
+  const deleteButton = document.createElement('button');
+  deleteButton.id = 'deleteButton';
+  deleteButton.textContent = 'Eliminar';
 
-  function postEdit() {
-    addEventListener.editPost('click', () => {
-      console.log("editando post ")
+  const cancelButton = document.createElement('button');
+  cancelButton.id = 'cancelButton';
+  cancelButton.textContent = 'Cancelar';
+
+  modalContent.append(message, deleteButton, cancelButton);
+  modal.appendChild(modalContent);
+
+  function awaitModal(key) {
+    modalContent.addEventListener('click', (event) => {
+      const targetId = event.target.id;
+      if (targetId.includes('deleteButton')) {
+        deletePost(key.replace('delete-', ''))
+          .then(() => {
+            querySnapshot()
+              .then((doc) => {
+                showAllRecipes(doc);
+              })
+              .catch((error) => {
+                console.error('Error al obtener posts', error);
+              });
+          })
+          .catch((error) => {
+            console.log('error delete', error);
+          });
+        modal.style.display = 'none';
+      } else if (targetId.includes('cancelButton')) {
+        modal.style.display = 'none';
+      }
     });
   }
-  const modal = document.createElement('div');
-  modal.className = 'modal';
-  const modalContent = document.createElement('div');
-  modalContent.className ='modal-content';
-  const message = document.createElement('p');
-  message.textContent = '¿Estás seguro que deseas eliminar tu receta?';
-
-  const deleteButton = document.createElement('button');
-  deleteButton.id = 'deleteButton';
-  deleteButton.textContent = 'Eliminar';
-
-  const cancelButton = document.createElement('button');
-  cancelButton.id = 'cancelButton';
-  cancelButton.textContent = 'Cancelar';
-
-  modalContent.append(message, deleteButton, cancelButton);
-  modal.appendChild(modalContent);
-
-  modalContent.addEventListener('click', async (event) => {
-    const targetId = event.target.id;
-    if (targetId === 'deleteButton') {
-        const key = targetId.replace('delete-', ''); // Asegúrate de obtener la key correcta aquí
-        deletePost(key)
-            .then((data) => {
-                querySnapshot()
-                    .then((doc) => {
-                        console.log('docu', doc);
-                        showAllRecipes(doc);
-                        modal.style.display = 'none'; // Cerrar la ventana modal después de eliminar
-                    })
-                    .catch((error) => {
-                        console.error('Error al obtener posts', error);
-                    });
-            })
-            .catch((error) => {
-                console.log('error delete', error);
-            });
-    } else if (targetId === 'cancelButton') {
-        modal.style.display = 'none'; // Cerrar la ventana modal en caso de cancelar
-    }
-});
-
-  modal.style.display='none'
-
-  const modal = document.createElement('div');
-  modal.className = 'modal';
-  modal.style.display = 'none';
-  const modalContent = document.createElement('div');
-  modalContent.className ='modal-content';
-  const message = document.createElement('p');
-  message.textContent = '¿Estás seguro que deseas eliminar tu receta?';
-
-  const deleteButton = document.createElement('button');
-  deleteButton.id = 'deleteButton';
-  deleteButton.textContent = 'Eliminar';
-
-  const cancelButton = document.createElement('button');
-  cancelButton.id = 'cancelButton';
-  cancelButton.textContent = 'Cancelar';
-
-  modalContent.append(message, deleteButton, cancelButton);
-  modal.appendChild(modalContent);
 
   section.addEventListener('click', async (event) => {
     const key = (event.target.id);
-<<<<<<< HEAD
     if (key.includes('delete-')) {
       modal.style.display = 'block';
-      function awaitModal() {
-        modalContent.addEventListener('click', (event) => {
-          const targetId = event.target.id;
-          if (targetId.includes('deleteButton')){
-            deletePost(key.replace('delete-', ''))
-              .then((data) => {
-                querySnapshot()
-                  .then((doc) => {
-                    showAllRecipes(doc);
-                  })
-                  .catch((error) => {
-                    console.error('Error al obtener posts', error);
-                  });
-              })
-              .catch((error) => {
-                console.log('error delete', error);
-              })
-              modal.style.display ='none';
-          }else if (targetId.includes('cancelButton')){
-            modal.style.display ='none';
-          }
-      });
-      }
-      awaitModal();
-=======
-    // const press = (event.target.id);
-    console.log('key ', key);
-    if (key.includes('delete-')) {
-      modal.style.display='block';
-      /*if (press.includes(deleteButton)){
-      deletePost(key.replace('delete-', ''))
-        .then((data) => {
-          querySnapshot()
-            .then((doc) => {
-              console.log('docu', doc)
-              showAllRecipes(doc);
-            })
-            .catch((error) => {
-              console.error('Error al obtener posts', error);
-            });
-        })
-        .catch((error) => {
-          console.log('error delete', error);
-        })
-      }*/
->>>>>>> c-sn1
-    }else if(key.includes('b-edit-')){
+      awaitModal(key);
+    } else if (key.includes('b-edit-')) {
       const uidPost = key.replace('b-edit-', '');
       const postText = document.getElementById(`edit-${uidPost}`);
       postText.removeAttribute('disabled');
@@ -240,35 +175,25 @@ function feed(navigateTo) {
           postText.setAttribute('disabled', '');
         }
       });
-    }else if (key.includes('like-')){
+    } else if (key.includes('like-')) {
       const data = key.split('-');
-     likePost(data[1])
-      .then(() => {
-  
-        querySnapshot()
-          .then((doc) => {
-            console.log('152222222', doc)
-            showAllRecipes(doc);
-          })
-          .catch((error) => {
-            console.error('Error al obtener posts', error);
-          });
-      })
-      .catch((error) => {
-        console.log('error delete', error);
-      })
+      likePost(data[1])
+        .then(() => {
+          querySnapshot()
+            .then((doc) => {
+              showAllRecipes(doc);
+            })
+            .catch((error) => {
+              console.error('Error al obtener posts', error);
+            });
+        })
+        .catch((error) => {
+          console.log('error delete', error);
+        });
     }
-    
-  })
-
-
-<<<<<<< HEAD
+  });
   section.append(logo, showPostFeed, modal, formRecipe, write, nav, logoutButtom);
-=======
-  section.append(logo, showPostFeed, formRecipe, write, nav, logoutButtom, modal);
->>>>>>> c-sn1
-
-  formRecipe.append(nameSteps, recipe, add, MessageError, MessageOk)
+  formRecipe.append(nameSteps, recipe, add, MessageError, MessageOk);
   nav.append(select);
   select.append(option1, option2);
   return section;
