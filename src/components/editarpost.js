@@ -27,10 +27,13 @@ function editarpost(navigateTo) {
 
   const sectionRecetaUser = document.createElement('section');
   sectionRecetaUser.className = 'sectionRecetaUser';
+
   const sectionRecetaTitle = document.createElement('p');
   sectionRecetaTitle.textContent = '¿Que receta quieres escribir hoy?';
+  sectionRecetaTitle.className = 'sectionRecetaTitle';
 
   const formPost = document.createElement('form');
+  formPost.className = 'formPost';
 
   const recetaTitle = document.createElement('input');
   recetaTitle.className = 'recetaTitle';
