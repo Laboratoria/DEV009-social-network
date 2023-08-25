@@ -96,6 +96,7 @@ function registro(navigateTo) {
   });
 
   divRegister.append(headerRegistro, mainRegistro);
+
   headerRegistro.append(logoBonBon);
   mainRegistro.append(formRegistro, buttonReturn);
   formRegistro.append(
