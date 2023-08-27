@@ -1,5 +1,5 @@
 function home(navigateTo) {
-  const divHome = document.createElement('div'); 
+  const divHome = document.createElement('div');
   const headerHome = document.createElement('header');
   headerHome.className = 'headerHome';
 
@@ -31,7 +31,7 @@ function home(navigateTo) {
   divHome.append(headerHome, sectionHome);
   headerHome.appendChild(logoBonHome);
   sectionHome.append(buttonInicio, buttonParrafo, buttonRegistro);
- 
+
   return divHome;
 }
 

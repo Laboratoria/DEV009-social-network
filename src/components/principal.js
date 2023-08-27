@@ -8,39 +8,39 @@ function principal(navigateTo) {
   displayAllPosts();
   const divPrincipal = document.createElement('div');
 
-  const divHead = document.createElement('div');
-  divHead.className = 'divHead';
+  const headerPrincipal = document.createElement('header');
+  headerPrincipal.className = 'headerPrincipal';
 
   const divSloganUser = document.createElement('div');
   divSloganUser.className = 'divSloganUser';
 
-  const sloganBon = document.createElement('p');
+  const sloganBon = document.createElement('h1');
   sloganBon.className = 'sloganBon';
   sloganBon.textContent = 'Consiente a tu familia';
 
   const user = auth.currentUser;
   const userName = user.displayName;
 
-  const nameUser = document.createElement('p');
+  const nameUser = document.createElement('h2');
   nameUser.className = 'nameUser';
   nameUser.textContent = userName;
 
   const logoBon = document.createElement('img');
   logoBon.className = 'logoBonPrincipal';
 
-  const divReceta = document.createElement('div');
-  divReceta.className = 'divReceta';
+  const mainPrincipal = document.createElement('main');
+  mainPrincipal.className = 'mainPrincipal';
 
   const recetaUser = document.createElement('input');
   recetaUser.className = 'recetaUser';
-  recetaUser.setAttribute('placeholder', 'Cual es tu receta?');
+  recetaUser.setAttribute('placeholder', `¿Cuál es tu receta, ${userName}?`);
 
   const textAllPostUsers = document.createElement('p');
   textAllPostUsers.textContent = ('Lo que otros han compartido:');
-  textAllPostUsers.className = 'loQueOtrosHan';
+  textAllPostUsers.className = 'textAllPostUsers';
 
-  const divRecetasUsers = document.createElement('div');
-  divRecetasUsers.className = 'divRecetasUsers';
+  const sectionAllPostUsers = document.createElement('section');
+  sectionAllPostUsers.className = 'sectionAllPostUsers';
 
   const menu = document.createElement('nav');
   menu.className = 'menuNav';
@@ -67,10 +67,10 @@ function principal(navigateTo) {
       });
   });
 
-  divHead.append(logoBon, divSloganUser);
+  divPrincipal.append(headerPrincipal, menu, mainPrincipal);
+  mainPrincipal.append(recetaUser, textAllPostUsers, sectionAllPostUsers);
+  headerPrincipal.append(logoBon, divSloganUser);
   divSloganUser.append(sloganBon, nameUser);
-  divReceta.append(recetaUser);
-  divPrincipal.append(divHead, divReceta, textAllPostUsers, divRecetasUsers, menu);
   menu.appendChild(divMenu);
   divMenu.append(recetaIcono, singOutIcono);
 

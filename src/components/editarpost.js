@@ -41,18 +41,14 @@ function editarpost(navigateTo) {
   recetaTitle.setAttribute('placeholder', 'Escribe el título ');
   recetaTitle.setAttribute('required', '');
 
-  const ingredientesInput = document.createElement('input');
+  const ingredientesInput = document.createElement('textarea');
   ingredientesInput.className = 'recetaUser';
-  ingredientesInput.setAttribute('type', 'text');
   ingredientesInput.setAttribute('placeholder', 'Ingresa los ingredientes');
-  ingredientesInput.setAttribute('maxlength', '2500');
   ingredientesInput.setAttribute('required', '');
 
-  const preparacionInput = document.createElement('input');
+  const preparacionInput = document.createElement('textarea');
   preparacionInput.className = 'recetaUser';
-  preparacionInput.setAttribute('type', 'text');
   preparacionInput.setAttribute('placeholder', 'Describe la preparación');
-  preparacionInput.setAttribute('maxlength', '2500');
   preparacionInput.setAttribute('required', '');
 
   const btnPost = document.createElement('button');
