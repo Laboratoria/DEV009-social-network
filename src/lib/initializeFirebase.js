@@ -11,6 +11,7 @@ import {
   getDoc,
   updateDoc,
   where,
+  deleteDoc
 } from 'firebase/firestore';
 import {
   getAuth,
@@ -52,5 +53,6 @@ export {
   getDoc,
   updateDoc,
   where,
+  deleteDoc,
 };
 export const saveUser = (user) => addDoc(collection(db, 'Users'), user);

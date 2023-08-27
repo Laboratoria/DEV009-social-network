@@ -22,6 +22,7 @@ import {
   getDoc,
   updateDoc,
   where,
+  deleteDoc,
 } from './initializeFirebase.js';
 
 export const registerWithEmail = (email, password, username) => {
@@ -161,7 +162,7 @@ export async function displayUserPosts(user) {
   try {
     if (user) {
       const querySnapshot = await getDocs(query(collection(db, 'Post'), where('author', '==', user.displayName), orderBy('date', 'desc')));
-      const postsSection = document.querySelector('.divRecetasUser');
+      const postsSection = document.querySelector('.sectionRecetasUser');
 
       querySnapshot.forEach((file) => {
         const data = file.data();
@@ -239,3 +240,6 @@ export async function displayUserPosts(user) {
     console.error('Error al actualizar: ', e);
   }
 }
+
+// Eliminar Post
+export const deletePost = (postId) => deleteDoc(doc(db, 'Post', postId));

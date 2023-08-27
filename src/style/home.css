@@ -185,6 +185,7 @@ body{
   font-size: smaller;
 }
 
+
 .menuNav{
   width: 100%;
    position: fixed; /* se mantiene por encima de todo y fijo*/
@@ -198,6 +199,7 @@ body{
   margin-top: 25%;
   padding: 1%;
 }
+
 
 footer {
   margin-top: 3%;
@@ -225,7 +227,7 @@ footer {
 }
 
 .post{
-  margin-top: 5%;
+  margin-top: 10%;
   border-radius: 1em;
   border: 2px solid var(--sloganColor);
   padding: 2% 4%;
@@ -242,7 +244,35 @@ footer {
 }
 
 .formPost{
-  width: 20em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  margin-top: 0;
+}
+.escritosfijos{
+  font-weight: bold;
+  padding: 1em;
+}
+.recetaTitulo{
+  width: 100%;
+  height: 50%; 
+}
+.ingredientesUser {
+  width: 100%;
+  height: 150px;
+}
+.preparacionUser {
+  width: 100%;
+  height: 200px;
+}
+.btn-post{
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  margin: 1em;
+
 }
 
 /* small tablet styles */

@@ -3,6 +3,7 @@ import { auth } from '../lib/initializeFirebase.js';
 
 import iconoReceta from '../imagenes/receta.png';
 import iconoSingOut from '../imagenes/cerrar-sesion.png';
+import iconoHome from '../imagenes/home.png';
 
 function usuarioPost(navigateTo) {
   const user = auth.currentUser;
@@ -10,11 +11,11 @@ function usuarioPost(navigateTo) {
 
   const divPrincipal = document.createElement('div');
 
-  const divHead = document.createElement('div');
+  const divHead = document.createElement('header');
   divHead.className = 'divHead';
 
-  const divSloganUser = document.createElement('div');
-  divSloganUser.className = 'divSloganUser';
+  const sectionSloganUser = document.createElement('section');
+ sectionSloganUser.className = 'sectionSloganUser';
 
   const sloganBon = document.createElement('p');
   sloganBon.className = 'sloganBon';
@@ -29,13 +30,22 @@ function usuarioPost(navigateTo) {
   const logoBon = document.createElement('img');
   logoBon.className = 'logoBonPrincipal';
 
-  const divRecetasUser = document.createElement('div');
-  divSloganUser.className = 'divRecetasUser';
+  const textAllPostUsers = document.createElement('p');
+  textAllPostUsers.textContent = ('MIS PUBLICACIONES:');
+  textAllPostUsers.className = 'misPublicaciones';
+
+  const sectionRecetaUser = document.createElement('section');
+  sectionRecetaUser.className = 'sectionRecetasUser';
 
   const menu = document.createElement('nav');
   menu.className = 'menuNav';
   const divMenu = document.createElement('div');
   divMenu.className = 'divMenu';
+  const homeIcono = document.createElement('img');
+  homeIcono.className = 'recetaIcono';
+  homeIcono.src = iconoHome;
+  homeIcono.setAttribute('width', '30');
+  homeIcono.setAttribute('hide', '30');
   const recetaIcono = document.createElement('img');
   recetaIcono.className = 'recetaIcono';
   recetaIcono.src = iconoReceta;
@@ -57,11 +67,17 @@ function usuarioPost(navigateTo) {
       });
   });
 
-  divHead.append(logoBon, divSloganUser);
-  divSloganUser.append(sloganBon, nameUser);
-  divPrincipal.append(divHead, divRecetasUser, menu);
+  divHead.append(logoBon, sectionSloganUser);
+  sectionSloganUser.append(sloganBon, nameUser);
+  sectionRecetaUser.append()
+  divPrincipal.append(divHead, textAllPostUsers, sectionRecetaUser, menu);
   menu.appendChild(divMenu);
-  divMenu.append(recetaIcono, singOutIcono);
+  divMenu.append(homeIcono, recetaIcono, singOutIcono);
+
+  homeIcono.addEventListener('click', () => {
+    navigateTo('/principal');
+  });
+
 
   return divPrincipal;
 }

@@ -2,15 +2,16 @@ import { auth, serverTimestamp } from '../lib/initializeFirebase';
 import { signOutSession, createPost } from '../lib/index.js';
 import iconoReceta from '../imagenes/receta.png';
 import iconoSingOut from '../imagenes/cerrar-sesion.png';
+import iconoHome from '../imagenes/home.png';
 
 function editarpost(navigateTo) {
   const divPrincipal = document.createElement('div');
 
-  const divHead = document.createElement('div');
+  const divHead = document.createElement('header');
   divHead.className = 'divHead';
 
-  const divSloganUser = document.createElement('div');
-  divSloganUser.className = 'divSloganUser';
+  const sectionSloganUser = document.createElement('section');
+  sectionSloganUser.className = 'sectionSloganUser';
 
   const sloganBon = document.createElement('p');
   sloganBon.className = 'sloganBon';
@@ -35,21 +36,35 @@ function editarpost(navigateTo) {
   const formPost = document.createElement('form');
   formPost.className = 'formPost';
 
-  const recetaTitle = document.createElement('input');
+  const titleReceta = document.createElement('strong');
+  titleReceta.textContent = 'TITULO';
+  titleReceta.className = 'escritosfijos';
+
+  const recetaTitle = document.createElement('textarea');
   recetaTitle.className = 'recetaTitle';
   recetaTitle.setAttribute('type', 'text');
   recetaTitle.setAttribute('placeholder', 'Escribe el título ');
   recetaTitle.setAttribute('required', '');
 
-  const ingredientesInput = document.createElement('textarea');
-  ingredientesInput.className = 'recetaUser';
-  ingredientesInput.setAttribute('placeholder', 'Ingresa los ingredientes');
-  ingredientesInput.setAttribute('required', '');
+  const titleIngredientes = document.createElement('strong');
+  titleIngredientes.textContent = 'INGREDIENTES';
+  titleIngredientes.className = 'escritosfijos';
 
-  const preparacionInput = document.createElement('textarea');
-  preparacionInput.className = 'recetaUser';
-  preparacionInput.setAttribute('placeholder', 'Describe la preparación');
-  preparacionInput.setAttribute('required', '');
+  const ingredientesTextarea = document.createElement('textarea');
+  ingredientesTextarea.className = 'ingredientesUser';
+  ingredientesTextarea.setAttribute('placeholder', 'Ingresa los ingredientes');
+  ingredientesTextarea.setAttribute('maxlength', '500');
+  ingredientesTextarea.setAttribute('required', '');
+
+  const titlePreparacion = document.createElement('strong');
+  titlePreparacion.textContent = 'PREPARACION';
+  titlePreparacion.className = 'escritosfijos';
+
+  const preparacionTextarea = document.createElement('textarea');
+  preparacionTextarea.className = 'preparacionUser';
+  preparacionTextarea.setAttribute('placeholder', 'Describe la preparación');
+  preparacionTextarea.setAttribute('maxlength', '1500');
+  preparacionTextarea.setAttribute('required', '');
 
   const btnPost = document.createElement('button');
   btnPost.className = 'btn-post';
@@ -58,8 +73,8 @@ function editarpost(navigateTo) {
   formPost.addEventListener('submit', async (e) => {
     e.preventDefault();
     const title = recetaTitle.value;
-    const ingredient = ingredientesInput.value;
-    const preparation = preparacionInput.value;
+    const ingredient = ingredientesTextarea.value;
+    const preparation = preparacionTextarea.value;
     const date = serverTimestamp();
 
     await createPost(username, title, ingredient, preparation, date);
@@ -71,6 +86,11 @@ function editarpost(navigateTo) {
   menu.className = 'menuNav';
   const divMenu = document.createElement('div');
   divMenu.className = 'divMenu';
+  const homeIcono = document.createElement('img');
+  homeIcono.className = 'recetaIcono';
+  homeIcono.src = iconoHome;
+  homeIcono.setAttribute('width', '30');
+  homeIcono.setAttribute('hide', '30');
   const recetaIcono = document.createElement('img');
   recetaIcono.className = 'recetaIcono';
   recetaIcono.src = iconoReceta;
@@ -92,13 +112,17 @@ function editarpost(navigateTo) {
       });
   });
 
-  divHead.append(logoBon, divSloganUser);
-  divSloganUser.append(sloganBon, nameUser);
-  formPost.append(recetaTitle, ingredientesInput, preparacionInput, btnPost);
-  sectionRecetaUser.append(sectionRecetaTitle, formPost);
+  divHead.append(logoBon, sectionSloganUser);
+  sectionSloganUser.append(sloganBon, nameUser)
+  sectionRecetaUser.append(sectionRecetaTitle,formPost)
+  formPost.append(titleReceta, recetaTitle, titleIngredientes, ingredientesTextarea, titlePreparacion, preparacionTextarea, btnPost);
   divPrincipal.append(divHead, sectionRecetaUser, menu);
   menu.appendChild(divMenu);
-  divMenu.append(recetaIcono, singOutIcono);
+  divMenu.append(homeIcono, recetaIcono, singOutIcono);
+
+  homeIcono.addEventListener('click', () => {
+    navigateTo('/principal');
+  });
 
   return divPrincipal;
 }
