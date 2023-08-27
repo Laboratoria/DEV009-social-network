@@ -178,12 +178,11 @@ body{
   font-weight: bold;
 }
 
-.recetaUser {
+.sectionRecetaUser{
   height: 3em;
   width: 90%;
   text-align:center;
 }
-
 
 .divMenu{
   height: 8%;
@@ -191,8 +190,8 @@ body{
   background-color: var(--recetarioColor);
   display: flex;
   justify-content: space-around;
-  margin-top: 5em;
-}
+  margin-top: 40em;
+  }
 
 footer {
   margin-top: 80px;
@@ -220,9 +219,9 @@ footer {
 }
 
 .post{
-  margin-top: 5%;
+  margin-top: 10%;
   border-radius: 1em;
-  border: 2px solid var(--sloganColor);
+  border: 3px solid var(--sloganColor);
   padding: 2% 5%;
 }
 
@@ -236,7 +235,35 @@ footer {
 }
 
 .formPost{
-  width: 20em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  margin-top: 0;
+}
+.escritosfijos{
+  font-weight: bold;
+  padding: 1em;
+}
+.recetaTitulo{
+  width: 100%;
+  height: 50%; 
+}
+.ingredientesUser {
+  width: 100%;
+  height: 150px;
+}
+.preparacionUser {
+  width: 100%;
+  height: 200px;
+}
+.btn-post{
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  margin: 1em;
+
 }
 
 /* small tablet styles */
