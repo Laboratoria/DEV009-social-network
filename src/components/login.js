@@ -4,8 +4,14 @@ function login(navigateTo) {
   const divLogin = document.createElement('div');
   divLogin.className = 'divLogin';
 
+  const headerLogin = document.createElement('header');
+  headerLogin.className = 'headerLogin';
+
   const logoBonBon = document.createElement('img');
   logoBonBon.className = 'logoBon';
+
+  const mainLogin = document.createElement('main');
+  mainLogin.className = 'mainLogin';
 
   const formLogin = document.createElement('form');
   formLogin.className = 'formLogin';
@@ -66,12 +72,11 @@ function login(navigateTo) {
     navigateTo('/');
   });
 
-  divLogin.append(logoBonBon, formLogin);
+  divLogin.append(headerLogin, mainLogin);
+  headerLogin.appendChild(logoBonBon);
+  mainLogin.append(formLogin, textRegistrateCon, buttonGoogle, buttonReturn);
   formLogin.append(inputEmail, inputPass, showPassword, buttonLogin);
-  divLogin.appendChild(textRegistrateCon);
-  divLogin.appendChild(buttonGoogle);
   buttonGoogle.append(imgGoogle, strong);
-  divLogin.appendChild(buttonReturn);
 
   formLogin.addEventListener('submit', (e) => {
     e.preventDefault();

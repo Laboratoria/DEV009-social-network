@@ -74,7 +74,7 @@ export async function createPost(username, titulo, ingredientes, preparacion, ti
 export async function displayAllPosts() {
   try {
     const querySnapshot = await getDocs(query(collection(db, 'Post'), orderBy('date', 'desc')));
-    const postsSection = document.querySelector('.divRecetasUsers');
+    const postsSection = document.querySelector('.sectionAllPostUsers');
 
     querySnapshot.forEach((file) => {
       const data = file.data();
@@ -84,14 +84,17 @@ export async function displayAllPosts() {
       const postDiv = document.createElement('div');
       postDiv.className = 'post';
 
-      const divUserInfo = document.createElement('div');
-      divUserInfo.className = 'divUserInfo';
+      const headerUserInfo = document.createElement('header');
+      headerUserInfo.className = 'headerUserInfo';
 
-      const author = document.createElement('p');
+      const author = document.createElement('h1');
       author.textContent = `${data.author}`;
       author.className = 'author';
 
-      const title = document.createElement('p');
+      const articlePostUsers = document.createElement('article');
+      articlePostUsers.className = 'articlePostUsers';
+
+      const title = document.createElement('h2');
       title.textContent = data.title;
       title.className = 'titlePost';
 
@@ -103,8 +106,8 @@ export async function displayAllPosts() {
       preparation.textContent = data.preparation;
       preparation.className = 'preparation';
 
-      const divEndPost = document.createElement('div');
-      divEndPost.className = 'divBtnPost';
+      const footerEndPost = document.createElement('footer');
+      footerEndPost.className = 'divBtnPost';
 
       const divReaction = document.createElement('div');
       divReaction.className = 'divReaction';
@@ -113,10 +116,11 @@ export async function displayAllPosts() {
       reaction.className = 'reactionButton';
       reaction.textContent = `${data.likes} 🧁`;
 
-      divUserInfo.append(author);
+      headerUserInfo.append(author);
       divReaction.append(reaction);
-      divEndPost.append(divReaction);
-      postDiv.append(divUserInfo, title, ingredients, preparation, divEndPost);
+      footerEndPost.append(divReaction);
+      articlePostUsers.append(title, ingredients, preparation);
+      postDiv.append(headerUserInfo, articlePostUsers, footerEndPost);
       postsSection.appendChild(postDiv);
 
       reaction.addEventListener('click', async () => {
@@ -167,8 +171,8 @@ export async function displayUserPosts(user) {
         postDiv.className = 'post';
         postDiv.setAttribute('data-post-id', postId);
 
-        const divUserInfo = document.createElement('div');
-        divUserInfo.className = 'divUserInfo';
+        const headerUserInfo = document.createElement('div');
+        headerUserInfo.className = 'headerUserInfo';
 
         const author = document.createElement('p');
         author.textContent = `${data.author}`;
@@ -186,8 +190,8 @@ export async function displayUserPosts(user) {
         preparation.textContent = data.preparation;
         preparation.className = 'preparation';
 
-        const divEndPost = document.createElement('div');
-        divEndPost.className = 'divButtom-post';
+        const footerEndPost = document.createElement('div');
+        footerEndPost.className = 'divButtom-post';
 
         const divReaction = document.createElement('div');
         divReaction.className = 'divReaction';
@@ -224,10 +228,10 @@ export async function displayUserPosts(user) {
           }
         });
 
-        divUserInfo.append(author);
+        headerUserInfo.append(author);
         divReaction.append(reaction);
-        divEndPost.append(divReaction);
-        postDiv.append(divUserInfo, title, ingredients, preparation, divEndPost);
+        footerEndPost.append(divReaction);
+        postDiv.append(headerUserInfo, title, ingredients, preparation, footerEndPost);
         postsSection.appendChild(postDiv);
       });
     }

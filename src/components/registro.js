@@ -1,7 +1,7 @@
 import { registerWithEmail } from '../lib/index';
 
 function registro(navigateTo) {
-  const divRegister = document.createElement('div'); 
+  const divRegister = document.createElement('div');
   divRegister.className = 'divRegister';
 
   const headerRegistro = document.createElement('header');
@@ -107,7 +107,6 @@ function registro(navigateTo) {
     errorRegister,
     buttonRegistro,
   );
- 
 
   return divRegister;
 }
