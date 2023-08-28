@@ -18,20 +18,13 @@ function feed(navigateTo) {
   const logoutButtom = document.createElement('button');
   const MessageOk = document.createElement('p');
   const MessageError = document.createElement('p');
-  const formRecipe = document.createElement('form');
-  const nameRecipeForm = document.createElement('input');
   const recipe = document.createElement('textarea');
+  const formRecipe = document.createElement('form');
+  const nameSteps = document.createElement('input');
   const add = document.createElement('button');
   const showPostFeed = document.createElement('div');
-
-
-  // Help Hannia
-
-
   logo.src = './imagenes/image.png';
-  logo.className = 'logo';
   write.textContent = 'Añade una Receta';
-  write.className = 'formOpen';
   option1.value = 'Mejores Recetas';
   option1.textContent = 'Mejores Recetas';
   option2.value = 'Usuarios';
@@ -41,7 +34,6 @@ function feed(navigateTo) {
   nameSteps.type = 'text';
   nameSteps.placeholder = 'Nombre de la receta';
   add.textContent = 'Agregar';
-  add.className = 'formButton';
   logoutButtom.textContent = 'Cerrar Sesión 💨';
   logoutButtom.className = 'logout';
   MessageOk.style.color = 'green';
@@ -52,11 +44,12 @@ function feed(navigateTo) {
     showPostFeed.innerHTML = '';
     allRecipes.forEach((recipeContent) => {
       const postRecipe = `
-      <h5 class="user"><img class="perfile" src="./imagenes/Profil.png" />By: ${recipeContent.user.split('@')[0]}</h5>
+      <h5 class="user"><img class="perfile" src="./imagenes/Profil.png" />By: ${recipeContent.user}</h5>
         <div class="postRecipe" id="post-${recipeContent.id}">
           <p class="name">${recipeContent.name}</p>
           <p>Pasos:</p>
           <textarea  type="text" id="edit-${recipeContent.id}" class="steps" disabled>${recipeContent.steps}</textarea>
+          <h5 class="user">👤 ${recipeContent.user.split('@')[0]}</h5>
           <div class="footer-post">
           <p>${recipeContent.likes}</p>
           <button id="like-${recipeContent.id}">⭐</button>
@@ -85,23 +78,20 @@ function feed(navigateTo) {
     formRecipe.style.display = 'block';
     write.style.display = 'none';
     recipe.value = '';
-    nameRecipeForm.value = '';
+    nameSteps.value = '';
   });
 
   add.addEventListener('click', async (event) => {
     event.preventDefault();
     const recipeData = recipe.value;
-    const nameRecipe = nameRecipeForm.value;
+    const nameRecipe = nameSteps.value;
     formRecipe.style.display = 'none';
     write.style.display = 'block';
-    if (!nameRecipe|| !recipeData) {
+    if (!nameRecipe || !recipeData) {
       MessageError.textContent = 'Por favor, completa ambos campos.';
-      formRecipe.style.display = 'block';
-      write.style.display = 'none';
       return;
-    } else {
-      formRecipe.style.display = 'none';
-      MessageError.textContent = '';
+    }
+    {
       const newRecipeId = await addRecipe(nameRecipe, recipeData);
       if (newRecipeId) {
         querySnapshot()
@@ -115,10 +105,13 @@ function feed(navigateTo) {
         MessageError.textContent = 'Error al agregar la receta.';
       }
     }
+    formRecipe.style.display = 'none';
+    write.style.display = 'block';
   });
   // ventana modal para eliminar el post
   const modal = document.createElement('div');
   modal.className = 'modal';
+  modal.style.display = 'none';
   const modalContent = document.createElement('div');
   modalContent.className = 'modal-content';
   const message = document.createElement('p');

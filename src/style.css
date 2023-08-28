@@ -147,7 +147,6 @@ button {
   margin-bottom: 20px;
   padding: 15px;
   text-align: start;
-  margin-left: 10px;
   position: relative;
  }
 
@@ -176,10 +175,6 @@ button {
   flex-direction: row;
   justify-content: flex-end;
 }
-
- .footer-post{
-  display: flex;
- }
 
  .name{
   font-size: 18px;
