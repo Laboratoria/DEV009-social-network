@@ -7,34 +7,35 @@ import iconoHome from '../imagenes/home.png';
 function editarpost(navigateTo) {
   const divPrincipal = document.createElement('div');
 
-  const divHead = document.createElement('header');
-  divHead.className = 'divHead';
+  const headerPrincipal = document.createElement('header');
+  headerPrincipal.className = 'headerPrincipal';
 
-  const sectionSloganUser = document.createElement('section');
-  sectionSloganUser.className = 'sectionSloganUser';
+  const divSloganUser = document.createElement('div');
+  divSloganUser.className = 'divSloganUser';
 
-  const sloganBon = document.createElement('p');
+  const sloganBon = document.createElement('h1');
   sloganBon.className = 'sloganBon';
   sloganBon.textContent = 'Consiente a tu familia';
 
   const user = auth.currentUser;
   const username = user.displayName;
-  const nameUser = document.createElement('p');
+
+  const nameUser = document.createElement('h2');
   nameUser.className = 'nameUser';
   nameUser.textContent = username;
 
   const logoBon = document.createElement('img');
   logoBon.className = 'logoBonPrincipal';
 
-  const sectionRecetaUser = document.createElement('section');
-  sectionRecetaUser.className = 'sectionRecetaUser';
-
-  const sectionRecetaTitle = document.createElement('p');
-  sectionRecetaTitle.textContent = '¿Que receta quieres escribir hoy?';
-  sectionRecetaTitle.className = 'sectionRecetaTitle';
+  const mainEditar = document.createElement('main');
+  mainEditar.className = 'mainEditar';
 
   const formPost = document.createElement('form');
   formPost.className = 'formPost';
+
+  const textTitleUser = document.createElement('p');
+  textTitleUser.textContent = '¿Que receta quieres escribir hoy?';
+  textTitleUser.className = 'textTitleUser';
 
   const titleReceta = document.createElement('strong');
   titleReceta.textContent = 'TITULO';
@@ -112,11 +113,11 @@ function editarpost(navigateTo) {
       });
   });
 
-  divHead.append(logoBon, sectionSloganUser);
-  sectionSloganUser.append(sloganBon, nameUser)
-  sectionRecetaUser.append(sectionRecetaTitle,formPost)
-  formPost.append(titleReceta, recetaTitle, titleIngredientes, ingredientesTextarea, titlePreparacion, preparacionTextarea, btnPost);
-  divPrincipal.append(divHead, sectionRecetaUser, menu);
+  divPrincipal.append(headerPrincipal, mainEditar, menu);
+  headerPrincipal.append(logoBon, divSloganUser);
+  divSloganUser.append(sloganBon, nameUser);
+  mainEditar.append( formPost);
+  formPost.append(textTitleUser, titleReceta, recetaTitle, titleIngredientes, ingredientesTextarea, titlePreparacion, preparacionTextarea, btnPost);
   menu.appendChild(divMenu);
   divMenu.append(homeIcono, recetaIcono, singOutIcono);
 
@@ -124,6 +125,9 @@ function editarpost(navigateTo) {
     navigateTo('/principal');
   });
 
+  recetaIcono.addEventListener('click', () => {
+    navigateTo('/usuarioPost');
+  });
   return divPrincipal;
 }
 export default editarpost;
