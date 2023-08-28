@@ -1,4 +1,4 @@
-import { readDataWithIdUser } from '../lib/credentials.js';
+import { readDataWithIdUser, saveNewPost } from '../lib/credentials.js';
 import { auth, signOut } from '../lib/initializerFirebase.js';
 
 function timeline(navigateTo) {
@@ -40,11 +40,22 @@ function timeline(navigateTo) {
   const footer = document.createElement('footer');
   footer.classList.add('footer');
 
+  const inputNewPost = document.createElement('input');
+  inputNewPost.classList.add('inputNewPost');
+  const placeHolderInput = 'Que estas pensando...';
+  inputNewPost.placeholder = placeHolderInput;
+
   const buttonCreatePost = document.createElement('button');
   buttonCreatePost.textContent = 'publicar';
   buttonCreatePost.classList.add('buttonCreatePost');
   buttonCreatePost.addEventListener('click', () => {
-    navigateTo('/newPost');
+    // navigateTo('/newPost');
+    const postValue = inputNewPost.value;
+    const newPostDiv = document.createElement('div');
+    newPostDiv.innerText = postValue;
+    main.append(newPostDiv);
+    inputNewPost.value = '';
+    saveNewPost(postValue);
   });
 
   const buttonLogOut = document.createElement('img');
@@ -59,7 +70,7 @@ function timeline(navigateTo) {
   });
   sidebar.append(buttonLogOut);
   header.append(title, sidebar);
-  sectionInput.append(buttonCreatePost);
+  sectionInput.append(inputNewPost, buttonCreatePost);
   main.append(imgUserProfile, welcomeText, sectionInput, sectionPost);
   section.append(header, main, footer);
 

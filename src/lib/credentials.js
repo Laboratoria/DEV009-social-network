@@ -1,10 +1,14 @@
 // Import the functions you need from the SDKs you need
 import { updateProfile } from 'firebase/auth';
+import { addDoc, collection } from '@firebase/firestore';
 import {
   auth, provider, createUserWithEmailAndPassword, signInWithPopup,
   GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword, db,
-  doc, setDoc, updateDoc, getDoc,
+  doc, setDoc, getDoc, signOut,
 } from './initializerFirebase.js';
+// import { async } from 'regenerator-runtime';
+
+// updateDoc,
 
 async function saveNewUser(idUser, Name, lastName, userName) {
   const dataUser = doc(db, 'users', `${idUser}`);
@@ -21,8 +25,10 @@ async function registerUser(email, password, name, lastname, userName) {
       email,
       password,
     );
-    await saveNewUser(userId.user.uid, name, lastname, userName);
-    await updateProfile(userId.user, { displayName: `${userName}` });
+    saveNewUser(userId.user.uid, name, lastname, userName);
+    updateProfile(userId.user, { displayName: `${userName}` });
+    alert('registro exitoso');
+    signOut(auth);
   } catch (error) {
     if (error.code === 'auth/email-already-in-use') {
       alert('El correo electronico ingresado esta asociado con un usuario existente');
@@ -31,6 +37,13 @@ async function registerUser(email, password, name, lastname, userName) {
     }
   }
 }
+
+async function saveNewPost(userPost) {
+  await addDoc(collection(db, '/posts'), {
+    post: userPost,
+  });
+}
+
 // Leer Datos de Nuevo Usuario
 async function readDataWithIdUser(collectionName, documentName) {
   const documentRef = doc(db, collectionName, documentName);
@@ -92,6 +105,7 @@ export {
   startSession,
   readDataWithIdUser,
   saveNewUser,
+  saveNewPost,
 };
 
 // export const redirectGoogle = () => {
