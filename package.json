@@ -28,7 +28,7 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^25.3.0",
     "htmlhint": "^1.0.0",
-    "jest": "^27.0.1",
+    "jest": "^27.5.1",
     "regenerator-runtime": "^0.13.1",
     "stylelint": "^14.1.0",
     "stylelint-config-recommended": "^6.0.0",
@@ -41,5 +41,12 @@
     "createdAt": "2023-07-06T17:25:59.679Z",
     "version": "6.3.0",
     "commit": "43c4a1dae1d831042293f9129c2df234888bf241"
+  },
+  "dependencies": {
+    "firebase": "^10.1.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
   }
+ 
 }
