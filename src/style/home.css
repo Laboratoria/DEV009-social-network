@@ -46,7 +46,7 @@ body{
   margin-top: 10%;
 }
 
-.formRegistro, .formLogin {
+.formRegistro, .formLogin, .formPost {
   display: flex;
   flex-direction: column;
   justify-content:center;
@@ -155,8 +155,8 @@ body{
   font-weight: bold;
 }
 
-.mainPrincipal{
-  width: 90%;
+.mainPrincipal, .mainEditar {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content:center;
@@ -165,7 +165,7 @@ body{
   padding:0 8%;
 }
 
-.textAllPostUsers{
+.textAllPostUsers, .textTituleUser, .misPublicaciones {
   margin-top: 3%;
   font-size: smaller;
   font-weight: bold;
@@ -315,7 +315,7 @@ footer {
     margin-top: 18%;
   }
 
-  .mainPrincipal{
+  .mainPrincipal, .mainEditar{
     margin-top: 27%;
   }
 
@@ -324,7 +324,7 @@ footer {
     font-size: medium;
   }
 
-  .textAllPostUsers{
+  .textAllPostUsers, .textTituleUser, .misPublicaciones{
     font-size: medium;
   }
 
@@ -375,7 +375,7 @@ footer {
     margin-top: 16%;
   }
 
-  .mainPrincipal{
+  .mainPrincipal, .mainEditar{
     margin-top: 23%;
   }
   
@@ -411,11 +411,14 @@ footer {
     margin-top: 12%;
   }
 
-  .mainPrincipal{
+  .mainPrincipal, .mainEditar{
     margin-top: 18%;
   }
 
   .textAllPostUsers, .author, .recetaUser{
+      font-size:large;
+  }
+  .textAllPostUsers, .textTituleUser, .misPublicaciones{
     font-size: large;
   }
 
@@ -423,6 +426,4 @@ footer {
     margin-top: 2%;
     font-size: larger;
   }
-
 }
-  
