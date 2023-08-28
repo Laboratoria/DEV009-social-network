@@ -1,9 +1,13 @@
+import { auth } from '../firebase/initializeFirebase.js';
 import {
-  exitUser,
+  // exitUser,
   readPostProfileUser,
+
 } from '../lib/index.js';
 
 function profile(navigateTo) {
+  const user = auth.currentUser;
+  readPostProfileUser(user);
   const mainConteiner = document.createElement('section');
   const section = document.createElement('section');
   const header = document.createElement('header');
@@ -12,7 +16,7 @@ function profile(navigateTo) {
 
   const profileSectionPost = document.createElement('div');
   const editPost = document.createElement('img');
-  const deletePost = document.createElement('img');
+  // const deletePost = document.createElement('img');
 
   const menu = document.createElement('nav');
   const home = document.createElement('img');
@@ -29,7 +33,7 @@ function profile(navigateTo) {
   profilePic.height = 50;
 
   editPost.src = './icons/edit.svg';
-  deletePost.src = './icons/delete.svg';
+  // deletePost.src = './icons/delete.svg';
   home.src = './icons/home.svg';
   exit.src = './icons/exit.svg';
 
@@ -37,7 +41,7 @@ function profile(navigateTo) {
   profileMenu.width = 50;
   profileMenu.height = 50;
 
-  readPostProfileUser();
+  console.log(readPostProfileUser());
 
   home.addEventListener('click', () => {
     navigateTo('/wall');
@@ -55,14 +59,14 @@ function profile(navigateTo) {
 
   });
 
-  deletePost.addEventListener('click', () => {
-    // eliminar post
+  // deletePost.addEventListener('click', () => {
+  // eliminar post
 
-  });
+  // });
 
   mainConteiner.append(header, section, profileSectionPost, menu);
   section.append(profilePic);
-  profileSectionPost.append(editPost, deletePost);
+  profileSectionPost.append(editPost);// , deletePost);
   header.appendChild(logo);
   menu.append(home, profileMenu, exit);
 
