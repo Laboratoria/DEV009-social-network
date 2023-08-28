@@ -44,19 +44,18 @@ function feed(navigateTo) {
     showPostFeed.innerHTML = '';
     allRecipes.forEach((recipeContent) => {
       const postRecipe = `
-        <div class="postRecipe" id="post-${recipeContent.id}">
-        <h5 class="user"><img class="perfile" src="./imagenes/Profil.png" />${recipeContent.user}</h5>
-          <p class="name">${recipeContent.name}</p>
-          <p>Pasos:</p>
-          <textarea  type="text" id="edit-${recipeContent.id}" class="steps" disabled>${recipeContent.steps}</textarea>
-          <h5 class="user">👤 ${recipeContent.user.split('@')[0]}</h5>
-          <div class="footer-post">
-          <p class="recipeLikes">${recipeContent.likes}</p>
-          <button id="like-${recipeContent.id}">:estrella:</button>
-          <button class="edit" id="b-edit-${recipeContent.id}">:pluma_estilográfica_abajo_a_la_izquierda:</button>
-          <button class="delete" id="delete-${recipeContent.id}">:papelera:</button>
-          </div>
-        </div>`;
+      <div class="postRecipe" id="post-${recipeContent.id}">
+      <h5 class="user"><img class="perfile" src="./imagenes/Profil.png" />${recipeContent.user}</h5>
+        <p class="name">${recipeContent.name}</p>
+        <p>Pasos:</p>
+        <textarea  type="text" id="edit-${recipeContent.id}" class="steps" disabled>${recipeContent.steps}</textarea>
+        <div class="footer-post">
+        <p class="recipeLikes">${recipeContent.likes}</p>
+        <button id="like-${recipeContent.id}">⭐</button>
+        <button class="edit" id="b-edit-${recipeContent.id}">🖋️</button>
+        <button class="delete" id="delete-${recipeContent.id}">🗑️</button>
+        </div>
+      </div>`;
       showPostFeed.innerHTML += postRecipe;
     });
   }
