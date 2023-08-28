@@ -34,7 +34,6 @@ function register(navigateTo) {
     if (userEmail && userPassword) {
       try {
         await createUser(userEmail, userPassword);
-
         successMessage.textContent = 'Usuario registrado con éxito';
         errorMessage.textContent = '';
         navigateTo('/feed');
@@ -55,10 +54,8 @@ function register(navigateTo) {
       errorMessage.textContent = error.message;
     }
   });
-// hola hola
   section.append(logo, avatar, name, email, password, buttonRegister);
   section.append(buttonGoogle, errorMessage, successMessage);
-
   return section;
 }
 export default register;

@@ -34,7 +34,7 @@ function feed(navigateTo) {
   nameSteps.type = 'text';
   nameSteps.placeholder = 'Nombre de la receta';
   add.textContent = 'Agregar';
-  logoutButtom.textContent = 'Cerrar Sesión :guión:';
+  logoutButtom.textContent = 'Cerrar Sesión 💨';
   logoutButtom.className = 'logout';
   MessageOk.style.color = 'green';
   MessageError.style.color = 'grey';
@@ -49,6 +49,7 @@ function feed(navigateTo) {
           <p class="name">${recipeContent.name}</p>
           <p>Pasos:</p>
           <textarea  type="text" id="edit-${recipeContent.id}" class="steps" disabled>${recipeContent.steps}</textarea>
+          <h5 class="user">👤 ${recipeContent.user.split('@')[0]}</h5>
           <div class="footer-post">
           <p class="recipeLikes">${recipeContent.likes}</p>
           <button id="like-${recipeContent.id}">:estrella:</button>
