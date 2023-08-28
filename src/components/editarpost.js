@@ -33,7 +33,7 @@ function editarpost(navigateTo) {
   const formPost = document.createElement('form');
   formPost.className = 'formPost';
 
-  const textTitleUser = document.createElement('p');
+  const textTitleUser = document.createElement('h2');
   textTitleUser.textContent = '¿Que receta quieres escribir hoy?';
   textTitleUser.className = 'textTitleUser';
 

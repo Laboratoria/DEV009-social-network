@@ -172,14 +172,17 @@ export async function displayUserPosts(user) {
         postDiv.className = 'post';
         postDiv.setAttribute('data-post-id', postId);
 
-        const headerUserInfo = document.createElement('div');
+        const headerUserInfo = document.createElement('header');
         headerUserInfo.className = 'headerUserInfo';
 
-        const author = document.createElement('p');
+        const author = document.createElement('h1');
         author.textContent = `${data.author}`;
         author.className = 'author';
 
-        const title = document.createElement('p');
+        const articlePostUsers = document.createElement('article');
+        articlePostUsers.className = 'articlePostUsers';
+
+        const title = document.createElement('h2');
         title.textContent = data.title;
         title.className = 'titlePost';
 
@@ -191,7 +194,7 @@ export async function displayUserPosts(user) {
         preparation.textContent = data.preparation;
         preparation.className = 'preparation';
 
-        const footerEndPost = document.createElement('div');
+        const footerEndPost = document.createElement('footer');
         footerEndPost.className = 'divButtom-post';
 
         const divReaction = document.createElement('div');
@@ -232,7 +235,8 @@ export async function displayUserPosts(user) {
         headerUserInfo.append(author);
         divReaction.append(reaction);
         footerEndPost.append(divReaction);
-        postDiv.append(headerUserInfo, title, ingredients, preparation, footerEndPost);
+        articlePostUsers.append(title, ingredients, preparation);
+        postDiv.append(headerUserInfo, articlePostUsers, footerEndPost);
         postsSection.appendChild(postDiv);
       });
     }
