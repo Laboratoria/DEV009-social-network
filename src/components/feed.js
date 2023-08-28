@@ -30,8 +30,11 @@ function feed(navigateTo) {
   // option2.value = 'Usuarios';
   // option2.textContent = 'Usuarios';
   recipe.placeholder = 'ingresa tu receta';
+  recipe.className ='recipe';
   formRecipe.style.display = 'none';
+  formRecipe.className ='formAddRecipe';
   nameSteps.type = 'text';
+  nameSteps.className = 'nameRecipe';
   nameSteps.placeholder = 'Nombre de la receta';
   add.textContent = 'Agregar';
   logoutButtom.textContent = 'Cerrar Sesión 💨';
