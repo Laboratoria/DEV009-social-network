@@ -238,6 +238,15 @@ footer {
   margin-top: 2%;
 }
 
+.author{
+  font-size: smaller;
+}
+
+.titlePost, .ingredients, .preparation{
+  margin-top: 4%;
+  font-size: smaller;
+}
+
 .sectionRecetaTitle {
   margin:1em;
   font-weight: bold;
@@ -324,6 +333,15 @@ footer {
     padding: 2% 2%;
   }
 
+  .author{
+    font-size: medium;
+  }
+
+  .titlePost, .ingredients, .preparation{
+    margin-top: 3%;
+    font-size: medium;
+  }
+
 }
 
 /* large tablets & laptop styles */
@@ -397,12 +415,13 @@ footer {
     margin-top: 18%;
   }
 
-  .recetaUser {
-    font-size:large;
+  .textAllPostUsers, .author, .recetaUser{
+    font-size: large;
   }
 
-  .textAllPostUsers{
-    font-size: large;
+  .titlePost, .ingredients, .preparation{
+    margin-top: 2%;
+    font-size: larger;
   }
 
 }

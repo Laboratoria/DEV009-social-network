@@ -15,7 +15,7 @@ function usuarioPost(navigateTo) {
   divHead.className = 'divHead';
 
   const sectionSloganUser = document.createElement('section');
- sectionSloganUser.className = 'sectionSloganUser';
+  sectionSloganUser.className = 'sectionSloganUser';
 
   const sloganBon = document.createElement('p');
   sloganBon.className = 'sloganBon';
@@ -69,7 +69,7 @@ function usuarioPost(navigateTo) {
 
   divHead.append(logoBon, sectionSloganUser);
   sectionSloganUser.append(sloganBon, nameUser);
-  sectionRecetaUser.append()
+  sectionRecetaUser.append();
   divPrincipal.append(divHead, textAllPostUsers, sectionRecetaUser, menu);
   menu.appendChild(divMenu);
   divMenu.append(homeIcono, recetaIcono, singOutIcono);
@@ -77,7 +77,6 @@ function usuarioPost(navigateTo) {
   homeIcono.addEventListener('click', () => {
     navigateTo('/principal');
   });
-
 
   return divPrincipal;
 }

@@ -113,9 +113,17 @@ function editarpost(navigateTo) {
   });
 
   divHead.append(logoBon, sectionSloganUser);
-  sectionSloganUser.append(sloganBon, nameUser)
-  sectionRecetaUser.append(sectionRecetaTitle,formPost)
-  formPost.append(titleReceta, recetaTitle, titleIngredientes, ingredientesTextarea, titlePreparacion, preparacionTextarea, btnPost);
+  sectionSloganUser.append(sloganBon, nameUser);
+  sectionRecetaUser.append(sectionRecetaTitle, formPost);
+  formPost.append(
+    titleReceta,
+    recetaTitle,
+    titleIngredientes,
+    ingredientesTextarea,
+    titlePreparacion,
+    preparacionTextarea,
+    btnPost,
+  );
   divPrincipal.append(divHead, sectionRecetaUser, menu);
   menu.appendChild(divMenu);
   divMenu.append(homeIcono, recetaIcono, singOutIcono);

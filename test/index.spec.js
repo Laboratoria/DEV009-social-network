@@ -2,7 +2,11 @@
 import { registerWithEmail } from '../src/lib/index';
 
 // Mockeamos la función importada para realizar pruebas aisladas
-jest.mock('../src/lib/index');
+jest.mock('../src/lib/index', () => ({
+  createUserWithEmailAndPassword: jest.fn(() => Promise.resolve({})),
+  sendEmailVerification: jest.fn(() => Promise.resolve({})),
+  updateProfile: jest.fn(() => Promise.resolve({})),
+}));
 
 describe('Test para la función registro que usa registerWithEmail', () => {
   it('debería recibir los valores de email y contraseña', () => {

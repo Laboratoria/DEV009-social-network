@@ -49,8 +49,8 @@ function principal(navigateTo) {
   const recetaIcono = document.createElement('img');
   recetaIcono.className = 'recetaIcono';
   recetaIcono.src = iconoReceta;
-  recetaIcono.setAttribute('width', '30');
-  recetaIcono.setAttribute('hide', '30');
+  recetaIcono.setAttribute('width', '40');
+  recetaIcono.setAttribute('hide', '40');
   const singOutIcono = document.createElement('img');
   singOutIcono.className = 'singOut';
   singOutIcono.src = iconoSingOut;
