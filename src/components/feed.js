@@ -44,18 +44,18 @@ function feed(navigateTo) {
     showPostFeed.innerHTML = '';
     allRecipes.forEach((recipeContent) => {
       const postRecipe = `
-      <div class="postRecipe" id="post-${recipeContent.id}">
-      <h5 class="user"><img class="perfile" src="./imagenes/Profil.png" />${recipeContent.user}</h5>
-        <p class="name">${recipeContent.name}</p>
-        <p>Pasos:</p>
-        <textarea  type="text" id="edit-${recipeContent.id}" class="steps" disabled>${recipeContent.steps}</textarea>
-        <div class="footer-post">
-        <p class="recipeLikes">${recipeContent.likes}</p>
-        <button id="like-${recipeContent.id}">⭐</button>
-        <button class="edit" id="b-edit-${recipeContent.id}">🖋️</button>
-        <button class="delete" id="delete-${recipeContent.id}">🗑️</button>
-        </div>
-      </div>`;
+        <div class="postRecipe" id="post-${recipeContent.id}">
+        <h5 class="user"><img class="perfile" src="./imagenes/Profil.png" />${recipeContent.user}</h5>
+          <p class="name">${recipeContent.name}</p>
+          <p>Pasos:</p>
+          <textarea  type="text" id="edit-${recipeContent.id}" class="steps" disabled>${recipeContent.steps}</textarea>
+          <div class="footer-post">
+          <p class="recipeLikes">${recipeContent.likes}</p>
+          <button id="like-${recipeContent.id}">⭐</button>
+          <button class="edit" id="b-edit-${recipeContent.id}">🖋️</button>
+          <button class="delete" id="delete-${recipeContent.id}">🗑️</button>
+          </div>
+        </div>`;
       showPostFeed.innerHTML += postRecipe;
     });
   }
@@ -185,8 +185,8 @@ function feed(navigateTo) {
     }
   });
   section.append(logo, showPostFeed, modal, formRecipe, write, logoutButtom);
-  formRecipe.append(nameSteps, recipe, add, MessageError, MessageOk);
 
+  formRecipe.append(nameSteps, recipe, add, MessageError, MessageOk);
   return section;
 }
 
