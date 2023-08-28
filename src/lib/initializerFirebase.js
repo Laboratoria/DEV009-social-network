@@ -1,10 +1,12 @@
 import { initializeApp } from 'firebase/app';
 import {
-  getAuth,
+  getAuth, onAuthStateChanged,
   createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, getRedirectResult,
   signInWithRedirect, signOut, signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import {
+  getFirestore, doc, setDoc, updateDoc, getDoc,
+} from 'firebase/firestore';
 import { firebaseConfig } from './firebaseConfig.js';
 
 export const app = initializeApp(firebaseConfig);
@@ -13,15 +15,13 @@ export const provider = new GoogleAuthProvider();
 export const db = getFirestore(app);
 
 export {
+  signOut,
+  onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithPopup,
   getRedirectResult,
   GoogleAuthProvider,
   signInWithRedirect,
-  signOut,
   signInWithEmailAndPassword,
-  collection,
-  addDoc,
-  getFirestore,
-
+  doc, setDoc, updateDoc, getDoc,
 };

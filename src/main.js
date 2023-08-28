@@ -1,11 +1,10 @@
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { auth, onAuthStateChanged } from './lib/initializerFirebase.js';
 
 import login from './components/login.js';
 import register from './components/register.js';
 import timeline from './components/timeline.js';
 import printError from './components/error.js';
 import newPost from './components/newPost.js';
-
 
 const root = document.getElementById('root');
 
@@ -37,7 +36,6 @@ window.onpopstate = () => {
 
 navigateTo(window.location.pathname || defaultRoute);
 
-const auth = getAuth()
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in, see docs for a list of available properties

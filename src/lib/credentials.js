@@ -1,13 +1,14 @@
 // Import the functions you need from the SDKs you need
 import { updateProfile } from 'firebase/auth';
 import {
-  app, auth, provider, createUserWithEmailAndPassword, signInWithPopup,
+  auth, provider, createUserWithEmailAndPassword, signInWithPopup,
   GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword, db,
-  collection, addDoc, getFirestore,
+  doc, setDoc, updateDoc, getDoc,
 } from './initializerFirebase.js';
 
-async function saveNewUser(Name, lastName, userName) {
-  await addDoc(collection(getFirestore(app), '/users'), {
+async function saveNewUser(idUser, Name, lastName, userName) {
+  const dataUser = doc(db, 'users', `${idUser}`);
+  await setDoc(dataUser, {
     username: userName,
     name: Name,
     lastname: lastName,
@@ -20,17 +21,23 @@ async function registerUser(email, password, name, lastname, userName) {
       email,
       password,
     );
-    saveNewUser(userId, name, lastname, userName);
-    updateProfile(userId.user, { displayName: userName });
+    await saveNewUser(userId.user.uid, name, lastname, userName);
+    await updateProfile(userId.user, { displayName: `${userName}` });
   } catch (error) {
     if (error.code === 'auth/email-already-in-use') {
       alert('El correo electronico ingresado esta asociado con un usuario existente');
-    }else {
+    } else {
       alert(error.message);
     }
   }
 }
-
+// Leer Datos de Nuevo Usuario
+async function readDataWithIdUser(collectionName, documentName) {
+  const documentRef = doc(db, collectionName, documentName);
+  const docSnap = await getDoc(documentRef);
+  const object = docSnap.data();
+  return object;
+}
 // iniciar Sesion
 async function startSession(email, password) {
   try {
@@ -83,6 +90,8 @@ export const signIn = () => {
 export {
   registerUser,
   startSession,
+  readDataWithIdUser,
+  saveNewUser,
 };
 
 // export const redirectGoogle = () => {
