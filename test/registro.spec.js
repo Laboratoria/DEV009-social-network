@@ -1,7 +1,6 @@
 import registro from '../src/components/registro';
 import { registerWithEmail } from '../src/lib/index';
 
-
 jest.mock('../src/lib/index', () => ({
   createUserWithEmailAndPassword: jest.fn(() => Promise.resolve({})),
   sendEmailVerification: jest.fn(() => Promise.resolve({})),
