@@ -11,24 +11,27 @@ function usuarioPost(navigateTo) {
 
   const divPrincipal = document.createElement('div');
 
-  const divHead = document.createElement('header');
-  divHead.className = 'divHead';
+  const headerPrincipal = document.createElement('header');
+  headerPrincipal.className = 'headerPrincipal';
 
-  const sectionSloganUser = document.createElement('section');
- sectionSloganUser.className = 'sectionSloganUser';
+  const divSloganUser = document.createElement('div');
+  divSloganUser.className = 'divSloganUser';
 
-  const sloganBon = document.createElement('p');
+  const sloganBon = document.createElement('h1');
   sloganBon.className = 'sloganBon';
   sloganBon.textContent = 'Consiente a tu familia';
 
   const userName = user.displayName;
 
-  const nameUser = document.createElement('p');
+  const nameUser = document.createElement('h2');
   nameUser.className = 'nameUser';
   nameUser.textContent = userName;
 
   const logoBon = document.createElement('img');
   logoBon.className = 'logoBonPrincipal';
+
+  const mainPrincipal = document.createElement('main');
+  mainPrincipal.className = 'mainPrincipal';
 
   const textAllPostUsers = document.createElement('p');
   textAllPostUsers.textContent = ('MIS PUBLICACIONES:');
@@ -67,10 +70,10 @@ function usuarioPost(navigateTo) {
       });
   });
 
-  divHead.append(logoBon, sectionSloganUser);
-  sectionSloganUser.append(sloganBon, nameUser);
-  sectionRecetaUser.append()
-  divPrincipal.append(divHead, textAllPostUsers, sectionRecetaUser, menu);
+  divPrincipal.append(headerPrincipal, mainPrincipal, menu);
+  mainPrincipal.append(textAllPostUsers, sectionRecetaUser);
+  headerPrincipal.append(logoBon, divSloganUser);
+  divSloganUser.append(sloganBon, nameUser);
   menu.appendChild(divMenu);
   divMenu.append(homeIcono, recetaIcono, singOutIcono);
 
