@@ -81,7 +81,6 @@ function usuarioPost(navigateTo) {
     navigateTo('/principal');
   });
 
-
   return divPrincipal;
 }
 

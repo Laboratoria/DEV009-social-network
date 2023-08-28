@@ -116,8 +116,17 @@ function editarpost(navigateTo) {
   divPrincipal.append(headerPrincipal, mainEditar, menu);
   headerPrincipal.append(logoBon, divSloganUser);
   divSloganUser.append(sloganBon, nameUser);
-  mainEditar.append( formPost);
-  formPost.append(textTitleUser, titleReceta, recetaTitle, titleIngredientes, ingredientesTextarea, titlePreparacion, preparacionTextarea, btnPost);
+  mainEditar.append(formPost);
+  formPost.append(
+    textTitleUser,
+    titleReceta,
+    recetaTitle,
+    titleIngredientes,
+    ingredientesTextarea,
+    titlePreparacion,
+    preparacionTextarea,
+    btnPost,
+  );
   menu.appendChild(divMenu);
   divMenu.append(homeIcono, recetaIcono, singOutIcono);
 
