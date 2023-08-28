@@ -202,7 +202,7 @@ body{
 
 
 footer {
-  margin-top: 3%;
+  margin-top: 6%;
   text-align: center;
 }
 
@@ -252,14 +252,6 @@ footer {
   font-weight: bold;
 }
 
-.formPost{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  margin-top: 0;
-}
 .escritosfijos{
   font-weight: bold;
   padding: 1em;
@@ -315,10 +307,14 @@ footer {
     margin-top: 18%;
   }
 
-  .mainPrincipal, .mainEditar{
+  .mainPrincipal {
     margin-top: 27%;
   }
 
+  .mainEditar{
+    scale: 1.2;
+    margin-top: 40%;
+  }
   .recetaUser {
     margin-top: 1%;
     font-size: medium;
@@ -375,10 +371,13 @@ footer {
     margin-top: 16%;
   }
 
-  .mainPrincipal, .mainEditar{
+  .mainPrincipal {
     margin-top: 23%;
   }
-  
+  .mainEditar{
+    scale: 1.5;
+    margin-top: 30%;
+  }
 }
 
 /* desktop styles */
@@ -408,11 +407,16 @@ footer {
   }
 
   .divMenu{
+    scale: 1.8;
     margin-top: 12%;
   }
 
-  .mainPrincipal, .mainEditar{
+  .mainPrincipal {
     margin-top: 18%;
+  }
+
+  .mainEditar{
+    margin-top: 40%;
   }
 
   .textAllPostUsers, .author, .recetaUser{
