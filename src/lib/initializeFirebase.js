@@ -11,7 +11,7 @@ import {
   getDoc,
   updateDoc,
   where,
-  deleteDoc
+  deleteDoc,
 } from 'firebase/firestore';
 import {
   getAuth,
