@@ -9,36 +9,39 @@ import {
 
 function feed(navigateTo) {
   const section = document.createElement('section');
-  const nav = document.createElement('nav');
+ /* const nav = document.createElement('nav');
   const select = document.createElement('select');
   const option1 = document.createElement('option');
-  const option2 = document.createElement('option');
+  const option2 = document.createElement('option');*/
   const write = document.createElement('button');
   const logo = document.createElement('img');
   const logoutButtom = document.createElement('button');
   const MessageOk = document.createElement('p');
   const MessageError = document.createElement('p');
   const formRecipe = document.createElement('form');
-  const nameRecipeForm = document.createElement('input');
+  const nameSteps = document.createElement('input');
   const recipe = document.createElement('textarea');
   const add = document.createElement('button');
   const showPostFeed = document.createElement('div');
 
 
-  // Help Hannia
+
 
 
   logo.src = './imagenes/image.png';
   logo.className = 'logo';
   write.textContent = 'Añade una Receta';
   write.className = 'formOpen';
-  option1.value = 'Mejores Recetas';
+  /*option1.value = 'Mejores Recetas';
   option1.textContent = 'Mejores Recetas';
   option2.value = 'Usuarios';
-  option2.textContent = 'Usuarios';
+  option2.textContent = 'Usuarios';*/
   recipe.placeholder = 'ingresa tu receta';
+  recipe.className ='recipe';
   formRecipe.style.display = 'none';
+  formRecipe.className ='formAddRecipe';
   nameSteps.type = 'text';
+  nameSteps.className = 'nameRecipe';
   nameSteps.placeholder = 'Nombre de la receta';
   add.textContent = 'Agregar';
   add.className = 'formButton';
@@ -85,7 +88,7 @@ function feed(navigateTo) {
     formRecipe.style.display = 'block';
     write.style.display = 'none';
     recipe.value = '';
-    nameRecipeForm.value = '';
+    nameSteps.value = '';
   });
 
   add.addEventListener('click', async (event) => {
@@ -192,11 +195,11 @@ function feed(navigateTo) {
         });
     }
   });
-  section.append(logo, showPostFeed, modal, formRecipe, write, nav, logoutButtom);
+  section.append(logo, showPostFeed, modal, formRecipe, write, /*nav,*/ logoutButtom);
 
   formRecipe.append(nameSteps, recipe, add, MessageError, MessageOk);
-  nav.append(select);
-  select.append(option1, option2);
+  //nav.append(select);
+  //select.append(option1, option2);
   return section;
 }
 

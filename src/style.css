@@ -136,29 +136,7 @@ button {
   margin-bottom: 20px;
 }
 
- .postRecipe{
-  background-color: #FAB838;
-  border-bottom: #393939;
-  border-radius: 20px;
-  margin-left: 10px;
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  margin-bottom: 20px;
-  padding: 15px;
-  text-align: start;
-  margin-left: 10px;
-  position: relative;
- }
-
- .postRecipe::before {
-  content: '';
-  position: absolute;
-  top: 10px; /* Ajustar según la apariencia deseada */
-  left: -18px; /* Ajustar según la apariencia deseada */
-  border: 10px solid transparent;
-  border-right-color: #FAB838;
- }
+ 
 
 .postRecipe p,
 .postRecipe textarea,
@@ -243,3 +221,32 @@ button {
     max-width: 100%;
   }
 }
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  img.avatar {
+    max-width: 60px;
+    width: 40%;
+  }
+
+  .modal-content {
+    width: 80%;
+  }
+
+  .postRecipe {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .formOpen {
+    margin-left: 0;
+  }
+}
+
+
+
+
+

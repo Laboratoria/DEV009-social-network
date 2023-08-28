@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-import { getFirestore, collection, addDoc, doc, getDoc, getDocs, deleteDoc, updateDoc } from "firebase/firestore";
-=======
 import {
   getFirestore,
   collection,
@@ -11,7 +8,6 @@ import {
   deleteDoc,
   updateDoc,
 } from 'firebase/firestore';
->>>>>>> main
 import { app } from './firebase.js';
 import { auth } from './index.js';
 
