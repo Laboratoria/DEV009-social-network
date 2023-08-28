@@ -5,6 +5,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin: 30px;
 }
 
 img {
@@ -56,6 +57,7 @@ img.avatar {
 }
 
 section {
+  padding: 40px;
   max-width: 300px;
   margin: auto;
   background-color: #641B42;
@@ -130,12 +132,6 @@ button {
   align-items: center;
 }
 
-.perfile{
-  display: flex;
-  width: 50px;
-  margin-bottom: 20px;
-}
-
  .postRecipe{
   background-color: #FAB838;
   border-bottom: #393939;
@@ -143,10 +139,11 @@ button {
   margin-left: 10px;
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 500px;
   margin-bottom: 20px;
   padding: 15px;
   text-align: start;
+  margin-left: 10px;
   position: relative;
  }
 
@@ -154,20 +151,46 @@ button {
   content: '';
   position: absolute;
   top: 10px; /* Ajustar según la apariencia deseada */
-  left: -18px; /* Ajustar según la apariencia deseada */
+  left: -15px; /* Ajustar según la apariencia deseada */
   border: 10px solid transparent;
   border-right-color: #FAB838;
+  align-items: center;
  }
 
 .postRecipe p,
 .postRecipe textarea,
-.postRecipe h5,
 .postRecipe .footer-post {
-  margin: 0; 
+  margin: 0;
+}
+
+h5 {
+  color: #3E3B3B ;
+  border-color: black;
+}
+
+.perfile {
+  width: 50px;
+  margin-bottom: 20px;
+  margin-right: 10px; /* Agregamos un margen derecho */
+}
+
+h5, .perfile {
+  display: inline-block;
+  vertical-align: middle;
+}
+.name{
+  font-size: 18px;
+  font-weight: 800;
+  text-align: center;
+ }
+
+.recipeLikes{
+  color: red;
 }
 
 .textRecipe{
   margin-bottom: 10px;
+  align-items: center;
 }
 
 .icons{
@@ -176,9 +199,8 @@ button {
   justify-content: flex-end;
 }
 
- .name{
-  font-size: 18px;
-  font-weight: 800;
+ .footer-post{
+  display: flex;
  }
 
  .formOpen{
@@ -211,12 +233,10 @@ button {
   text-align: center;
  }
  
- /*h5{
-  align-self: flex-end;
- }*/
+
 .logout{
-  color: white;
-  background-color: black;
+  color: black;
+  background-color: white;
   align-items: center;
   display: flex;
   bottom: -20px;
@@ -230,7 +250,7 @@ button {
 
   section {
     max-width: 100%;
-    padding: 10px;
+    padding: 20px;
   }
 
   input,
@@ -238,3 +258,34 @@ button {
     max-width: 100%;
   }
 }
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  img.avatar {
+    max-width: 60px;
+    width: 40%;
+  }
+
+  .modal-content {
+    width: 80%;
+  }
+
+  .postRecipe {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .formOpen {
+    margin-left: 0;
+  }
+}
+
+
+
+
+
+
+
