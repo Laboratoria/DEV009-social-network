@@ -1,9 +1,9 @@
-import { getAuth, signOut } from 'firebase/auth';
+import { readDataWithIdUser } from '../lib/credentials.js';
+import { auth, signOut } from '../lib/initializerFirebase.js';
 
 function timeline(navigateTo) {
-  const auth = getAuth();
   const user = auth.currentUser;
-  
+
   const section = document.createElement('section');
   section.classList.add('timelineSection');
 
@@ -24,15 +24,13 @@ function timeline(navigateTo) {
   main.classList.add('main');
 
   const welcomeText = document.createElement('p');
-  let userName = ''
-  if (user !== null){
-    user.providerData.forEach((profile) => {
-      userName =  profile.displayName;
+  if (user) {
+    welcomeText.classList.add('welcomeText');
+    readDataWithIdUser('users', user.uid).then((data) => {
+      welcomeText.textContent = `¡Hola, ${data.username}!`;
+      console.log(data);
     });
   }
-  welcomeText.textContent = `¡Bienvenido/a, ${userName}!`;
-  welcomeText.classList.add('welcomeText');
-
   const sectionInput = document.createElement('sectionInput');
   sectionInput.classList.add('sectionInput');
 
@@ -42,7 +40,6 @@ function timeline(navigateTo) {
   const footer = document.createElement('footer');
   footer.classList.add('footer');
 
-
   const buttonCreatePost = document.createElement('button');
   buttonCreatePost.textContent = 'publicar';
   buttonCreatePost.classList.add('buttonCreatePost');
@@ -50,9 +47,8 @@ function timeline(navigateTo) {
     navigateTo('/newPost');
   });
 
-
   const buttonLogOut = document.createElement('img');
-  buttonLogOut.src = './images/logOut.png';
+  buttonLogOut.src = '../images/svg/logout.svg';
   buttonLogOut.classList.add('buttonLogOut');
   buttonLogOut.addEventListener('click', () => {
     signOut(auth).then(() => {
@@ -70,6 +66,4 @@ function timeline(navigateTo) {
   return section;
 }
 
-
 export default timeline;
-
