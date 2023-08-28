@@ -9,8 +9,8 @@ import {
 
 function feed(navigateTo) {
   const section = document.createElement('section');
-  const nav = document.createElement('nav');
-  const select = document.createElement('select');
+  //const nav = document.createElement('nav');
+  //const select = document.createElement('select');
   const option1 = document.createElement('option');
   const option2 = document.createElement('option');
   const write = document.createElement('button');
@@ -25,10 +25,10 @@ function feed(navigateTo) {
   const showPostFeed = document.createElement('div');
   logo.src = './imagenes/image.png';
   write.textContent = 'Añade una Receta';
-  option1.value = 'Mejores Recetas';
-  option1.textContent = 'Mejores Recetas';
-  option2.value = 'Usuarios';
-  option2.textContent = 'Usuarios';
+  // option1.value = 'Mejores Recetas';
+  // option1.textContent = 'Mejores Recetas';
+  // option2.value = 'Usuarios';
+  // option2.textContent = 'Usuarios';
   recipe.placeholder = 'ingresa tu receta';
   formRecipe.style.display = 'none';
   nameSteps.type = 'text';
@@ -44,14 +44,13 @@ function feed(navigateTo) {
     showPostFeed.innerHTML = '';
     allRecipes.forEach((recipeContent) => {
       const postRecipe = `
-      <h5 class="user"><img class="perfile" src="./imagenes/Profil.png" />By: ${recipeContent.user}</h5>
         <div class="postRecipe" id="post-${recipeContent.id}">
+        <h5 class="user"><img class="perfile" src="./imagenes/Profil.png" />${recipeContent.user}</h5>
           <p class="name">${recipeContent.name}</p>
           <p>Pasos:</p>
           <textarea  type="text" id="edit-${recipeContent.id}" class="steps" disabled>${recipeContent.steps}</textarea>
-          <h5 class="user">👤 ${recipeContent.user.split('@')[0]}</h5>
           <div class="footer-post">
-          <p>${recipeContent.likes}</p>
+          <p class="recipeLikes">${recipeContent.likes}</p>
           <button id="like-${recipeContent.id}">⭐</button>
           <button class="edit" id="b-edit-${recipeContent.id}">🖋️</button>
           <button class="delete" id="delete-${recipeContent.id}">🗑️</button>
@@ -185,11 +184,9 @@ function feed(navigateTo) {
         });
     }
   });
-  section.append(logo, showPostFeed, modal, formRecipe, write, nav, logoutButtom);
+  section.append(logo, showPostFeed, modal, formRecipe, write, logoutButtom);
 
   formRecipe.append(nameSteps, recipe, add, MessageError, MessageOk);
-  nav.append(select);
-  select.append(option1, option2);
   return section;
 }
 
