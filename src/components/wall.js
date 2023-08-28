@@ -1,5 +1,10 @@
 import { auth } from '../firebase/initializeFirebase.js';
-import { exitUser, createPostFn, showData } from '../lib/index.js';
+import {
+  exitUser,
+  createPostFn,
+  showData,
+  deletePost,
+} from '../lib/index.js';
 
 function wall(navigateTo) {
   const mainContainer = document.createElement('div');
@@ -49,6 +54,8 @@ function wall(navigateTo) {
   formPost.append(createPost, postBtn);
   menu.append(home, profileMenu, exit);
 
+  showData();
+
   home.addEventListener('click', () => {
     navigateTo('/wall');
   });
@@ -68,13 +75,16 @@ function wall(navigateTo) {
   });
   // console.log(obtenerUsuario());
 
-  showData();
+  // --  Eliminar post  --  //
+
+  //
 
   formPost.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const postCreated = createPost.value;
     const user = auth.currentUser;
+
     // const author = user.displayName;
     // console.log('hello: ', `${author}`);
     await createPostFn(postCreated);

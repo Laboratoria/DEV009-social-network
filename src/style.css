@@ -487,7 +487,9 @@ h2 {
         background-color: white;
         height: 50%;
     }
-    .sectionWall{
+    .postcontainer{
+        border: 1px solid red;
+        margin-bottom: 3px;
     
     }
     .postContent{

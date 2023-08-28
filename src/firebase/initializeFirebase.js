@@ -8,6 +8,8 @@ import {
   getDocs,
   query,
   where,
+  deleteDoc,
+  doc,
 } from 'firebase/firestore';
 
 import {
@@ -47,4 +49,6 @@ export {
   updateProfile,
   query,
   where,
+  deleteDoc,
+  doc,
 };
