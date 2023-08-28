@@ -1,7 +1,6 @@
 import registro from '../src/components/registro';
 import { registerWithEmail } from '../src/lib/index';
 
-
 jest.mock('../src/lib/index', () => ({
   createUserWithEmailAndPassword: jest.fn(() => Promise.resolve({})),
   sendEmailVerification: jest.fn(() => Promise.resolve({})),
@@ -11,16 +10,17 @@ jest.mock('../src/lib/index', () => ({
 const navigateTo = jest.fn();
 
 describe('Funcion Registro', () => {
-  const formRegistro = document.querySelector('.formRegistro');
+  /* const formRegistro = document.querySelector('.formRegistro');
   const inputName = document.querySelector('.displayName');
   const inputEmail = document.querySelector('.inputEmail');
-  const inputPass = document.querySelector('.inputPass');
+  const inputPass = document.querySelector('.inputPass'); */
 
   it('debería enviar al muro si el registro es exitoso', () => {
-    inputName.value = 'UserTest';
+    /* inputName.value = 'UserTest';
     inputEmail.value = 'email@test.com';
-    inputPass.value = 'test123';
-    formRegistro.submit();
+    inputPass.value = 'test123'; */
+    const btnRegistro = document.querySelector('.formRegistro');
+    btnRegistro.click();
     expect(registerWithEmail).toHaveBeenCalledWith('email@test.com', 'test123', 'UserTest');
   });
 

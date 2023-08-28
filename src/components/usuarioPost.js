@@ -70,7 +70,72 @@ function usuarioPost(navigateTo) {
       });
   });
 
-  divPrincipal.append(headerPrincipal, mainPrincipal, menu);
+  // Modal confirmación borrar
+  const modal = document.createElement('div');
+  modal.className = 'modal';
+
+  const sectionModal = document.createElement('section');
+  sectionModal.className = 'sectionModal';
+
+  const modalTitle = document.createElement('h4');
+  modalTitle.textContent = 'Bon Bon';
+  modalTitle.className = 'modalTitle';
+
+  const modalMessage = document.createElement('stronge');
+  modalMessage.textContent = '¿Deseas borrar este post?';
+
+  const modalCancelDiv = document.createElement('div');
+  modalCancelDiv.className = 'modalCancel';
+
+  const modalConfirmation = document.createElement('button');
+  modalConfirmation.textContent = 'Borrar';
+  modalConfirmation.className = 'modalConfirmation';
+  modalConfirmation.setAttribute('type', 'button');
+
+  const modalCancel = document.createElement('button');
+  modalCancel.textContent = 'No';
+  modalCancel.className = 'modalCancel';
+
+  modalCancelDiv.append(modalConfirmation, modalCancel);
+  sectionModal.append(modalTitle, modalMessage, modalCancelDiv);
+  modal.append(sectionModal);
+
+  // Modal para editar post
+  const editBox = document.createElement('div');
+  editBox.className = 'editBox';
+
+  const sectionBoxContent = document.createElement('section');
+  sectionBoxContent.className = 'sectionBoxContent';
+
+  const editForm = document.createElement('form');
+  editForm.className = 'editForm';
+
+  const editTitle = document.createElement('input');
+  editTitle.className = 'editTitle';
+
+  const editTextIngredients = document.createElement('textarea');
+  editTextIngredients.className = 'editIngredients';
+
+  const editTextPreparation = document.createElement('textarea');
+  editTextPreparation.className = 'editPreparation';
+
+  const footerButtomsModal = document.createElement('footer');
+  footerButtomsModal.className = 'footerButtomsModal';
+
+  const confirmEdit = document.createElement('button');
+  confirmEdit.textContent = 'Guardar';
+  confirmEdit.className = 'confirmEdit';
+
+  const cancelEdit = document.createElement('button');
+  cancelEdit.textContent = 'Cancelar';
+  cancelEdit.className = 'cancelEdit';
+
+  footerButtomsModal.append(cancelEdit, confirmEdit);
+  editForm.append(editTitle, editTextIngredients, editTextPreparation, footerButtomsModal);
+  sectionBoxContent.append(editForm);
+  editBox.append(sectionBoxContent);
+
+  divPrincipal.append(headerPrincipal, mainPrincipal, menu, modal, editBox);
   mainPrincipal.append(textAllPostUsers, sectionRecetaUser);
   headerPrincipal.append(logoBon, divSloganUser);
   divSloganUser.append(sloganBon, nameUser);
