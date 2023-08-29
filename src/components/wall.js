@@ -81,10 +81,8 @@ function wall(navigateTo) {
 
   formPost.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     const postCreated = createPost.value;
     const user = auth.currentUser;
-
     // const author = user.displayName;
     // console.log('hello: ', `${author}`);
     await createPostFn(postCreated);

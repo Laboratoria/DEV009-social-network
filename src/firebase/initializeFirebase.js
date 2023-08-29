@@ -10,6 +10,7 @@ import {
   where,
   deleteDoc,
   doc,
+  updateDoc,
 } from 'firebase/firestore';
 
 import {
@@ -51,4 +52,5 @@ export {
   where,
   deleteDoc,
   doc,
+  updateDoc,
 };

@@ -16,7 +16,9 @@ import {
   getDocs,
   deleteDoc,
   doc,
+  updateDoc, 
 } from '../firebase/initializeFirebase.js';
+import { documentId } from 'firebase/firestore';
 
 // -- guardar datos de usuario (se irán agregando a la coleccion de users) //
 export const saveDataUser = async (Name, Email, Uid) => {
@@ -140,52 +142,29 @@ export async function obtenerUsuario() {
   });
   return userGetName.join('');
 }
-// -- funcion para borrar post //
+// -- función para borrar post //
 export const deletePost = async (postId) => {
   const postIdAsString = String(postId); // lo convierte a cadena de texto
-
   try {
     await deleteDoc(doc(db, 'post', postIdAsString));
+    postContainer.remove();
   }catch(error){
     console.log(error);
   }
 };
-//
-//  Confirmacion del modal
-const showDeleteConfirmationModal = (postId) => {
-  const root = document.getElementById('root');
-  const confirmationModal = document.createElement('div');
-  confirmationModal.classList.add('confirmation-modal');
-  confirmationModal.style.display = 'block';
-  // Crear elementos internos del modal
-  const confirmationText = document.createElement('p');
-  confirmationText.textContent = '¿Desea eliminar el post?';
 
-  const confirmButton = document.createElement('button');
-  confirmButton.textContent = 'Sí';
-  confirmButton.addEventListener('click', async () => {
-    await deletePost(postId); // Llamar a la función para eliminar el post
-    confirmationModal.style.display = 'block'; // Cerrar el modal después de confirmar
-  });
-
-  const cancelButton = document.createElement('button');
-  cancelButton.textContent = 'Cancelar';
-  cancelButton.addEventListener('click', () => {
-    confirmationModal.style.display = 'none'; // Cerrar el modal si se cancela
-  });
-
-  // Agregar elementos al modal
-  confirmationModal.append(confirmationText, confirmButton, cancelButton);
-  // Mostrar el modal añadiéndolo al cuerpo del documento
-  root.appendChild(confirmationModal);
-};
-//
+// función para editar post //
+export const editPost = async (postId, newData) => {
+  const docRef = doc(db, 'post', postId);
+  await updateDoc(docRef, newData);
+}
 
 //  ---            leer datos almacenados en firestore        --  //
 export const showData = async () => {
   try {
     const querySnapshot = await getDocs(collection(db, 'post'));
     const timeLineSection = document.querySelector('.timeLineSection');
+    const mainContainer = document.querySelector('.mainConteiner');
 
     querySnapshot.forEach((doc) => {
       const data = doc.data();
@@ -193,8 +172,8 @@ export const showData = async () => {
       const user = auth.currentUser;
       // console.log(postId);
       // const userN = userCredential.user;
-      const postcontainer = document.createElement('div');
-      postcontainer.classList.add('postcontainer');
+      const postContainer = document.createElement('div');
+      postContainer.classList.add('postContainer');
 
       const userNamePic = document.createElement('div');
       userNamePic.classList.add('userNamePic');
@@ -214,10 +193,89 @@ export const showData = async () => {
       content.classList.add('content');
       content.textContent = data.content;
 
+      //  Crear el modal para borrar publicación
+      const confirmationModal = document.createElement('div');
+      const modal = document.createElement('div');
+      modal.style.display = 'none';
+      modal.classList.add('modal');
+      confirmationModal.classList.add('confirmation-modal');
+      confirmationModal.style.display = 'none';
+      // Crear elementos internos del modal
+      const confirmationText = document.createElement('p');
+      confirmationText.textContent = '¿Desea eliminar el post?';
+
+      const confirmButton = document.createElement('button');
+      confirmButton.textContent = 'Sí';
+      confirmButton.addEventListener('click', async () => {
+      await deletePost(postId); // Llamar a la función para eliminar el post
+      confirmationModal.style.display = 'none'; // Cerrar el modal después de confirmar
+      window.location.reload();
+      });
+
+      const cancelButton = document.createElement('button');
+      cancelButton.textContent = 'Cancelar';
+      cancelButton.addEventListener('click', () => {
+      confirmationModal.style.display = 'none'; // Cerrar el modal si se cancela
+      });
+
+  // Agregar elementos al modal
+  modal.append(confirmationText, confirmButton, cancelButton);
+  confirmationModal.appendChild(modal);
+
+  // Crear el modal para editar publicación
+      const modalUpdate = document.createElement('div');
+      modalUpdate.classList.add('modalUpdate');
+      modalUpdate.style.display = 'none';
+      const editModal = document.createElement('div');
+      editModal.classList.add('editModal');
+      editModal.style.display = 'none';
+
+      const editForm = document.createElement('form');
+      editForm.classList.add('editForm');
+
+      const editTextArea = document.createElement('textarea');
+      editTextArea.classList.add('editTextArea');
+      editTextArea.value = data.content;
+
+      const editButton = document.createElement('button');
+      editButton.classList.add('editButton');
+      editButton.textContent = 'Guardar post';
+
+      editForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const postEdited = editTextArea.value;
+        
+        const newData = {
+          content: postEdited,
+        }
+        await editPost(postId, newData);
+        editModal.style.display = 'none';
+        window.location.reload();
+        await showData();
+      })
+
+      modalUpdate.append(editForm);
+      editForm.append(editTextArea, editButton);
+      editModal.appendChild(modalUpdate);
+
+      userNamePic.append(userPicture, nickName);
+      postContainer.append(userNamePic, content);
+      timeLineSection.append(postContainer);
+      mainContainer.append(confirmationModal, editModal);
+
       if (data.author === user.displayName || data.uid === user.uid) {
+        const editAndDelete = document.createElement('div');
+        editAndDelete.classList.add('editAndDelete');
+
         const btnEdit = document.createElement('img');
         btnEdit.src = './icons/edit.svg';
         btnEdit.classList.add('btnEdit');
+
+        btnEdit.addEventListener('click', (e) => {
+          e.preventDefault();
+          editModal.style.display = 'grid';
+          modalUpdate.style.display = 'grid';
+        });
 
         const btnDelete = document.createElement('img');
         btnDelete.src = './icons/delete.svg';
@@ -225,21 +283,20 @@ export const showData = async () => {
 
         btnDelete.addEventListener('click', (e) => {
           e.preventDefault();
-          showDeleteConfirmationModal(postId);
+          confirmationModal.style.display = 'grid';
+          modal.style.display = 'grid';
         });
-
-        postcontainer.append(btnEdit, btnDelete);
+        editAndDelete.append(btnDelete, btnEdit);
+        postContainer.append(editAndDelete);
       }
 
-      userNamePic.append(userPicture, nickName);
-      postcontainer.append(userNamePic, content);
-      timeLineSection.appendChild(postcontainer);
       // console.log(data.author);
     });
   } catch (e) {
     console.error('Error', e);
   }
 };
+
 
 
 /* //  ---  función para leer publicaciones en el perfil   --- //
