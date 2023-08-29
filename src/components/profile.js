@@ -1,13 +1,13 @@
 import { auth } from '../firebase/initializeFirebase.js';
 import {
   // exitUser,
-  readPostProfileUser,
+  // readPostProfileUser,
 
 } from '../lib/index.js';
 
 function profile(navigateTo) {
   const user = auth.currentUser;
-  readPostProfileUser(user);
+  // readPostProfileUser(user);
   const mainConteiner = document.createElement('section');
   const section = document.createElement('section');
   const header = document.createElement('header');
@@ -41,7 +41,7 @@ function profile(navigateTo) {
   profileMenu.width = 50;
   profileMenu.height = 50;
 
-  console.log(readPostProfileUser());
+  // console.log(readPostProfileUser());
 
   home.addEventListener('click', () => {
     navigateTo('/wall');
