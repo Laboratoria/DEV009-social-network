@@ -1,15 +1,16 @@
 // Import the functions you need from the SDKs you need
 import { updateProfile } from 'firebase/auth';
-import { addDoc, collection } from '@firebase/firestore';
+import {
+  addDoc, collection, getDocs, query, where,
+} from '@firebase/firestore';
+import { async } from 'regenerator-runtime';
 import {
   auth, provider, createUserWithEmailAndPassword, signInWithPopup,
   GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword, db,
   doc, setDoc, getDoc, signOut,
 } from './initializerFirebase.js';
-// import { async } from 'regenerator-runtime';
 
-// updateDoc,
-
+// Guardar nuevo usuario
 async function saveNewUser(idUser, Name, lastName, userName) {
   const dataUser = doc(db, 'users', `${idUser}`);
   await setDoc(dataUser, {
@@ -18,6 +19,8 @@ async function saveNewUser(idUser, Name, lastName, userName) {
     lastname: lastName,
   });
 }
+
+// Registrar nuevo usuario
 async function registerUser(email, password, name, lastname, userName) {
   try {
     const userId = await createUserWithEmailAndPassword(
@@ -38,10 +41,20 @@ async function registerUser(email, password, name, lastname, userName) {
   }
 }
 
-async function saveNewPost(userPost) {
-  await addDoc(collection(db, '/posts'), {
+// Guardar nueva publicacion
+async function saveNewPost(userPost, id) {
+  const docRef = await addDoc(collection(db, '/posts'), {
     post: userPost,
+    idUser: id,
   });
+
+  return docRef;
+}
+
+// Leer Post de usuario
+async function readPostWhitRef(ref) {
+  const docSnap = await getDoc(ref);
+  return docSnap.data();
 }
 
 // Leer Datos de Nuevo Usuario
@@ -51,6 +64,23 @@ async function readDataWithIdUser(collectionName, documentName) {
   const object = docSnap.data();
   return object;
 }
+
+// Leer todos los documentos de una coleccion
+async function readCollectionData(
+  collectionName,
+  fieldToCompare,
+  operatorConditional,
+  valueForComparasion,
+) {
+  const q = query(collection(db, collectionName), where(
+    fieldToCompare,
+    operatorConditional,
+    valueForComparasion,
+  ));
+  const querySnapshot = await getDocs(q);
+  return querySnapshot;
+}
+
 // iniciar Sesion
 async function startSession(email, password) {
   try {
@@ -76,7 +106,6 @@ export const signInWithGoogle = () => {
         // The signed-in user info.
         const user = result.user;
         // IdP data available using getAdditionalUserInfo(result)
-        // ...
       }).catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;
@@ -106,6 +135,8 @@ export {
   readDataWithIdUser,
   saveNewUser,
   saveNewPost,
+  readPostWhitRef,
+  readCollectionData,
 };
 
 // export const redirectGoogle = () => {

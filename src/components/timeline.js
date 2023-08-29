@@ -1,7 +1,7 @@
-import { readDataWithIdUser, saveNewPost } from '../lib/credentials.js';
+import { readDataWithIdUser, saveNewPost, readCollectionData } from '../lib/credentials.js';
 import { auth, signOut } from '../lib/initializerFirebase.js';
 
-function timeline(navigateTo) {
+function timeline() {
   const user = auth.currentUser;
 
   const section = document.createElement('section');
@@ -28,15 +28,35 @@ function timeline(navigateTo) {
     welcomeText.classList.add('welcomeText');
     readDataWithIdUser('users', user.uid).then((data) => {
       welcomeText.textContent = `¡Hola, ${data.username}!`;
-      console.log(data);
     });
   }
-  const sectionInput = document.createElement('sectionInput');
+  const sectionInput = document.createElement('section');
   sectionInput.classList.add('sectionInput');
 
-  const sectionPost = document.createElement('sectionPost');
+  const sectionPost = document.createElement('section');
   sectionPost.classList.add('sectionPost');
-
+  if (user) {
+    readCollectionData('posts', 'idUser', '==', user.uid).then((result) => {
+      result.forEach((doc) => {
+        const postDiv = document.createElement('div');
+        const porfileImg = document.createElement('img');
+        porfileImg.alt = 'imagen de perfil';
+        const userName = document.createElement('p');
+        const textPost = document.createElement('p');
+        readDataWithIdUser('posts', doc.id).then((data) => {
+          textPost.textContent = `${data.post}`;
+          userName.textContent = 'userName';
+        });
+        postDiv.append(porfileImg, userName, textPost);
+        sectionPost.append(postDiv);
+        if (doc.data().idUser === user.id) {
+          postDiv.classList.add('deletOrDeletDiv');
+        } else {
+          postDiv.classList.add('reactDiv');
+        }
+      });
+    });
+  }
   const footer = document.createElement('footer');
   footer.classList.add('footer');
 
@@ -55,7 +75,7 @@ function timeline(navigateTo) {
     newPostDiv.innerText = postValue;
     main.append(newPostDiv);
     inputNewPost.value = '';
-    saveNewPost(postValue);
+    saveNewPost(postValue, user.uid);
   });
 
   const buttonLogOut = document.createElement('img');
