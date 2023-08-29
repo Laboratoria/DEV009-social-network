@@ -67,16 +67,16 @@ async function readDataWithIdUser(collectionName, documentName) {
 
 // Leer todos los documentos de una coleccion
 async function readCollectionData(
-  collectionName,
-  fieldToCompare,
-  operatorConditional,
-  valueForComparasion,
+  collectionName/*, //usuarios
+  fieldToCompare, // nombresusuario
+  operatorConditional, // ==, !=
+  valueForComparasion, //'juan'*/
 ) {
-  const q = query(collection(db, collectionName), where(
+  const q = query(collection(db, collectionName),/* where(
     fieldToCompare,
     operatorConditional,
     valueForComparasion,
-  ));
+  )*/);
   const querySnapshot = await getDocs(q);
   return querySnapshot;
 }
