@@ -121,8 +121,10 @@ export async function obtenerUsuario() {
   let userGetName = [];
   querySnapshot.forEach((doc) => {
     const user = auth.currentUser.uid;
-// console.log(user);
-    if (user === doc.data().uid) { // Si el valor de la variable user es igual al valor de la propiedad uid del objeto data del documento actual, se ejecutará el bloque de código dentro del condicional.
+    // console.log(user);
+    if (user === doc.data().uid) { // Si el valor de la variable user es igual al valor de la
+      // propiedad uid del objeto data del documento actual, se ejecutará el bloque de código
+      // dentro del condicional.
     // The user object has basic properties such as display name, email, etc.
       // const displayName = user.displayName;
       // const email = user.email;
@@ -140,18 +142,44 @@ export async function obtenerUsuario() {
 }
 // -- funcion para borrar post //
 export const deletePost = async (postId) => {
- /* db.collection('post').doc(postId).delete().then(() => {
-    console.log('documento borrado');
-  }).catch((error) => {
-    console.error('error al borrar', error);
-  });*/
+  const postIdAsString = String(postId); // lo convierte a cadena de texto
 
   try {
-    await deleteDoc(doc(db, 'post', postId));
+    await deleteDoc(doc(db, 'post', postIdAsString));
   }catch(error){
     console.log(error);
   }
 };
+//
+//  Confirmacion del modal
+const showDeleteConfirmationModal = (postId) => {
+  const root = document.getElementById('root');
+  const confirmationModal = document.createElement('div');
+  confirmationModal.classList.add('confirmation-modal');
+  confirmationModal.style.display = 'block';
+  // Crear elementos internos del modal
+  const confirmationText = document.createElement('p');
+  confirmationText.textContent = '¿Desea eliminar el post?';
+
+  const confirmButton = document.createElement('button');
+  confirmButton.textContent = 'Sí';
+  confirmButton.addEventListener('click', async () => {
+    await deletePost(postId); // Llamar a la función para eliminar el post
+    confirmationModal.style.display = 'block'; // Cerrar el modal después de confirmar
+  });
+
+  const cancelButton = document.createElement('button');
+  cancelButton.textContent = 'Cancelar';
+  cancelButton.addEventListener('click', () => {
+    confirmationModal.style.display = 'none'; // Cerrar el modal si se cancela
+  });
+
+  // Agregar elementos al modal
+  confirmationModal.append(confirmationText, confirmButton, cancelButton);
+  // Mostrar el modal añadiéndolo al cuerpo del documento
+  root.appendChild(confirmationModal);
+};
+//
 
 //  ---            leer datos almacenados en firestore        --  //
 export const showData = async () => {
@@ -163,7 +191,7 @@ export const showData = async () => {
       const data = doc.data();
       const postId = doc.id;
       const user = auth.currentUser;
-      console.log(postId);
+      // console.log(postId);
       // const userN = userCredential.user;
       const postcontainer = document.createElement('div');
       postcontainer.classList.add('postcontainer');
@@ -195,37 +223,9 @@ export const showData = async () => {
         btnDelete.src = './icons/delete.svg';
         btnDelete.classList.add('btnDelete');
 
-        btnDelete.addEventListener('click', deletePost, () => {
-          // confirmación con modal //
-          const confirmation = document.createElement('div');
-          confirmation.classList.add('confirmation');
-          confirmation.style.display = 'block';
-
-          const textConfirmation = document.createElement('p');
-          textConfirmation.classList.add('textConfirmation');
-          textConfirmation.textContent = '¿Desea elminar el post?';
-
-          const btnYes = document.createElement('button');
-          btnYes.classList.add('btnYes');
-          btnYes.textContent = 'Sí';
-          btnYes.addEventListener('click', () => {
-            deletePost(postId);
-          });
-
-          const btnNo = document.createElement('button');
-          btnNo.classList.add('btnNo');
-          btnNo.textContent = 'No';
-          btnNo.addEventListener('click', () => {
-            btnNo.style.display = 'none';
-          });
-          // cerrar el modal  //
-          const closeModal = document.createElement('span');
-          closeModal.classList.add('closeModal');
-          closeModal.textContent = 'X';
-          closeModal.addEventListener('click', () => {
-            closeModal.style.display = 'none';
-          });
-          confirmation.append(textConfirmation, btnYes, btnNo, closeModal);
+        btnDelete.addEventListener('click', (e) => {
+          e.preventDefault();
+          showDeleteConfirmationModal(postId);
         });
 
         postcontainer.append(btnEdit, btnDelete);
@@ -241,7 +241,8 @@ export const showData = async () => {
   }
 };
 
-//  ---  función para leer publicaciones en el perfil   --- //
+
+/* //  ---  función para leer publicaciones en el perfil   --- //
 export const readPostProfileUser = async () => {
   const user = auth.currentUser;
   console.log(user);
@@ -288,4 +289,4 @@ export const readPostProfileUser = async () => {
   } else {
     console.log("Usuario no autenticado");
   }
-};
+}; */

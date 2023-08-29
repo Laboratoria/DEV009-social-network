@@ -3,7 +3,7 @@ import {
   exitUser,
   createPostFn,
   showData,
-  deletePost,
+  // deletePost,
 } from '../lib/index.js';
 
 function wall(navigateTo) {
