@@ -1,4 +1,6 @@
 import { signInEP, signInWithGoogle, currentChange } from '../lib/index.js';
+import logoCocinarte from '../imagenes/logoCocinarte.png';
+import logo_google from '../imagenes/logo_google.avif';
 
 function home(navigateTo) {
   const section = document.createElement('section');
@@ -18,13 +20,13 @@ function home(navigateTo) {
   passwordLogin.type = 'password';
   registerUser.textContent = 'Registrarse';
   login.textContent = 'Ingresar';
-  logo.src = './imagenes/image.png';
+  logo.src = logoCocinarte;
   buttonGoogle.textContent = 'Continuar con Google';
   h3.textContent = '¡Unete a CocinArte hoy mismo!';
   errorMessage.style.color = 'beige';
 
   const googleLogo = document.createElement('img');
-  googleLogo.src = './imagenes/logo_google.avif';
+  googleLogo.src = logo_google;
   buttonGoogle.appendChild(googleLogo);
 
   buttonGoogle.classList.add('google-button');

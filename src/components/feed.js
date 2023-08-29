@@ -6,6 +6,8 @@ import {
   editTextPost,
   likePost,
 } from '../lib/dataBase';
+import logoCocinarte from '../imagenes/logoCocinarte.png'
+import avatar from '../imagenes/avatar.png'
 
 function feed(navigateTo) {
   const section = document.createElement('section');
@@ -23,7 +25,7 @@ function feed(navigateTo) {
   const nameSteps = document.createElement('input');
   const add = document.createElement('button');
   const showPostFeed = document.createElement('div');
-  logo.src = './imagenes/image.png';
+  logo.src = logoCocinarte;
   write.textContent = 'Añade una Receta';
   // option1.value = 'Mejores Recetas';
   // option1.textContent = 'Mejores Recetas';
@@ -48,7 +50,7 @@ function feed(navigateTo) {
     allRecipes.forEach((recipeContent) => {
       const postRecipe = `
         <div class="postRecipe" id="post-${recipeContent.id}">
-        <h5 class="user"><img class="perfile" src="./imagenes/Profil.png" />${recipeContent.user}</h5>
+        <h5 class="user"><img class="perfile" src=${avatar} />${recipeContent.user}</h5>
           <p class="name">${recipeContent.name}</p>
           <p>Pasos:</p>
           <textarea  type="text" id="edit-${recipeContent.id}" class="steps" disabled>${recipeContent.steps}</textarea>
