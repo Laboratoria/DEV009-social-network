@@ -14,9 +14,6 @@ function timeline() {
   title.textContent = 'Guide Ma+Pa';
   title.classList.add('titletimeline');
 
-  const imgUserProfile = document.createElement('div');
-  imgUserProfile.classList.add('imgUserProfile');
-
   const sidebar = document.createElement('sidebar');
   sidebar.classList.add('sidebar');
 
@@ -36,24 +33,47 @@ function timeline() {
   const sectionPost = document.createElement('section');
   sectionPost.classList.add('sectionPost');
   if (user) {
-    readCollectionData('posts', 'idUser', '==', user.uid).then((result) => {
+    readCollectionData('posts'/* , 'idUser', '==', user.uid */).then((result) => {
       result.forEach((doc) => {
         const postDiv = document.createElement('div');
+        postDiv.classList.add('post');
         const porfileImg = document.createElement('img');
         porfileImg.alt = 'imagen de perfil';
+        porfileImg.classList.add('postImgPorfile');
         const userName = document.createElement('p');
+        userName.classList.add('postUserName');
         const textPost = document.createElement('p');
+        textPost.classList.add('postText');
+        const userId = doc.data().idUser;/*
         readDataWithIdUser('posts', doc.id).then((data) => {
           textPost.textContent = `${data.post}`;
           userName.textContent = 'userName';
+        }); */
+        readDataWithIdUser('users', userId).then((userData) => {
+          textPost.textContent = `${doc.data().post}`;
+          userName.textContent = userData.username;
+          if (userId === user.uid) {
+            // Boton Editar
+            const buttonEdit = document.createElement('img');
+            buttonEdit.src = './images/svg/pen-solid.svg';
+            buttonEdit.classList.add('buttonEdit');
+            postDiv.append(buttonEdit);
+            buttonEdit.addEventListener('click', () => {
+              alert('Editar');
+            });
+            // Boton Eliminar
+            const buttonDelete = document.createElement('img');
+            buttonDelete.src = './images/svg/trash-solid.svg';
+            buttonDelete.classList.add('buttonDelete');
+            postDiv.append(buttonDelete);
+            buttonDelete.addEventListener('click', () => {
+              alert('eliminar');
+            });
+          }
         });
+
         postDiv.append(porfileImg, userName, textPost);
         sectionPost.append(postDiv);
-        if (doc.data().idUser === user.id) {
-          postDiv.classList.add('deletOrDeletDiv');
-        } else {
-          postDiv.classList.add('reactDiv');
-        }
       });
     });
   }
@@ -73,7 +93,7 @@ function timeline() {
     const postValue = inputNewPost.value;
     const newPostDiv = document.createElement('div');
     newPostDiv.innerText = postValue;
-    main.append(newPostDiv);
+    sectionPost.prepend(newPostDiv);
     inputNewPost.value = '';
     saveNewPost(postValue, user.uid);
   });
@@ -90,8 +110,8 @@ function timeline() {
   });
   sidebar.append(buttonLogOut);
   header.append(title, sidebar);
-  sectionInput.append(inputNewPost, buttonCreatePost);
-  main.append(imgUserProfile, welcomeText, sectionInput, sectionPost);
+  sectionInput.append(welcomeText, inputNewPost, buttonCreatePost);
+  main.append(sectionInput, sectionPost);
   section.append(header, main, footer);
 
   return section;
