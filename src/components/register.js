@@ -1,4 +1,7 @@
 import { createUser, signInWithGoogle } from '../lib';
+import logoCocinarte from '../imagenes/logoCocinarte.png';
+import avatar from '../imagenes/avatar.png'
+
 
 function register(navigateTo) {
   const section = document.createElement('section');
@@ -8,12 +11,12 @@ function register(navigateTo) {
   const name = document.createElement('input');
   const email = document.createElement('input');
   const logo = document.createElement('img');
-  const avatar = document.createElement('img');
+  const avatarImg = document.createElement('img');
   const errorMessage = document.createElement('p');
   const successMessage = document.createElement('p');
-  logo.src = './imagenes/image.png';
-  avatar.src = './imagenes/avatar.png';
-  avatar.classList.add('avatar');
+  logo.src = logoCocinarte;
+  avatarImg.src = avatar;
+  avatarImg.classList.add('avatarImg');
   buttonRegister.textContent = 'Registrate';
   buttonRegister.className = 'button-register';
   buttonGoogle.textContent = 'Continuar con Google';
@@ -54,7 +57,7 @@ function register(navigateTo) {
       errorMessage.textContent = error.message;
     }
   });
-  section.append(logo, avatar, name, email, password, buttonRegister);
+  section.append(logo, avatarImg, name, email, password, buttonRegister);
   section.append(buttonGoogle, errorMessage, successMessage);
   return section;
 }
