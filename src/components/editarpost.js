@@ -87,21 +87,39 @@ function editarpost(navigateTo) {
   menu.className = 'menuNav';
   const divMenu = document.createElement('div');
   divMenu.className = 'divMenu';
+
+  const sectionHomeIcon = document.createElement('section');
+  sectionHomeIcon.className = 'sectionHomeIcon';
   const homeIcono = document.createElement('img');
-  homeIcono.className = 'recetaIcono';
+  homeIcono.className = 'homeIcono';
   homeIcono.src = iconoHome;
   homeIcono.setAttribute('width', '30');
   homeIcono.setAttribute('hide', '30');
+  const homeText = document.createElement('p');
+  homeText.textContent = 'Inicio';
+  homeText.className = 'homeText';
+
+  const sectionRecetaIcon = document.createElement('section');
+  sectionRecetaIcon.className = 'sectionRecetaIcon';
   const recetaIcono = document.createElement('img');
   recetaIcono.className = 'recetaIcono';
   recetaIcono.src = iconoReceta;
   recetaIcono.setAttribute('width', '30');
   recetaIcono.setAttribute('hide', '30');
+  const misRecetasText = document.createElement('p');
+  misRecetasText.textContent = 'Mis recetas';
+  misRecetasText.className = 'misRecetasText';
+
+  const sectionSingOutIcon = document.createElement('section');
+  sectionSingOutIcon.className = 'sectionSingOutIcon';
   const singOutIcono = document.createElement('img');
   singOutIcono.className = 'singOut';
   singOutIcono.src = iconoSingOut;
-  singOutIcono.setAttribute('width', '40');
-  singOutIcono.setAttribute('hide', '40');
+  singOutIcono.setAttribute('width', '30');
+  singOutIcono.setAttribute('hide', '30');
+  const singOutText = document.createElement('p');
+  singOutText.textContent = 'Cerrar sesión';
+  singOutText.className = 'singOutText';
 
   singOutIcono.addEventListener('click', () => {
     signOutSession()
@@ -128,7 +146,10 @@ function editarpost(navigateTo) {
     btnPost,
   );
   menu.appendChild(divMenu);
-  divMenu.append(homeIcono, recetaIcono, singOutIcono);
+  divMenu.append(sectionHomeIcon, sectionRecetaIcon, sectionSingOutIcon);
+  sectionHomeIcon.append(homeIcono, homeText);
+  sectionRecetaIcon.append(recetaIcono, misRecetasText);
+  sectionSingOutIcon.append(singOutIcono, singOutText);
 
   homeIcono.addEventListener('click', () => {
     navigateTo('/principal');

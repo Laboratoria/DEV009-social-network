@@ -200,6 +200,13 @@ body{
   padding: 1%;
 }
 
+.sectionHomeIcon, .sectionRecetaIcon, .sectionSingOutIcon{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 
 footer {
   margin-top: 6%;
@@ -288,6 +295,31 @@ footer {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
 }
+
+.sectionModal, .sectionBoxContent{
+  margin: auto;
+  display: grid;
+  place-items: center;
+  background-color: var(--primary);
+  margin-top: 25%;
+  height: 40%;
+  width: 90%;
+  border-radius: 5%;
+}
+
+.modalConfirmation, .modalCancelbtn, .confirmEdit, .cancelEdit, .btnDeletePost, .btnEditPost{
+  width: 100px;
+  height: 30px;
+  font-weight: bold;
+  border-radius: 40px;
+  border: 2px solid var(--secondary);
+  background: var(--secondary) ;
+  text-align: center;
+  box-shadow: 1px 2px 4px rgba(0,0,0,0.6);
+  margin: 1em;
+  cursor: pointer;
+}
+
 
 
 /* small tablet styles */

@@ -44,21 +44,39 @@ function usuarioPost(navigateTo) {
   menu.className = 'menuNav';
   const divMenu = document.createElement('div');
   divMenu.className = 'divMenu';
+
+  const sectionHomeIcon = document.createElement('section');
+  sectionHomeIcon.className = 'sectionHomeIcon';
   const homeIcono = document.createElement('img');
-  homeIcono.className = 'recetaIcono';
+  homeIcono.className = 'homeIcono';
   homeIcono.src = iconoHome;
   homeIcono.setAttribute('width', '30');
   homeIcono.setAttribute('hide', '30');
+  const homeText = document.createElement('p');
+  homeText.textContent = 'Inicio';
+  homeText.className = 'homeText';
+
+  const sectionRecetaIcon = document.createElement('section');
+  sectionRecetaIcon.className = 'sectionRecetaIcon';
   const recetaIcono = document.createElement('img');
   recetaIcono.className = 'recetaIcono';
   recetaIcono.src = iconoReceta;
   recetaIcono.setAttribute('width', '30');
   recetaIcono.setAttribute('hide', '30');
+  const misRecetasText = document.createElement('p');
+  misRecetasText.textContent = 'Mis recetas';
+  misRecetasText.className = 'misRecetasText';
+
+  const sectionSingOutIcon = document.createElement('section');
+  sectionSingOutIcon.className = 'sectionSingOutIcon';
   const singOutIcono = document.createElement('img');
   singOutIcono.className = 'singOut';
   singOutIcono.src = iconoSingOut;
-  singOutIcono.setAttribute('width', '40');
-  singOutIcono.setAttribute('hide', '40');
+  singOutIcono.setAttribute('width', '30');
+  singOutIcono.setAttribute('hide', '30');
+  const singOutText = document.createElement('p');
+  singOutText.textContent = 'Cerrar sesión';
+  singOutText.className = 'singOutText';
 
   singOutIcono.addEventListener('click', () => {
     signOutSession()
@@ -78,7 +96,7 @@ function usuarioPost(navigateTo) {
   sectionModal.className = 'sectionModal';
 
   const modalTitle = document.createElement('h4');
-  modalTitle.textContent = 'Bon Bon';
+  modalTitle.textContent = 'BON-BON';
   modalTitle.className = 'modalTitle';
 
   const modalMessage = document.createElement('stronge');
@@ -94,7 +112,7 @@ function usuarioPost(navigateTo) {
 
   const modalCancel = document.createElement('button');
   modalCancel.textContent = 'No';
-  modalCancel.className = 'modalCancel';
+  modalCancel.className = 'modalCancelbtn';
 
   modalCancelDiv.append(modalConfirmation, modalCancel);
   sectionModal.append(modalTitle, modalMessage, modalCancelDiv);
@@ -106,6 +124,10 @@ function usuarioPost(navigateTo) {
 
   const sectionBoxContent = document.createElement('section');
   sectionBoxContent.className = 'sectionBoxContent';
+
+  const modalTitleEdit = document.createElement('h4');
+  modalTitleEdit.textContent = 'Estas editando tu post BON-BON';
+  modalTitleEdit.className = 'modalTitleEdit';
 
   const editForm = document.createElement('form');
   editForm.className = 'editForm';
@@ -131,7 +153,13 @@ function usuarioPost(navigateTo) {
   cancelEdit.className = 'cancelEdit';
 
   footerButtomsModal.append(cancelEdit, confirmEdit);
-  editForm.append(editTitle, editTextIngredients, editTextPreparation, footerButtomsModal);
+  editForm.append(
+    modalTitleEdit,
+    editTitle,
+    editTextIngredients,
+    editTextPreparation,
+    footerButtomsModal,
+  );
   sectionBoxContent.append(editForm);
   editBox.append(sectionBoxContent);
 
@@ -140,7 +168,9 @@ function usuarioPost(navigateTo) {
   headerPrincipal.append(logoBon, divSloganUser);
   divSloganUser.append(sloganBon, nameUser);
   menu.appendChild(divMenu);
-  divMenu.append(homeIcono, recetaIcono, singOutIcono);
+  divMenu.append(sectionHomeIcon, sectionSingOutIcon);
+  sectionHomeIcon.append(homeIcono, homeText);
+  sectionSingOutIcon.append(singOutIcono, singOutText);
 
   homeIcono.addEventListener('click', () => {
     navigateTo('/principal');

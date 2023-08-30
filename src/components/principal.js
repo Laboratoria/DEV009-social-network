@@ -46,16 +46,28 @@ function principal(navigateTo) {
   menu.className = 'menuNav';
   const divMenu = document.createElement('div');
   divMenu.className = 'divMenu';
+
+  const sectionRecetaIcon = document.createElement('section');
+  sectionRecetaIcon.className = 'sectionRecetaIcon';
   const recetaIcono = document.createElement('img');
   recetaIcono.className = 'recetaIcono';
   recetaIcono.src = iconoReceta;
-  recetaIcono.setAttribute('width', '40');
-  recetaIcono.setAttribute('hide', '40');
+  recetaIcono.setAttribute('width', '30');
+  recetaIcono.setAttribute('hide', '30');
+  const misRecetasText = document.createElement('p');
+  misRecetasText.textContent = 'Mis recetas';
+  misRecetasText.className = 'misRecetasText';
+
+  const sectionSingOutIcon = document.createElement('section');
+  sectionSingOutIcon.className = 'sectionSingOutIcon';
   const singOutIcono = document.createElement('img');
   singOutIcono.className = 'singOut';
   singOutIcono.src = iconoSingOut;
-  singOutIcono.setAttribute('width', '40');
-  singOutIcono.setAttribute('hide', '40');
+  singOutIcono.setAttribute('width', '30');
+  singOutIcono.setAttribute('hide', '30');
+  const singOutText = document.createElement('p');
+  singOutText.textContent = 'Cerrar sesión';
+  singOutText.className = 'singOutText';
 
   singOutIcono.addEventListener('click', () => {
     signOutSession()
@@ -72,7 +84,9 @@ function principal(navigateTo) {
   headerPrincipal.append(logoBon, divSloganUser);
   divSloganUser.append(sloganBon, nameUser);
   menu.appendChild(divMenu);
-  divMenu.append(recetaIcono, singOutIcono);
+  divMenu.append(sectionRecetaIcon, sectionSingOutIcon);
+  sectionRecetaIcon.append(recetaIcono, misRecetasText);
+  sectionSingOutIcon.append(singOutIcono, singOutText);
 
   recetaUser.addEventListener('click', () => {
     navigateTo('/editarpost');
