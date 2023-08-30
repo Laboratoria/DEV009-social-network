@@ -12,15 +12,20 @@ function timeline(navigateTo) {
   const header = document.createElement('header');
   header.classList.add('header');
 
-  const title = document.createElement('h2');
-  title.textContent = 'Guide Ma+Pa';
-  title.classList.add('titletimeline');
+  const imagenGuideMaPA = document.createElement('img');
+  imagenGuideMaPA.classList.add('imagenGuideMaPa');
+  imagenGuideMaPA.src = './images/logoWords.png';
 
   const sidebar = document.createElement('sidebar');
   sidebar.classList.add('sidebar');
 
   const main = document.createElement('main');
   main.classList.add('main');
+
+  const porfileImage = document.createElement('img');
+  porfileImage.src = './images/svg/user-solid.svg';
+  porfileImage.alt = 'imagen de perfil';
+  porfileImage.classList.add('porfileImage');
 
   const welcomeText = document.createElement('p');
   if (user) {
@@ -40,6 +45,7 @@ function timeline(navigateTo) {
         const postDiv = document.createElement('div');
         postDiv.classList.add('post');
         const porfileImg = document.createElement('img');
+        porfileImg.src = './images/svg/user-solid.svg';
         porfileImg.alt = 'imagen de perfil';
         porfileImg.classList.add('postImgPorfile');
         const userName = document.createElement('p');
@@ -96,7 +102,7 @@ function timeline(navigateTo) {
   buttonCreatePost.addEventListener('click', () => {
     // navigateTo('/newPost');
     const postValue = inputNewPost.value;
-    const newPostDiv = document.createElement('div');
+    // const newPostDiv = document.createElement('div');
     // newPostDiv.innerText = postValue;
     // sectionPost.prepend(newPostDiv);
     inputNewPost.value = '';
@@ -115,8 +121,8 @@ function timeline(navigateTo) {
     });
   });
   sidebar.append(buttonLogOut);
-  header.append(title, sidebar);
-  sectionInput.append(welcomeText, inputNewPost, buttonCreatePost);
+  header.append(imagenGuideMaPA, sidebar);
+  sectionInput.append(porfileImage, welcomeText, inputNewPost, buttonCreatePost);
   main.append(sectionInput, sectionPost);
   section.append(header, main, footer);
 
