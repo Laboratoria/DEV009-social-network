@@ -1,5 +1,5 @@
 import {
-  readDataWithIdUser, saveNewPost, readCollectionData, deletePostWhitId,
+  readDataWithIdUser, saveNewPost, readCollectionData, deletePostWhitId, updatePost,
 } from '../lib/credentials.js';
 import { auth, signOut } from '../lib/initializerFirebase.js';
 
@@ -39,6 +39,39 @@ function timeline(navigateTo) {
 
   const sectionPost = document.createElement('section');
   sectionPost.classList.add('sectionPost');
+
+  function createModal(textPost, idPost) {
+    const modal = document.createElement('dialog');
+    modal.classList.add('updatePostModal');
+    const modalContent = document.createElement('div');
+    modalContent.classList.add('modalContent');
+    const titulo = document.createElement('h2');
+    titulo.classList.add('titleModal');
+    titulo.innerHTML = 'Modifica tu publicación';
+    const modalText = document.createElement('textarea');
+    modalText.value = textPost;
+    const buttonSavePost = document.createElement('button');
+    buttonSavePost.className = 'buttonUpdate';
+    buttonSavePost.innerText = 'guardar cambios';
+    buttonSavePost.addEventListener('click', () => {
+      updatePost('posts', idPost, modalText.value).then(() => {
+        modal.close();
+        navigateTo('/timeline');
+      });
+    });
+    const buttonCancelPost = document.createElement('button');
+    buttonCancelPost.className = 'buttonCancelPost';
+    buttonCancelPost.innerText = 'cancelar';
+    buttonCancelPost.addEventListener('click', () => {
+      console.log('se cancelo la publicacion');
+      modal.close();
+    });
+    modalContent.append(titulo, modalText, buttonSavePost, buttonCancelPost);
+    modal.appendChild(modalContent);
+    sectionPost.appendChild(modal);
+    modal.showModal();
+  }
+
   if (user) {
     readCollectionData('posts'/* , 'idUser', '==', user.uid */).then((collection) => {
       collection.forEach((elementCollection) => {
@@ -67,7 +100,7 @@ function timeline(navigateTo) {
             buttonEdit.classList.add('buttonEdit');
             postDiv.append(buttonEdit);
             buttonEdit.addEventListener('click', () => {
-              alert('Editar');
+              createModal(elementCollection.data().post, elementCollection.id);
             });
             // Boton Eliminar
             const buttonDelete = document.createElement('img');

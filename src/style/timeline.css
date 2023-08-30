@@ -141,3 +141,46 @@
     width: 1.3rem;
     filter: invert(68%) sepia(6%) saturate(3579%) hue-rotate(188deg) brightness(100%) contrast(97%);
 }
+
+.modal{
+    background-color: #FFFDFD;
+    border-radius: 9px;
+    padding: 0.3rem;
+    margin: 0.5rem;
+    justify-items:stretch;
+    align-items: center;
+}
+
+.tituloModal{
+    grid-area: 1/1/2/5;
+    grid-template-columns: subgrid;
+    grid-gap: 1rem;
+    align-items: center;
+    justify-items: center;
+}
+
+
+.buttonCancelPost {
+    grid-area: 5/4/5/5;
+    align-items: center;
+    width: 100%;
+    background: var(--primary-color);
+    color: var(--color-text);
+    font-weight: bold;
+}
+.buttonCancelPost:hover{
+    box-shadow: 3px 0px 30px var(--shadow-nav);
+}
+
+.buttonUpdate {
+    grid-area: 5/2/5/3;
+    align-items: center;
+    width: 100%;
+    background: var(--primary-color);
+    color: var(--color-text);
+    font-weight: bold;
+}
+
+.buttonUpdate:hover{
+    box-shadow: 3px 0px 30px var(--shadow-nav);
+}
