@@ -54,10 +54,14 @@ function timeline(navigateTo) {
     buttonSavePost.className = 'buttonUpdate';
     buttonSavePost.innerText = 'guardar cambios';
     buttonSavePost.addEventListener('click', () => {
-      updatePost('posts', idPost, modalText.value).then(() => {
-        modal.close();
-        navigateTo('/timeline');
-      });
+      if (modalText.value) {
+        updatePost('posts', idPost, modalText.value).then(() => {
+          modal.close();
+          navigateTo('/timeline');
+        });
+      } else {
+        alert('escribe una publicación');
+      }
     });
     const buttonCancelPost = document.createElement('button');
     buttonCancelPost.className = 'buttonCancelPost';
@@ -71,7 +75,6 @@ function timeline(navigateTo) {
     sectionPost.appendChild(modal);
     modal.showModal();
   }
-
   if (user) {
     readCollectionData('posts'/* , 'idUser', '==', user.uid */).then((collection) => {
       collection.forEach((elementCollection) => {
@@ -125,6 +128,7 @@ function timeline(navigateTo) {
   footer.classList.add('footer');
 
   const inputNewPost = document.createElement('input');
+  inputNewPost.maxLength = 300;
   inputNewPost.classList.add('inputNewPost');
   const placeHolderInput = 'Que estas pensando...';
   inputNewPost.placeholder = placeHolderInput;
@@ -138,11 +142,14 @@ function timeline(navigateTo) {
     // const newPostDiv = document.createElement('div');
     // newPostDiv.innerText = postValue;
     // sectionPost.prepend(newPostDiv);
-    inputNewPost.value = '';
-    saveNewPost(postValue, user.uid);
-    navigateTo('/timeline');
+    if (postValue) {
+      inputNewPost.value = '';
+      saveNewPost(postValue, user.uid);
+      navigateTo('/timeline');
+    } else {
+      alert('escribe una publicación');
+    }
   });
-
   const buttonLogOut = document.createElement('img');
   buttonLogOut.src = '../images/svg/logout.svg';
   buttonLogOut.classList.add('buttonLogOut');
