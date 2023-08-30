@@ -3,11 +3,10 @@ import { updateProfile } from 'firebase/auth';
 import {
   addDoc, collection, getDocs, query, where,
 } from '@firebase/firestore';
-import { async } from 'regenerator-runtime';
 import {
   auth, provider, createUserWithEmailAndPassword, signInWithPopup,
   GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword, db,
-  doc, setDoc, getDoc, signOut, deleteDoc,
+  doc, setDoc, getDoc, signOut, deleteDoc, updateDoc,
 } from './initializerFirebase.js';
 
 // Guardar nuevo usuario
@@ -134,7 +133,13 @@ async function deletePostWhitId(nameCollection, idElement) {
   await deleteDoc(doc(db, nameCollection, idElement));
 }
 
+// guardar cambios en la publicacion del usuario
+async function updatePost(collectionName, idPost, textPost) {
+  await updateDoc(doc(db, collectionName, idPost), { post: textPost });
+}
+
 export {
+  updatePost,
   deletePostWhitId,
   registerUser,
   startSession,
