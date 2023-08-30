@@ -88,7 +88,7 @@ function editarpost(navigateTo) {
   const divMenu = document.createElement('div');
   divMenu.className = 'divMenu';
   const homeIcono = document.createElement('img');
-  homeIcono.className = 'recetaIcono';
+  homeIcono.className = 'homeIcono';
   homeIcono.src = iconoHome;
   homeIcono.setAttribute('width', '30');
   homeIcono.setAttribute('hide', '30');
