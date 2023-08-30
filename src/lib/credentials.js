@@ -7,7 +7,7 @@ import { async } from 'regenerator-runtime';
 import {
   auth, provider, createUserWithEmailAndPassword, signInWithPopup,
   GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword, db,
-  doc, setDoc, getDoc, signOut,
+  doc, setDoc, getDoc, signOut, deleteDoc,
 } from './initializerFirebase.js';
 
 // Guardar nuevo usuario
@@ -67,16 +67,16 @@ async function readDataWithIdUser(collectionName, documentName) {
 
 // Leer todos los documentos de una coleccion
 async function readCollectionData(
-  collectionName/*, //usuarios
+  collectionName, /* , //usuarios
   fieldToCompare, // nombresusuario
   operatorConditional, // ==, !=
-  valueForComparasion, //'juan'*/
+  valueForComparasion, //'juan' */
 ) {
-  const q = query(collection(db, collectionName),/* where(
+  const q = query(collection(db, collectionName), /* where(
     fieldToCompare,
     operatorConditional,
     valueForComparasion,
-  )*/);
+  ) */);
   const querySnapshot = await getDocs(q);
   return querySnapshot;
 }
@@ -129,7 +129,13 @@ export const signIn = () => {
   }
 };
 
+// borrar Post de usuario
+async function deletePostWhitId(nameCollection, idElement) {
+  await deleteDoc(doc(db, nameCollection, idElement));
+}
+
 export {
+  deletePostWhitId,
   registerUser,
   startSession,
   readDataWithIdUser,

@@ -1,7 +1,9 @@
-import { readDataWithIdUser, saveNewPost, readCollectionData } from '../lib/credentials.js';
+import {
+  readDataWithIdUser, saveNewPost, readCollectionData, deletePostWhitId,
+} from '../lib/credentials.js';
 import { auth, signOut } from '../lib/initializerFirebase.js';
 
-function timeline() {
+function timeline(navigateTo) {
   const user = auth.currentUser;
 
   const section = document.createElement('section');
@@ -33,8 +35,8 @@ function timeline() {
   const sectionPost = document.createElement('section');
   sectionPost.classList.add('sectionPost');
   if (user) {
-    readCollectionData('posts'/* , 'idUser', '==', user.uid */).then((result) => {
-      result.forEach((doc) => {
+    readCollectionData('posts'/* , 'idUser', '==', user.uid */).then((collection) => {
+      collection.forEach((elementCollection) => {
         const postDiv = document.createElement('div');
         postDiv.classList.add('post');
         const porfileImg = document.createElement('img');
@@ -44,13 +46,13 @@ function timeline() {
         userName.classList.add('postUserName');
         const textPost = document.createElement('p');
         textPost.classList.add('postText');
-        const userId = doc.data().idUser;/*
+        const userId = elementCollection.data().idUser;/*
         readDataWithIdUser('posts', doc.id).then((data) => {
           textPost.textContent = `${data.post}`;
           userName.textContent = 'userName';
         }); */
         readDataWithIdUser('users', userId).then((userData) => {
-          textPost.textContent = `${doc.data().post}`;
+          textPost.textContent = `${elementCollection.data().post}`;
           userName.textContent = userData.username;
           if (userId === user.uid) {
             // Boton Editar
@@ -67,7 +69,10 @@ function timeline() {
             buttonDelete.classList.add('buttonDelete');
             postDiv.append(buttonDelete);
             buttonDelete.addEventListener('click', () => {
-              alert('eliminar');
+              if (confirm('El post se eliminara permanentemente.\n ¿Estas de acuerdo con eliminarlo?')) {
+                deletePostWhitId('posts', elementCollection.id);
+                postDiv.parentElement.removeChild(postDiv);
+              }
             });
           }
         });
@@ -92,10 +97,11 @@ function timeline() {
     // navigateTo('/newPost');
     const postValue = inputNewPost.value;
     const newPostDiv = document.createElement('div');
-    newPostDiv.innerText = postValue;
-    sectionPost.prepend(newPostDiv);
+    // newPostDiv.innerText = postValue;
+    // sectionPost.prepend(newPostDiv);
     inputNewPost.value = '';
     saveNewPost(postValue, user.uid);
+    navigateTo('/timeline');
   });
 
   const buttonLogOut = document.createElement('img');
