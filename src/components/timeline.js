@@ -125,6 +125,8 @@ function timeline(navigateTo) {
   footer.classList.add('footer');
 
   const inputNewPost = document.createElement('input');
+  inputNewPost.required = true;
+  inputNewPost.maxLength = 300;
   inputNewPost.classList.add('inputNewPost');
   const placeHolderInput = 'Que estas pensando...';
   inputNewPost.placeholder = placeHolderInput;
