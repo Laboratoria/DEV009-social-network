@@ -205,6 +205,7 @@ export const showData = async () => {
       confirmationText.textContent = '¿Desea eliminar el post?';
 
       const confirmButton = document.createElement('button');
+      confirmButton.classList.add('confirmButton');
       confirmButton.textContent = 'Sí';
       confirmButton.addEventListener('click', async () => {
       await deletePost(postId); // Llamar a la función para eliminar el post
@@ -213,6 +214,7 @@ export const showData = async () => {
       });
 
       const cancelButton = document.createElement('button');
+      cancelButton.classList.add('cancelButton');
       cancelButton.textContent = 'Cancelar';
       cancelButton.addEventListener('click', () => {
       confirmationModal.style.display = 'none'; // Cerrar el modal si se cancela

@@ -38,7 +38,9 @@ function wall(navigateTo) {
   section.classList.add('sectionWall');
   header.classList.add('header');
   logo.classList.add('logoWall');
+  formPost.classList.add('formPost');
   profilePic.classList.add('profilePic');
+  postBtn.classList.add('postBtn');
   createPost.classList.add('createPost');
   createPost.setAttribute('required', '');
   createPost.setAttribute('autocapitalize', 'sentences');

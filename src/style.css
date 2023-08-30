@@ -22,7 +22,8 @@ h2 {
     font-family: 'Hind Siliguri', sans-serif;
 }
 
-.toLogin, .toSignup {
+.toLogin,
+.toSignup {
     text-decoration: underline;
     font-size: 0.9em;
 }
@@ -36,10 +37,12 @@ h2 {
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        height: 100vh; /*para ocupar el alto completo del viewport*/
+        height: 100vh;
+        /*para ocupar el alto completo del viewport*/
     }
 
-    .logo, .logoLogin{
+    .logo,
+    .logoLogin {
         height: 20em;
         width: 20em;
     }
@@ -62,7 +65,8 @@ h2 {
         box-shadow: 10px 5px 5px #003D73;
     }
 
-    .formRegister, .frmLogin {
+    .formRegister,
+    .frmLogin {
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
@@ -71,7 +75,8 @@ h2 {
         margin: 1em;
     }
 
-    .info, .infoLogin {
+    .info,
+    .infoLogin {
         width: 25em;
         padding: 1.2em;
         height: 2.5rem;
@@ -111,8 +116,9 @@ h2 {
     .btnLogin:hover {
         box-shadow: 0 0 10px var(--theme-color-b) inset, 0 0 10px 4px var(--theme-color-b);
     }
-/*vista login */
-    .sectionLogin{
+
+    /*vista login */
+    .sectionLogin {
         background: white;
         margin: 50px;
         margin-right: 100px;
@@ -142,7 +148,8 @@ h2 {
         height: 100vh;
     }
 
-    .logo, .logoLogin {
+    .logo,
+    .logoLogin {
         height: 20em;
         width: 20em;
     }
@@ -168,7 +175,8 @@ h2 {
         box-shadow: 10px 5px 5px #003D73;
     }
 
-    .formRegister, .frmLogin {
+    .formRegister,
+    .frmLogin {
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
@@ -177,7 +185,8 @@ h2 {
         margin: 1em;
     }
 
-    .info, .infoLogin {
+    .info,
+    .infoLogin {
         width: 25em;
         padding: 1.2em;
         height: 2.5rem;
@@ -212,8 +221,9 @@ h2 {
         padding: 18px 18px;
         width: 65%;
     }
-    /* vista login*/ 
-    .sectionLogin{
+
+    /* vista login*/
+    .sectionLogin {
         background: white;
         margin: 2em 1em;
         width: 25em;
@@ -237,7 +247,9 @@ h2 {
 
 /*responsive tablet vertical*/
 @media (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
-    .logo, .logoLogin {
+
+    .logo,
+    .logoLogin {
         height: 30em;
         width: 30em;
     }
@@ -261,7 +273,8 @@ h2 {
         bottom: 0;
     }
 
-    .formRegister, .frmLogin {
+    .formRegister,
+    .frmLogin {
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
@@ -270,7 +283,8 @@ h2 {
         margin: 1em;
     }
 
-    .info, .infoLogin {
+    .info,
+    .infoLogin {
         width: 22em;
         padding: 1.2em;
         height: 3rem;
@@ -287,7 +301,7 @@ h2 {
     }
 
     .btnSignup,
-    .signupWithGmail, 
+    .signupWithGmail,
     .btnLogin {
         padding: 6px;
         width: 22em;
@@ -316,8 +330,9 @@ h2 {
     .title {
         font-size: 2.5em;
     }
-    /* vista login */ 
-    .sectionLogin{
+
+    /* vista login */
+    .sectionLogin {
         margin: 6.5vw;
         background: white;
         border-radius: 8px;
@@ -332,7 +347,7 @@ h2 {
         top: 0;
         left: 0;
         right: 0;
-        bottom: 0;  
+        bottom: 0;
     }
 }
 
@@ -358,12 +373,14 @@ h2 {
         bottom: 0;
     }
 
-    .logo, .logoLogin {
+    .logo,
+    .logoLogin {
         height: 13em;
         width: 13em;
     }
 
-    .formRegister, .frmLogin {
+    .formRegister,
+    .frmLogin {
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
@@ -373,7 +390,8 @@ h2 {
         margin: 1em;
     }
 
-    .info, .infoLogin {
+    .info,
+    .infoLogin {
         padding: 1em;
         width: 90%;
         height: 2rem;
@@ -383,7 +401,10 @@ h2 {
 
     .btnSignup,
     .signupWithGmail,
-    .btnLogin {
+    .btnLogin,
+    .editButton,
+    .cancelButton,
+    .confirmButton {
         padding: 6px;
         width: 90%;
         height: 2rem;
@@ -407,8 +428,9 @@ h2 {
         justify-content: center;
         padding: 18px 18px;
     }
+
     /* vista login */
-    .sectionLogin{
+    .sectionLogin {
         margin: 6vh;
         background: white;
         border-radius: 8px;
@@ -429,19 +451,19 @@ h2 {
 
     /*Vista Muro*/
 
-    .logoWall{
+    .logoWall {
         width: 30%;
-        margin-left: -18em;  
+        margin-left: -18em;
     }
 
-    .header{
+    .header {
         background-color: var(--theme-color-d);
         width: 100%;
         height: 6rem;
-        margin-top: 0;        
+        margin-top: 0;
     }
 
-    .profilePic{
+    .profilePic {
         width: 3em;
         height: 3em;
         margin-top: 1em;
@@ -449,62 +471,70 @@ h2 {
         margin-bottom: -1em;
     }
 
-    .createPost{
+    .createPost {
         width: 70%;
         height: 3em;
-        margin-top:-10em;
+        margin-top: -10em;
         margin-left: 5em;
         background-color: gainsboro;
         border-radius: 4px;
-        
+
     }
 
-    .menu{
+    .menu {
         position: fixed;
-        bottom: 1em;
-        left: 10em;
+        bottom: 0;
         display: flex;
         justify-content: center;
         gap: 5em;
-        
-        width: 40px;
-    } 
+        width: 100%;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        background: white;
+    }
 
     .profileMenu {
         width: 40px;
     }
-    
-    .mainConteiner{
+
+    .mainConteiner {
         background-color: white;
         height: 5%;
     }
+
     .postContainer {
         margin: 10px;
         border: 1px solid var(--theme-color-a);
         border-radius: .3em;
         height: 5.3em;
     }
-    
-    .confirmation-modal, .editModal {
+
+    .confirmation-modal,
+    .editModal {
         background: rgba(0, 0, 0, 0.5);
         position: fixed;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
-        /* display: grid; */
         align-items: center;
         justify-items: center;
     }
-    .modal, .modalUpdate {
+
+    .modal,
+    .modalUpdate {
         border: 1px solid var(--theme-color-a);
         background: white;
-        /* display: grid; */
         padding: 20px 35px;
         width: auto;
         height: auto;
+        border-radius: 8px;
+        gap: 10px;
+        align-items: center;
+        justify-items: center;
     }
-    .userNamePic{
+
+    .userNamePic {
         background-color: var(--theme-color-b);
         display: flex;
         flex-direction: row;
@@ -512,22 +542,26 @@ h2 {
         padding-left: 10px;
         align-items: center;
     }
-    .nickName{
+
+    .nickName {
         color: white;
     }
-    .editAndDelete{
+
+    .editAndDelete {
         display: flex;
         justify-content: flex-end;
         padding-right: 10px;
-        
     }
 
-    .content{
+    .content {
         display: flex;
         text-align: justify;
         padding-top: 5px;
         padding-left: 10px;
     }
 
+    .editTextArea {
+        width: 276px;
+        height: 80px;
+    }
 }
-
