@@ -31,7 +31,7 @@ function editarpost(navigateTo) {
   mainEditar.className = 'mainEditar';
 
   const formPost = document.createElement('form');
-  formPost.className = 'formPost';
+  formPost.className = 'formPostUser';
 
   const textTitleUser = document.createElement('h2');
   textTitleUser.textContent = '¿Que receta quieres escribir hoy?';
