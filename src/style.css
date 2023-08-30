@@ -466,7 +466,7 @@ h2 {
         display: flex;
         justify-content: center;
         gap: 5em;
-        border: 1px solid red;
+        
         width: 40px;
     } 
 
@@ -479,16 +479,12 @@ h2 {
         height: 5%;
     }
     .postContainer {
-        display: grid; 
         margin: 10px;
         border: 1px solid var(--theme-color-a);
         border-radius: .3em;
-        height: 5em;
+        height: 5.3em;
     }
-    .userNamePic {
-        padding: 1em;
-        height: 1em;
-    }
+    
     .confirmation-modal, .editModal {
         background: rgba(0, 0, 0, 0.5);
         position: fixed;
@@ -508,5 +504,30 @@ h2 {
         width: auto;
         height: auto;
     }
+    .userNamePic{
+        background-color: var(--theme-color-b);
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        padding-left: 10px;
+        align-items: center;
+    }
+    .nickName{
+        color: white;
+    }
+    .editAndDelete{
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 10px;
+        
+    }
+
+    .content{
+        display: flex;
+        text-align: justify;
+        padding-top: 5px;
+        padding-left: 10px;
+    }
+
 }
 
