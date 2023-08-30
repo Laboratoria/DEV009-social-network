@@ -209,7 +209,7 @@ export async function displayUserPosts(user) {
         preparation.className = 'preparation';
 
         const footerEndPost = document.createElement('footer');
-        footerEndPost.className = 'divButtom-post';
+        footerEndPost.className = 'footerEndPost';
 
         const divReaction = document.createElement('div');
         divReaction.className = 'divReaction';
