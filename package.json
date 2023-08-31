@@ -1,5 +1,8 @@
 {
   "name": "social-network",
+  "jest": {
+    "verbose": true
+  },
   "private": true,
   "version": "1.0.0",
   "description": "Social Network @ Laboratoria",
@@ -15,7 +18,7 @@
     "eslint": "eslint --ext .js src/ test/",
     "stylelint": "stylelint --aei src/**/*.css",
     "pretest": "npm run htmlhint && npm run eslint && npm run stylelint",
-    "test": "jest --coverage",
+    "test": "jest --coverage --env jsdom",
     "dev": "vite dev src",
     "start": "npm run dev",
     "build": "vite build",

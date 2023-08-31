@@ -40,17 +40,25 @@ function login(navigateTo) {
   buttonStartSession.textContent = 'Iniciar sesión';
   buttonStartSession.classList.add('startSession');
   buttonStartSession.addEventListener('click', () => {
-    startSession(inputEmail.value, inputPassword.value);
+    startSession(inputEmail.value, inputPassword.value).catch((error) => {
+      if (error.code === 'auth/user-not-found') {
+        alert('El correo electronico ingresado no existe');
+      } else if (error.code === 'auth/wrong-password') {
+        alert('La contraseña es incorrecta');
+      } else if (error.code === 'auth/invalid-email') {
+        alert('Ingresa un correo');
+      } else { alert('Escribe la contraseña'); }
+    });
   });
 
-  const buttonSiginGoogle = document.createElement('button');
-  buttonSiginGoogle.textContent = 'Ingresar con Google';
-  buttonSiginGoogle.classList.add('buttonSiginGoogle');
+  const buttonSignInGoogle = document.createElement('button');
+  buttonSignInGoogle.textContent = 'Ingresar con Google';
+  buttonSignInGoogle.classList.add('signInGoogle');
   const iconGoogle = document.createElement('img');
   iconGoogle.src = './images/iconoGoogle.png';
   iconGoogle.classList.add('iconGoogle');
-  buttonSiginGoogle.appendChild(iconGoogle);
-  buttonSiginGoogle.addEventListener('click', () => {
+  buttonSignInGoogle.appendChild(iconGoogle);
+  buttonSignInGoogle.addEventListener('click', () => {
     signInWithGoogle();
   });
 
@@ -70,7 +78,7 @@ function login(navigateTo) {
     inputEmail,
     inputPassword,
     buttonStartSession,
-    buttonSiginGoogle,
+    buttonSignInGoogle,
     paragraphYouAreNotRegistered,
     buttonCreateAccount,
   );

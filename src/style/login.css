@@ -112,7 +112,7 @@ button{
     box-shadow: 0px 4px 4px rgba(163, 163, 163, 0.4);
    
 }
-.buttonSiginGoogle{
+.buttonSignInGoogle{
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
@@ -141,7 +141,7 @@ button{
 }
 .createAccount:hover,
 .startSession:hover,
-.buttonSiginGoogle:hover{
+.buttonSignInGoogle:hover{
     box-shadow: 3px 0px 30px var(--shadow-nav);
 }
 
@@ -170,7 +170,7 @@ button{
         margin-top: 150px;
         
     }
-    .buttonSiginGoogle{
+    .buttonSignInGoogle{
         justify-content: center;
     }
     .iconGoogle{

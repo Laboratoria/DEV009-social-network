@@ -70,18 +70,8 @@ async function readCollectionData(collectionName) {
 }
 
 // iniciar Sesion
-async function startSession(email, password) {
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-  } catch (error) {
-    if (error.code === 'auth/user-not-found') {
-      alert('El correo electronico ingresado no existe');
-    } else if (error.code === 'auth/wrong-password') {
-      alert('La contraseña es incorrecta');
-    } else if (error.code === 'auth/invalid-email') {
-      alert('Ingresa un correo');
-    } else { alert('Escribe la contraseña'); }
-  }
+function startSession(email, password) {
+  return signInWithEmailAndPassword(auth, email, password);
 }
 
 export const signInWithGoogle = () => {
