@@ -178,7 +178,7 @@ export const giveLike = async (postId) => {
         } else {
           await updateDoc(docRef, {
             like: countLikes +1, 
-            likesCount: arrayUnion(userId),
+            likesCounter: arrayUnion(userId),
           })
         }
   }
