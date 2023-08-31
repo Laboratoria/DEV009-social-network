@@ -111,10 +111,25 @@ function timeline(navigateTo) {
             buttonDelete.classList.add('buttonDelete');
             postDiv.append(buttonDelete);
             buttonDelete.addEventListener('click', () => {
-              if (confirm('El post se eliminara permanentemente.\n ¿Estas de acuerdo con eliminarlo?')) {
+              const modalDelete = document.createElement('dialog');
+              modalDelete.classList.add('modalDelete');
+              const buttonDeletePost = document.createElement('button');
+              buttonDeletePost.classList.add('buttonModalDelete');
+              buttonDeletePost.innerText = 'Borrar publicación';
+              buttonDeletePost.addEventListener('click', () => {
                 deletePostWhitId('posts', elementCollection.id);
                 postDiv.parentElement.removeChild(postDiv);
-              }
+                modalDelete.close();
+              });
+              const buttonCancelDelete = document.createElement('button');
+              buttonCancelDelete.classList.add('buttonModalDelete');
+              buttonCancelDelete.innerText = 'cancelar';
+              buttonCancelDelete.addEventListener('click', () => {
+                modalDelete.close();
+              });
+              modalDelete.append(buttonDeletePost, buttonCancelDelete);
+              sectionPost.append(modalDelete);
+              modalDelete.showModal();
             });
           }
         });
@@ -137,11 +152,7 @@ function timeline(navigateTo) {
   buttonCreatePost.textContent = 'publicar';
   buttonCreatePost.classList.add('buttonCreatePost');
   buttonCreatePost.addEventListener('click', () => {
-    // navigateTo('/newPost');
     const postValue = inputNewPost.value;
-    // const newPostDiv = document.createElement('div');
-    // newPostDiv.innerText = postValue;
-    // sectionPost.prepend(newPostDiv);
     if (postValue) {
       inputNewPost.value = '';
       saveNewPost(postValue, user.uid);
@@ -156,8 +167,6 @@ function timeline(navigateTo) {
   buttonLogOut.addEventListener('click', () => {
     signOut(auth).then(() => {
       localStorage.clear();
-    }).catch((error) => {
-      // An error happened.
     });
   });
   sidebar.append(buttonLogOut);

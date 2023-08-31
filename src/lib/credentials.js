@@ -1,12 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { updateProfile } from 'firebase/auth';
 import {
-  addDoc, collection, getDocs, query, where,
-} from '@firebase/firestore';
-import {
   auth, provider, createUserWithEmailAndPassword, signInWithPopup,
   GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword, db,
-  doc, setDoc, getDoc, signOut, deleteDoc, updateDoc,
+  doc, setDoc, getDoc, signOut, deleteDoc, updateDoc, addDoc,
+  collection, getDocs, query,
 } from './initializerFirebase.js';
 
 // Guardar nuevo usuario
@@ -65,17 +63,8 @@ async function readDataWithIdUser(collectionName, documentName) {
 }
 
 // Leer todos los documentos de una coleccion
-async function readCollectionData(
-  collectionName, /* , //usuarios
-  fieldToCompare, // nombresusuario
-  operatorConditional, // ==, !=
-  valueForComparasion, //'juan' */
-) {
-  const q = query(collection(db, collectionName), /* where(
-    fieldToCompare,
-    operatorConditional,
-    valueForComparasion,
-  ) */);
+async function readCollectionData(collectionName) {
+  const q = query(collection(db, collectionName));
   const querySnapshot = await getDocs(q);
   return querySnapshot;
 }
@@ -100,19 +89,19 @@ export const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
+        GoogleAuthProvider.credentialFromResult(result);
+        // const token = credential.accessToken;
         // The signed-in user info.
-        const user = result.user;
+        // const user = result.user;
         // IdP data available using getAdditionalUserInfo(result)
       }).catch((error) => {
         // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
         // The email of the user's account used.
-        const email = error.customData.email;
+        // const email = error.customData.email;
         // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
+        GoogleAuthProvider.credentialFromError(error);
         // ...
       });
   } catch (error) {
