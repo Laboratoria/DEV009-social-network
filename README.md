@@ -6,9 +6,8 @@
 * [2. Definición del producto](#2-definición-del-proyecto)
 * [3. Historias de usuari@s](#3-historias-de-usuari@s)
 * [4. Prototipo de baja fidelidad](#4-prototipo-de-baja-calidad)
-* [5. Test de usabilidad](#5-test-de-usabilidad)
-* [6. Prototipo de alta fidelidad](#6-prototipo-de-alta-fidelidad)
-* [7. Código](#7-codigo)
+* [5. Prototipo de alta fidelidad](#5-prototipo-de-alta-fidelidad)
+* [6. Planeación](#6-planeación)
 
 
 ## 1. Resumen del proyecto 
@@ -70,7 +69,7 @@ Posteriormente se realizo el prototipo de baja fidelidad considerando las histor
 
 Con los test de usabilidad se fueron modificando los prototipos conforme a los resultados obtenidos. Se realizaron varios prototipos 
 
-## 5. Test de usabilidad 
+### 4.1. Test de usabilidad 
 
 Se realizaron test de usabilidad en el prototipo de baja fidelidad mediante una [encuesta](https://forms.gle/UQ36ApGr8JEYXELE8) en google forms.
 La encuesta contenía el prototipo de baja fidelidad y preguntas a este prototipo.
@@ -88,13 +87,40 @@ El resultado de la primera encuesta realizada fue:
 - Ingresar también con facebook - Para ingresar con google ser más específicas en la instrucción 
 - Promesa: recetas fáciles y económicas (poco tiempo y poco dinero). // Poco dinero >> sencillas!
 
-## 6. Prototipo de alta fidelidad
+## 5. Prototipo de alta fidelidad
 
 Del resultado del test de usabilidad se realizaron modificaciones para la realización del prototipo de alta fidelidad como se presenta a continuación:
 
-![Prototipo de alta](/src/imagenes/5_readme_prototipoAlta.png)
+![Prototipo de alta](/src/imagenes/5_readme_prototipoAlta1.png)
+![Prototipo de alta1](/src/imagenes/5_readme_prototipoAlta2.png)
+![Prototipo de alta2](/src/imagenes/5_readme_prototipoAlta3.png)
 
-El prototipo de alta fidelidad se presenta en el siguiente link: [Prototipo de alta fidelidad](https://www.figma.com/proto/QRlleX30CNdG5DO04FXrGx/Red-social-Bon-Bon?type=design&node-id=102-4&t=SjuoSDMCFZI2zGhZ-0&scaling=scale-down&page-id=0%3A1&starting-point-node-id=102%3A48) 
+El prototipo de alta fidelidad se presenta en el siguiente link: [Prototipo de alta fidelidad](https://www.figma.com/proto/BJUrf9s5lSkqKjr9cqU2Xg/Red-social-Bon-Bon?type=design&node-id=102-4&t=uhxu7R2etXBXgEsZ-0&scaling=scale-down&page-id=0%3A1&starting-point-node-id=102%3A4) 
 
-## 7. Código
+### 5.1. Test de usabilidad 
+
+Se realizaron test de usabilidad en el prototipo de alta fidelidad mediante una [encuesta](https://forms.gle/YqHcEUhqsdicSYrg6) en google forms.
+La encuesta contenía el link del prototipo de alta fidelidad y unas preguntas especificas en cuanto a la interacción de la página, paleta de colores elegida, comprensión de los iconos del navegador y si era entendible como publicar una receta.
+
+Se obtuvieron los siguientes comentarios especificos:
+- Me encanta el diseño de la app, su funcionalidad es bastante clara y la tematica es muy interesante 10 de 10.
+- Una interfaz muy fluida con una paleta de colores armoniosa y un diseño visual muy equilibrado y atractivo.
+- Me encanto lo fácil e intuitiva que es la navegación por su aplicación, me gusta mucho la gama de colores y la tematica. Lo que agregaria es talvez una descripción para ir a mis publicaciones personales, además del icono, por todo lo demás me encanta.
+- Una aplicación muy agradable donde me gustaría conocer más recetas.
+- Muy linda la aplicación, tal vez poner el botón de cerrar sesión en la parte superior
+el boton para ingresar al perfil esta raro, pero una vez que le das click se entiende que es muro propio, quizas un hover con un globo que diga que es el contenido, y los colores me gustan , lo que si recuerdo que Luna dijo lo de buscar sincronia en los icon si son rellenos todos rellenos, si son minimalistas con lineas todos con lineas . eso por lo demás esta genial, ya quiero verlo
+
+De acuerdo a estos comentarios; Se realizarón los siguientes cambios :
+1. Se adicionó el nombre a cada icono, para que fuera mas entendible su manipulación.
+2. Se resaltó el nombre del usuari@.
+
+Se aclara que nuestra página ya cuenta con:
+1. Icono en la parte superior de cerrar sesión
+2. Solo el usuri@ que pública una receta tiene la opción de eliminarla o editarla, al acceder a su propio recetario.
+
+## 6. Planificación
+La planeación de nuestro proyecto se realizo con GitHub Projects. Donde cada historia de usuario fue un Milestones, a los cuales se le asigno diferentes Issuses (tareas definidas).
+![Planificación](/src/imagenes/Planificación.png)
+
+
 
