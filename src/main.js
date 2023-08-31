@@ -4,7 +4,6 @@ import login from './components/login.js';
 import register from './components/register.js';
 import timeline from './components/timeline.js';
 import printError from './components/error.js';
-import newPost from './components/newPost.js';
 
 const root = document.getElementById('root');
 
@@ -13,7 +12,6 @@ const routes = [
   { path: '/register', component: register },
   { path: '/timeline', component: timeline },
   { path: '/error', component: printError },
-  { path: '/newPost', component: newPost },
 ];
 
 const defaultRoute = '/';

@@ -5,7 +5,7 @@ import {
   signInWithRedirect, signOut, signInWithEmailAndPassword,
 } from 'firebase/auth';
 import {
-  getFirestore, doc, setDoc, updateDoc, getDoc, addDoc, deleteDoc,
+  getFirestore, doc, setDoc, updateDoc, getDoc, addDoc, deleteDoc, collection, getDocs, query,
 } from 'firebase/firestore';
 import { firebaseConfig } from './firebaseConfig.js';
 
@@ -26,4 +26,5 @@ export {
   signInWithRedirect,
   signInWithEmailAndPassword,
   doc, setDoc, updateDoc, getDoc,
+  getDocs, query, collection,
 };
