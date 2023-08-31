@@ -134,13 +134,149 @@ h2 {
         row-gap: 2em;
         box-shadow: 10px 5px 5px #003D73;
     }
+
+    /* vista muro */
+    .mainConteiner{
+        background: white;
+        width: 100em;
+        height: 1200px;
+    }
+    .header{
+        background-color: #EDD170;
+        height: 25em;
+        padding-top: 14em;
+        display: flex;
+        justify-content: flex-start;
+    }
+    .logoWall{
+        width: 200px;
+        height: 200px;
+        margin-left: 70px;
+    }
+    .profileMenu{
+        width: 40px;
+    }
+    .menu{
+        width: 45px;
+        display: flex;
+        gap: 3em;
+        position: absolute;
+        top: 3em;
+        right: 13em;
+    }
+    .sectionWall{
+        display: flex;
+        justify-content: center;
+        gap: 5em;
+        padding-top: 2em;
+        margin-left: 5em;
+    }
+    .profilePic{
+        width: 70px;
+        height: 70px;
+    }
+    .createPost{
+        width: 50em;
+        height: 5em;
+        background: white;
+        padding: 20px 35px;
+        border-radius: 4px;
+        gap: 10px;
+        align-items: center;
+        justify-items: center;
+        background-color: gainsboro;
+    }
+    .formPost{
+        display: grid;
+        gap: 1em;
+    }
+    .postBtn, 
+    .confirmButton,
+    .cancelButton,
+    .editButton {
+        padding: 3px;
+        width: 10em;
+        height: 2.5rem;
+        background-color: var(--theme-color-b);
+        color: white;
+        border: 1px solid var(--theme-color-a);
+        border-radius: 4px;
+        justify-self: center;
+    }
+    .timeLineSection{
+        display: grid;
+        place-items: center;
+        margin-left: 5em;
+    }
+    .postContainer{
+        margin: 10px;
+        border: 1px solid var(--theme-color-a);
+        border-radius: .3em;
+        height:7em;
+        width: 60em;
+    }
+    .userNamePic{
+        background-color: var(--theme-color-b);
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        padding-left: 10px;
+        align-items: center;
+    }
+    .nickName {
+        color: white;
+    }
+    .editAndDelete {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 10px;
+    }
+    .content {
+        display: flex;
+        text-align: justify;
+        padding-top: 5px;
+        padding-left: 10px;
+        padding-bottom: 25px;
+    }
+    .confirmation-modal,
+    .editModal {
+        background: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .modal,
+    .modalUpdate {
+        border: 1px solid var(--theme-color-a);
+        background: white;
+        padding: 20px 35px;
+        width: 300px;
+        height: 180px;
+        border-radius: 8px;
+        gap: 10px;
+        align-items: center;
+        justify-items: center;
+    }
+    .editForm {
+        display: grid;
+        gap: 1em;
+    }
+    .editTextArea {
+        width: 276px;
+        height: 80px;
+    }
 }
 
 /*responsive tablet horizontal*/
 @media (min-width: 481px) and (max-width: 1279px) and (orientation: landscape) {
     body {
         background-image: url(./img/signupimg.png);
-        background-position: left 8% bottom 45%;
+        background-position: left 10% bottom 45%;
         background-repeat: no-repeat;
         display: flex;
         align-items: center;
@@ -242,6 +378,25 @@ h2 {
         top: 0;
         padding: 0.2em;
         box-shadow: 10px 5px 5px #003D73;
+    }
+     /* vista muro */
+     .mainConteiner{
+        background: white;
+        width: 70em;
+        height: 100em;
+    }
+    .header{
+        background-color: #EDD170;
+        height: 35em;
+        padding-top: 19em;
+        padding-left: 5em;
+        display: flex;
+        justify-content: flex-start;
+    }
+    .logoWall{
+        width: 200px;
+        height: 200px;
+        margin-left: 30px;
     }
 }
 

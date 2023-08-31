@@ -1,5 +1,4 @@
 // aqui exportaras las funciones que necesites
-import { async } from 'regenerator-runtime';
 import {
   createUserWithEmailAndPassword,
   auth,
@@ -17,8 +16,10 @@ import {
   deleteDoc,
   doc,
   updateDoc, 
+  getDoc,
+  arrayRemove,
+  arrayUnion,
 } from '../firebase/initializeFirebase.js';
-import { documentId } from 'firebase/firestore';
 
 // -- guardar datos de usuario (se irán agregando a la coleccion de users) //
 export const saveDataUser = async (Name, Email, Uid) => {
@@ -111,6 +112,8 @@ export const createPostFn = (post) => {
         content: post,
         author: user,
         uid: auth.currentUser.uid,
+        like: 0, 
+        likesCounter: [],
       });
     });
   } catch (e) {
@@ -159,12 +162,35 @@ export const editPost = async (postId, newData) => {
   await updateDoc(docRef, newData);
 }
 
+// función para dar like //
+export const giveLike = async (postId) => {
+  const docRef = doc(db, "post", postId);
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+      const userId = auth.currentUser.uid;
+      const countLikes = docSnap.data().like;
+      const likesArray = docSnap.data().likesCounter || [];
+        if (likesArray.includes(userId)){
+          await updateDoc(docRef, {
+            like: countLikes -1, 
+            likesCounter: arrayRemove(userId),
+          })
+        } else {
+          await updateDoc(docRef, {
+            like: countLikes +1, 
+            likesCount: arrayUnion(userId),
+          })
+        }
+  }
+}
+
 //  ---            leer datos almacenados en firestore        --  //
 export const showData = async () => {
   try {
     const querySnapshot = await getDocs(collection(db, 'post'));
     const timeLineSection = document.querySelector('.timeLineSection');
     const mainContainer = document.querySelector('.mainConteiner');
+    timeLineSection.innerHTML = '';
 
     querySnapshot.forEach((doc) => {
       const data = doc.data();
@@ -193,6 +219,13 @@ export const showData = async () => {
       content.classList.add('content');
       content.textContent = data.content;
 
+      const likeBtn = document.createElement('button');
+      likeBtn.classList.add('likeBtn');
+      likeBtn.textContent = `${data.like} 🌎`;
+      likeBtn.addEventListener('click', async () => {
+        giveLike(postId); 
+        showData();
+      })
       //  Crear el modal para borrar publicación
       const confirmationModal = document.createElement('div');
       const modal = document.createElement('div');
@@ -220,11 +253,11 @@ export const showData = async () => {
       confirmationModal.style.display = 'none'; // Cerrar el modal si se cancela
       });
 
-  // Agregar elementos al modal
-  modal.append(confirmationText, confirmButton, cancelButton);
-  confirmationModal.appendChild(modal);
+      // Agregar elementos al modal
+      modal.append(confirmationText, confirmButton, cancelButton);
+      confirmationModal.appendChild(modal);
 
-  // Crear el modal para editar publicación
+      // Crear el modal para editar publicación
       const modalUpdate = document.createElement('div');
       modalUpdate.classList.add('modalUpdate');
       modalUpdate.style.display = 'none';
@@ -260,7 +293,7 @@ export const showData = async () => {
       editForm.append(editTextArea, editButton);
       editModal.appendChild(modalUpdate);
 
-      userNamePic.append(userPicture, nickName);
+      userNamePic.append(userPicture, nickName, likeBtn);
       postContainer.append(userNamePic, content);
       timeLineSection.append(postContainer);
       mainContainer.append(confirmationModal, editModal);
@@ -298,7 +331,6 @@ export const showData = async () => {
     console.error('Error', e);
   }
 };
-
 
 
 /* //  ---  función para leer publicaciones en el perfil   --- //

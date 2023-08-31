@@ -11,6 +11,9 @@ import {
   deleteDoc,
   doc,
   updateDoc,
+  getDoc,
+  arrayRemove,
+  arrayUnion,
 } from 'firebase/firestore';
 
 import {
@@ -53,4 +56,7 @@ export {
   deleteDoc,
   doc,
   updateDoc,
+  getDoc,
+  arrayRemove,
+  arrayUnion,
 };

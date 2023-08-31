@@ -57,7 +57,7 @@ function wall(navigateTo) {
   menu.append(home, profileMenu, exit);
 
   showData();
-
+ 
   home.addEventListener('click', () => {
     navigateTo('/wall');
   });
