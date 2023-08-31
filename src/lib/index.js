@@ -15,7 +15,7 @@ import {
   getDocs,
   deleteDoc,
   doc,
-  updateDoc, 
+  updateDoc,
   getDoc,
   arrayRemove,
   arrayUnion,
@@ -151,7 +151,7 @@ export const deletePost = async (postId) => {
   try {
     await deleteDoc(doc(db, 'post', postIdAsString));
     postContainer.remove();
-  }catch(error){
+  } catch (error) {
     console.log(error);
   }
 };
@@ -164,25 +164,25 @@ export const editPost = async (postId, newData) => {
 
 // función para dar like //
 export const giveLike = async (postId) => {
-  const docRef = doc(db, "post", postId);
+  const docRef = doc(db, 'post', postId);
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
-      const userId = auth.currentUser.uid;
-      const countLikes = docSnap.data().like;
-      const likesArray = docSnap.data().likesCounter || [];
-        if (likesArray.includes(userId)){
-          await updateDoc(docRef, {
-            like: countLikes -1, 
-            likesCounter: arrayRemove(userId),
-          })
-        } else {
-          await updateDoc(docRef, {
-            like: countLikes +1, 
-            likesCounter: arrayUnion(userId),
-          })
-        }
+    const userId = auth.currentUser.uid;
+    const countLikes = docSnap.data().like;
+    const likesArray = docSnap.data().likesCounter || [];
+    if (likesArray.includes(userId)) {
+      await updateDoc(docRef, {
+        like: countLikes - 1,
+        likesCounter: arrayRemove(userId),
+      });
+    } else {
+      await updateDoc(docRef, {
+        like: countLikes + 1,
+        likesCounter: arrayUnion(userId),
+      });
+    }
   }
-}
+};
 
 //  ---            leer datos almacenados en firestore        --  //
 export const showData = async () => {
@@ -223,9 +223,9 @@ export const showData = async () => {
       likeBtn.classList.add('likeBtn');
       likeBtn.textContent = `${data.like} 🌎`;
       likeBtn.addEventListener('click', async () => {
-        giveLike(postId); 
+        giveLike(postId);
         showData();
-      })
+      });
       //  Crear el modal para borrar publicación
       const confirmationModal = document.createElement('div');
       const modal = document.createElement('div');
@@ -241,16 +241,16 @@ export const showData = async () => {
       confirmButton.classList.add('confirmButton');
       confirmButton.textContent = 'Sí';
       confirmButton.addEventListener('click', async () => {
-      await deletePost(postId); // Llamar a la función para eliminar el post
-      confirmationModal.style.display = 'none'; // Cerrar el modal después de confirmar
-      window.location.reload();
+        await deletePost(postId); // Llamar a la función para eliminar el post
+        confirmationModal.style.display = 'none'; // Cerrar el modal después de confirmar
+        navigateTo('/wall');
       });
 
       const cancelButton = document.createElement('button');
       cancelButton.classList.add('cancelButton');
       cancelButton.textContent = 'Cancelar';
       cancelButton.addEventListener('click', () => {
-      confirmationModal.style.display = 'none'; // Cerrar el modal si se cancela
+        confirmationModal.style.display = 'none'; // Cerrar el modal si se cancela
       });
 
       // Agregar elementos al modal
@@ -279,15 +279,15 @@ export const showData = async () => {
       editForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const postEdited = editTextArea.value;
-        
+
         const newData = {
           content: postEdited,
         }
         await editPost(postId, newData);
         editModal.style.display = 'none';
-        window.location.reload();
+        navigateTo('/wall');
         await showData();
-      })
+      });
 
       modalUpdate.append(editForm);
       editForm.append(editTextArea, editButton);
@@ -331,7 +331,6 @@ export const showData = async () => {
     console.error('Error', e);
   }
 };
-
 
 /* //  ---  función para leer publicaciones en el perfil   --- //
 export const readPostProfileUser = async () => {
