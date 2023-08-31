@@ -105,28 +105,28 @@ Para: poder interactuar con la página
 - Desarrollo de test unitarios
 - Búsqueda manual de errores e imperfecciones simples
 - Pruebas de usabilidad e incorporación del feedback de los usuarios como mejoras.
-- Despligue de la aplicación y etiquetado de la versión (git tag).
+- Despligue de la aplicación 
 
 ##  3. Desarrollo de prototipos
 
 **Prototipo Baja Fidelidad**
-![prototipo baja](imagenes/prototiposbaja1.png)
-![prototipos baja 2](imagenes/prototiposbaja2.png)
+<img width="200" src="./src/components/imagenesREADME/prototiposbaja1.png">
+<img width="200" src="./src/components/imagenesREADME/prototiposbaja2.png">
 
 **Prototipo Alta fidelidad**
 Iniciando el proceso de diseño de la Aplicación, definimos la paleta de colores y el logo. En este proceso iteramos algunos diseños, hasta elegir que más comunicaba el uso de la Aplicación
 
-![logos](imagenes/procesologo.png)
+<img width="200" src="./src/components/imagenesREADME/procesologo.png">
 
 Desarrollamos el prototipo de Alta Fidelidad en Figma, con la interfaz de usuario.
 Primero una página de inicio, con las opciones de ingresar con Google o registrase.
 Una segunda vista para el registro de nuevos usuarios.
 
-![prototipoAF](imagenes/protitopoalta1.png)
+<img width="200" src="./src/components/imagenesREADME/protitopoalta1.png">
 
 Las otras vistas consideran un muro donde se visualizan las recetas y un perfil de usuario, donde puedes agregar recetas, filtrar y cerrar sesión.
 
-![prototipo AF figma 2](imagenes/prototipoalta2.png)
+<img width="200" src="./src/components/imagenesREADME/prototipoalta2.png">
 
 **Prototipo dinámico Figma**   
 Puedes revisar nuestro prototipo dinámico de Alta Fidelidad en este link  [**prototipo dinámico**](https://www.figma.com/proto/erPEzQJfyddIAzicCW84OB/Untitled?node-id=1-6&scaling=scale-down&page-id=0%3A1&starting-point-node-id=1%3A6&mode=design&t=IDe2QR3uBecgmOlF-1)
@@ -148,7 +148,7 @@ Otro desafío, fue poder manejar la Base de Datos de las publicaciones, que se m
 
 Tenemos nuestra Aplicación terminada, aquí hay un vistazo a cómo quedó desplegada 🚀💃
 
-![cocinarte](imagenes/cocinarte.png)
+https://cocinarte-7d524.firebaseapp.com/
 
 Equipo Social Network 5: Hannia Guerrero(MX), Jarianna Pacheco (PER), Camila Flores (CHI)
 
