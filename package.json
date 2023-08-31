@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.19.4",
-    "eslint": "^8.3.0",
+    "eslint": "^8.45.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^25.3.0",
@@ -41,5 +41,16 @@
     "createdAt": "2023-07-06T17:25:59.679Z",
     "version": "6.3.0",
     "commit": "43c4a1dae1d831042293f9129c2df234888bf241"
-  }
+  },
+  "dependencies": {
+    "firebase": "^10.1.0"
+  },
+  "directories": {
+   "test": "test"
+ 
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
+  "author": ""
 }

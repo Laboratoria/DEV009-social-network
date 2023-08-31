@@ -1,0 +1,304 @@
+body {
+  padding: 20px;
+  background-color: #641B42;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 30px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  text-align: center;
+  margin: auto;
+}
+
+img.avatar {
+  max-width: 100px;
+  width: 30%;
+  height: auto;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+.modal {
+  display: none; /* Por defecto, estará oculto */
+  position: fixed; /* Posición fija */
+  z-index: 1; /* Se situará por encima de otros elementos de la página*/
+  padding-top: 200px; /* El contenido estará situado a 200px de la parte superior */
+  left: 0;
+  top: 0;
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Algura completa */
+  overflow: auto; /* Se activará el scroll si es necesario */
+  background-color: rgba(0,0,0,0.5); /* Color negro con opacidad del 50% */
+}
+
+.modal-content {
+  position: relative; /* Relativo con respecto al contenedor -modal- */
+  background-color: white;
+  margin: auto; /* Centrada */
+  padding: 20px;
+  width: 60%;
+  -webkit-animation-name: animarsuperior;
+  -webkit-animation-duration: 0.5s;
+  animation-name: animarsuperior;
+  animation-duration: 0.5s;
+  border-radius: 8px;
+}
+
+img,
+img.avatar {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+section {
+  padding: 40px;
+  max-width: 300px;
+  margin: auto;
+  background-color: #641B42;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+input {
+  display: flex;
+  margin: auto;
+  max-width: 100%;
+  margin-bottom: 10px;
+  align-items: center;
+  text-align: center;
+  border-radius: 15px;
+  border: 1px solid #393939;
+  padding: 5px;
+}
+
+h2,
+h3 {
+  color: #FAB838;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+button {
+  display: flex;
+  font-family: 'Poppins', sans-serif;
+  color: #393939;
+  margin: auto;
+  max-width: 100%;
+  margin-bottom: 10px;
+  align-items: center;
+  text-align: center;
+  border-radius: 15px;
+  border: 1px solid #393939;
+  grid-gap: 5px;
+  cursor: pointer;
+}
+
+.google-button {
+  display: flex;
+  align-items: center;
+  /* Para centrar verticalmente el contenido */
+  padding: 5px;
+  background-color: #641B42;
+  /* Color de fondo del botón */
+  color:white;
+  /* Color del texto */
+  border: none;
+  /* Quitamos el borde del botón */
+  cursor: pointer;
+  border-radius: 20px;
+  /* Bordes redondeados */
+}
+
+.google-button img {
+  width: 20px;
+  height: 20px;
+  align-content: center;
+  margin-right: 10px;
+  padding-top: 12px;
+}
+
+.postShowCont{
+  display: flex; 
+  align-items: center;
+}
+
+ .postRecipe{
+  background-color: #FAB838;
+  border-bottom: #393939;
+  border-radius: 20px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin-bottom: 20px;
+  padding: 15px;
+  text-align: start;
+  margin-left: 10px;
+  position: relative;
+ }
+
+ .postRecipe::before {
+  content: '';
+  position: absolute;
+  top: 10px; /* Ajustar según la apariencia deseada */
+  left: -15px; /* Ajustar según la apariencia deseada */
+  border: 10px solid transparent;
+  border-right-color: #FAB838;
+  align-items: center;
+ }
+
+.postRecipe p,
+.postRecipe textarea,
+.postRecipe .footer-post {
+  margin: 0;
+}
+
+h5 {
+  color: #3E3B3B ;
+  border-color: black;
+}
+
+.perfile {
+  width: 50px;
+  margin-bottom: 20px;
+  margin-right: 10px; /* Agregamos un margen derecho */
+}
+
+h5, .perfile {
+  display: inline-block;
+  vertical-align: middle;
+}
+.name{
+  font-size: 18px;
+  font-weight: 800;
+  text-align: center;
+ }
+
+.recipeLikes{
+  color: red;
+}
+
+.textRecipe{
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.icons{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+ .footer-post{
+  display: flex;
+ }
+
+ .formOpen{
+  position: relative;
+  border: solid transparent;
+  border-radius: 20px;
+  background-color: #ffffff;
+  padding: 5px;
+  margin-left: 10px; /* Ajustar según el espacio deseado entre el botón y la burbuja */
+  text-align: start; /* Alinear el contenido del lado derecho */
+  display: inline-block; 
+ }
+
+ .formOpen::before {
+  content: '';
+  position: absolute;
+  top: 2px; /* Ajustar según la apariencia deseada */
+  right: -18px; /* Ajustar según la apariencia deseada */
+  border: 10px solid transparent;
+  border-left-color: #ffffff;
+ }
+
+
+ .formAddRecipe{
+  display: grid;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+ }
+ 
+
+.logout{
+  color: black;
+  background-color: white;
+  align-items: center;
+  display: flex;
+  bottom: -20px;
+}
+
+.modal-content{
+  position: relative; /* Relativo con respecto al contenedor -modal- */
+  background-color: white;
+  margin: auto; /* Centrada */
+  padding: 20px;
+  width: 60%;
+  animation-name: animarsuperior;
+  animation-duration: 0.5s
+  
+}
+
+
+
+/* Media query para pantallas más pequeñas, como teléfonos */
+@media (max-width: 600px) {
+  img.avatar {
+    max-width: 80px;
+  }
+
+  section {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  input,
+  button {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  img.avatar {
+    max-width: 60px;
+    width: 40%;
+  }
+
+  .modal-content {
+    width: 80%;
+  }
+
+  .postRecipe {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .formOpen {
+    margin-left: 0;
+  }
+}
+
+
+
+
+
+
+
