@@ -8,6 +8,8 @@
 * [4. Prototipo de baja fidelidad](#4-prototipo-de-baja-calidad)
 * [5. Prototipo de alta fidelidad](#5-prototipo-de-alta-fidelidad)
 * [6. Planeación](#6-planeación)
+* [7. Despliegue](#7-despliegue)
+
 
 
 ## 1. Resumen del proyecto 
@@ -121,6 +123,9 @@ Se aclara que nuestra página ya cuenta con:
 ## 6. Planificación
 La planeación de nuestro proyecto se realizo con GitHub Projects. Donde cada historia de usuario fue un Milestones, a los cuales se le asigno diferentes Issuses (tareas definidas).
 ![Planificación](/src/imagenes/Planificación.png)
+
+## 7. Despliegue
+Esté es el link del despliegue de nuestra red social [BON-BON](https://social-network-bon.web.app)
 
 
 
