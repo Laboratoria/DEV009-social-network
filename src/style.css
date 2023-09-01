@@ -145,7 +145,7 @@ h2 {
         background-color: #EDD170;
         padding-top: 1em;
         display: flex;
-        justify-content: flex-start;
+        height: 40%;
     }
     .logoWall{
         width: 200px;
@@ -412,7 +412,6 @@ h2 {
     .header{
         background-color: #EDD170;
         display: flex;
-        justify-content: flex-start;
     }
     .logoWall{
         width: 200px;

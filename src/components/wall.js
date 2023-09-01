@@ -86,11 +86,6 @@ function wall(navigateTo) {
     };
     exitUser(alertlogOut);
   });
-  // console.log(obtenerUsuario());
-
-  // --  Eliminar post  --  //
-
-  //
 
   formPost.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -101,7 +96,7 @@ function wall(navigateTo) {
     await createPostFn(postCreated);
     // console.log(obtenerUsuario());
     formPost.reset();
-    navigateTo('/wall');
+    showData();
   });
   return mainContainer;
 }
