@@ -143,8 +143,7 @@ h2 {
     }
     .header{
         background-color: #EDD170;
-        height: 30em;
-        padding-top: 8em;
+        padding-top: 1em;
         display: flex;
         justify-content: flex-start;
     }
@@ -172,7 +171,8 @@ h2 {
         gap: 5em;
         padding-top: 1vh;
         margin-left: 16em;
-        align-content: center;
+        align-content: flex-start;
+        align-items: flex-start;
     }
     .profilePic{
         width: 70px;
@@ -411,8 +411,6 @@ h2 {
     }
     .header{
         background-color: #EDD170;
-        height: 23em;
-        padding-top: 14em;
         display: flex;
         justify-content: flex-start;
     }
