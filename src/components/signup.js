@@ -1,4 +1,6 @@
 import { registerUser, registerWithGoogle } from '../lib/index.js';
+import logoImportado from '../img/logo.png';
+import linkGmainImportado from '../icons/gmail.svg';
 
 function signup(navigateTo) {
   const section = document.createElement('section');
@@ -31,7 +33,8 @@ function signup(navigateTo) {
   signupWithGmail.classList.add('btn', 'signupWithGmail');
   linkGmail.classList.add('linkGmail');
 
-  logo.src = './img/logo.png';
+  const logoParaMostrar = logoImportado;
+  logo.src = logoParaMostrar;
   title.textContent = 'Regístrate';
   name.placeholder = 'Nombre';
   email.placeholder = 'ejemplo@correo.com';
@@ -45,7 +48,9 @@ function signup(navigateTo) {
   toLogin.textContent = 'Ya tengo una cuenta';
   or.textContent = 'ó';
   signupWithGmail.textContent = 'Registrarse con  ';
-  linkGmail.src = './icons/gmail.svg';
+
+  const linkGmailMostrar = linkGmainImportado;
+  linkGmail.src = linkGmailMostrar;
 
   formRegister.addEventListener('submit', (e) => {
     e.preventDefault();
