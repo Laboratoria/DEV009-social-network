@@ -5,6 +5,10 @@ import {
   showData,
   // deletePost,
 } from '../lib/index.js';
+import logoImportado from '../img/logo.png';
+import profilePicImportado from '../img/perfil.png';
+import homeIconImport from '../icons/home.svg';
+import exitIconImport from '../icons/exit.svg';
 
 function wall(navigateTo) {
   const mainContainer = document.createElement('div');
@@ -21,18 +25,25 @@ function wall(navigateTo) {
   const profileMenu = document.createElement('img');
   const exit = document.createElement('img');
 
-  logo.src = './img/logo.png';
-  profilePic.src = './img/perfil.png';
+  const logoParaMostrar = logoImportado;
+  logo.src = logoParaMostrar;
+
+  const profilePicParaMostrar = profilePicImportado;
+  profilePic.src = profilePicParaMostrar;
   createPost.placeholder = '¿Cuál fue el último lugar que visitaste?';
 
   const formPost = document.createElement('form');
   const postBtn = document.createElement('button');
   postBtn.textContent = 'Publicar';
 
-  home.src = './icons/home.svg';
+  const homeIconMostrar = homeIconImport;
+  home.src = homeIconMostrar;
+
+  const profileMenuIconMostrar = profilePicImportado;
   profilePic.width = 50;
-  profileMenu.src = './img/perfil.png';
-  exit.src = './icons/exit.svg';
+  profileMenu.src = profileMenuIconMostrar;
+  const exitIconMostrar = exitIconImport;
+  exit.src = exitIconMostrar;
 
   mainContainer.classList.add('mainConteiner');
   section.classList.add('sectionWall');
@@ -57,7 +68,7 @@ function wall(navigateTo) {
   menu.append(home, profileMenu, exit);
 
   showData();
- 
+
   home.addEventListener('click', () => {
     navigateTo('/wall');
   });

@@ -21,6 +21,10 @@ import {
   arrayUnion,
 } from '../firebase/initializeFirebase.js';
 
+import userPictureImport from '../img/perfil.png';
+import editIconImport from '../icons/edit.svg';
+import deleteIconImport from '../icons/delete.svg';
+
 // -- guardar datos de usuario (se irán agregando a la coleccion de users) //
 export const saveDataUser = async (Name, Email, Uid) => {
   await addDoc(collection(db, 'users'), {
@@ -160,7 +164,7 @@ export const deletePost = async (postId) => {
 export const editPost = async (postId, newData) => {
   const docRef = doc(db, 'post', postId);
   await updateDoc(docRef, newData);
-}
+};
 
 // función para dar like //
 export const giveLike = async (postId) => {
@@ -206,7 +210,8 @@ export const showData = async () => {
 
       const userPicture = document.createElement('img');
       userPicture.classList.add('userPicture');
-      userPicture.src = './img/perfil.png';
+      const userPictureMostrar = userPictureImport;
+      userPicture.src = userPictureMostrar;
       userPicture.width = 30;
       userPicture.height = 30;
 
@@ -303,7 +308,8 @@ export const showData = async () => {
         editAndDelete.classList.add('editAndDelete');
 
         const btnEdit = document.createElement('img');
-        btnEdit.src = './icons/edit.svg';
+        const btnEditMostrar = editIconImport;
+        btnEdit.src = btnEditMostrar;
         btnEdit.classList.add('btnEdit');
 
         btnEdit.addEventListener('click', (e) => {
@@ -313,7 +319,8 @@ export const showData = async () => {
         });
 
         const btnDelete = document.createElement('img');
-        btnDelete.src = './icons/delete.svg';
+        const btnDeleteMostrar = deleteIconImport;
+        btnDelete.src = btnDeleteMostrar;
         btnDelete.classList.add('btnDelete');
 
         btnDelete.addEventListener('click', (e) => {

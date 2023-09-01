@@ -1,4 +1,5 @@
 import { loginUser } from '../lib/index.js';
+import logoImportado from '../img/logo.png';
 
 function login(navigateTo) {
   const section = document.createElement('section');
@@ -10,7 +11,8 @@ function login(navigateTo) {
   const btnLogin = document.createElement('button');
   const toSignup = document.createElement('p');
 
-  logo.src = './img/logo.png';
+  const logoParaMostrar = logoImportado;
+  logo.src = logoParaMostrar;
   title.textContent = 'Ingresa a tu sesión';
   email.placeholder = 'Correo';
   password.placeholder = 'Contraseña';
