@@ -59,11 +59,6 @@ Se desarrollaron 9 historias de usuari@ como se presentan a continuación:
 
 ![Historia de Usuaria 6](/src/imagenes/2_readme_HU6.png)
 
-**Historia de Usuari@ 7**
-
-![Historia de Usuaria 7](/src/imagenes/2_readme_HU7.png)
-
-
 ## 4. Prototipo de baja fidelidad
 
 Posteriormente se realizo el prototipo de baja fidelidad considerando las historias de l@s usuari@s.
