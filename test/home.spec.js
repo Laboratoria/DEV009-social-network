@@ -1,6 +1,6 @@
 import home from '../src/components/home.js';
 
-jest.mock('../src/imagenes/logoHome.png');
+
 const navigateTo = jest.fn();
 
 describe('Home function', () => {

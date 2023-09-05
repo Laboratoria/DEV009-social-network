@@ -155,7 +155,7 @@ export async function displayAllPosts() {
             likesArr.push(userId);
           }
 
-          const newLikesCount = likesArr.length;
+          const newLikesCount = likesArr.length; //sumar like
 
           await updateDoc(postRef, {
             likes: newLikesCount,
