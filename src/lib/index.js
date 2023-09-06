@@ -77,7 +77,7 @@ export const registerWithGoogle = async (callback) => {
     // The email of the user's account used.
     const email = error.email;
     // The AuthCredential type that was used.
-    //const credential = GoogleAuthProvider.credentialFromError(error);
+    // const credential = GoogleAuthProvider.credentialFromError(error);
     // ...
     callback(false);
   }
@@ -107,27 +107,10 @@ export const exitUser = async (callback) => {
   }
 };
 
-// ---           crear post            --- //
-export const createPostFn = (post) => {
-  try {
-    obtenerUsuario().then(user => {
-      console.log(user);
-      addDoc(collection(db, 'post'), {
-        content: post,
-        author: user,
-        uid: auth.currentUser.uid,
-        like: 0, 
-        likesCounter: [],
-      });
-    });
-  } catch (e) {
-    console.error('Error adding document: ', e);
-  }
-};
 // obtener usuario logeado //
 export async function obtenerUsuario() {
   const querySnapshot = await getDocs(collection(db, 'users'));
-  let userGetName = [];
+  const userGetName = [];
   querySnapshot.forEach((doc) => {
     const user = auth.currentUser.uid;
     // console.log(user);
@@ -149,6 +132,25 @@ export async function obtenerUsuario() {
   });
   return userGetName.join('');
 }
+
+// ---           crear post            --- //
+export const createPostFn = (post) => {
+  try {
+    obtenerUsuario().then((user) => {
+      console.log(user);
+      addDoc(collection(db, 'post'), {
+        content: post,
+        author: user,
+        uid: auth.currentUser.uid,
+        like: 0,
+        likesCounter: [],
+      });
+    });
+  } catch (e) {
+    console.error('Error adding document: ', e);
+  }
+};
+
 // -- función para borrar post //
 export const deletePost = async (postId) => {
   const postIdAsString = String(postId); // lo convierte a cadena de texto
@@ -287,7 +289,7 @@ export const showData = async () => {
 
         const newData = {
           content: postEdited,
-        }
+        };
         await editPost(postId, newData);
         editModal.style.display = 'none';
         navigateTo('/wall');
@@ -346,7 +348,7 @@ export const readPostProfileUser = async () => {
 
   if (user) {
     // const currentUid = user.uid;
-    const querySnapshot = await getDocs(query(collection(db, 'post'), where('uid', '===', user.uid))); // Esta consulta busca documentos en la colección "cities" donde el campo "capital" sea igual a true.
+    const querySnapshot = await getDocs(query(collection(db, 'post'), where('uid', '===', user.uid)));
 
     // const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {

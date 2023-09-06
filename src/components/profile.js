@@ -1,12 +1,11 @@
-import { auth } from '../firebase/initializeFirebase.js';
+// import { auth } from '../firebase/initializeFirebase.js';
 import {
-  // exitUser,
-  // readPostProfileUser,
-
+// exitUser,
+// readPostProfileUser,
 } from '../lib/index.js';
 
 function profile(navigateTo) {
-  const user = auth.currentUser;
+  // const user = auth.currentUser;
   // readPostProfileUser(user);
   const mainConteiner = document.createElement('section');
   const section = document.createElement('section');
@@ -56,9 +55,7 @@ function profile(navigateTo) {
 
   editPost.addEventListener('click', () => {
     // editar post
-
   });
-
   // deletePost.addEventListener('click', () => {
   // eliminar post
 

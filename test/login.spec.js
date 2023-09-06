@@ -45,5 +45,5 @@ describe('Test para redireccionar navigateTo', () => {
     const loginUserCompleteWall = loginComponent.querySelector('.frmLogin');
     loginUserCompleteWall.submit();
     expect(navigateTo).toHaveBeenCalledWith('/wall');
-  })
+  });
 });

@@ -27,4 +27,3 @@ describe('Test para las funciones de logOut', () => {
     expect(signOut).toHaveBeenCalledWith(auth);
   });
 });
-
