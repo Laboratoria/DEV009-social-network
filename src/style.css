@@ -136,10 +136,11 @@ h2 {
     }
 
     /* vista muro */
-    .mainConteiner{
+    .mainContainer{
         background: white;
-        width: auto;
         height: auto;
+        display: flex;
+        align-items: center;
     }
     .header{
         background-color: #EDD170;
@@ -172,6 +173,7 @@ h2 {
         margin-left: 16em;
         align-content: flex-start;
         align-items: flex-start;
+        border: 1px solid red;
     }
     .profilePic{
         width: 70px;
@@ -403,7 +405,7 @@ h2 {
         box-shadow: 10px 5px 5px #003D73;
     }
      /* vista muro */
-    .mainConteiner{
+    .mainContainer{
         background: white;
         width: auto;
         height: auto;
@@ -663,7 +665,7 @@ h2 {
     }
 
     /* vista muro */
-    .mainConteiner {
+    .mainContainer {
         background-color: white;
         width: auto;
         height: 100vh;
@@ -979,7 +981,7 @@ h2 {
         width: 40px;
     }
 
-    .mainConteiner {
+    .mainContainer {
         background-color: white;
         height: 5%;
     }

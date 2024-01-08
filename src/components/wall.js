@@ -45,7 +45,7 @@ function wall(navigateTo) {
   const exitIconMostrar = exitIconImport;
   exit.src = exitIconMostrar;
 
-  mainContainer.classList.add('mainConteiner');
+  mainContainer.classList.add('mainContainer');
   section.classList.add('sectionWall');
   header.classList.add('header');
   logo.classList.add('logoWall');
@@ -90,9 +90,6 @@ function wall(navigateTo) {
   formPost.addEventListener('submit', async (e) => {
     e.preventDefault();
     const postCreated = createPost.value;
-    // const user = auth.currentUser;
-    // const author = user.displayName;
-    // console.log('hello: ', `${author}`);
     await createPostFn(postCreated);
     // console.log(obtenerUsuario());
     formPost.reset();

@@ -230,7 +230,7 @@ export const showData = async () => {
       likeBtn.classList.add('likeBtn');
       likeBtn.textContent = `${data.like} 🌎`;
       likeBtn.addEventListener('click', async () => {
-        giveLike(postId);
+        await giveLike(postId);
         showData();
       });
       //  Crear el modal para borrar publicación
