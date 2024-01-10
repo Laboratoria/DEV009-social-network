@@ -3,6 +3,7 @@ import logoImportado from '../img/logo.png';
 import linkGmainImportado from '../icons/gmail.svg';
 
 function signup(navigateTo) {
+  const container = document.createElement('div');
   const section = document.createElement('section');
   const logo = document.createElement('img');
   const title = document.createElement('h2');
@@ -20,6 +21,7 @@ function signup(navigateTo) {
   const signupWithGmail = document.createElement('button');
   const linkGmail = document.createElement('img');
 
+  container.classList.add('landingContainer');
   section.classList.add('containerSignup');
   logo.classList.add('logo');
   title.classList.add('title');
@@ -81,10 +83,11 @@ function signup(navigateTo) {
   });
 
   body.insertBefore(section, tagFirst);
+  container.append(section);
   section.append(logo, title, name, formRegister, toLogin, or, signupWithGmail);
   formRegister.append(email, password, btnSignup);
   signupWithGmail.appendChild(linkGmail);
-  return section;
+  return container;
 }
 
 export default signup;

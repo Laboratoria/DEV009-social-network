@@ -1,9 +1,7 @@
-// import { auth } from '../firebase/initializeFirebase.js';
 import {
   exitUser,
   createPostFn,
   showData,
-  // deletePost,
 } from '../lib/index.js';
 import logoImportado from '../img/logo.png';
 import profilePicImportado from '../img/perfil.png';
@@ -17,9 +15,7 @@ function wall(navigateTo) {
   const logo = document.createElement('img');
   const profilePic = document.createElement('img');
   const createPost = document.createElement('textarea');
-
   const timeLineSection = document.createElement('div');
-
   const menu = document.createElement('nav');
   const home = document.createElement('img');
   const profileMenu = document.createElement('img');
@@ -61,8 +57,8 @@ function wall(navigateTo) {
   profileMenu.classList.add('profileMenu');
   exit.classList.add('exit');
 
-  mainContainer.append(header, section, timeLineSection, menu);
-  section.append(profilePic, formPost);
+  mainContainer.append(header, section, menu);
+  section.append(profilePic, formPost, timeLineSection);
   header.appendChild(logo);
   formPost.append(createPost, postBtn);
   menu.append(home, profileMenu, exit);

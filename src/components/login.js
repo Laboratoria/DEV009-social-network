@@ -2,6 +2,7 @@ import { loginUser } from '../lib/index.js';
 import logoImportado from '../img/logo.png';
 
 function login(navigateTo) {
+  const container = document.createElement('div');
   const section = document.createElement('section');
   const frmLogin = document.createElement('form');
   const logo = document.createElement('img');
@@ -20,6 +21,7 @@ function login(navigateTo) {
   btnLogin.textContent = 'Iniciar sesión';
   toSignup.textContent = '¿Aún no tienes cuenta? ¡Regístrate!';
 
+  container.classList.add('landingContainer');
   section.classList.add('sectionLogin');
   frmLogin.classList.add('frmLogin');
   logo.classList.add('logoLogin');
@@ -43,8 +45,9 @@ function login(navigateTo) {
   toSignup.addEventListener('click', () => {
     navigateTo('/signup');
   });
+  container.append(section);
   section.append(logo, title, frmLogin, toSignup);
   frmLogin.append(email, password, btnLogin);
-  return section;
+  return container;
 }
 export default login;
