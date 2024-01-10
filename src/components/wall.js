@@ -15,6 +15,7 @@ function wall(navigateTo) {
   const logo = document.createElement('img');
   const profilePic = document.createElement('img');
   const createPost = document.createElement('textarea');
+  const postContainer = document.createElement('div');
   const timeLineSection = document.createElement('div');
   const menu = document.createElement('nav');
   const home = document.createElement('img');
@@ -49,16 +50,19 @@ function wall(navigateTo) {
   profilePic.classList.add('profilePic');
   postBtn.classList.add('postBtn');
   createPost.classList.add('createPost');
-  createPost.setAttribute('required', '');
-  createPost.setAttribute('autocapitalize', 'sentences');
+  postContainer.classList.add('createPostContainer');
   timeLineSection.classList.add('timeLineSection');
   menu.classList.add('menu');
   home.classList.add('home');
   profileMenu.classList.add('profileMenu');
   exit.classList.add('exit');
 
+  createPost.setAttribute('required', '');
+  createPost.setAttribute('autocapitalize', 'sentences');
+
   mainContainer.append(header, section, menu);
-  section.append(profilePic, formPost, timeLineSection);
+  section.append(postContainer, timeLineSection);
+  postContainer.append(profilePic, formPost);
   header.appendChild(logo);
   formPost.append(createPost, postBtn);
   menu.append(home, profileMenu, exit);
@@ -67,10 +71,6 @@ function wall(navigateTo) {
 
   home.addEventListener('click', () => {
     navigateTo('/wall');
-  });
-
-  profileMenu.addEventListener('click', () => {
-    navigateTo('/profile');
   });
 
   exit.addEventListener('click', (e) => {

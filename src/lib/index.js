@@ -1,4 +1,4 @@
-// aqui exportaras las funciones que necesites
+// aqui exportarás las funciones que necesites
 import {
   createUserWithEmailAndPassword,
   auth,
@@ -341,51 +341,3 @@ export const showData = async () => {
   }
 };
 
-/* //  ---  función para leer publicaciones en el perfil   --- //
-export const readPostProfileUser = async () => {
-  const user = auth.currentUser;
-  console.log(user);
-
-  if (user) {
-    // const currentUid = user.uid;
-    const querySnapshot = await getDocs(query(collection(db, 'post'), where('uid', '===', user.uid)));
-
-    // const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-
-      const data = doc.data();
-      const userN = doc.id;
-      // const user = auth.currentUser;
-      // const userN = userCredential.user;
-
-      const postcontainerUserProfile = document.querySelector('.profileSectionPost');
-
-      const postcontainerUser = document.createElement('div');
-      postcontainerUser.classList.add('postcontainerUser');
-
-      const conteninerNameAndPicProfile = document.createElement('div');
-      conteninerNameAndPicProfile.classList.add('conteninerNameAndPicProfile');
-
-      const userPictureProfile = document.createElement('img');
-      userPictureProfile.classList.add('userPicture');
-      userPictureProfile.src = './img/perfil.png';
-      userPictureProfile.width = 30;
-      userPictureProfile.height = 30;
-
-      const nickNameUserProfile = document.createElement('p');
-      nickNameUserProfile.textContent = `${data.author}`;
-      nickNameUserProfile.classList.add('nickNameUserProfile');
-
-      const content = document.createElement('p');
-      content.classList.add('content');
-      content.textContent = data.content;
-
-      conteninerNameAndPicProfile.append(userPictureProfile, nickNameUserProfile);
-      postcontainerUser.append(conteninerNameAndPicProfile, content);
-      postcontainerUserProfile.appendChild(postcontainerUser);
-    });
-  } else {
-    console.log("Usuario no autenticado");
-  }
-}; */

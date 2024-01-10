@@ -1,5 +1,4 @@
 import login from './components/login.js';
-import profile from './components/profile.js';
 import signup from './components/signup.js';
 import wall from './components/wall.js';
 import error from './components/error.js';
@@ -8,7 +7,6 @@ import error from './components/error.js';
 const root = document.querySelector('#root');
 const routest = [
   { path: '/', component: login },
-  { path: '/profile', component: profile },
   { path: '/signup', component: signup },
   { path: '/wall', component: wall },
   { path: '/error', component: error },
