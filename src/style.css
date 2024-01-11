@@ -185,7 +185,8 @@ h2{
     .postBtn, 
     .confirmButton,
     .cancelButton,
-    .editButton, .btnError {
+    .editButton, 
+    .btnError {
         padding: 3px;
         width: 10em;
         height: 2.5rem;
@@ -196,7 +197,6 @@ h2{
         justify-self: center;
     }
     .timeLineSection{
-        border: 1px solid red;
         display: grid;
         place-items: center;
         margin-left: 25em;
@@ -283,7 +283,8 @@ h2{
     /*vista error*/
     .errorSection{
         display: grid;
-        align-content: center;
+        padding-top: 19%;
+        gap: 5px;
     }
 }
 
@@ -348,8 +349,7 @@ h2{
     }
     .btnSignup,
     .signupWithGmail,
-    .btnLogin,
-    .btnError{
+    .btnLogin{
         padding: 6px;
         width: 25em;
         height: 2.5rem;
@@ -388,6 +388,7 @@ h2{
         padding: 0.2em;
         box-shadow: 10px 5px 5px #003D73;
     }
+
      /* vista muro */
     .mainContainer{
         background: white;
@@ -397,6 +398,7 @@ h2{
     .header{
         background-color: #EDD170;
         display: flex;
+        height: 100px;
     }
     .logoWall{
         width: 200px;
@@ -416,12 +418,13 @@ h2{
         right: 13em;
     }
     .sectionWall{
-        display: flex;
-        justify-content: center;
+        width: 100%;
         gap: 5em;
-        padding-top: 2em;
-        margin-left: 16em;
-        align-content: center;
+        padding-top: 70px;
+        display: grid;
+        justify-items: center;
+        background-color: white;
+        padding: 130px;
     }
     .profilePic{
         width: 70px;
@@ -446,7 +449,8 @@ h2{
     .postBtn, 
     .confirmButton,
     .cancelButton,
-    .editButton{
+    .editButton,
+    .btnError{
         padding: 3px;
         width: 10em;
         height: 2.5rem;
@@ -488,7 +492,6 @@ h2{
     .nickNames{
         color: white;
     }
-
     .likeBtn{
         display: flex;
         background-color: var(--theme-color-b);
@@ -539,6 +542,18 @@ h2{
     .editTextArea{
         width: 276px;
         height: 80px;
+    }
+    .createPostContainer{
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 10px;
+    }
+     /*vista error*/
+     .errorSection{
+        display: grid;
+        gap: 5px;
+        padding-right: 350px;
     }
 }
 
@@ -668,12 +683,23 @@ h2{
         height: 5em;
     }
     .sectionWall{
-        display: flex;
         justify-content: center;
         gap: 3em;
         padding-top: 1em;
         margin-left: 16em;
         align-content: center;
+        background: white;
+        display: grid;
+    }
+    .mainContainer{
+        background: white;
+        width: auto;
+        height: auto;
+    }
+    .createPostContainer{
+        display: flex;
+        justify-content: center;
+        gap: 10px;
     }
     .profilePic{
         width: 5em;
@@ -701,7 +727,8 @@ h2{
     .postBtn, 
     .confirmButton,
     .cancelButton,
-    .editButton{
+    .editButton,
+    .btnError{
         padding: 3px;
         width: 10em;
         height: 2.5rem;
@@ -712,6 +739,7 @@ h2{
         justify-self: center;
     }
     .timeLineSection{
+        justify-self: center;
         display: grid;
         place-items: center;
         margin-left: 1em;
@@ -794,8 +822,12 @@ h2{
         width: 276px;
         height: 80px;
     }
-    
-
+    .errorSection{
+        display: grid;
+        gap: 5px;
+        justify-items: center;
+        padding-top: 50%;
+    }
 }
 
 /*responsive móvil*/
@@ -847,7 +879,8 @@ h2{
     .btnLogin,
     .editButton,
     .cancelButton,
-    .confirmButton{
+    .confirmButton,
+    .btnError{
         padding: 6px;
         width: 90%;
         height: 2rem;
@@ -891,7 +924,6 @@ h2{
     }
 
     /*Vista Muro*/
-
     .logoWall{
         width: 30%;
         margin-left: -18em;
@@ -942,6 +974,7 @@ h2{
     .mainContainer{
         background-color: white;
         height: 5%;
+        width: 100%;
     }
     .postContainer{
         margin: 10px;
@@ -1024,5 +1057,16 @@ h2{
         border-style: none;
         position:relative;
         margin-right: 10px;
+    }
+    .createPostContainer{
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+    .errorSection{
+        display: grid;
+        gap: 5px;
+        justify-items: center;
+        padding-top: 90%;
     }
 }
