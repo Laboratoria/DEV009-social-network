@@ -77,10 +77,11 @@ function wall(navigateTo) {
     e.preventDefault();
     const alertlogOut = (boolean) => {
       if (boolean) {
+        localStorage.clear();
         navigateTo('/');
       }
     };
-    exitUser(alertlogOut);
+    exitUser(alertlogOut);   
   });
 
   formPost.addEventListener('submit', async (e) => {

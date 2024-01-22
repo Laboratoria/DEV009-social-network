@@ -37,17 +37,37 @@ function login(navigateTo) {
     const passUser = password.value;
     const alertLogin = (boolean) => {
       if (boolean) {
-        navigateTo('/wall');
+        localStorage.setItem('email', emailUser);
+        localStorage.setItem('pass', passUser);
+
+        const isAuthenticated = () => {
+          const userEmail = localStorage.getItem('email');
+          const userPass = localStorage.getItem('pass');
+          return userEmail && userPass;
+        };
+
+        function getToWall(navigateTo) {
+          if (!isAuthenticated()) {
+            navigateTo('/');
+            return;
+          } else{
+            navigateTo('/wall');
+          }
+        }
+        getToWall(navigateTo);
       }
     };
     loginUser(emailUser, passUser, alertLogin);
   });
+
   toSignup.addEventListener('click', () => {
     navigateTo('/signup');
   });
+
   container.append(section);
   section.append(logo, title, frmLogin, toSignup);
   frmLogin.append(email, password, btnLogin);
   return container;
 }
+
 export default login;

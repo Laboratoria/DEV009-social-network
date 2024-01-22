@@ -2,7 +2,6 @@ import login from './components/login.js';
 import signup from './components/signup.js';
 import wall from './components/wall.js';
 import error from './components/error.js';
-// import { registerUser } from './lib/index.js';
 
 const root = document.querySelector('#root');
 const routest = [

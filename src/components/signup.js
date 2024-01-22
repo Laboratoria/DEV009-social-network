@@ -61,6 +61,8 @@ function signup(navigateTo) {
     const nameUser = name.value;
     const alertRegister = (boolean) => {
       if (boolean) {
+        localStorage.setItem('email', emailUser);
+        localStorage.setItem('pass', passUser);
         navigateTo('/wall');
       }
     };
